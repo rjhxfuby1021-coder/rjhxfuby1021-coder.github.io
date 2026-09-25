@@ -83,10 +83,15 @@
     </div>
     <div id="groups"></div>
     <div class="grp">
-      <h3>Опубликовать</h3>
-      <div style="display:grid;gap:6px" id="copyBtns"></div>
-      <div id="partsBox"></div>
-      <p class="hint" style="margin:8px 0 0">Выберите страницу — появятся кнопки блоков. На странице Tilda должно быть столько же блоков T123, сколько кнопок; вставляйте по порядку сверху вниз. При добавлении или удалении кейса обновите и <b>/keys</b> (там счётчики).</p>
+      <h3>Опубликовать на сайте</h3>
+      <ol class="hint" style="margin:0;padding-left:18px;display:grid;gap:6px">
+        <li>Новые картинки: <a class="btn btn--sm" style="display:inline-flex;margin-top:4px" href="https://github.com/rjhxfuby1021-coder/rjhxfuby1021-coder.github.io/upload/main/static/img" target="_blank" rel="noopener">Загрузить в /img</a><br>в админке указывайте как <code>/img/имя-файла.webp</code></li>
+        <li>Нажмите <b>«Скачать cases.json»</b> ниже.</li>
+        <li><a class="btn btn--sm btn--acc" style="display:inline-flex;margin-top:4px" href="https://github.com/rjhxfuby1021-coder/rjhxfuby1021-coder.github.io/upload/main/src/data" target="_blank" rel="noopener">Загрузить cases.json на сайт</a><br>перетащите файл → внизу «Commit changes». Через 1–2 минуты сайт обновится сам.</li>
+      </ol>
+      <!-- блоки для Tilda больше не нужны; элементы оставлены для совместимости скрипта -->
+      <div hidden id="copyBtns"></div>
+      <div hidden id="partsBox"></div>
     </div>
     <div class="grp">
       <h3>Данные</h3>
@@ -95,7 +100,7 @@
         <label class="btn btn--sm" style="display:inline-flex;color:var(--ink)">Загрузить…<input type="file" id="upload" accept=".json,application/json" hidden></label>
         <button class="btn btn--sm btn--danger" id="reset">Сбросить</button>
       </div>
-      <p class="note">Черновик сохраняется в браузере автоматически. «Скачать cases.json» — положите файл в <code>src/data/</code>, чтобы <code>node build.js</code> собирал сайт с новыми кейсами.</p>
+      <p class="note">Черновик сохраняется в браузере автоматически, но только на этом компьютере. Файл cases.json — это и публикация, и резервная копия: храните последний.</p>
     </div>
   </aside>
 
