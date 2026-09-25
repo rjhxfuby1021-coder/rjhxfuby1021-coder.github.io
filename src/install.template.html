@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Установка сайта в Tilda</title>
+<!-- Сгенерировано build.js. Открывайте двойным кликом на своём компьютере. -->
+<style>
+  :root { --bg:#0c0c10; --panel:#15151c; --panel2:#1c1c25; --line:rgba(255,255,255,.1); --ink:#f2f0ea; --muted:#9c9aa6; --acc:#d5ff45; --ok:#3ddc84; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.6 system-ui, "Segoe UI", sans-serif; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 32px 20px 80px; }
+  h1 { font-size: 30px; margin: 0 0 6px; }
+  .lead { color: var(--muted); margin: 0 0 24px; }
+  .progress { position: sticky; top: 0; z-index: 2; padding: 12px 0; background: var(--bg); display: flex; align-items: center; gap: 12px; }
+  .bar { flex: 1; height: 8px; border-radius: 99px; background: var(--panel2); overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0; background: var(--acc); transition: width .3s; }
+  .box { padding: 18px 20px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); margin-bottom: 14px; }
+  .box h2 { margin: 0 0 10px; font-size: 18px; }
+  ol.steps { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+  .page { display: grid; gap: 12px; padding: 18px 20px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); margin-bottom: 12px; }
+  .page.done { border-color: var(--ok); }
+  .page__top { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .page__n { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--panel2); font-weight: 800; }
+  .page.done .page__n { background: var(--ok); color: #000; }
+  .page__title { font-weight: 800; font-size: 17px; margin-right: auto; }
+  .page__title small { display: block; font-weight: 500; color: var(--muted); font-size: 13px; }
+  code { padding: 2px 6px; border-radius: 6px; background: var(--panel2); font-size: 13px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; min-height: 38px; padding: 6px 14px; border-radius: 10px; border: 1px solid var(--line); background: transparent; color: inherit; font: inherit; font-weight: 700; cursor: pointer; }
+  .btn:hover { background: var(--panel2); }
+  .btn--acc { background: var(--acc); color: #0a0a0d; border-color: transparent; }
+  .seo { display: grid; gap: 8px; }
+  .seo div { display: grid; grid-template-columns: 110px 1fr auto; gap: 10px; align-items: start; font-size: 14px; }
+  .seo span { color: var(--muted); font-weight: 600; }
+  .seo .btn { min-height: 30px; padding: 3px 10px; font-size: 13px; }
+  label.check { display: inline-flex; gap: 8px; align-items: center; font-weight: 600; cursor: pointer; }
+  label.check input { width: 18px; height: 18px; accent-color: var(--ok); }
+  .toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); padding: 10px 16px; border-radius: 10px; background: var(--ink); color: var(--bg); font-weight: 800; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .toast.show { opacity: 1; }
+  @media (max-width: 640px) { .seo div { grid-template-columns: 1fr auto; } .seo span { grid-column: 1 / -1; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Установка сайта в Tilda</h1>
+  <p class="lead">Идите по карточкам сверху вниз. Tilda ограничивает размер одного блока, поэтому каждая страница разбита на несколько блоков T123 подряд. Отмечайте готовые страницы — отметки сохраняются.</p>
+
+  <div class="progress"><div class="bar"><i id="bar"></i></div><b id="count">0 / 0</b></div>
+
+  <div class="box">
+    <h2>Один раз перед началом</h2>
+    <ol class="steps">
+      <li>Сделайте копию проекта: Tilda → «Мои сайты» → у проекта «…» → <b>«Дублировать»</b>. Если что-то пойдёт не так — старый сайт останется.</li>
+      <li>В проекте откройте <b>«Настройки сайта» → «Шапка и подвал»</b> и выберите «Без шапки» и «Без подвала» — у каждой новой страницы они свои.</li>
+      <li>Проверьте, что адреса страниц совпадают со списком ниже: «Настройки страницы» → «Адрес страницы».</li>
+    </ol>
+  </div>
+
+  <div class="box">
+    <h2>Для каждой страницы (13 раз)</h2>
+    <ol class="steps">
+      <li>Откройте страницу в редакторе Tilda и удалите все старые блоки (наведите на блок → корзина).</li>
+      <li>Добавьте <b>столько блоков T123 «HTML-код», сколько у страницы кнопок «Блок»</b> («+» → «Другое» → T123), один под другим.</li>
+      <li>Здесь нажмите <b>«Блок 1»</b> → в Tilda у <b>первого</b> T123: «Контент» → кликните в поле → <b>Ctrl+V</b> → «Сохранить и закрыть».</li>
+      <li>Затем <b>«Блок 2»</b> → во <b>второй</b> T123, и так далее. Порядок важен: блоки должны стоять на странице ровно в этом порядке сверху вниз.</li>
+      <li>«Настройки страницы» → <b>SEO</b> и <b>«Соцсети»</b>: вставьте заголовок и описание (кнопки «копировать» рядом).</li>
+      <li>«Опубликовать» → откройте страницу по ссылке и проверьте. В редакторе блок выглядит как серая заглушка — это нормально.</li>
+    </ol>
+  </div>
+
+  <div id="pages"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+var PAGES = /*@PAGES@*/[];
+(function () {
+  var KEY = 'pk-install-done';
+  var done = {};
+  try { done = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) {}
+  function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+  function toast(m) { var t = document.getElementById('toast'); t.textContent = m; t.className = 'toast show'; clearTimeout(toast.t); toast.t = setTimeout(function () { t.className = 'toast'; }, 2200); }
+  function copy(text, msg) {
+    var ok = function () { toast(msg); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, fallback); else fallback();
+    function fallback() { var ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.left = '-9999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); ok(); }
+  }
+  function progress() {
+    var n = PAGES.filter(function (p) { return done[p.slug]; }).length;
+    document.getElementById('bar').style.width = (n / PAGES.length * 100) + '%';
+    document.getElementById('count').textContent = n + ' / ' + PAGES.length;
+  }
+  document.getElementById('pages').innerHTML = PAGES.map(function (p, i) {
+    return '<section class="page' + (done[p.slug] ? ' done' : '') + '" data-slug="' + p.slug + '">' +
+      '<div class="page__top"><span class="page__n">' + (i + 1) + '</span>' +
+        '<span class="page__title">' + esc(p.name) + '<small>Адрес страницы в Tilda: <code>' + esc(p.url) + '</code> · блоков T123: <b>' + p.parts.length + '</b></small></span>' +
+        p.parts.map(function (_, j) { return '<button class="btn btn--acc" data-code="' + i + ':' + j + '">Блок ' + (j + 1) + '</button>'; }).join('') +
+        '<label class="check"><input type="checkbox" data-done="' + p.slug + '"' + (done[p.slug] ? ' checked' : '') + '> Готово</label></div>' +
+      '<div class="seo">' +
+        '<div><span>Заголовок</span><span style="color:var(--ink);font-weight:500">' + esc(p.title) + '</span><button class="btn" data-seo="' + i + ':title">копировать</button></div>' +
+        '<div><span>Описание</span><span style="color:var(--ink);font-weight:500">' + esc(p.desc) + '</span><button class="btn" data-seo="' + i + ':desc">копировать</button></div>' +
+      '</div></section>';
+  }).join('');
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.code) { var c = b.dataset.code.split(':'), p = PAGES[+c[0]], n = +c[1]; copy(p.parts[n], '«' + p.name + '»: блок ' + (n + 1) + ' из ' + p.parts.length + ' скопирован — вставьте в ' + (n + 1) + '-й T123'); b.style.opacity = '.55'; }
+    if (b.dataset.seo) { var s = b.dataset.seo.split(':'); copy(PAGES[+s[0]][s[1]], 'Скопировано'); }
+  });
+  document.addEventListener('change', function (e) {
+    var c = e.target.closest('[data-done]'); if (!c) return;
+    done[c.dataset.done] = c.checked;
+    try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (er) {}
+    c.closest('.page').classList.toggle('done', c.checked);
+    progress();
+  });
+  progress();
+})();
+</script>
+</body>
+</html>

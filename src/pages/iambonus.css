@@ -1,0 +1,15 @@
+.pk-hero__text .pk-lead strong { color: var(--ink); }
+.pk-traits--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 960px) { .pk-traits--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.pk-traits--4 .pk-trait { padding: 26px; gap: 10px; }
+.pk-traits--4 .pk-trait b { font: 600 1.15rem/1.2 var(--display); }
+
+.pk-refbox {
+  display: grid; gap: 34px; padding: clamp(24px, 5vw, 60px); border-radius: 32px; position: relative; overflow: hidden; isolation: isolate;
+  background: linear-gradient(140deg, var(--acc-soft), transparent 55%), var(--card);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc-text) 30%, transparent);
+}
+.pk-refbox__head { display: grid; gap: 18px; align-items: center; }
+@media (min-width: 900px) { .pk-refbox__head { grid-template-columns: auto 1fr; gap: 40px; } }
+.pk-refbox__big { font: 700 clamp(4.5rem, 14vw, 9rem)/.85 var(--display); letter-spacing: -.07em; color: var(--acc-text); }
+.pk-refbox .pk-h2 { max-width: 18ch; margin-top: 10px; }

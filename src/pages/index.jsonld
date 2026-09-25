@@ -1,0 +1,42 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://texspeckps.ru/#person",
+      "name": "Павел Корчагин",
+      "jobTitle": "Технический специалист",
+      "url": "https://texspeckps.ru/",
+      "image": "https://static.tildacdn.com/tild3366-6336-4861-a230-666439386134/noroot.png",
+      "email": "mailto:TexSpecKor@yandex.ru",
+      "telephone": "+79507041398",
+      "address": { "@type": "PostalAddress", "addressLocality": "Брянск", "addressCountry": "RU" },
+      "knowsAbout": ["Figma", "UX/UI", "Tilda", "Zero Block", "HTML", "CSS", "JavaScript", "Salebot", "Чат-боты", "GetCourse", "Bizon365", "Вебинары", "Email-рассылки", "SEO"],
+      "sameAs": ["https://t.me/PavelTexSpec"]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://texspeckps.ru/#service",
+      "name": "Павел Корчагин — технический специалист",
+      "url": "https://texspeckps.ru/",
+      "image": "https://static.tildacdn.com/tild3366-6336-4861-a230-666439386134/noroot.png",
+      "telephone": "+79507041398",
+      "email": "TexSpecKor@yandex.ru",
+      "areaServed": "RU",
+      "founder": { "@id": "https://texspeckps.ru/#person" },
+      "description": "Дизайн в Figma, сайты на Tilda и Zero Block, чат-боты Salebot с ИИ, онлайн-школы на GetCourse, вебинары и рассылки — в одной системе.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Услуги",
+        "url": "https://texspeckps.ru/price",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "UX/UI-дизайн в Figma" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Сайты на Tilda и Zero Block" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Чат-боты Salebot и ИИ-ассистенты" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Онлайн-школы на GetCourse" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Вебинары и рассылки" } }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+.pk-cv { display: grid; gap: clamp(36px, 5vw, 56px); }
+.pk-cv__facts { display: grid; gap: 1px; border-radius: 22px; overflow: hidden; background: var(--line); box-shadow: inset 0 0 0 1px var(--line); }
+@media (min-width: 640px) { .pk-cv__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1080px) { .pk-cv__facts { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.pk-cv__facts li { display: grid; gap: 6px; padding: 20px 22px; background: var(--bg2); }
+.pk-cv__facts small { font-size: .78rem; color: var(--muted); font-weight: 600; }
+.pk-cv__facts b { font: 600 1.05rem/1.3 var(--display); }
+.pk-cv__row { display: grid; gap: 18px; }
+@media (min-width: 960px) { .pk-cv__row { grid-template-columns: 1fr 3fr; gap: 48px; } }
+.pk-cv__text { display: grid; gap: 14px; font-size: 1.05rem; line-height: 1.7; max-width: 66ch; }
+.pk-cv__edu { display: grid; gap: 10px; }
+.pk-cv__edu li { display: flex; gap: 20px; align-items: baseline; padding: 18px 20px; border-radius: 16px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
+.pk-cv__edu li > span:last-child { display: grid; gap: 2px; }
+.pk-cv__year { font: 700 1.3rem/1 var(--display); color: var(--acc-text); min-width: 3.5ch; }
+.pk-cv__contacts { display: flex; flex-wrap: wrap; gap: 10px; }
+.pk-cv__contacts a { padding: 10px 16px; border-radius: 999px; font-weight: 600; box-shadow: inset 0 0 0 1px var(--line2); }
+.pk-cv__contacts a:hover { background: var(--card); }
+.pk-steps2--2 { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 720px) { .pk-steps2--2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }
+.pk-steps2--2 li::after { display: none; }
+
+/* печать / PDF: только содержимое резюме, светлая схема */
+@media print {
+  .pk-root { --bg: #fff; --bg2: #f6f6f6; --card: #fff; --card2: #fafafa; --ink: #111; --muted: #555; --line: #ddd; --line2: #ccc; --acc-text: #3b5200; background: #fff !important; color: #111; }
+  .pk-root .pk-header, .pk-root .pk-menu, .pk-root .pk-footer, .pk-root .pk-bgfx, .pk-root .pk-grain, .pk-root .pk-noprint { display: none !important; }
+  .pk-root .pk-reveal { opacity: 1 !important; transform: none !important; }
+  .pk-root .pk-section, .pk-root .pk-hero { padding-block: 12px !important; }
+  .pk-root .pk-h1 { font-size: 28pt; }
+  .pk-root .pk-cv__row, .pk-root .pk-cv__facts li, .pk-root .pk-steps2 li { break-inside: avoid; }
+}

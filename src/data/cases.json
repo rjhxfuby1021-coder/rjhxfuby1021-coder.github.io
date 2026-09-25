@@ -1,0 +1,2588 @@
+[
+  {
+    "id": "sb-channel",
+    "dir": "salebot",
+    "cat": "funnel",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Воронка продаж",
+      "en": "Sales funnel"
+    },
+    "title": {
+      "ru": "Платный канал на автопилоте",
+      "en": "A paid channel on autopilot"
+    },
+    "lead": {
+      "ru": "Бот продаёт доступ в закрытый канал, сам открывает его после оплаты и сам закрывает, когда подписка заканчивается. Администратору больше не нужно следить за сроками.",
+      "en": "The bot sells access to a private channel, grants it after payment and revokes it when the subscription ends. The admin no longer tracks dates by hand."
+    },
+    "cover": "https://static.tildacdn.com/tild3362-6537-4137-b335-666330363332/Gemini_Generated_Ima.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "5",
+        "l": {
+          "ru": "этапов: от знакомства до продления",
+          "en": "stages from intro to renewal"
+        }
+      },
+      {
+        "v": "2+",
+        "l": {
+          "ru": "напоминания перед концом подписки",
+          "en": "reminders before expiry"
+        }
+      },
+      {
+        "v": "24/7",
+        "l": {
+          "ru": "приём оплат и выдача доступа",
+          "en": "payments and access"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Всё держалось на ручной работе: администратор принимал оплаты, выдавал доступ, записывал сроки и вручную удалял тех, у кого подписка закончилась. Нужно было автоматизировать весь цикл — от первого сообщения до продления.",
+      "en": "Everything ran on manual work: the admin took payments, granted access, tracked dates and removed expired members by hand. The whole cycle — from first message to renewal — needed automating."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Знакомство",
+          "en": "Intro"
+        },
+        "d": {
+          "ru": "Бот рассказывает о курсе и закрытом канале",
+          "en": "The bot presents the course and the channel"
+        }
+      },
+      {
+        "t": {
+          "ru": "Регистрация",
+          "en": "Sign-up"
+        },
+        "d": {
+          "ru": "Собирает данные пользователя",
+          "en": "Collects user details"
+        }
+      },
+      {
+        "t": {
+          "ru": "Оплата",
+          "en": "Payment"
+        },
+        "d": {
+          "ru": "Пользователь выбирает и оплачивает период",
+          "en": "The user picks and pays for a period"
+        }
+      },
+      {
+        "t": {
+          "ru": "Доступ",
+          "en": "Access"
+        },
+        "d": {
+          "ru": "Бот открывает канал и пишет данные в Google Таблицу",
+          "en": "Opens the channel and logs data to Google Sheets"
+        }
+      },
+      {
+        "t": {
+          "ru": "Продление",
+          "en": "Renewal"
+        },
+        "d": {
+          "ru": "Напоминает о продлении, после срока закрывает доступ",
+          "en": "Reminds to renew, revokes access after expiry"
+        }
+      }
+    ],
+    "done": [],
+    "result": {
+      "title": {
+        "ru": "Подписка, которая обслуживает себя сама",
+        "en": "A subscription that runs itself"
+      },
+      "text": {
+        "ru": "Бот закрывает не только продажу, но и всё, что после неё: следит за сроками, заранее напоминает о продлении и сам убирает доступ. Учёт подписчиков ведётся в одной таблице.",
+        "en": "The bot handles not just the sale but everything after it: it tracks dates, reminds about renewal in advance and removes access on its own. All subscribers live in one spreadsheet."
+      }
+    },
+    "tools": [
+      "Salebot",
+      "Telegram",
+      "Google Таблицы",
+      "Приём оплат"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild6230-3736-4334-a166-363866333430/129.png"
+      }
+    ]
+  },
+  {
+    "id": "sb-portfolio-ai",
+    "dir": "salebot",
+    "cat": "ai",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "ИИ-ассистент",
+      "en": "AI assistant"
+    },
+    "title": {
+      "ru": "ИИ-ассистент для сайта-портфолио",
+      "en": "An AI assistant for a portfolio site"
+    },
+    "lead": {
+      "ru": "Ассистент отвечает посетителям по базе знаний об услугах, ценах и проектах, а если вопрос нестандартный — передаёт человека и тему обращения напрямую мне.",
+      "en": "The assistant answers visitors from a knowledge base about services, prices and projects — and hands non-standard questions, with the topic, straight to me."
+    },
+    "cover": "https://static.tildacdn.com/tild3637-3736-4162-a461-353833346630/2026-08-15_22-02-00.png",
+    "url": "https://texspeckps.ru/faq",
+    "facts": [
+      {
+        "v": "24/7",
+        "l": {
+          "ru": "ответы потенциальным клиентам",
+          "en": "answers for prospects"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "точка консультации вместо поиска по FAQ",
+          "en": "chat instead of digging through FAQ"
+        }
+      },
+      {
+        "v": "5",
+        "l": {
+          "ru": "шагов от вопроса до контакта",
+          "en": "steps from question to contact"
+        }
+      }
+    ],
+    "task": {
+      "ru": "В FAQ много полезного, но искать ответ глазами неудобно, а при нестандартном вопросе человеку нужен быстрый путь к живому общению.",
+      "en": "The FAQ holds plenty of useful info, but scanning for an answer is tedious — and an unusual question needs a fast path to a real conversation."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Вход",
+          "en": "Open"
+        },
+        "d": {
+          "ru": "Посетитель открывает чат на сайте",
+          "en": "The visitor opens the chat"
+        }
+      },
+      {
+        "t": {
+          "ru": "Вопрос",
+          "en": "Question"
+        },
+        "d": {
+          "ru": "Пишет, что его интересует",
+          "en": "Asks what they want to know"
+        }
+      },
+      {
+        "t": {
+          "ru": "Ответ",
+          "en": "Answer"
+        },
+        "d": {
+          "ru": "ИИ отвечает по базе знаний",
+          "en": "AI answers from the knowledge base"
+        }
+      },
+      {
+        "t": {
+          "ru": "Уточнение",
+          "en": "Clarify"
+        },
+        "d": {
+          "ru": "Помогает сформулировать запрос",
+          "en": "Helps shape the request"
+        }
+      },
+      {
+        "t": {
+          "ru": "Контакт",
+          "en": "Contact"
+        },
+        "d": {
+          "ru": "Передаёт мне данные и тему обращения",
+          "en": "Passes me the lead and the topic"
+        }
+      }
+    ],
+    "done": [],
+    "result": {
+      "title": {
+        "ru": "FAQ, который разговаривает",
+        "en": "An FAQ that talks back"
+      },
+      "text": {
+        "ru": "Статичный раздел превратился в канал общения: клиент получает ответ в диалоге, а если нужен личный разговор — сразу переходит ко мне.",
+        "en": "A static page became a conversation channel: clients get answers in a dialogue, and when they need a personal talk they reach me right away."
+      }
+    },
+    "tools": [
+      "Salebot",
+      "ИИ",
+      "База знаний",
+      "Онлайн-чат"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild6437-3830-4339-a661-383163643135/2026-08-15_21-59-30.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3734-3636-4265-b236-626235393862/2026-08-15_22-00-12.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3263-3161-4334-a532-306231313631/2026-08-15_22-00-28.png"
+      }
+    ]
+  },
+  {
+    "id": "sb-referral",
+    "dir": "salebot",
+    "cat": "automation",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Автоматизация",
+      "en": "Automation"
+    },
+    "title": {
+      "ru": "Реферальная программа без ручного учёта",
+      "en": "A referral program with zero manual tracking"
+    },
+    "lead": {
+      "ru": "Бот сам фиксирует, кто кого пригласил, выдаёт промокоды и скидки и складывает всю статистику в Google Таблицу.",
+      "en": "The bot records who invited whom, issues promo codes and discounts, and keeps all stats in a Google Sheet."
+    },
+    "cover": "https://static.tildacdn.com/tild6665-6539-4162-b966-333132363239/Gemini_Generated_Ima.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "1",
+        "l": {
+          "ru": "единая база участников",
+          "en": "single participant database"
+        }
+      },
+      {
+        "v": "5",
+        "l": {
+          "ru": "этапов: от участия до статистики",
+          "en": "stages from joining to stats"
+        }
+      },
+      {
+        "v": "24/7",
+        "l": {
+          "ru": "выдача промокодов и скидок",
+          "en": "promo code delivery"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Реферальную программу вели вручную: кто кого привёл, сколько пришло от каждого и какие бонусы уже выданы. Учёт путался, а ошибки стоили денег и доверия.",
+      "en": "The referral program was tracked by hand: who brought whom, how many came from each person, which bonuses were paid. The records got tangled, and mistakes cost money and trust."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Участие",
+          "en": "Join"
+        },
+        "d": {
+          "ru": "Пользователь подключается к программе",
+          "en": "The user joins the program"
+        }
+      },
+      {
+        "t": {
+          "ru": "Приглашение",
+          "en": "Invite"
+        },
+        "d": {
+          "ru": "Получает персональную ссылку",
+          "en": "Gets a personal invite link"
+        }
+      },
+      {
+        "t": {
+          "ru": "Фиксация",
+          "en": "Track"
+        },
+        "d": {
+          "ru": "Бот распознаёт нового реферала",
+          "en": "The bot detects the new referral"
+        }
+      },
+      {
+        "t": {
+          "ru": "Награда",
+          "en": "Reward"
+        },
+        "d": {
+          "ru": "Выдаёт промокод или скидку",
+          "en": "Issues a promo code or discount"
+        }
+      },
+      {
+        "t": {
+          "ru": "Статистика",
+          "en": "Stats"
+        },
+        "d": {
+          "ru": "Записывает всё в Google Таблицу",
+          "en": "Logs everything to Google Sheets"
+        }
+      }
+    ],
+    "done": [],
+    "result": {
+      "title": {
+        "ru": "Прозрачная статистика вместо ручного учёта",
+        "en": "Clear stats instead of manual bookkeeping"
+      },
+      "text": {
+        "ru": "Владелец программы видит участников и их рефералов в одной таблице и не тратит время на подсчёты — бонусы выдаются автоматически и без ошибок.",
+        "en": "The owner sees all participants and their referrals in one sheet and spends no time on counting — bonuses go out automatically and accurately."
+      }
+    },
+    "tools": [
+      "Salebot",
+      "Telegram",
+      "Google Таблицы"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild6630-6166-4730-b763-633563363061/161.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3033-6533-4366-b063-323730323439/416.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6439-3062-4530-b232-386534613163/2026-06-26_20-41-01.png"
+      }
+    ]
+  },
+  {
+    "id": "sb-autowebinar",
+    "dir": "salebot",
+    "cat": "funnel",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Воронка продаж",
+      "en": "Sales funnel"
+    },
+    "title": {
+      "ru": "Автовебинар, который работает по сценарию",
+      "en": "An automated webinar that runs on script"
+    },
+    "lead": {
+      "ru": "Бот регистрирует участников, прогревает их до эфира, сопровождает во время трансляции и возвращает тех, кто опоздал или не пришёл, — на два повторных показа.",
+      "en": "The bot registers attendees, warms them up before the stream, supports them during it and brings back latecomers and no-shows for two repeat sessions."
+    },
+    "cover": "https://static.tildacdn.com/tild6662-6362-4037-b463-363734383937/Gemini_Generated_Ima.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "3",
+        "l": {
+          "ru": "показа вебинара в одном сценарии",
+          "en": "webinar sessions in one flow"
+        }
+      },
+      {
+        "v": "5",
+        "l": {
+          "ru": "этапов: от регистрации до повторов",
+          "en": "stages from sign-up to replays"
+        }
+      },
+      {
+        "v": "24/7",
+        "l": {
+          "ru": "автоматическая регистрация",
+          "en": "automated registration"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Нужно было выстроить всю коммуникацию с участниками вебинара: зарегистрировать, собрать данные, прогреть до начала, сопровождать в эфире и вернуть тех, кто пропустил первый показ.",
+      "en": "The whole attendee journey needed building: register, collect details, warm up before the start, support during the stream and bring back those who missed the first session."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Регистрация",
+          "en": "Sign-up"
+        },
+        "d": {
+          "ru": "Бот заинтересовывает и собирает данные",
+          "en": "Hooks the lead and collects details"
+        }
+      },
+      {
+        "t": {
+          "ru": "Прогрев",
+          "en": "Warm-up"
+        },
+        "d": {
+          "ru": "Серия сообщений до начала",
+          "en": "A message series before the start"
+        }
+      },
+      {
+        "t": {
+          "ru": "Вебинар",
+          "en": "Webinar"
+        },
+        "d": {
+          "ru": "Материалы и сопровождение в эфире",
+          "en": "Materials and live support"
+        }
+      },
+      {
+        "t": {
+          "ru": "Возврат",
+          "en": "Win-back"
+        },
+        "d": {
+          "ru": "Работа с опоздавшими и пропустившими",
+          "en": "Latecomers and no-shows"
+        }
+      },
+      {
+        "t": {
+          "ru": "Повторы",
+          "en": "Replays"
+        },
+        "d": {
+          "ru": "Приглашение ещё на два показа",
+          "en": "Invite to two more sessions"
+        }
+      }
+    ],
+    "done": [],
+    "result": {
+      "title": {
+        "ru": "Каждый зарегистрированный — на связи до конца",
+        "en": "Every sign-up stays engaged to the end"
+      },
+      "text": {
+        "ru": "Бот ведёт участника на всех этапах, а после первого показа сценарий сам продолжает работать на повторах — без участия организатора.",
+        "en": "The bot guides each attendee through every stage, and after the first session the scenario keeps working on replays with no organizer involvement."
+      }
+    },
+    "tools": [
+      "Salebot",
+      "Telegram",
+      "Автовебинар"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild6530-6439-4039-a133-636566633537/2026-06-28_19-03-16.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3266-3332-4332-a265-333764343662/2026-06-28_19-05-03.png"
+      }
+    ]
+  },
+  {
+    "id": "sb-wheel",
+    "dir": "salebot",
+    "cat": "game",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Игровая механика",
+      "en": "Gamification"
+    },
+    "title": {
+      "ru": "Колесо фортуны за каждого друга",
+      "en": "A prize wheel for every referral"
+    },
+    "lead": {
+      "ru": "Реферальная программа превращена в игру: за каждого приглашённого, который оплатил курс, участник крутит колесо и выигрывает один из восьми призов.",
+      "en": "The referral program became a game: for every invited friend who buys the course, the member spins a wheel and wins one of eight prizes."
+    },
+    "cover": "https://static.tildacdn.com/tild3334-3962-4163-b338-356131663739/Gemini_Generated_Ima.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "8",
+        "l": {
+          "ru": "призов на колесе",
+          "en": "prizes on the wheel"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "попытка за каждого оплатившего друга",
+          "en": "spin per paying friend"
+        }
+      },
+      {
+        "v": "∞",
+        "l": {
+          "ru": "приглашений без ограничений",
+          "en": "invites, no cap"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Обычной скидки за приглашение было мало, чтобы люди звали друзей. Нужна была механика, которая создаёт азарт при каждом новом приглашении.",
+      "en": "A plain discount wasn't enough to make people invite friends. The course needed a mechanic that adds excitement to every new invitation."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Приглашение",
+          "en": "Invite"
+        },
+        "d": {
+          "ru": "Участник зовёт друга",
+          "en": "The member invites a friend"
+        }
+      },
+      {
+        "t": {
+          "ru": "Оплата",
+          "en": "Payment"
+        },
+        "d": {
+          "ru": "Друг покупает курс",
+          "en": "The friend buys the course"
+        }
+      },
+      {
+        "t": {
+          "ru": "Попытка",
+          "en": "Spin earned"
+        },
+        "d": {
+          "ru": "Бот начисляет прокрутку",
+          "en": "The bot grants a spin"
+        }
+      },
+      {
+        "t": {
+          "ru": "Колесо",
+          "en": "Wheel"
+        },
+        "d": {
+          "ru": "Случайный выбор приза",
+          "en": "Random prize draw"
+        }
+      },
+      {
+        "t": {
+          "ru": "Награда",
+          "en": "Reward"
+        },
+        "d": {
+          "ru": "Бот показывает выигрыш",
+          "en": "The bot reveals the prize"
+        }
+      }
+    ],
+    "done": [],
+    "result": {
+      "title": {
+        "ru": "Рекомендация, в которую хочется играть",
+        "en": "Referrals people want to play"
+      },
+      "text": {
+        "ru": "Каждое успешное приглашение даёт новую причину рекомендовать курс дальше, а простая и понятная механика вовлекает сильнее, чем фиксированная скидка.",
+        "en": "Every successful invite is a new reason to keep recommending the course, and the simple mechanic engages far more than a flat discount."
+      }
+    },
+    "tools": [
+      "Salebot",
+      "Telegram",
+      "Геймификация"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3631-3030-4133-a166-316662613739/2026-06-28_18-54-00.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3639-3133-4865-b263-396462313936/2026-06-28_18-46-35.png"
+      }
+    ]
+  },
+  {
+    "id": "sb-cafe",
+    "dir": "salebot",
+    "cat": "automation",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Бот для бизнеса",
+      "en": "Business bot"
+    },
+    "title": {
+      "ru": "Цифровой администратор кафе «Приятного аппетита»",
+      "en": "A digital host for the “Priyatnogo Appetita” café"
+    },
+    "lead": {
+      "ru": "Первая цифровая точка контакта кафе: бот рассказывает о заведении, ведёт на сайт для заказа с доставкой, собирает отзывы за промокод и передаёт обращения руководителю.",
+      "en": "The café's first digital touchpoint: the bot introduces the venue, sends guests to the website to order delivery, collects reviews for a promo code and forwards requests to the manager."
+    },
+    "cover": "https://static.tildacdn.com/tild3031-6335-4466-a666-373339383865/Gemini_Generated_Ima.jpg",
+    "url": "",
+    "facts": [
+      {
+        "v": "5",
+        "l": {
+          "ru": "клиентских сценариев в одном боте",
+          "en": "customer scenarios in one bot"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "точка для заказа, отзыва и связи",
+          "en": "place to order, review and reach out"
+        }
+      },
+      {
+        "v": "24/7",
+        "l": {
+          "ru": "информация о кафе и режиме работы",
+          "en": "café info and opening hours"
+        }
+      }
+    ],
+    "task": {
+      "ru": "У кафе не было ни сайта, ни бота: гости сами искали режим работы и способы заказа, а удобного канала для отзывов и связи с руководителем не существовало.",
+      "en": "The café had neither a website nor a bot: guests hunted for opening hours and ways to order, and there was no convenient channel for feedback or reaching the manager."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Вход",
+          "en": "Start"
+        },
+        "d": {
+          "ru": "Гость запускает бота",
+          "en": "The guest starts the bot"
+        }
+      },
+      {
+        "t": {
+          "ru": "О кафе",
+          "en": "About"
+        },
+        "d": {
+          "ru": "Режим работы и услуги",
+          "en": "Hours and services"
+        }
+      },
+      {
+        "t": {
+          "ru": "Заказ",
+          "en": "Order"
+        },
+        "d": {
+          "ru": "Переход на сайт с доставкой",
+          "en": "Jump to the delivery website"
+        }
+      },
+      {
+        "t": {
+          "ru": "Отзыв",
+          "en": "Review"
+        },
+        "d": {
+          "ru": "Отзыв в обмен на промокод",
+          "en": "A review for a promo code"
+        }
+      },
+      {
+        "t": {
+          "ru": "Руководитель",
+          "en": "Manager"
+        },
+        "d": {
+          "ru": "Заявка уходит руководителю",
+          "en": "The request goes to the manager"
+        }
+      }
+    ],
+    "done": [],
+    "result": {
+      "title": {
+        "ru": "У кафе появился собственный канал общения",
+        "en": "The café got its own communication channel"
+      },
+      "text": {
+        "ru": "Гость за минуту находит нужное и переходит к заказу, отзывы собираются сами, а обращения больше не теряются — они сразу попадают к руководителю. Вместе с ботом я собрал и сайт кафе — он в кейсах Tilda.",
+        "en": "Guests find what they need in a minute and move to ordering, reviews come in on their own, and requests no longer get lost — they reach the manager instantly. I also built the café's website — see the Tilda cases."
+      }
+    },
+    "tools": [
+      "Salebot",
+      "Telegram",
+      "VK"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3561-3237-4133-a537-356433616631/2026-08-15_22-03-15.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6662-3764-4133-b037-333537646431/2026-07-26_17-12-38.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6537-3935-4438-b533-626337666165/2026-07-26_17-13-32.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6635-6336-4936-b965-373064346339/2026-07-26_17-14-01.png"
+      }
+    ],
+    "related": "cafe-shop"
+  },
+  {
+    "id": "sb-jador",
+    "dir": "salebot",
+    "cat": "ai",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "ИИ-ассистент",
+      "en": "AI assistant"
+    },
+    "title": {
+      "ru": "ИИ-администратор салона «Жадор»",
+      "en": "An AI receptionist for the “J'adore” salon"
+    },
+    "lead": {
+      "ru": "Ассистент круглосуточно консультирует клиентов маникюрного салона, помогает выбрать услугу и записывает на свободное время прямо из расписания CRM.",
+      "en": "Around the clock, the assistant advises nail-salon clients, helps them pick a service and books a free slot straight from the CRM schedule."
+    },
+    "cover": "https://static.tildacdn.com/tild3235-6638-4861-b662-393936303634/2026-08-15_22-09-38.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "24/7",
+        "l": {
+          "ru": "консультации и запись",
+          "en": "advice and booking"
+        }
+      },
+      {
+        "v": "2",
+        "l": {
+          "ru": "напоминания: за день и за час",
+          "en": "reminders: a day and an hour before"
+        }
+      },
+      {
+        "v": "CRM",
+        "l": {
+          "ru": "запись по живому расписанию",
+          "en": "booking from the live schedule"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Клиенты сами уточняли цены и свободные окна, а запись зависела от того, свободен ли администратор. Нужен был помощник, который консультирует и записывает даже ночью.",
+      "en": "Clients had to ask about prices and free slots themselves, and booking depended on the receptionist being free. The salon needed a helper that advises and books even at night."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Консультация",
+          "en": "Advice"
+        },
+        "d": {
+          "ru": "Клиент задаёт вопрос в любое время",
+          "en": "The client asks anytime"
+        }
+      },
+      {
+        "t": {
+          "ru": "Подбор",
+          "en": "Match"
+        },
+        "d": {
+          "ru": "ИИ советует подходящую процедуру",
+          "en": "AI suggests the right service"
+        }
+      },
+      {
+        "t": {
+          "ru": "Запись",
+          "en": "Booking"
+        },
+        "d": {
+          "ru": "Свободные даты и время из CRM",
+          "en": "Free dates and times from CRM"
+        }
+      },
+      {
+        "t": {
+          "ru": "Подтверждение",
+          "en": "Confirm"
+        },
+        "d": {
+          "ru": "Запись фиксируется в системе",
+          "en": "The booking is saved"
+        }
+      },
+      {
+        "t": {
+          "ru": "Напоминания",
+          "en": "Reminders"
+        },
+        "d": {
+          "ru": "За день и за час до визита",
+          "en": "A day and an hour before the visit"
+        }
+      }
+    ],
+    "done": [],
+    "result": {
+      "title": {
+        "ru": "Администратор, который не спит",
+        "en": "A receptionist who never sleeps"
+      },
+      "text": {
+        "ru": "Типовые вопросы и запись ушли к ассистенту, администратор разгрузился, а напоминания помогают клиентам не пропускать визиты.",
+        "en": "Routine questions and bookings moved to the assistant, the receptionist got breathing room, and reminders help clients not miss their visits."
+      }
+    },
+    "tools": [
+      "Salebot",
+      "ИИ",
+      "CRM",
+      "Telegram"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild6438-3564-4061-b735-323637356264/2026-08-15_22-08-06.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6264-6165-4563-b838-376564643265/2026-08-15_22-08-38.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3763-6637-4038-b362-636431326234/2026-08-15_22-08-51.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3430-6363-4635-b731-663664653862/2026-08-15_22-09-08.png"
+      }
+    ]
+  },
+  {
+    "id": "sb-course",
+    "dir": "salebot",
+    "cat": "funnel",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Воронка продаж",
+      "en": "Sales funnel"
+    },
+    "title": {
+      "ru": "Воронка курса: от знакомства до доступа",
+      "en": "A course funnel: from first touch to access"
+    },
+    "lead": {
+      "ru": "Бот знакомит с курсом, выдаёт видео и материалы, возвращает тех, кто остановился на полпути, и после оплаты сам открывает доступ к обучению.",
+      "en": "The bot introduces the course, delivers videos and materials, brings back those who stalled halfway and grants course access right after payment."
+    },
+    "cover": "https://static.tildacdn.com/tild6661-3139-4564-b235-336137326533/2026-08-15_21-46-09.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "5",
+        "l": {
+          "ru": "этапов: от знакомства до доступа",
+          "en": "stages from intro to access"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "путь от первого контакта до оплаты",
+          "en": "path from first contact to payment"
+        }
+      },
+      {
+        "v": "24/7",
+        "l": {
+          "ru": "сопровождение ученика",
+          "en": "student guidance"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Люди знакомились с курсом, но без сопровождения часть из них застревала на середине и не доходила до покупки. Нужен был инструмент, который держит контакт и возвращает в сценарий.",
+      "en": "People discovered the course, but without follow-up many stalled midway and never bought. The school needed a tool that keeps in touch and pulls people back into the flow."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Знакомство",
+          "en": "Intro"
+        },
+        "d": {
+          "ru": "Презентация курса",
+          "en": "Course presentation"
+        }
+      },
+      {
+        "t": {
+          "ru": "Изучение",
+          "en": "Learn"
+        },
+        "d": {
+          "ru": "Видео, ссылки и материалы",
+          "en": "Videos, links and materials"
+        }
+      },
+      {
+        "t": {
+          "ru": "Прогрев",
+          "en": "Warm-up"
+        },
+        "d": {
+          "ru": "Полезный контент и напоминания",
+          "en": "Useful content and nudges"
+        }
+      },
+      {
+        "t": {
+          "ru": "Продажа",
+          "en": "Offer"
+        },
+        "d": {
+          "ru": "Предложение полного курса",
+          "en": "Full course offer"
+        }
+      },
+      {
+        "t": {
+          "ru": "Доступ",
+          "en": "Access"
+        },
+        "d": {
+          "ru": "Выдача доступа после оплаты",
+          "en": "Access after payment"
+        }
+      }
+    ],
+    "done": [],
+    "result": {
+      "title": {
+        "ru": "Бот, который учит, прогревает и продаёт",
+        "en": "A bot that teaches, nurtures and sells"
+      },
+      "text": {
+        "ru": "Бот консультирует, обучает, напоминает и переводит к оплате, а после покупки сам выдаёт доступ — сценарий не обрывается на продаже.",
+        "en": "The bot advises, teaches, reminds and leads to payment, then grants access on its own — the journey doesn't end at the sale."
+      }
+    },
+    "tools": [
+      "Salebot",
+      "Telegram",
+      "Приём оплат"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild6563-3066-4634-b237-313262663630/2026-05-11_22-26-07.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3531-3235-4633-b266-303230313038/2026-05-11_22-24-14.png"
+      }
+    ]
+  },
+  {
+    "id": "sb-cards",
+    "dir": "salebot",
+    "cat": "game",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Игровая механика",
+      "en": "Gamification"
+    },
+    "title": {
+      "ru": "Игровой бот «Магические карты»",
+      "en": "“Magic Cards” game bot"
+    },
+    "lead": {
+      "ru": "Пользователь вытягивает случайную карту и получает персональную трактовку своей ситуации — а потом хочет попробовать ещё раз.",
+      "en": "The user draws a random card and gets a personal reading of their situation — and then wants to try again."
+    },
+    "cover": "https://static.tildacdn.com/tild3635-3633-4331-b761-323066633335/2026-05-12_00-52-32.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "1",
+        "l": {
+          "ru": "игровая механика внутри бота",
+          "en": "game mechanic inside the bot"
+        }
+      },
+      {
+        "v": "5",
+        "l": {
+          "ru": "шагов игрового сценария",
+          "en": "steps in the game flow"
+        }
+      },
+      {
+        "v": "∞",
+        "l": {
+          "ru": "повторных попыток",
+          "en": "replays"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Обычная цепочка сообщений быстро надоедает. Нужно было превратить общение с ботом в увлекательный сценарий, к которому хочется возвращаться.",
+      "en": "A plain message chain gets boring fast. The goal was to turn chatting with the bot into an engaging experience people come back to."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Приветствие",
+          "en": "Welcome"
+        },
+        "d": {
+          "ru": "Бот знакомится с пользователем",
+          "en": "The bot greets the user"
+        }
+      },
+      {
+        "t": {
+          "ru": "Правила",
+          "en": "Rules"
+        },
+        "d": {
+          "ru": "Объясняет механику игры",
+          "en": "Explains how the game works"
+        }
+      },
+      {
+        "t": {
+          "ru": "Выбор карты",
+          "en": "Draw"
+        },
+        "d": {
+          "ru": "Случайная карта",
+          "en": "A random card"
+        }
+      },
+      {
+        "t": {
+          "ru": "Трактовка",
+          "en": "Reading"
+        },
+        "d": {
+          "ru": "Значение и рекомендации",
+          "en": "Meaning and advice"
+        }
+      },
+      {
+        "t": {
+          "ru": "Ещё раз",
+          "en": "Again"
+        },
+        "d": {
+          "ru": "Предложение перевытянуть карту",
+          "en": "Offer to draw again"
+        }
+      }
+    ],
+    "done": [],
+    "result": {
+      "title": {
+        "ru": "Не рассылка, а игра",
+        "en": "Not a broadcast — a game"
+      },
+      "text": {
+        "ru": "Вместо стандартной цепочки — выбор, ожидание результата и персональный ответ. Такой формат удерживает внимание и приводит к повторным взаимодействиям.",
+        "en": "Instead of a standard chain — a choice, anticipation and a personal answer. The format holds attention and drives repeat interactions."
+      }
+    },
+    "tools": [
+      "Salebot",
+      "Telegram",
+      "Геймификация"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3532-6365-4035-b661-303265303230/2026-08-15_13-56-02.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3231-3564-4737-b464-366264616535/2026-08-15_13-56-47.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3031-6234-4861-b738-303034643730/2026-08-15_13-57-03.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6562-6462-4137-b330-396536386637/2026-08-15_13-57-18.png"
+      }
+    ]
+  },
+  {
+    "id": "maxfit",
+    "dir": "tilda",
+    "cat": "multipage",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Многостраничный сайт",
+      "en": "Multi-page website"
+    },
+    "title": {
+      "ru": "MAXFIT — школа фитнес-тренеров",
+      "en": "MAXFIT — a fitness coach school"
+    },
+    "lead": {
+      "ru": "Сайт школы, который превращает объёмную образовательную программу в понятный путь: узнать о школе, разобраться в программе и оставить заявку.",
+      "en": "A school website that turns a dense curriculum into a clear path: learn about the school, understand the program and apply."
+    },
+    "cover": "https://static.tildacdn.com/tild6332-6432-4634-b632-663764653161/2026-08-01_17-19-48.png",
+    "url": "https://fitbasepro.ru/",
+    "facts": [
+      {
+        "v": "5",
+        "l": {
+          "ru": "ключевых этапов пути пользователя",
+          "en": "key user-journey stages"
+        }
+      },
+      {
+        "v": "6",
+        "l": {
+          "ru": "направлений работы в проекте",
+          "en": "workstreams in the project"
+        }
+      },
+      {
+        "v": "100%",
+        "l": {
+          "ru": "адаптив под телефоны",
+          "en": "mobile-ready"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Упаковать образовательный продукт так, чтобы посетитель не тонул в информации: сайт должен одновременно презентовать школу, объяснять программу и вести к заявке.",
+      "en": "Package an educational product so visitors don't drown in information: the site had to present the school, explain the program and lead to an application — all at once."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Собрал понятную структуру курса",
+        "en": "Built a clear course structure"
+      },
+      {
+        "ru": "Выстроил путь пользователя до заявки",
+        "en": "Designed the user path to the application"
+      },
+      {
+        "ru": "Оформил программу обучения",
+        "en": "Laid out the curriculum"
+      },
+      {
+        "ru": "Показал преподавателей и преимущества",
+        "en": "Showcased teachers and benefits"
+      },
+      {
+        "ru": "Разработал визуальную систему на Tilda",
+        "en": "Created the visual system in Tilda"
+      },
+      {
+        "ru": "Адаптировал все страницы под мобильные",
+        "en": "Made every page mobile-friendly"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Выбрать обучение стало проще",
+        "en": "Choosing the course got easier"
+      },
+      "text": {
+        "ru": "Программа, преподаватели и следующий шаг видны без лишнего поиска — посетитель быстро понимает, что получит, и переходит к заявке.",
+        "en": "The program, teachers and next step are all visible without searching — visitors quickly see what they'll get and move on to apply."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "Формы заявок",
+      "Telegram"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3434-6230-4662-b965-323762666639/2026-08-17_18-30-46.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3638-3933-4463-b364-373562383534/2026-08-17_18-31-01.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3737-3334-4631-a465-376566646536/2026-08-17_18-31-15.png"
+      }
+    ]
+  },
+  {
+    "id": "weekend-reset",
+    "dir": "tilda",
+    "cat": "landing",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Лендинг",
+      "en": "Landing page"
+    },
+    "title": {
+      "ru": "WEEKEND RESET — выходные перезагрузки",
+      "en": "WEEKEND RESET — a reset getaway"
+    },
+    "lead": {
+      "ru": "Лендинг загородного wellness-выезда, который передаёт ощущение отдыха ещё до чтения деталей — дизайн здесь продаёт наравне с текстом.",
+      "en": "A landing page for a countryside wellness retreat that conveys rest before you read a word — here the design sells as much as the copy."
+    },
+    "cover": "https://static.tildacdn.com/tild3230-3732-4939-a133-643336623937/2026-08-30_18-43-46.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "9",
+        "l": {
+          "ru": "экранов в галерее проекта",
+          "en": "screens in the gallery"
+        }
+      },
+      {
+        "v": "2",
+        "l": {
+          "ru": "дня программы, расписанные по часам",
+          "en": "days of program, hour by hour"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "блок брони с ценой и датами",
+          "en": "booking block with price and dates"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Создать лендинг, который передаёт состояние отдыха раньше, чем человек дочитает, и честно отсекает тех, кому такой формат не подойдёт.",
+      "en": "Build a landing page that conveys a sense of rest before people finish reading — and honestly filters out those the format won't suit."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Разработал спокойную визуальную концепцию",
+        "en": "Created a calm visual concept"
+      },
+      {
+        "ru": "Собрал блок «кому подходит / не подходит»",
+        "en": "Built a “right for you / not for you” block"
+      },
+      {
+        "ru": "Оформил программу выходных по дням",
+        "en": "Laid out the weekend program by day"
+      },
+      {
+        "ru": "Сделал блок бронирования с ценой и датами",
+        "en": "Made a booking block with price and dates"
+      },
+      {
+        "ru": "Добавил атмосферную фотоподборку и FAQ",
+        "en": "Added a mood photo set and an FAQ"
+      },
+      {
+        "ru": "Настроил адаптивную версию",
+        "en": "Set up the responsive version"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Визуал стал частью продажи",
+        "en": "The visuals became part of the pitch"
+      },
+      "text": {
+        "ru": "Тёплая нейтральная палитра, мягкие контрасты и спокойная типографика не давят продажей, а приглашают — человек чувствует продукт ещё до покупки.",
+        "en": "A warm neutral palette, soft contrast and calm typography invite rather than push — visitors feel the product before they buy."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "Адаптивный дизайн"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3764-6238-4066-a665-316637393836/2026-08-30_18-44-19.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3835-3030-4833-a439-613561663665/2026-08-30_18-44-33.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3366-3538-4562-a236-353864316230/2026-08-30_18-44-45.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3566-3366-4565-a534-303132343831/2026-08-30_18-44-58.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6636-3837-4531-a234-626231316563/2026-08-30_18-45-10.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3634-3737-4637-a435-303536363431/2026-08-30_18-45-26.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6539-6365-4464-b463-623333616162/2026-08-30_18-45-54.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6130-6636-4665-a631-353830656133/2026-08-30_18-46-10.png"
+      }
+    ]
+  },
+  {
+    "id": "tochka-opory",
+    "dir": "tilda",
+    "cat": "landing",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Лендинг",
+      "en": "Landing page"
+    },
+    "title": {
+      "ru": "ТОЧКА ОПОРЫ — курс для родителей подростков",
+      "en": "TOCHKA OPORY — a course for parents of teens"
+    },
+    "lead": {
+      "ru": "Деликатная подача сложной темы: сайт сначала выстраивает доверие и только потом предлагает участие в программе.",
+      "en": "A delicate take on a hard topic: the site builds trust first and only then invites people into the program."
+    },
+    "cover": "https://static.tildacdn.com/tild3833-3734-4436-b139-666638643164/2026-08-30_18-46-25.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "4",
+        "l": {
+          "ru": "недели программы",
+          "en": "weeks of program"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "навыка, разложенных по неделям",
+          "en": "skills mapped to weeks"
+        }
+      },
+      {
+        "v": "9",
+        "l": {
+          "ru": "экранов в галерее проекта",
+          "en": "screens in the gallery"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Объяснить эмоционально чувствительную тему без давления и перегруженной экспертности. Сайт должен был сначала сформировать доверие, а уже затем продавать.",
+      "en": "Explain an emotionally sensitive topic without pressure or overbearing expertise. The site had to earn trust first and sell second."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Сформировал спокойную структуру лендинга",
+        "en": "Shaped a calm landing structure"
+      },
+      {
+        "ru": "Собрал блок болей с живыми фразами родителей",
+        "en": "Built a pain-points block in parents' own words"
+      },
+      {
+        "ru": "Разложил программу на 4 недели и 4 навыка",
+        "en": "Split the program into 4 weeks and 4 skills"
+      },
+      {
+        "ru": "Оформил карточку автора курса",
+        "en": "Designed the author's profile card"
+      },
+      {
+        "ru": "Добавил тариф участия и отзывы",
+        "en": "Added pricing and testimonials"
+      },
+      {
+        "ru": "Адаптировал под мобильные устройства",
+        "en": "Made it mobile-friendly"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Сложная тема стала понятной и близкой",
+        "en": "A hard topic made clear and relatable"
+      },
+      "text": {
+        "ru": "Сайт не продаёт с первого экрана — он шаг за шагом отвечает на главный вопрос родителя: «Почему именно эта программа может мне помочь?»",
+        "en": "The site doesn't sell on the first screen — step by step it answers the parent's main question: “Why can this program help me?”"
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "UX/UI",
+      "Формы заявок"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3939-3561-4536-b537-313136343536/2026-08-30_18-46-38.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3930-3337-4666-b834-333034663965/2026-08-30_18-46-48.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3637-3732-4963-a565-656636383463/2026-08-30_18-46-57.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3333-6666-4633-a138-343266643730/2026-08-30_18-47-08.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6562-3264-4262-b530-633364396231/2026-08-30_18-47-21.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3436-3262-4132-a234-353133363630/2026-08-30_18-47-29.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3963-3535-4664-b364-323236313866/2026-08-30_18-47-42.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6134-3363-4639-b564-616130343230/2026-08-30_18-47-59.png"
+      }
+    ]
+  },
+  {
+    "id": "webinar-landing",
+    "dir": "tilda",
+    "cat": "landing",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Лендинг",
+      "en": "Landing page"
+    },
+    "title": {
+      "ru": "Из Figma в живой сайт: лендинг вебинара",
+      "en": "From Figma to a live site: a webinar landing"
+    },
+    "lead": {
+      "ru": "Лендинг практического вебинара по веб-дизайну: макет из Figma перенесён в Tilda через Zero Block без потери характера и собран под все экраны. Дизайн этого же проекта — в кейсах Figma.",
+      "en": "A landing page for a hands-on web design webinar: the Figma mockup moved into Tilda via Zero Block without losing its character and adapted to every screen. The design of the same project is in the Figma cases."
+    },
+    "cover": "https://static.tildacdn.com/tild6263-3537-4466-a531-643139383235/2026-08-21_21-44-46.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "9",
+        "l": {
+          "ru": "ключевых экранов",
+          "en": "key screens"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "этапа: макет → сборка → адаптив → публикация",
+          "en": "stages: mockup → build → responsive → publish"
+        }
+      },
+      {
+        "v": "100%",
+        "l": {
+          "ru": "адаптивная структура",
+          "en": "responsive structure"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Перенести готовую концепцию из Figma в работающий сайт без потери визуального характера и корректно адаптировать её под разные разрешения.",
+      "en": "Turn a finished Figma concept into a working website without losing its visual character, and adapt it properly to every resolution."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Figma",
+          "en": "Figma"
+        },
+        "d": {
+          "ru": "Готовый макет",
+          "en": "Finished mockup"
+        }
+      },
+      {
+        "t": {
+          "ru": "Zero Block",
+          "en": "Zero Block"
+        },
+        "d": {
+          "ru": "Сборка экранов",
+          "en": "Building the screens"
+        }
+      },
+      {
+        "t": {
+          "ru": "Адаптив",
+          "en": "Responsive"
+        },
+        "d": {
+          "ru": "Все разрешения",
+          "en": "Every resolution"
+        }
+      },
+      {
+        "t": {
+          "ru": "Публикация",
+          "en": "Publish"
+        },
+        "d": {
+          "ru": "Готовый сайт на Tilda",
+          "en": "Live site on Tilda"
+        }
+      }
+    ],
+    "done": [
+      {
+        "ru": "Сверстал дизайн в Zero Block",
+        "en": "Built the design in Zero Block"
+      },
+      {
+        "ru": "Перенёс типографику и сетку",
+        "en": "Carried over typography and grid"
+      },
+      {
+        "ru": "Настроил адаптивные состояния",
+        "en": "Set up responsive states"
+      },
+      {
+        "ru": "Собрал все ключевые экраны",
+        "en": "Assembled all key screens"
+      },
+      {
+        "ru": "Проверил мобильную версию",
+        "en": "Tested the mobile version"
+      },
+      {
+        "ru": "Опубликовал проект",
+        "en": "Published the project"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Концепция из Figma стала живым продуктом",
+        "en": "A Figma concept became a live product"
+      },
+      "text": {
+        "ru": "Макет и сайт совпадают: сетка, шрифты и акценты сохранены, а страница корректно выглядит на любом экране.",
+        "en": "Mockup and site match: grid, fonts and accents are preserved, and the page looks right on any screen."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "Figma",
+      "Адаптивный дизайн"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3631-3231-4134-b766-363939343734/2026-08-21_21-24-22.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3232-3864-4835-b265-626431393831/2026-08-21_21-24-37.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6234-3633-4535-b738-643866396131/2026-08-21_21-24-49.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3433-3132-4766-b437-393235346639/2026-08-21_21-25-22.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6534-6631-4564-b863-353963373531/2026-08-21_21-25-38.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3165-3862-4664-a339-663363386466/2026-08-21_21-25-52.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6536-3231-4961-a464-326663356466/2026-08-21_21-26-00.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3534-3965-4333-b661-376166333531/2026-08-21_21-26-09.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3862-6333-4562-b730-306237393265/2026-08-21_21-26-23.png"
+      }
+    ],
+    "related": "figma-webinar"
+  },
+  {
+    "id": "vera-portfolio",
+    "dir": "tilda",
+    "cat": "multipage",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Многостраничный сайт",
+      "en": "Multi-page website"
+    },
+    "title": {
+      "ru": "Сайт-портфолио веб-дизайнера Веры",
+      "en": "A portfolio site for web designer Vera"
+    },
+    "lead": {
+      "ru": "Одна площадка вместо россыпи ссылок: работы, услуги, стоимость и понятный следующий шаг для клиента.",
+      "en": "One place instead of scattered links: work, services, pricing and a clear next step for clients."
+    },
+    "cover": "https://static.tildacdn.com/tild3537-3731-4936-b436-363330633439/2026-08-01_17-18-46.png",
+    "url": "https://link-laureate-sturgeon.tilda.ws/",
+    "facts": [
+      {
+        "v": "1",
+        "l": {
+          "ru": "площадка вместо нескольких ссылок",
+          "en": "site instead of many links"
+        }
+      },
+      {
+        "v": "6",
+        "l": {
+          "ru": "блоков: от позиционирования до контактов",
+          "en": "blocks from positioning to contact"
+        }
+      },
+      {
+        "v": "24/7",
+        "l": {
+          "ru": "портфолио доступно клиентам",
+          "en": "portfolio always available"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Сделать персональную площадку, которая знакомит с дизайнером, показывает уровень работ, объясняет услуги и помогает клиенту решиться на сотрудничество.",
+      "en": "Build a personal hub that introduces the designer, shows the quality of work, explains the services and helps clients commit."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Сформировал личное позиционирование",
+        "en": "Defined personal positioning"
+      },
+      {
+        "ru": "Выстроил портфолио вокруг сильных работ",
+        "en": "Built the portfolio around the strongest work"
+      },
+      {
+        "ru": "Разработал блок услуг и стоимости",
+        "en": "Designed services and pricing"
+      },
+      {
+        "ru": "Добавил социальное доказательство",
+        "en": "Added social proof"
+      },
+      {
+        "ru": "Собрал контакты в финальный сценарий",
+        "en": "Wrapped contacts into the final step"
+      },
+      {
+        "ru": "Адаптировал под мобильные устройства",
+        "en": "Made it mobile-friendly"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Портфолио стало инструментом продаж",
+        "en": "The portfolio became a sales tool"
+      },
+      "text": {
+        "ru": "Клиент видит работы, цены и способ связи на одной странице. Вера оставила отзыв о результате — он есть в разделе «Отзывы».",
+        "en": "Clients see work, prices and how to get in touch in one place. Vera left a review of the result — it's on the Reviews page."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Портфолио",
+      "VK",
+      "Telegram"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3530-6539-4435-b030-386234653139/2026-08-16_00-19-30.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3561-3462-4164-b931-363839663864/2026-08-16_00-19-47.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3530-3236-4038-a536-343465356465/2026-08-16_00-20-05.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3166-6561-4961-a565-353766336666/2026-08-16_00-20-17.png"
+      }
+    ]
+  },
+  {
+    "id": "cafe-shop",
+    "dir": "tilda",
+    "cat": "shop",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Интернет-магазин",
+      "en": "Online store"
+    },
+    "title": {
+      "ru": "Кафе «Приятного аппетита»",
+      "en": "“Priyatnogo Appetita” café"
+    },
+    "lead": {
+      "ru": "Сайт-магазин кафе, где презентация сразу ведёт к заказу: онлайн-меню, корзина, оформление доставки и карта с точками кафе.",
+      "en": "A café web store where the showcase leads straight to ordering: online menu, cart, delivery checkout and a map of all locations."
+    },
+    "cover": "https://static.tildacdn.com/tild6132-3733-4237-a265-653539353236/2026-09-12_19-08-11.png",
+    "url": "https://priyatnogoappetita.tilda.ws/priyatnogo",
+    "facts": [
+      {
+        "v": "№1",
+        "l": {
+          "ru": "в поиске по своей области",
+          "en": "in regional search"
+        }
+      },
+      {
+        "v": "6",
+        "l": {
+          "ru": "категорий онлайн-меню",
+          "en": "online menu categories"
+        }
+      },
+      {
+        "v": "3",
+        "l": {
+          "ru": "точки кафе на одной карте",
+          "en": "café locations on one map"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Превратить сайт кафе в канал продаж: не просто рассказать о заведении, а дать гостю заказать еду онлайн — от выбора блюда до получения заказа.",
+      "en": "Turn the café site into a sales channel: not just tell about the venue but let guests order online — from picking a dish to receiving it."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Собрал онлайн-меню из 6 категорий",
+        "en": "Built a 6-category online menu"
+      },
+      {
+        "ru": "Оформил карточки блюд с выбором порции",
+        "en": "Designed dish cards with portion options"
+      },
+      {
+        "ru": "Сделал корзину и оформление заказа",
+        "en": "Made the cart and checkout"
+      },
+      {
+        "ru": "Добавил отзывы гостей",
+        "en": "Added guest reviews"
+      },
+      {
+        "ru": "Настроил карту с несколькими точками",
+        "en": "Set up a map with several locations"
+      },
+      {
+        "ru": "Адаптировал под мобильные устройства",
+        "en": "Made it mobile-friendly"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Сайт, который принимает заказы",
+        "en": "A site that takes orders"
+      },
+      "text": {
+        "ru": "Гости сами оформляют заказы и доставку, а сайт вышел на первое место в поиске по области. Владелец кафе Рубен оставил отзыв — он в разделе «Отзывы». Для этого же кафе я собрал чат-бота — он в кейсах Salebot.",
+        "en": "Guests place orders and book delivery on their own, and the site reached first place in regional search. The owner, Ruben, left a review on the Reviews page. I also built a chatbot for the café — see the Salebot cases."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Онлайн-заказ",
+      "CRM",
+      "VK"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3562-6539-4335-b530-316663343661/2026-09-12_19-08-55.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3161-3433-4763-b031-326132623262/2026-09-12_19-09-09.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6233-3330-4237-b162-636231613531/2026-09-12_19-08-36.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3763-6165-4162-b037-343835386130/2026-09-12_19-09-25.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3435-3261-4231-a138-663233313633/2026-09-12_19-09-55.png"
+      }
+    ],
+    "related": "sb-cafe"
+  },
+  {
+    "id": "mechanic",
+    "dir": "tilda",
+    "cat": "landing",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Лендинг",
+      "en": "Landing page"
+    },
+    "title": {
+      "ru": "Механик 102 — ремонт полуприцепов-цистерн",
+      "en": "Mekhanik 102 — tank trailer repair"
+    },
+    "lead": {
+      "ru": "Сложная B2B-услуга объяснена через личную историю мастера, конкретные цифры и разбор реальных поломок — доверие вместо громких обещаний.",
+      "en": "A complex B2B service explained through the mechanic's own story, hard numbers and real repair breakdowns — trust instead of loud promises."
+    },
+    "cover": "https://static.tildacdn.com/tild3536-3539-4439-b462-643634633930/2026-09-12_19-14-20.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "8",
+        "l": {
+          "ru": "шагов прозрачного процесса работы",
+          "en": "steps of a transparent process"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "форма заявки на бесплатный осмотр",
+          "en": "free-inspection request form"
+        }
+      },
+      {
+        "v": "B2B",
+        "l": {
+          "ru": "узкая ниша, решение на доверии",
+          "en": "niche, trust-based decision"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Продать дорогую услугу в узкой нише, где выбирают мастера, а не красивые слова. Нужно было показать экспертность через цифры, историю и реальные примеры.",
+      "en": "Sell an expensive service in a narrow niche where people choose the mechanic, not the pitch. Expertise had to come through numbers, a story and real examples."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Собрал тёмную индустриальную айдентику",
+        "en": "Built a dark industrial identity"
+      },
+      {
+        "ru": "Выстроил блок частых поломок с фото",
+        "en": "Made a common-failures block with photos"
+      },
+      {
+        "ru": "Оформил историю основателя с цифрами",
+        "en": "Told the founder's story with numbers"
+      },
+      {
+        "ru": "Сделал форму заявки на бесплатный осмотр",
+        "en": "Created a free-inspection request form"
+      },
+      {
+        "ru": "Собрал этапы работы из 8 шагов",
+        "en": "Laid out an 8-step work process"
+      },
+      {
+        "ru": "Добавил реальные кейсы «проблема → решение»",
+        "en": "Added real “problem → fix” cases"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Сложная услуга стала понятной",
+        "en": "A complex service made clear"
+      },
+      "text": {
+        "ru": "Вместо шаблонных обещаний — мастер, его опыт и разбор реальных поломок. Клиент понимает, что будет происходить, и спокойно оставляет заявку на осмотр.",
+        "en": "Instead of generic promises — the mechanic, his experience and real breakdowns. Clients understand what will happen and confidently request an inspection."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "Формы заявок",
+      "WhatsApp",
+      "Telegram"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3431-6434-4835-a332-646533663038/2026-09-12_19-14-36.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6633-3365-4236-b965-323036363735/2026-09-12_19-14-47.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6563-3132-4766-b730-653863393438/2026-09-12_19-15-05.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3833-3762-4535-a565-663134393562/2026-09-12_19-15-19.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6636-3063-4762-b362-623635656631/2026-09-12_19-15-31.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6661-3331-4230-b130-393764643166/2026-09-12_19-15-49.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6235-6361-4730-a438-376336643332/2026-09-12_19-16-04.png"
+      }
+    ]
+  },
+  {
+    "id": "wave-sup",
+    "dir": "tilda",
+    "cat": "landing",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Лендинг",
+      "en": "Landing page"
+    },
+    "title": {
+      "ru": "Wave SUP — прогулки по рекам Петербурга",
+      "en": "Wave SUP — paddling St. Petersburg's rivers"
+    },
+    "lead": {
+      "ru": "Лендинг школы SUP-прогулок, который влюбляет в отдых на воде ещё до брони и ведёт от эмоции к записи в три простых шага.",
+      "en": "A SUP school landing page that makes people fall for the water before booking and takes them from emotion to sign-up in three easy steps."
+    },
+    "cover": "https://static.tildacdn.com/tild3666-3965-4961-a238-333461663531/2026-09-12_19-18-31.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "6",
+        "l": {
+          "ru": "маршрутов с ценами",
+          "en": "routes with prices"
+        }
+      },
+      {
+        "v": "3",
+        "l": {
+          "ru": "шага до записи",
+          "en": "steps to book"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "команда инструкторов со стажем",
+          "en": "team of seasoned instructors"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Передать атмосферу живого отдыха на воде и снять барьеры перед записью: сложно ли грести, безопасно ли, что входит в прогулку.",
+      "en": "Convey the feel of a day on the water and remove booking barriers: is paddling hard, is it safe, what's included."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Собрал яркую эмоциональную визуальную систему",
+        "en": "Built a bright, emotional visual system"
+      },
+      {
+        "ru": "Сделал карусель из 6 маршрутов с ценами",
+        "en": "Made a 6-route carousel with prices"
+      },
+      {
+        "ru": "Добавил блок инструкторов с их стажем",
+        "en": "Added an instructors block with experience"
+      },
+      {
+        "ru": "Собрал форму записи в 3 шага",
+        "en": "Built a 3-step booking form"
+      },
+      {
+        "ru": "Сделал фотогалерею живых прогулок",
+        "en": "Created a gallery of real trips"
+      },
+      {
+        "ru": "Настроил блок частых вопросов",
+        "en": "Set up an FAQ block"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Отдых на воде — в один клик",
+        "en": "A day on the water, one click away"
+      },
+      "text": {
+        "ru": "Атмосферные фото, понятный выбор маршрута и доверие через команду снимают сомнения — человек переходит от «хочу» к записи без лишних вопросов.",
+        "en": "Mood photos, an easy route choice and trust in the team remove doubts — people go from “I want this” to booking without extra questions."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "Формы заявок",
+      "VK"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3862-6139-4163-b436-306435613833/2026-09-12_19-18-43.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6531-3537-4266-b339-626635303431/2026-09-12_19-18-55.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3133-6664-4331-b063-363537353034/2026-09-12_19-19-06.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3663-3961-4536-b334-363533323234/2026-09-12_19-19-17.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3138-3366-4963-b165-346432626134/2026-09-12_19-19-30.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3464-3962-4063-b036-636564643834/2026-09-12_19-19-45.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6339-3065-4538-b935-393730616430/2026-09-12_19-19-58.png"
+      }
+    ]
+  },
+  {
+    "id": "yurdirect",
+    "dir": "tilda",
+    "cat": "multipage",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Многостраничный сайт",
+      "en": "Multi-page website"
+    },
+    "title": {
+      "ru": "Юрдирект — юридическое агентство",
+      "en": "Yurdirect — a law agency"
+    },
+    "lead": {
+      "ru": "Сайт, который показывает агентство надёжным партнёром в пяти практиках права и делает процесс работы предсказуемым — от вопроса до консультации.",
+      "en": "A site that presents the agency as a reliable partner across five practice areas and makes the process predictable — from question to consultation."
+    },
+    "cover": "https://static.tildacdn.com/tild6533-6431-4439-b332-386232363561/2026-09-12_19-23-05.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "5",
+        "l": {
+          "ru": "практик права",
+          "en": "practice areas"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "этапа прозрачного процесса",
+          "en": "transparent process stages"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "форма заявки на консультацию",
+          "en": "consultation request form"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Показать, что агентство — не разовый консультант, а партнёр в разных практиках права: структурировать услуги и сделать процесс понятным заранее.",
+      "en": "Show that the agency is not a one-off adviser but a partner across practice areas: structure the services and make the process clear in advance."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Разработал строгую айдентику в зелёной палитре",
+        "en": "Designed a strict identity in green"
+      },
+      {
+        "ru": "Собрал блок «Наши практики» из 5 направлений",
+        "en": "Built a 5-area “Our practices” block"
+      },
+      {
+        "ru": "Оформил процесс работы в 4 этапа",
+        "en": "Laid out a 4-stage work process"
+      },
+      {
+        "ru": "Добавил блок о репутации и надёжности",
+        "en": "Added a reputation and reliability block"
+      },
+      {
+        "ru": "Сделал финальный блок заявки с формой",
+        "en": "Made a final request block with a form"
+      },
+      {
+        "ru": "Адаптировал под мобильные устройства",
+        "en": "Made it mobile-friendly"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Юридические услуги стали понятной системой",
+        "en": "Legal services turned into a clear system"
+      },
+      "text": {
+        "ru": "Клиент сразу находит свою практику, видит, как будет строиться работа, и оставляет заявку без лишних барьеров.",
+        "en": "Clients find their practice area right away, see how the work will go and submit a request with no friction."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "Формы заявок",
+      "Telegram",
+      "WhatsApp"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3036-6363-4439-b864-366663383235/2026-09-12_19-23-16.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6566-6664-4530-a665-653437633737/2026-09-12_19-23-28.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3438-6230-4762-a332-613337333263/2026-09-12_19-23-38.png"
+      }
+    ]
+  },
+  {
+    "id": "diva-n",
+    "dir": "tilda",
+    "cat": "shop",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Интернет-магазин",
+      "en": "Online store"
+    },
+    "title": {
+      "ru": "Дива-Н — мебель на заказ",
+      "en": "Diva-N — custom furniture"
+    },
+    "lead": {
+      "ru": "Каталог с фильтрами по типу и обивке помогает быстро найти модель и дойти от просмотра до консультации по размеру и ткани.",
+      "en": "A catalog filtered by type and upholstery helps shoppers find a model fast and move from browsing to a size-and-fabric consultation."
+    },
+    "cover": "https://static.tildacdn.com/tild3837-3263-4666-b961-616664613830/2026-09-12_19-24-33.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "4",
+        "l": {
+          "ru": "категории мебели в каталоге",
+          "en": "furniture categories"
+        }
+      },
+      {
+        "v": "2",
+        "l": {
+          "ru": "фильтра: тип и обивка",
+          "en": "filters: type and upholstery"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "форма бесплатной консультации",
+          "en": "free consultation form"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Помочь покупателю быстро сориентироваться в мебели на заказ — тип, обивка, размер, цена, — чтобы каталог закрывал вопросы ещё до звонка менеджеру.",
+      "en": "Help shoppers quickly navigate custom furniture — type, upholstery, size, price — so the catalog answers questions before they call a manager."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Собрал каталог из 4 категорий с фильтрами",
+        "en": "Built a 4-category filtered catalog"
+      },
+      {
+        "ru": "Оформил карточки моделей с ценами",
+        "en": "Designed model cards with prices"
+      },
+      {
+        "ru": "Сделал блок преимуществ и гарантий",
+        "en": "Made a benefits and guarantees block"
+      },
+      {
+        "ru": "Добавил отзывы с рейтингом Яндекс Карт",
+        "en": "Added reviews with Yandex Maps rating"
+      },
+      {
+        "ru": "Сделал форму бесплатной консультации",
+        "en": "Created a free consultation form"
+      },
+      {
+        "ru": "Адаптировал каталог под мобильные",
+        "en": "Made the catalog mobile-friendly"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Мебель на заказ — простой выбор",
+        "en": "Custom furniture made easy to choose"
+      },
+      "text": {
+        "ru": "Покупатель сам сужает выбор фильтрами, видит цены и отзывы и приходит на консультацию уже с понятным запросом.",
+        "en": "Shoppers narrow down with filters, see prices and reviews, and come to the consultation with a clear request."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "Каталог",
+      "Формы заявок"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3765-3732-4062-b139-363664363662/2026-09-12_19-24-47.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3363-3962-4238-a264-633336393332/2026-09-12_19-25-09.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3834-6433-4662-b039-366436396163/2026-09-12_19-25-24.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3138-6464-4665-a161-616532303637/2026-09-12_19-25-35.png"
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6138-3665-4665-a462-363961653439/2026-09-12_19-25-46.png"
+      }
+    ]
+  },
+  {
+    "id": "figma-webinar",
+    "dir": "figma",
+    "cat": "landing",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "UX/UI-дизайн",
+      "en": "UX/UI design"
+    },
+    "title": {
+      "ru": "Лендинг вебинара: от пустого холста до готового UI",
+      "en": "A webinar landing: from blank canvas to final UI"
+    },
+    "lead": {
+      "ru": "Вебинар о старте в веб-дизайне без портфолио. Сначала выстроил сценарий и каркас, потом — визуальный слой поверх него. Сборка этого же проекта на Tilda — в кейсах Tilda.",
+      "en": "A webinar on starting in web design with no portfolio. I built the scenario and wireframe first, then the visual layer on top. The Tilda build of the same project is in the Tilda cases."
+    },
+    "cover": "https://static.tildacdn.com/tild6263-3537-4466-a531-643139383235/2026-08-21_21-44-46.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "4",
+        "l": {
+          "ru": "слоя: UX → каркас → UI → прототип",
+          "en": "layers: UX → wireframe → UI → prototype"
+        }
+      },
+      {
+        "v": "5",
+        "l": {
+          "ru": "смысловых блоков страницы",
+          "en": "content blocks"
+        }
+      },
+      {
+        "v": "9",
+        "l": {
+          "ru": "финальных экранов",
+          "en": "final screens"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Не просто сделать красиво, а провести человека от «а вдруг у меня получится» до кнопки регистрации. Поэтому сначала логика, и только потом — визуал.",
+      "en": "Not just make it pretty, but take people from “what if I can do this” to the sign-up button. So logic came first, visuals second."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "UX-разбор",
+          "en": "UX research"
+        },
+        "d": {
+          "ru": "Аудитория, оффер и главное возражение",
+          "en": "Audience, offer and the main objection"
+        }
+      },
+      {
+        "t": {
+          "ru": "Каркас",
+          "en": "Wireframe"
+        },
+        "d": {
+          "ru": "Порядок блоков: суть → доверие → результат → CTA",
+          "en": "Block order: point → trust → result → CTA"
+        }
+      },
+      {
+        "t": {
+          "ru": "UI",
+          "en": "UI"
+        },
+        "d": {
+          "ru": "Типографика, акценты, компоненты",
+          "en": "Typography, accents, components"
+        }
+      },
+      {
+        "t": {
+          "ru": "Прототип",
+          "en": "Prototype"
+        },
+        "d": {
+          "ru": "Экраны с состояниями, готовые к вёрстке",
+          "en": "Screens with states, ready to build"
+        }
+      }
+    ],
+    "done": [
+      {
+        "ru": "Разобрал аудиторию и её главное возражение",
+        "en": "Analysed the audience and its main objection"
+      },
+      {
+        "ru": "Выстроил каркас: оффер, программа, эксперт, результаты, регистрация",
+        "en": "Built the wireframe: offer, program, expert, results, sign-up"
+      },
+      {
+        "ru": "Сделал блок эксперта ключевым элементом доверия",
+        "en": "Made the expert block the key trust element"
+      },
+      {
+        "ru": "Собрал UI без визуального шума, с крупной типографикой",
+        "en": "Designed a clean UI with large typography"
+      },
+      {
+        "ru": "Подготовил 9 экранов к передаче в вёрстку",
+        "en": "Prepared 9 screens for development"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Простой старт — и в интерфейсе тоже",
+        "en": "An easy start — in the interface too"
+      },
+      "text": {
+        "ru": "Лендинг сразу показывает, что разберут на вебинаре: с чего начать, где брать первые проекты без портфолио и как перейти от обучения к практике — без ощущения перегруженного курса.",
+        "en": "The landing shows right away what the webinar covers: where to start, how to land first projects without a portfolio and how to move from learning to practice — without feeling like a heavy course."
+      }
+    },
+    "tools": [
+      "Figma",
+      "UX",
+      "UI",
+      "Прототип"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild6234-6335-4334-b062-623361613639/2026-08-21_21-23-55.png",
+        "cap": {
+          "ru": "Герой",
+          "en": "Hero"
+        }
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3631-3231-4134-b766-363939343734/2026-08-21_21-24-22.png",
+        "cap": {
+          "ru": "Оффер",
+          "en": "Offer"
+        }
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3232-3864-4835-b265-626431393831/2026-08-21_21-24-37.png",
+        "cap": {
+          "ru": "Программа",
+          "en": "Program"
+        }
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6234-3633-4535-b738-643866396131/2026-08-21_21-24-49.png",
+        "cap": {
+          "ru": "Программа, часть 2",
+          "en": "Program, part 2"
+        }
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3433-3132-4766-b437-393235346639/2026-08-21_21-25-22.png",
+        "cap": {
+          "ru": "Эксперт",
+          "en": "Expert"
+        }
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6534-6631-4564-b863-353963373531/2026-08-21_21-25-38.png",
+        "cap": {
+          "ru": "Результаты",
+          "en": "Results"
+        }
+      },
+      {
+        "src": "https://static.tildacdn.com/tild6536-3231-4961-a464-326663356466/2026-08-21_21-26-00.png",
+        "cap": {
+          "ru": "Отзывы",
+          "en": "Testimonials"
+        }
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3534-3965-4333-b661-376166333531/2026-08-21_21-26-09.png",
+        "cap": {
+          "ru": "FAQ",
+          "en": "FAQ"
+        }
+      },
+      {
+        "src": "https://static.tildacdn.com/tild3862-6333-4562-b730-306237393265/2026-08-21_21-26-23.png",
+        "cap": {
+          "ru": "Регистрация",
+          "en": "Sign-up"
+        }
+      }
+    ],
+    "related": "webinar-landing"
+  },
+  {
+    "id": "pro-technik",
+    "dir": "getcourse",
+    "cat": "school",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Онлайн-школа",
+      "en": "Online school"
+    },
+    "title": {
+      "ru": "PRO.Техник — онлайн-школа технических специалистов",
+      "en": "PRO.Technik — an online school for tech specialists"
+    },
+    "lead": {
+      "ru": "Школа учит зарабатывать на чат-ботах и автоматизации. Довёл её платформу на GetCourse от «голого» конструктора до рабочего учебного продукта — и продолжаю вести.",
+      "en": "The school teaches people to earn with chatbots and automation. I took its GetCourse platform from a bare builder to a working learning product — and keep running it."
+    },
+    "cover": "https://static.tildacdn.com/tild3832-3337-4161-b033-633533653061/2026-08-15_22-43-44.png",
+    "url": "",
+    "facts": [
+      {
+        "v": "5",
+        "l": {
+          "ru": "направлений работы в одной школе",
+          "en": "workstreams in one school"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "единый шаблон для новых потоков",
+          "en": "template for every new cohort"
+        }
+      },
+      {
+        "v": "∞",
+        "l": {
+          "ru": "поддержка каждого нового потока",
+          "en": "support for every new cohort"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Курсов и потоков много, а кабинет GetCourse из коробки не отражал ни структуру школы, ни её техническую суть. Нужно было привести кабинет, страницы программ и каталог к единому виду, не ломая логику платформы, — и параллельно вести контент.",
+      "en": "Many courses and cohorts, while the out-of-the-box GetCourse cabinet reflected neither the school's structure nor its technical focus. The cabinet, program pages and catalog needed one look without breaking the platform logic — while running the content in parallel."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Переверстал каталог курсов под фирменный стиль",
+        "en": "Rebuilt the course catalog in the brand style"
+      },
+      {
+        "ru": "Сделал статусы «доступно / пройдено» и прогресс-бары",
+        "en": "Added “available / completed” statuses and progress bars"
+      },
+      {
+        "ru": "Наполняю и редактирую уроки",
+        "en": "Upload and edit lessons"
+      },
+      {
+        "ru": "Настраиваю email-рассылки",
+        "en": "Set up email campaigns"
+      },
+      {
+        "ru": "Подключаю интеграции сервисов",
+        "en": "Connect service integrations"
+      },
+      {
+        "ru": "Собираю чат-ботов и лендинги программ",
+        "en": "Build chatbots and program landing pages"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Площадка, которую не стыдно показать ученику",
+        "en": "A platform worth showing students on day one"
+      },
+      "text": {
+        "ru": "Ученик с первого дня видит понятный кабинет со своим прогрессом, а каждый новый поток запускается по готовому шаблону — от рассылки до бота.",
+        "en": "From day one, students see a clear cabinet with their progress, and every new cohort launches from a ready template — from emails to bots."
+      }
+    },
+    "tools": [
+      "GetCourse",
+      "Salebot",
+      "HTML / CSS / JS",
+      "Email"
+    ],
+    "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3438-3262-4134-a165-346131306239/2026-08-15_22-42-54.png",
+        "cap": {
+          "ru": "Каталог курсов в фирменном стиле",
+          "en": "Branded course catalog"
+        }
+      }
+    ]
+  }
+]

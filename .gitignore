@@ -1,0 +1,11 @@
+# результаты сборки — собираются заново (локально и на GitHub)
+site/
+dist/
+admin/admin-kit.js
+УСТАНОВКА.html
+АДМИНКА.html
+# служебное
+tools/node_modules/
+.claude/
+tilda-block.html
+/index.html

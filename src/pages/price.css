@@ -1,0 +1,65 @@
+/* вкладки направлений */
+.pk-ptabs {
+  position: sticky; top: 80px; z-index: 5; display: flex; gap: 6px; margin-bottom: 36px; padding: 6px;
+  border-radius: 999px; overflow-x: auto; scrollbar-width: none; width: max-content; max-width: 100%;
+  background: color-mix(in srgb, var(--card) 85%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  box-shadow: inset 0 0 0 1px var(--line2);
+}
+.pk-ptabs::-webkit-scrollbar { display: none; }
+.pk-ptabs button {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 18px; border-radius: 999px; white-space: nowrap;
+  font-weight: 700; font-size: .93rem; color: var(--muted); transition: background-color .3s var(--ease), color .3s;
+}
+.pk-ptabs button i { font: 600 .72rem/1 var(--display); font-style: normal; opacity: .7; }
+.pk-ptabs button:hover { color: var(--ink); }
+.pk-ptabs button[aria-selected="true"] { background: var(--acc); color: var(--acc-ink); }
+
+.pk-ppanel { display: grid; gap: 28px; }
+@media (min-width: 1080px) { .pk-ppanel { grid-template-columns: 1fr 1.9fr; gap: 56px; align-items: start; } .pk-ppanel__head { position: sticky; top: 160px; } .pk-packs { grid-column: 1 / -1; } }
+.pk-motion .pk-ppanel:not([hidden]) { animation: pk-fade-up .6s var(--ease); }
+@keyframes pk-fade-up { from { opacity: 0; transform: translateY(16px); } }
+.pk-ppanel__head { display: grid; gap: 16px; align-content: start; }
+.pk-ppanel__num { font: 600 .8rem/1 var(--display); letter-spacing: .08em; color: var(--acc-text); }
+
+.pk-plist { display: grid; gap: 10px; }
+.pk-pitem {
+  display: grid; gap: 14px; padding: 22px 24px; border-radius: 20px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line);
+  transition: box-shadow .3s, transform .4s var(--ease);
+}
+.pk-pitem:hover { box-shadow: inset 0 0 0 1px var(--line2), var(--shadow); transform: translateY(-2px); }
+@media (min-width: 720px) { .pk-pitem { grid-template-columns: 1fr auto; align-items: center; gap: 28px; } }
+.pk-pitem__main { display: grid; gap: 6px; }
+.pk-pitem__main p { font-size: .93rem; color: var(--muted); }
+.pk-pitem__side { display: grid; gap: 6px; justify-items: start; }
+@media (min-width: 720px) { .pk-pitem__side { justify-items: end; text-align: right; } }
+.pk-pitem__price { font: 700 1.12rem/1.1 var(--display); letter-spacing: -.02em; white-space: nowrap; }
+.pk-pitem__time { display: inline-flex; align-items: center; gap: 6px; font-size: .85rem; color: var(--muted); }
+.pk-pitem__cta { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font-size: .88rem; font-weight: 700; color: var(--acc-text); }
+.pk-pitem__cta svg { transition: transform .3s var(--ease); }
+.pk-pitem__cta:hover svg { transform: translateX(4px); }
+#allrecords .pk-root .pk-pitem__cta { color: var(--acc-text); }
+
+.pk-packs { display: grid; gap: 14px; margin-top: 8px; }
+@media (min-width: 900px) { .pk-packs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.pk-pack {
+  display: grid; gap: 12px; align-content: start; padding: 26px; border-radius: 24px; position: relative; overflow: hidden;
+  background: linear-gradient(150deg, var(--acc-soft), transparent 55%), var(--card2);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--acc-text) 35%, transparent);
+}
+.pk-pack .pk-btn { justify-self: start; margin-top: 6px; }
+.pk-pack__price { display: flex; align-items: baseline; gap: 12px; margin-top: 4px; }
+.pk-pack__price s { color: var(--muted); font-size: 1rem; }
+.pk-pack__price b { font: 700 2rem/1 var(--display); letter-spacing: -.04em; color: var(--acc-text); }
+
+.pk-combo {
+  display: grid; gap: 22px; justify-items: start; padding: clamp(28px, 6vw, 72px); border-radius: 32px; position: relative; overflow: hidden; isolation: isolate;
+  background: radial-gradient(70% 90% at 100% 0%, var(--glow1), transparent 70%), radial-gradient(60% 70% at 0% 100%, var(--glow2), transparent 70%), var(--card);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.pk-combo .pk-h2 { max-width: 20ch; }
+.pk-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; counter-reset: c; }
+.pk-chain li {
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; font-weight: 700;
+  background: var(--bg2); box-shadow: inset 0 0 0 1px var(--line2);
+}
+.pk-chain li:not(:last-child)::after { content: "→"; margin-left: 8px; color: var(--acc-text); }
