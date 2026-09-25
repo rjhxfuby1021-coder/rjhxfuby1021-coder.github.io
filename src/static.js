@@ -79,6 +79,9 @@ module.exports = function buildSite({ root, kit, pages, meta, images }) {
       '<meta property="og:locale" content="ru_RU">',
       '<meta name="twitter:card" content="summary_large_image">',
       '<meta name="theme-color" content="#0a0a0d">',
+      // окна шире 1600 px (большой монитор или уменьшенный масштаб браузера) — сайт пропорционально
+      // растягивается на всю ширину, а не остаётся узкой колонкой посередине
+      '<script>(function(){function f(){var s=Math.max(1,window.innerWidth/1600);document.documentElement.style.zoom=s>1.01?s.toFixed(3):"";}f();window.addEventListener("resize",f);})();</script>',
       '<link rel="icon" type="image/svg+xml" href="' + local(FAVICONS.svg) + '">',
       '<link rel="icon" type="image/png" sizes="32x32" href="' + local(FAVICONS.light) + '" media="(prefers-color-scheme: light)">',
       '<link rel="icon" type="image/png" sizes="32x32" href="' + local(FAVICONS.dark) + '" media="(prefers-color-scheme: dark)">',

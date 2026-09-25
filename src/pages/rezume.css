@@ -13,7 +13,7 @@
 .pk-cv__edu li > span:last-child { display: grid; gap: 2px; }
 .pk-cv__year { font: 700 1.3rem/1 var(--display); color: var(--acc-text); min-width: 3.5ch; }
 .pk-cv__contacts { display: flex; flex-wrap: wrap; gap: 10px; }
-.pk-cv__contacts a { padding: 10px 16px; border-radius: 999px; font-weight: 600; box-shadow: inset 0 0 0 1px var(--line2); }
+.pk-cv__contacts a { padding: 10px 16px; border-radius: 10px; font-weight: 600; box-shadow: inset 0 0 0 1px var(--line2); }
 .pk-cv__contacts a:hover { background: var(--card); }
 .pk-steps2--2 { grid-template-columns: minmax(0, 1fr); }
 @media (min-width: 720px) { .pk-steps2--2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; } }

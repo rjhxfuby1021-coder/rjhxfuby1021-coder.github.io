@@ -7,7 +7,7 @@
   var TELEGRAM_BOT_TOKEN = '8846765812:AAEEoh8-hKoAceggLWREm6-_3KY7Z7DX2AE';
   var TELEGRAM_CHAT_ID = '7706477564';
 
-  var SERVICE_RU = { salebot: 'Чат-боты', tilda: 'Сайт на Tilda', figma: 'Дизайн в Figma', getcourse: 'GetCourse', complex: 'Система под ключ' };
+  var SERVICE_RU = { salebot: 'Чат-боты', tilda: 'Сайт на Tilda', figma: 'Дизайн в Figma', getcourse: 'GetCourse', webinar: 'Вебинары и рассылки', complex: 'Система под ключ' };
   var preview = form.querySelector('[data-preview]');
   var statusEl = form.querySelector('[data-status]');
   var sendBtn = form.querySelector('[data-send]');

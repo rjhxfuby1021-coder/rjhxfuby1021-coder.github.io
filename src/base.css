@@ -117,7 +117,7 @@
 .pk-btn {
   --bx: 0px; --by: 0px;
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: 52px; padding: 14px 26px; border-radius: 999px;
+  min-height: 52px; padding: 14px 26px; border-radius: 12px;
   font: 700 .98rem/1.1 var(--body); letter-spacing: -.005em; white-space: nowrap;
   background: var(--acc); color: var(--acc-ink);
   transform: translate(var(--bx), var(--by));
@@ -166,7 +166,7 @@
 .pk-nav { display: none; }
 .pk-nav ul { display: flex; gap: 4px; }
 .pk-nav a {
-  display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 999px;
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 10px;
   font-weight: 600; font-size: .93rem; color: var(--muted); white-space: nowrap;
   transition: color .2s, background-color .2s;
 }
@@ -175,10 +175,10 @@
 
 .pk-ctrl { display: flex; align-items: center; gap: 8px; }
 .pk-lang {
-  display: inline-flex; padding: 3px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line2);
+  display: inline-flex; padding: 3px; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line2);
 }
 .pk-lang button {
-  min-width: 40px; min-height: 38px; padding: 0 10px; border-radius: 999px;
+  min-width: 40px; min-height: 38px; padding: 0 10px; border-radius: 8px;
   font: 700 .74rem/1 var(--body); letter-spacing: .06em; color: var(--muted);
   transition: background-color .3s var(--ease), color .3s;
 }
@@ -232,7 +232,7 @@
 @media (min-width: 960px) { .pk-hero__grid { grid-template-columns: 1.15fr .85fr; gap: 56px; } }
 .pk-hero__text { display: grid; gap: 26px; justify-items: start; }
 .pk-status {
-  display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px 8px 12px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px 8px 12px; border-radius: 10px;
   font-size: .85rem; font-weight: 600; background: var(--card); box-shadow: inset 0 0 0 1px var(--line);
 }
 .pk-dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #3ddc84; }
@@ -397,7 +397,7 @@
 }
 .pk-card p { color: var(--muted); font-size: .96rem; }
 .pk-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
-.pk-tags li { padding: 5px 10px; border-radius: 999px; font-size: .75rem; font-weight: 600; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line2); }
+.pk-tags li { padding: 5px 10px; border-radius: 7px; font-size: .75rem; font-weight: 600; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line2); }
 .pk-card--cta {
   justify-content: space-between; background: var(--acc); color: var(--acc-ink); box-shadow: none;
 }
@@ -590,7 +590,7 @@
 .pk-dirhero__count span { font-weight: 600; color: var(--muted); }
 .pk-dirhero .pk-stats { width: 100%; margin-top: 10px; }
 .pk-back {
-  display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px 0 10px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px 0 10px; border-radius: 10px;
   font-size: .88rem; font-weight: 600; color: var(--muted); box-shadow: inset 0 0 0 1px var(--line2);
   transition: color .2s, background-color .2s;
 }

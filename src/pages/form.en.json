@@ -42,5 +42,6 @@
   "fm.ok.sent": "Sent! I’ll get back to you within one business day.",
   "fm.sent": "Sent ✓",
   "fm.err.send": "Couldn’t send automatically. Copy the text and message me on Telegram — links on the right.",
-  "fm.retry": "Try again"
+  "fm.retry": "Try again",
+  "fm.s.webinar": "Webinars & email"
 }

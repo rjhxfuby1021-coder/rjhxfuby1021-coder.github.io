@@ -17,6 +17,10 @@ const GROUPS = [
       [{ ru: 'Квиз-бот', en: 'Quiz bot' }, { ru: 'Вопросы, подсчёт результатов и персональные рекомендации.', en: 'Questions, scoring and personal recommendations.' }, '4 000 — 8 000 ₽', { ru: '2–3 дня', en: '2–3 days' }],
       [{ ru: 'Геймификация в боте', en: 'Gamification in a bot' }, { ru: 'Баллы, уровни, достижения, рейтинги и игровые механики.', en: 'Points, levels, achievements, leaderboards and game mechanics.' }, '5 000 — 10 000 ₽', { ru: '2–4 дня', en: '2–4 days' }],
       [{ ru: 'Марафон или челлендж в боте', en: 'Marathon or challenge bot' }, { ru: 'Задания, прогресс, напоминания и итоговый результат.', en: 'Tasks, progress, reminders and a final result.' }, '6 000 — 12 000 ₽', { ru: '3–5 дней', en: '3–5 days' }],
+      [{ ru: 'ИИ-ассистент на базе знаний', en: 'Knowledge-base AI assistant' }, { ru: 'Отвечает клиентам 24/7 по вашим материалам, помогает выбрать услугу и передаёт заявку вам.', en: 'Answers clients 24/7 from your materials, helps pick a service and hands the lead to you.' }, '8 000 — 20 000 ₽', { ru: '3–7 дней', en: '3–7 days' }],
+      [{ ru: 'Бот с онлайн-записью', en: 'Online booking bot' }, { ru: 'Запись на свободное время из расписания CRM и напоминания клиенту о визите.', en: 'Booking into free CRM slots plus visit reminders for the client.' }, '6 000 — 15 000 ₽', { ru: '3–5 дней', en: '3–5 days' }],
+      [{ ru: 'Бот для платного канала', en: 'Paid channel bot' }, { ru: 'Оплата подписки, выдача доступа, напоминания о продлении и автоматическое удаление после срока.', en: 'Subscription payment, access, renewal reminders and automatic removal after expiry.' }, '7 000 — 15 000 ₽', { ru: '3–5 дней', en: '3–5 days' }],
+      [{ ru: 'Реферальная программа в боте', en: 'Referral program in a bot' }, { ru: 'Персональные ссылки, учёт приглашённых, выдача бонусов и статистика в Google Таблице.', en: 'Personal links, referral tracking, bonus delivery and stats in Google Sheets.' }, '5 000 — 10 000 ₽', { ru: '2–4 дня', en: '2–4 days' }],
       [{ ru: 'Правки в существующем боте', en: 'Fixes to an existing bot' }, { ru: 'Ошибки, тексты, кнопки и небольшие изменения.', en: 'Bugs, copy, buttons and small changes.' }, '500 — 3 000 ₽', { ru: '1 ч – 1 день', en: '1 hr – 1 day' }],
       [{ ru: 'Добавление новой функции', en: 'Adding a new feature' }, { ru: 'Новая ветка, интеграция или дополнительная механика.', en: 'A new branch, integration or extra mechanic.' }, '2 000 — 5 000 ₽', { ru: '1–2 дня', en: '1–2 days' }],
       [{ ru: 'Ежемесячная поддержка', en: 'Monthly support' }, { ru: 'Мониторинг, правки, консультации и обновления.', en: 'Monitoring, fixes, advice and updates.' }, { ru: '3 000 — 7 000 ₽/мес', en: '3 000 — 7 000 ₽/mo' }, null]
@@ -34,6 +38,10 @@ const GROUPS = [
     items: [
       [{ ru: 'Лендинг на Tilda', en: 'Tilda landing page' }, { ru: 'Структура, дизайн, сборка блоков, адаптив и формы.', en: 'Structure, design, block build, responsive layout and forms.' }, '2 000 — 30 000 ₽', { ru: '1–7 дней', en: '1–7 days' }],
       [{ ru: 'Многостраничный сайт', en: 'Multi-page website' }, { ru: 'Несколько страниц, единый стиль, навигация и адаптив.', en: 'Several pages, one style, navigation and responsive layout.' }, '10 000 — 50 000 ₽', { ru: '3–16 дней', en: '3–16 days' }],
+      [{ ru: 'Интернет-магазин на Tilda', en: 'Online store on Tilda' }, { ru: 'Каталог с фильтрами, карточки товаров, корзина, оформление заказа и оплата.', en: 'Filtered catalog, product cards, cart, checkout and payment.' }, '15 000 — 50 000 ₽', { ru: '5–14 дней', en: '5–14 days' }],
+      [{ ru: 'Перенос макета из Figma в Zero Block', en: 'Figma mockup to Zero Block' }, { ru: 'Вёрстка готового дизайна с сохранением сетки, шрифтов и анимаций, адаптив под все экраны.', en: 'Building a finished design while keeping grid, fonts and animation, responsive on every screen.' }, '5 000 — 25 000 ₽', { ru: '2–7 дней', en: '2–7 days' }],
+      [{ ru: 'Оплата и интеграции', en: 'Payments and integrations' }, { ru: 'Приём оплат, передача заявок в CRM, уведомления в Telegram и на почту.', en: 'Payment acceptance, leads to CRM, notifications to Telegram and email.' }, '1 500 — 6 000 ₽', { ru: '1–2 дня', en: '1–2 days' }],
+      [{ ru: 'Базовое SEO и Яндекс Метрика', en: 'Basic SEO and Yandex Metrica' }, { ru: 'Заголовки и описания страниц, карта сайта, подключение Метрики и целей на заявки.', en: 'Page titles and descriptions, sitemap, Metrica setup with goals on requests.' }, '2 000 — 5 000 ₽', { ru: '1–2 дня', en: '1–2 days' }],
       [{ ru: 'Доработка сайта на Tilda', en: 'Tilda site improvements' }, { ru: 'Правки существующего сайта, блоки, CSS, анимации, формы и адаптив.', en: 'Edits to an existing site: blocks, CSS, animation, forms, responsive.' }, '500 — 5 000 ₽', { ru: '1 час – 1 день', en: '1 hr – 1 day' }]
     ]
   },
@@ -44,7 +52,9 @@ const GROUPS = [
     items: [
       [{ ru: 'Прототип страницы', en: 'Page prototype' }, { ru: 'Структура, пользовательский путь и расположение основных блоков.', en: 'Structure, user journey and layout of key blocks.' }, '5 000 — 30 000 ₽', { ru: '3–10 дней', en: '3–10 days' }],
       [{ ru: 'UI-дизайн', en: 'UI design' }, { ru: 'Визуальная концепция, типографика, цвета и компоненты.', en: 'Visual concept, typography, colours and components.' }, '5 000 — 30 000 ₽', { ru: '3–10 дней', en: '3–10 days' }],
-      [{ ru: 'Дизайн сайта в Figma', en: 'Website design in Figma' }, { ru: 'Полный дизайн страниц с адаптивными версиями.', en: 'Full page design with responsive versions.' }, '10 000 — 50 000 ₽', { ru: '5–15 дней', en: '5–15 days' }]
+      [{ ru: 'Дизайн сайта в Figma', en: 'Website design in Figma' }, { ru: 'Полный дизайн страниц с адаптивными версиями.', en: 'Full page design with responsive versions.' }, '10 000 — 50 000 ₽', { ru: '5–15 дней', en: '5–15 days' }],
+      [{ ru: 'Редизайн существующего сайта', en: 'Redesign of an existing site' }, { ru: 'Новая визуальная концепция и структура на основе того, что уже работает.', en: 'A new visual concept and structure built on what already works.' }, '8 000 — 30 000 ₽', { ru: '4–10 дней', en: '4–10 days' }],
+      [{ ru: 'UX-аудит сайта', en: 'Website UX audit' }, { ru: 'Разбор, где посетители теряются и уходят, со списком конкретных правок.', en: 'Where visitors get lost and leave, with a list of concrete fixes.' }, '3 000 — 8 000 ₽', { ru: '1–3 дня', en: '1–3 days' }]
     ]
   },
   {
@@ -54,7 +64,21 @@ const GROUPS = [
     items: [
       [{ ru: 'Настройка курса', en: 'Course setup' }, { ru: 'Структура, уроки, доступы, личный кабинет и базовые настройки.', en: 'Structure, lessons, access, member area and base settings.' }, '10 000 — 30 000 ₽', { ru: '3–7 дней', en: '3–7 days' }],
       [{ ru: 'Автоматизация GetCourse', en: 'GetCourse automation' }, { ru: 'Триггеры, письма, доступы, действия пользователей и автоматические сценарии.', en: 'Triggers, emails, access, user actions and automated flows.' }, '1 000 — 15 000 ₽', { ru: '1–3 дня', en: '1–3 days' }],
-      [{ ru: 'Техническая настройка школы', en: 'School tech setup' }, { ru: 'Помощь с технической частью, интеграциями и настройкой процессов.', en: 'Help with the tech side, integrations and processes.' }, '1 000 — 15 000 ₽', { ru: '1–3 дня', en: '1–3 days' }]
+      [{ ru: 'Техническая настройка школы', en: 'School tech setup' }, { ru: 'Помощь с технической частью, интеграциями и настройкой процессов.', en: 'Help with the tech side, integrations and processes.' }, '1 000 — 15 000 ₽', { ru: '1–3 дня', en: '1–3 days' }],
+      [{ ru: 'Лендинг программы на GetCourse', en: 'Program landing page on GetCourse' }, { ru: 'Страница курса или потока с формой записи и оплатой.', en: 'A course or cohort page with sign-up form and payment.' }, '5 000 — 15 000 ₽', { ru: '2–5 дней', en: '2–5 days' }],
+      [{ ru: 'Оформление кабинета и каталога курсов', en: 'Member area and catalog styling' }, { ru: 'Карточки курсов в стиле школы, статусы и прогресс вместо стандартных плиток.', en: 'Branded course cards, statuses and progress instead of default tiles.' }, '5 000 — 15 000 ₽', { ru: '2–5 дней', en: '2–5 days' }],
+      [{ ru: 'Ежемесячное сопровождение школы', en: 'Monthly school support' }, { ru: 'Заливка уроков, запуск потоков, правки рассылок и процессов.', en: 'Uploading lessons, launching cohorts, fixing emails and processes.' }, { ru: '5 000 — 15 000 ₽/мес', en: '5 000 — 15 000 ₽/mo' }, null]
+    ]
+  },
+  {
+    id: 'webinar', num: '05', tab: { ru: 'Вебинары и рассылки', en: 'Webinars & email' },
+    title: { ru: 'Вебинары и рассылки', en: 'Webinars & email' },
+    lead: { ru: 'Эфиры и письма, которые прогревают аудиторию и возвращают тех, кто не купил сразу.', en: 'Live streams and emails that warm up your audience and bring back those who did not buy right away.' },
+    items: [
+      [{ ru: 'Вебинарная комната в Bizon365', en: 'Bizon365 webinar room' }, { ru: 'Настройка комнаты, регистрации, кнопок и баннеров для эфира.', en: 'Room, registration, buttons and banners for the stream.' }, '3 000 — 8 000 ₽', { ru: '1–2 дня', en: '1–2 days' }],
+      [{ ru: 'Автовебинар под ключ', en: 'Turnkey automated webinar' }, { ru: 'Комната, регистрация, напоминания и повторные показы по расписанию.', en: 'Room, registration, reminders and scheduled replays.' }, '8 000 — 20 000 ₽', { ru: '3–5 дней', en: '3–5 days' }],
+      [{ ru: 'Цепочка писем', en: 'Email sequence' }, { ru: 'Прогревающая или приветственная серия из 5–7 писем: тексты, вёрстка, запуск.', en: 'A 5–7 email nurture or welcome series: copy, layout, launch.' }, '4 000 — 10 000 ₽', { ru: '2–4 дня', en: '2–4 days' }],
+      [{ ru: 'Настройка email-сервиса', en: 'Email service setup' }, { ru: 'Unisender или GetCourse: база, сегменты, шаблон письма, подключение формы с сайта.', en: 'Unisender or GetCourse: list, segments, email template, site form connection.' }, '2 000 — 6 000 ₽', { ru: '1–2 дня', en: '1–2 days' }]
     ]
   }
 ];
