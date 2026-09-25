@@ -97,7 +97,7 @@
       <h3>Данные</h3>
       <div class="row">
         <button class="btn btn--sm" id="download">Скачать cases.json</button>
-        <label class="btn btn--sm" style="display:inline-flex;color:var(--ink)">Загрузить…<input type="file" id="upload" accept=".json,application/json" hidden></label>
+        <label class="btn btn--sm" style="display:inline-flex;color:var(--ink)">Открыть файл…<input type="file" id="upload" accept=".json,application/json" hidden></label>
         <button class="btn btn--sm btn--danger" id="reset">Сбросить</button>
       </div>
       <p class="note">Черновик сохраняется в браузере автоматически, но только на этом компьютере. Файл cases.json — это и публикация, и резервная копия: храните последний.</p>
@@ -370,6 +370,8 @@
   });
 
   $('#download').addEventListener('click', function () {
+    var bad = cases.filter(function (c) { return problems(c).length; });
+    if (bad.length && !confirm('В кейсе «' + (bad[0].title.ru || bad[0].id) + '» не заполнены обязательные поля — на сайте он будет выглядеть неполным. Всё равно скачать?')) { currentId = bad[0].id; refresh(true); return; }
     var blob = new Blob([JSON.stringify(cases, null, 2) + '\n'], { type: 'application/json' });
     var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'cases.json'; a.click();
     setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
