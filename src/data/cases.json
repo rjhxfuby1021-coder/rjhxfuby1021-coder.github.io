@@ -2511,6 +2511,201 @@
     ]
   },
   {
+    "id": "fold8-ozon",
+    "dir": "figma",
+    "cat": "",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Инфографика для маркетплейса",
+      "en": "Marketplace infographics"
+    },
+    "title": {
+      "ru": "Samsung Galaxy Z Fold8 — инфографика для карточки Ozon",
+      "en": "Samsung Galaxy Z Fold8 — infographics for an Ozon product card"
+    },
+    "lead": {
+      "ru": "Серия из шести слайдов для карточки товара: обложка, экран, камера, Galaxy AI, батарея и таблица характеристик. Каждый слайд отвечает на один вопрос покупателя и читается за секунды даже в ленте каталога.",
+      "en": "A set of six slides for a product card: cover, display, camera, Galaxy AI, battery and a spec sheet. Each slide answers one buyer question and reads in seconds, even in the catalog feed."
+    },
+    "cover": "/img/fold8-cover.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "6",
+        "l": {
+          "ru": "слайдов в серии карточки",
+          "en": "slides in the card set"
+        }
+      },
+      {
+        "v": "3:4",
+        "l": {
+          "ru": "формат Ozon, 900 × 1200",
+          "en": "Ozon format, 900 × 1200"
+        }
+      },
+      {
+        "v": "12",
+        "l": {
+          "ru": "характеристик в итоговой таблице",
+          "en": "specs in the final table"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Покупатель листает каталог быстро и решает за пару секунд, открыть карточку или нет. Нужно было упаковать сложный складной смартфон так, чтобы главные преимущества считывались с первого слайда, а остальные отвечали на вопросы до того, как их зададут в отзывах.",
+      "en": "Shoppers scroll the catalog fast and decide in seconds whether to open a card. The goal was to package a complex foldable phone so its key benefits read from the first slide, and the rest answer questions before buyers ask them in reviews."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Обложка",
+          "en": "Cover"
+        },
+        "d": {
+          "ru": "Модель, память, цвет и три главных цифры",
+          "en": "Model, storage, color and three key numbers"
+        }
+      },
+      {
+        "t": {
+          "ru": "Экран",
+          "en": "Display"
+        },
+        "d": {
+          "ru": "Телефон и планшет в одном корпусе",
+          "en": "A phone and a tablet in one body"
+        }
+      },
+      {
+        "t": {
+          "ru": "Камера",
+          "en": "Camera"
+        },
+        "d": {
+          "ru": "Две камеры по 50 Мп и слежение за объектом",
+          "en": "Two 50 MP cameras and subject tracking"
+        }
+      },
+      {
+        "t": {
+          "ru": "Galaxy AI",
+          "en": "Galaxy AI"
+        },
+        "d": {
+          "ru": "Четыре функции на тёмном акцентном слайде",
+          "en": "Four features on a dark accent slide"
+        }
+      },
+      {
+        "t": {
+          "ru": "Батарея и корпус",
+          "en": "Battery & body"
+        },
+        "d": {
+          "ru": "Вес, толщина, зарядка и защита",
+          "en": "Weight, thickness, charging and protection"
+        }
+      },
+      {
+        "t": {
+          "ru": "Характеристики",
+          "en": "Specs"
+        },
+        "d": {
+          "ru": "Сводная таблица по данным Samsung",
+          "en": "Summary table based on Samsung data"
+        }
+      }
+    ],
+    "done": [
+      {
+        "ru": "Выстроил порядок слайдов от общего впечатления к деталям",
+        "en": "Ordered the slides from overall impression to details"
+      },
+      {
+        "ru": "Вынес на обложку три главных аргумента: экран, камера, вес",
+        "en": "Put the three main arguments on the cover: display, camera, weight"
+      },
+      {
+        "ru": "Собрал единую сетку, типографику и стеклянные плашки для цифр",
+        "en": "Built a shared grid, typography and glass tiles for the numbers"
+      },
+      {
+        "ru": "Сделал слайд Galaxy AI тёмным, чтобы он выделялся в серии",
+        "en": "Made the Galaxy AI slide dark so it stands out in the set"
+      },
+      {
+        "ru": "Свёл характеристики в таблицу по данным официального сайта",
+        "en": "Compiled the specs into a table from the official website"
+      },
+      {
+        "ru": "Подготовил слайды в формате Ozon 900 × 1200",
+        "en": "Prepared the slides in the Ozon 900 × 1200 format"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Карточка, которая продаёт до открытия",
+        "en": "A card that sells before it is opened"
+      },
+      "text": {
+        "ru": "Каждый слайд держит одну мысль и одну крупную цифру, поэтому серия легко листается на телефоне. Светлые слайды сохраняют чистоту бренда, а тёмный слайд про ИИ ломает ритм и притягивает взгляд.",
+        "en": "Each slide carries one idea and one big number, so the set is easy to swipe on a phone. The light slides keep the brand clean, while the dark AI slide breaks the rhythm and draws the eye."
+      }
+    },
+    "tools": [
+      "Figma",
+      "Инфографика",
+      "Ozon"
+    ],
+    "gallery": [
+      {
+        "src": "/img/fold8-ozon-01.webp",
+        "cap": {
+          "ru": "Обложка карточки",
+          "en": "Card cover"
+        }
+      },
+      {
+        "src": "/img/fold8-ozon-02.webp",
+        "cap": {
+          "ru": "Экран",
+          "en": "Display"
+        }
+      },
+      {
+        "src": "/img/fold8-ozon-03.webp",
+        "cap": {
+          "ru": "Камера",
+          "en": "Camera"
+        }
+      },
+      {
+        "src": "/img/fold8-ozon-04.webp",
+        "cap": {
+          "ru": "Galaxy AI",
+          "en": "Galaxy AI"
+        }
+      },
+      {
+        "src": "/img/fold8-ozon-05.webp",
+        "cap": {
+          "ru": "Батарея и корпус",
+          "en": "Battery & body"
+        }
+      },
+      {
+        "src": "/img/fold8-ozon-06.webp",
+        "cap": {
+          "ru": "Характеристики",
+          "en": "Specs"
+        }
+      }
+    ]
+  },
+  {
     "id": "figma-webinar",
     "dir": "figma",
     "cat": "landing",

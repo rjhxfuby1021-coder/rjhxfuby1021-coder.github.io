@@ -53,7 +53,7 @@
     'Google Таблицы': 'Google Sheets', 'Приём оплат': 'Payments', 'ИИ': 'AI', 'База знаний': 'Knowledge base',
     'Онлайн-чат': 'Live chat', 'Автовебинар': 'Automated webinar', 'Геймификация': 'Gamification',
     'Формы заявок': 'Lead forms', 'Адаптивный дизайн': 'Responsive design', 'Портфолио': 'Portfolio',
-    'Онлайн-заказ': 'Online ordering', 'Каталог': 'Catalog', 'Прототип': 'Prototype', 'Яндекс Карты': 'Yandex Maps'
+    'Онлайн-заказ': 'Online ordering', 'Каталог': 'Catalog', 'Прототип': 'Prototype', 'Яндекс Карты': 'Yandex Maps', 'Инфографика': 'Infographics'
   };
 
   var L = {
