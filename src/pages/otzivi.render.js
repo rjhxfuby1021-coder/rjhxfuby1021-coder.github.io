@@ -15,7 +15,7 @@ const REVIEWS = [
   },
   {
     ini: 'СА', name: { ru: 'Светлана А.', en: 'Svetlana A.' }, role: { ru: 'Школа фитнес-тренеров FitbasePro', en: 'FitbasePro fitness coach school' },
-    text: { ru: 'Очень довольна сотрудничеством! Все задачи выполнялись оперативно, чётко и без лишних вопросов. Сайт получился современным, удобным и полностью соответствует нашим требованиям. Все пожелания учитывались, а любые правки вносились быстро. Спасибо за профессиональный подход и ответственность, работать было действительно комфортно. Рекомендую!', en: 'Very happy with the collaboration! Every task was done quickly, precisely and without unnecessary questions. The site is modern, convenient and fully meets our requirements. All wishes were taken into account, and edits were made fast. Thank you for the professional approach and responsibility — it was genuinely comfortable to work together. Recommend!' },
+    text: { ru: 'Очень довольна сотрудничеством! Все задачи выполнялись оперативно, чётко и без лишних вопросов. Сайт получился современным, удобным и полностью соответствует нашим требованиям. Все пожелания учитывались, а любые правки вносились быстро. Спасибо за профессиональный подход и ответственность, работать было действительно комфортно. Рекомендую!', en: 'Very happy with the collaboration! Every task was done quickly, precisely and without unnecessary questions. The site is modern, convenient and fully meets our requirements. All wishes were taken into account, and edits were made fast. Thank you for the professional approach and responsibility — it was genuinely comfortable to work together. Highly recommend!' },
     project: { ru: 'Сайт школы MAXFIT', en: 'MAXFIT school website' }, link: SITE + 'tilda#maxfit'
   }
 ];

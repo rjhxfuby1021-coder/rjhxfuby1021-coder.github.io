@@ -72,7 +72,7 @@
     'cs.prev': { ru: 'Предыдущий', en: 'Previous' },
     'cs.next': { ru: 'Следующий', en: 'Next' },
     'cs.close': { ru: 'Закрыть кейс', en: 'Close case' },
-    'cs.zoom': { ru: 'Открыть экран на весь экран', en: 'Open screen full size' },
+    'cs.zoom': { ru: 'Открыть экран в полном размере', en: 'Open screen full size' },
     'cs.st.client': { ru: 'Для клиента', en: 'Client project' },
     'cs.st.own': { ru: 'Авторский проект', en: 'Personal project' },
     'cs.other': { ru: 'Другие направления', en: 'Other areas' },

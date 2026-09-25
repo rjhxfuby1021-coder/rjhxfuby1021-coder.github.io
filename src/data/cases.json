@@ -293,7 +293,7 @@
       }
     ],
     "task": {
-      "ru": "Реферальную программу вели вручную: кто кого привёл, сколько пришло от каждого и какие бонусы уже выданы. Учёт путался, а ошибки стоили денег и доверия.",
+      "ru": "Реферальную программу вели вручную: кто кого привёл, сколько пришло от каждого и какие бонусы уже выданы. В учёте возникала путаница, а ошибки стоили денег и доверия.",
       "en": "The referral program was tracked by hand: who brought whom, how many came from each person, which bonuses were paid. The records got tangled, and mistakes cost money and trust."
     },
     "flow": [
@@ -1101,7 +1101,7 @@
           "en": "Again"
         },
         "d": {
-          "ru": "Предложение перевытянуть карту",
+          "ru": "Предложение вытянуть карту ещё раз",
           "en": "Offer to draw again"
         }
       }
@@ -1493,7 +1493,7 @@
         "v": "2",
         "l": {
           "ru": "дня программы, расписанные по часам",
-          "en": "days of program, hour by hour"
+          "en": "program days, planned hour by hour"
         }
       },
       {
@@ -1602,7 +1602,7 @@
         "v": "4",
         "l": {
           "ru": "недели программы",
-          "en": "weeks of program"
+          "en": "program weeks"
         }
       },
       {
@@ -2006,7 +2006,7 @@
     ],
     "task": {
       "ru": "Превратить сайт кафе в канал продаж: не просто рассказать о заведении, а дать гостю заказать еду онлайн — от выбора блюда до получения заказа.",
-      "en": "Turn the café site into a sales channel: not just tell about the venue but let guests order online — from picking a dish to receiving it."
+      "en": "Turn the café site into a sales channel: not just describe the venue but let guests order online — from picking a dish to receiving it."
     },
     "flow": [],
     "done": [
@@ -2602,7 +2602,7 @@
     "done": [
       {
         "ru": "Разобрал аудиторию и её главное возражение",
-        "en": "Analysed the audience and its main objection"
+        "en": "Analyzed the audience and its main objection"
       },
       {
         "ru": "Выстроил каркас: оффер, программа, эксперт, результаты, регистрация",

@@ -25,7 +25,7 @@ const SECTIONS = [
     [L('обратной связи по заявке, оставленной на Сайте;', 'responding to a request left on the Site;'),
      L('подготовки коммерческого предложения и обсуждения условий сотрудничества;', 'preparing a commercial proposal and discussing terms of cooperation;'),
      L('оказания услуг, согласованных с пользователем;', 'providing services agreed with the user;'),
-     L('улучшения работы Сайта и анализа посещаемости;', 'improving the Site and analysing traffic;'),
+     L('улучшения работы Сайта и анализа посещаемости;', 'improving the Site and analyzing traffic;'),
      L('информирования об акциях и предложениях — только при наличии отдельного согласия пользователя.', 'informing about promotions and offers — only with the user’s separate consent.')]
   ]],
   [L('Правовые основания обработки', 'Legal basis for processing'), [
@@ -39,7 +39,7 @@ const SECTIONS = [
      L('Google Fonts — используется для загрузки шрифтов Сайта;', 'Google Fonts — used to load the Site’s fonts;'),
      L('Salebot — используется для обработки заявок и связи через чат-бота;', 'Salebot — used to process requests and communicate via the chatbot;'),
      L('Telegram — используется для доставки заявок, отправленных через форму на Сайте;', 'Telegram — used to deliver requests sent via the form on the Site;'),
-     L('Яндекс Метрика — используется для сбора обезличенной статистики посещений;', 'Yandex Metrica — used to collect anonymised visit statistics;'),
+     L('Яндекс Метрика — используется для сбора обезличенной статистики посещений;', 'Yandex Metrica — used to collect anonymized visit statistics;'),
      L('мессенджеры (Telegram, WhatsApp) — используются как канал связи по инициативе самого пользователя.', 'messengers (Telegram, WhatsApp) — used as a communication channel at the user’s own initiative.')],
     L('Указанные сервисы обрабатывают данные в соответствии с собственными политиками конфиденциальности.', 'These services process data in accordance with their own privacy policies.')
   ]],
@@ -47,7 +47,7 @@ const SECTIONS = [
     L('Сайт использует файлы cookie и аналогичные технологии для корректной работы страниц, аналитики посещаемости и улучшения пользовательского опыта. Продолжая использовать Сайт, пользователь соглашается на использование файлов cookie. Пользователь может отключить cookie в настройках своего браузера, однако это может повлиять на работу отдельных функций Сайта.',
       'The Site uses cookies and similar technologies for pages to work correctly, for traffic analytics and to improve the user experience. By continuing to use the Site, the user agrees to the use of cookies. The user can disable cookies in their browser settings, although this may affect some Site features.'),
     L('Сайт также сохраняет в браузере пользователя выбранные тему оформления и язык интерфейса; эти настройки не передаются Оператору.',
-      'The Site also stores the chosen colour theme and interface language in the user’s browser; these settings are not sent to the Operator.')
+      'The Site also stores the chosen color theme and interface language in the user’s browser; these settings are not sent to the Operator.')
   ]],
   [L('Срок хранения данных', 'Data retention'), [
     L('Персональные данные хранятся в течение срока, необходимого для достижения целей их обработки, указанных в разделе 3, либо до момента отзыва согласия пользователем.',
@@ -58,11 +58,11 @@ const SECTIONS = [
     [L('запросить информацию о том, какие его данные обрабатываются;', 'request information about which of their data is processed;'),
      L('потребовать уточнения, исправления или удаления своих данных;', 'demand that their data be clarified, corrected or deleted;'),
      L('отозвать согласие на обработку персональных данных в любой момент;', 'withdraw consent to the processing of personal data at any time;'),
-     L('направить обращение по вопросам обработки данных на контакты, указанные ниже.', 'send an enquiry about data processing to the contacts below.')]
+     L('направить обращение по вопросам обработки данных на контакты, указанные ниже.', 'send an inquiry about data processing to the contacts below.')]
   ]],
   [L('Меры защиты данных', 'Data protection measures'), [
     L('Оператор принимает необходимые организационные и технические меры для защиты персональных данных пользователей от неправомерного доступа, изменения, раскрытия или уничтожения.',
-      'The Operator takes the necessary organisational and technical measures to protect users’ personal data from unauthorised access, alteration, disclosure or destruction.')
+      'The Operator takes the necessary organizational and technical measures to protect users’ personal data from unauthorized access, alteration, disclosure or destruction.')
   ]],
   [L('Изменение Политики', 'Changes to the Policy'), [
     L('Оператор оставляет за собой право вносить изменения в настоящую Политику. Актуальная редакция всегда доступна на данной странице Сайта.',

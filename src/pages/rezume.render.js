@@ -18,7 +18,7 @@ const SPEC = [
 ];
 const SKILLS = ['Tilda', 'Zero Block', 'HTML / CSS / JS', 'Salebot', { ru: 'Чат-боты', en: 'Chatbots' }, 'GetCourse', 'Unisender', { ru: 'Автоворонки продаж', en: 'Sales funnels' }, { ru: 'Интеграция сервисов', en: 'Service integrations' }, { ru: 'Настройка CRM', en: 'CRM setup' }, { ru: 'Адаптивная вёрстка', en: 'Responsive layout' }, { ru: 'Веб-дизайн', en: 'Web design' }, 'Figma'];
 const EDU = [
-  ['2019', { ru: 'Высшее образование', en: 'Higher education' }, { ru: 'ВА ВПВО ВС РФ', en: 'Military Academy of Air Defence (Russia)' }],
+  ['2019', { ru: 'Высшее образование', en: 'Higher education' }, { ru: 'ВА ВПВО ВС РФ', en: 'Military Academy of Air Defense (Russia)' }],
   ['2014', { ru: 'Среднее специальное образование', en: 'Vocational education' }, { ru: 'БФ МЭСИ', en: 'Bryansk branch of MESI' }]
 ];
 
@@ -47,7 +47,7 @@ module.exports = function render() {
           d.tag('p', 'cv.about1', { ru: 'Помогаю бизнесу закрывать конкретную задачу — привлекать заявки и доводить их до продажи. Беру на себя полный цикл: дизайн и прототип в Figma, сборку сайта на Tilda, настройку чат-бота на Salebot и связку всего этого с CRM и рассылками, чтобы клиент не терял заявки на каждом шаге воронки.', en: 'I help businesses solve a specific problem — attract leads and turn them into sales. I handle the full cycle: design and prototype in Figma, building the site on Tilda, setting up the Salebot chatbot and connecting it all to CRM and email so no lead is lost at any funnel step.' }) +
           d.tag('p', 'cv.about2', { ru: 'Работаю на результат, а не на процесс: предлагаю решение исходя из бюджета и цели проекта, а не «продаю» лишние часы. Сроки и договорённости соблюдаю, на связи на всех этапах — от брифа до запуска и техподдержки после сдачи.', en: 'I work for results, not process: I propose solutions based on the budget and goal, not by “selling” extra hours. I keep deadlines and agreements and stay in touch at every stage — from brief to launch and support after handoff.' }) +
         '</div></div>' +
-      '<div class="pk-cv__row pk-reveal">' + d.tag('h2', 'cv.spec.h', { ru: 'Специализация', en: 'Specialisation' }, 'class="pk-case__label"') + '<ol class="pk-steps2 pk-steps2--2">' + spec + '</ol></div>' +
+      '<div class="pk-cv__row pk-reveal">' + d.tag('h2', 'cv.spec.h', { ru: 'Специализация', en: 'Specialization' }, 'class="pk-case__label"') + '<ol class="pk-steps2 pk-steps2--2">' + spec + '</ol></div>' +
       '<div class="pk-cv__row pk-reveal">' + d.tag('h2', 'cv.skills.h', { ru: 'Навыки', en: 'Skills' }, 'class="pk-case__label"') + '<ul class="pk-tags pk-tags--lg">' + skills + '</ul></div>' +
       '<div class="pk-cv__row pk-reveal">' + d.tag('h2', 'cv.edu.h', { ru: 'Образование', en: 'Education' }, 'class="pk-case__label"') + '<ol class="pk-cv__edu">' + edu + '</ol></div>' +
       '<div class="pk-cv__row pk-reveal">' + d.tag('h2', 'cv.contact.h', { ru: 'Контакты', en: 'Contacts' }, 'class="pk-case__label"') +
