@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Админка кейсов — texspeckps.ru</title>
 <!--
-  Локальная админка кейсов. Не публикуется — открывается двойным кликом на вашем компьютере.
+  Админка кейсов: texspeckps.ru/admin (скрыта от поиска) и локальная копия АДМИНКА.html. Публикует через GitHub API ключом владельца.
   Рядом должен лежать admin-kit.js (его создаёт `node build.js`).
 -->
 <style>
@@ -76,19 +76,36 @@
   <aside>
     <div class="brand">
       <svg viewBox="0 0 100 70" fill="currentColor" aria-hidden="true"><path d="M10 0H55.8Q64.8 0 64.8 9V29L49.4 41.5V16Q49.4 13 46.4 13H18.4Q15.4 13 15.4 16V65H8Q0 65 0 57V10Q0 0 10 0Z"/><path d="M49.4 45.5L66.2 32L99.4 20.4L71.6 45L99.4 69H85L64 51.5V69H55Q49.4 69 49.4 63.4Z"/></svg>
-      <span>Админка кейсов<small>только на этом компьютере</small></span>
+      <span>Админка кейсов<small>texspeckps.ru</small></span>
     </div>
     <div class="row">
       <button class="btn btn--acc" id="add">+ Новый кейс</button>
     </div>
     <div id="groups"></div>
     <div class="grp">
-      <h3>Опубликовать на сайте</h3>
-      <ol class="hint" style="margin:0;padding-left:18px;display:grid;gap:6px">
-        <li>Новые картинки: <a class="btn btn--sm" style="display:inline-flex;margin-top:4px" href="https://github.com/rjhxfuby1021-coder/rjhxfuby1021-coder.github.io/upload/main/static/img" target="_blank" rel="noopener">Загрузить в /img</a><br>в админке указывайте как <code>/img/имя-файла.webp</code></li>
-        <li>Нажмите <b>«Скачать cases.json»</b> ниже.</li>
-        <li><a class="btn btn--sm btn--acc" style="display:inline-flex;margin-top:4px" href="https://github.com/rjhxfuby1021-coder/rjhxfuby1021-coder.github.io/upload/main/src/data" target="_blank" rel="noopener">Загрузить cases.json на сайт</a><br>перетащите файл → внизу «Commit changes». Через 1–2 минуты сайт обновится сам.</li>
-      </ol>
+      <h3>Сайт texspeckps.ru</h3>
+      <!-- ключ живёт только в памяти этой вкладки; сохранить его может менеджер паролей браузера -->
+      <form id="connForm" autocomplete="on" style="display:grid;gap:6px">
+        <input type="text" name="username" autocomplete="username" value="rjhxfuby1021-coder" style="display:none" aria-hidden="true" tabindex="-1">
+        <input type="password" id="token" name="password" autocomplete="current-password" placeholder="Ключ доступа GitHub (github_pat_…)" aria-label="Ключ доступа GitHub">
+        <button class="btn btn--sm btn--acc" type="submit">Подключить</button>
+      </form>
+      <div id="connOk" style="display:none;gap:8px">
+        <p class="hint" style="margin:0;color:var(--ok)">● Подключено — можно публиковать</p>
+        <button class="btn btn--acc" id="publish" type="button">Опубликовать на сайте</button>
+        <button class="btn btn--sm" id="disconnect" type="button">Отключить</button>
+      </div>
+      <p class="hint" id="pubStatus" role="status" aria-live="polite" style="margin:6px 0 0"></p>
+      <details class="hint" style="margin-top:6px">
+        <summary style="cursor:pointer">Как получить ключ (один раз)</summary>
+        <ol style="padding-left:18px;margin:8px 0 0;display:grid;gap:4px">
+          <li>Откройте <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener" style="color:var(--acc)">github.com → новый ключ</a>.</li>
+          <li>Token name: <b>Админка сайта</b>, Expiration: <b>1 год</b>.</li>
+          <li>Repository access → <b>Only select repositories</b> → <b>rjhxfuby1021-coder.github.io</b>.</li>
+          <li>Permissions → Repository permissions: <b>Contents — Read and write</b>, <b>Actions — Read-only</b>.</li>
+          <li><b>Generate token</b> → скопируйте ключ → вставьте выше → «Подключить». Браузер предложит сохранить — соглашайтесь.</li>
+        </ol>
+      </details>
       <!-- блоки для Tilda больше не нужны; элементы оставлены для совместимости скрипта -->
       <div hidden id="copyBtns"></div>
       <div hidden id="partsBox"></div>
@@ -126,16 +143,43 @@
   }
   var DIRS = PKCases.DIRS;
   var KEY = 'pk-admin-cases';
+  var SITE_URL = 'https://texspeckps.ru';
+  var REPO = 'rjhxfuby1021-coder/rjhxfuby1021-coder.github.io';
+  var API = 'https://api.github.com/repos/' + REPO;
+  var token = ''; // ключ GitHub — только в памяти вкладки, никуда не сохраняется
+  var localPreview = {}; // только что загруженные картинки, пока сайт их ещё не выложил
+  // версия опубликованных кейсов: по ней видно, что черновик устарел
+  function hashStr(s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return String(h); }
+  var BASE = hashStr(JSON.stringify(window.PK_CASES_DEFAULT || []));
   var cases = load();
   var currentId = cases[0] ? cases[0].id : null;
   var pvMode = 'case';
   var $ = function (s, el) { return (el || document).querySelector(s); };
 
   function load() {
-    try { var s = localStorage.getItem(KEY); if (s) return JSON.parse(s); } catch (e) {}
+    try {
+      var s = localStorage.getItem(KEY);
+      if (s) {
+        var d = JSON.parse(s);
+        var arr = Array.isArray(d) ? d : d.cases;
+        var base = Array.isArray(d) ? null : d.base;
+        if (base === BASE || JSON.stringify(arr) === JSON.stringify(window.PK_CASES_DEFAULT)) return arr;
+        // сайт обновился (например, публиковали с другого устройства) — спрашиваем, что открыть
+        if (!confirm('На сайте опубликована другая версия кейсов, чем в вашем черновике.\n\nОК — открыть опубликованную версию (черновик удалится).\nОтмена — продолжить работу с черновиком.')) return arr;
+        localStorage.removeItem(KEY);
+      }
+    } catch (e) {}
     return JSON.parse(JSON.stringify(window.PK_CASES_DEFAULT));
   }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(cases)); } catch (e) {} }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify({ base: BASE, cases: cases })); } catch (e) {} }
+  // адрес картинки для показа в админке
+  function imgUrl(u) {
+    if (!u) return '';
+    if (localPreview[u]) return localPreview[u];
+    if (window.PK_IMAGES && PK_IMAGES[u]) return SITE_URL + PK_IMAGES[u];
+    if (u.indexOf('/img/') === 0) return SITE_URL + u;
+    return u;
+  }
   function toast(msg, err) {
     var t = $('#toast'); t.textContent = msg; t.className = 'toast show' + (err ? ' err' : '');
     clearTimeout(toast.t); toast.t = setTimeout(function () { t.className = 'toast'; }, 2600);
@@ -231,8 +275,9 @@
       pair('Тип проекта', 'type', { req: true, ph: 'Лендинг' }) +
       pair('Название', 'title', { req: true }) +
       pair('Короткое описание', 'lead', { req: true, area: true }) +
-      field('Обложка — ссылка на картинку', 'cover', { req: true, hint: 'Загрузите картинку в Tilda (любой блок с изображением) и скопируйте ссылку static.tildacdn.com/…' }) +
-      '<img class="thumb" src="' + esc(c.cover || '') + '" alt="">' +
+      field('Обложка', 'cover', { req: true, hint: 'Нажмите «Загрузить картинку» — файл сожмётся и сам попадёт на сайт. Или вставьте ссылку.' }) +
+      '<div class="row"><button class="btn btn--sm" type="button" data-upload="cover">Загрузить картинку</button></div>' +
+      '<img class="thumb" src="' + esc(imgUrl(c.cover || '')) + '" alt="">' +
       field('Ссылка на живой сайт (необязательно)', 'url', { ph: 'https://…' }) +
     '</fieldset>';
 
@@ -252,7 +297,7 @@
 
     h += listBlock('Экраны проекта (галерея)', 'gallery', function (i) {
       var g = c.gallery[i] || {};
-      return field('Ссылка на картинку', 'gallery.' + i + '.src') + '<img class="thumb" src="' + esc(g.src || '') + '" alt="">' + pair('Подпись (необязательно)', 'gallery.' + i + '.cap');
+      return field('Картинка', 'gallery.' + i + '.src') + '<div class="row"><button class="btn btn--sm" type="button" data-upload="gallery.' + i + '.src">Загрузить картинку</button></div>' + '<img class="thumb" src="' + esc(imgUrl(g.src || '')) + '" alt="">' + pair('Подпись (необязательно)', 'gallery.' + i + '.cap');
     });
 
     h += '<fieldset><legend>Итог</legend>' + pair('Заголовок итога', 'result.title') + pair('Текст итога', 'result.text', { area: true }) + '</fieldset>';
@@ -280,8 +325,9 @@
       // в предпросмотре открываем кейс сразу
       if (pvMode === 'case') html += '<script>setTimeout(function(){var a=document.querySelector(\'[data-case-open="' + c.id.replace(/[^a-z0-9-]/g, '') + '"]\');if(a)a.click();},60);<\/script>';
       // картинки: адреса Tilda → копии на сайте, относительные /img/… → полный адрес сайта
+      Object.keys(localPreview).forEach(function (u) { html = html.split('"' + u + '"').join('"' + localPreview[u] + '"'); });
       Object.keys(window.PK_IMAGES || {}).forEach(function (u) { html = html.split(u).join('https://texspeckps.ru' + PK_IMAGES[u]); });
-      html = html.replace(/(src|href)="/img//g, '$1="https://texspeckps.ru/img/');
+      html = html.split('src="/img/').join('src="https://texspeckps.ru/img/').split('href="/img/').join('href="https://texspeckps.ru/img/');
       $('#pv').srcdoc = '<!doctype html><html><head><meta charset="utf-8"></head><body style="margin:0">' + html + '</body></html>';
     }, 350);
   }
@@ -308,7 +354,7 @@
       if (path === 'year') val = parseInt(val, 10) || '';
       if (path === 'id') { currentId = val; }
       set(c, path, val);
-      if (/cover|src$/.test(path)) { var img = t.closest('label').nextElementSibling; if (img && img.classList.contains('thumb')) img.src = val; }
+      if (/cover|src$/.test(path)) { var img = t.closest('label').parentNode.querySelector('.thumb'); if (img) img.src = imgUrl(val); }
       t.classList.toggle('invalid', problems(c).some(function (p) { return p[0] === path; }));
     }
     save(); renderList(); renderPreview();
@@ -319,7 +365,10 @@
   });
   editor.addEventListener('click', function (e) {
     var c = cur(); var b = e.target.closest('button'); if (!c || !b) return;
-    if (b.dataset.addto) {
+    if (b.dataset.upload) {
+      if (!token) { toast('Сначала подключите сайт — поле ключа слева', true); $('#token').focus(); return; }
+      uploadPath = b.dataset.upload; fileInput.value = ''; fileInput.click();
+    } else if (b.dataset.addto) {
       var k = b.dataset.addto;
       var tpl = { facts: { v: '', l: { ru: '', en: '' } }, flow: { t: { ru: '', en: '' }, d: { ru: '', en: '' } }, done: { ru: '', en: '' }, gallery: { src: '' } }[k];
       (c[k] = c[k] || []).push(JSON.parse(JSON.stringify(tpl))); refresh(true);
@@ -390,6 +439,119 @@
     try { localStorage.removeItem(KEY); } catch (e) {}
     cases = load(); currentId = cases[0] ? cases[0].id : null; refresh(true);
   });
+  /* ---------- связь с сайтом (GitHub) ---------- */
+  function gh(path, opts) {
+    opts = opts || {};
+    return fetch(API + path, {
+      method: opts.method || 'GET',
+      headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' },
+      body: opts.body ? JSON.stringify(opts.body) : undefined
+    }).then(function (r) {
+      return r.json().catch(function () { return {}; }).then(function (j) {
+        if (!r.ok) { var err = new Error(j.message || ('ошибка ' + r.status)); err.status = r.status; throw err; }
+        return j;
+      });
+    });
+  }
+  function b64utf8(s) { return btoa(unescape(encodeURIComponent(s))); }
+  // создать или обновить файл в репозитории (каждое изменение — коммит, после него сайт пересобирается)
+  function putFile(path, content, message) {
+    var url = '/contents/' + path.split('/').map(encodeURIComponent).join('/');
+    return gh(url + '?ref=main')
+      .then(function (f) { return f.sha; }, function (e) { if (e.status === 404) return null; throw e; })
+      .then(function (sha) {
+        var body = { message: message, content: content, branch: 'main' };
+        if (sha) body.sha = sha;
+        return gh(url, { method: 'PUT', body: body });
+      });
+  }
+  function setConnected(on) {
+    $('#connForm').style.display = on ? 'none' : 'grid';
+    $('#connOk').style.display = on ? 'grid' : 'none';
+  }
+  function status(msg, kind) {
+    var s = $('#pubStatus'); s.textContent = msg;
+    s.style.color = kind === 'err' ? 'var(--err)' : kind === 'ok' ? 'var(--ok)' : '';
+  }
+  $('#connForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var t = $('#token').value.trim(); if (!t) { $('#token').focus(); return; }
+    token = t; status('Проверяю ключ…');
+    gh('').then(function (r) {
+      if (!r.permissions || !r.permissions.push) throw new Error('perm');
+      setConnected(true); status('Ключ подходит, сайт подключён.', 'ok');
+    }).catch(function (err) {
+      token = '';
+      status(err.status === 401 ? 'Ключ не подошёл — проверьте, что скопировали его целиком и срок не истёк.'
+        : err.message === 'perm' ? 'У ключа нет права записи в репозиторий сайта — проверьте пункты 3–4 инструкции.'
+        : 'Не удалось связаться с GitHub: ' + err.message, 'err');
+    });
+  });
+  $('#disconnect').addEventListener('click', function () { token = ''; $('#token').value = ''; setConnected(false); status(''); });
+
+  // ждём, пока GitHub пересоберёт и выложит сайт
+  function watchDeploy(since) {
+    return new Promise(function (resolve) {
+      (function tick() {
+        gh('/actions/runs?branch=main&per_page=1').then(function (r) {
+          var run = r.workflow_runs && r.workflow_runs[0];
+          if (run && Date.parse(run.created_at) >= since - 30000 && run.status === 'completed') return resolve(run.conclusion === 'success');
+          if (Date.now() - since > 6 * 60000) return resolve(null);
+          setTimeout(tick, 8000);
+        }).catch(function () { if (Date.now() - since > 6 * 60000) resolve(null); else setTimeout(tick, 8000); });
+      })();
+    });
+  }
+  $('#publish').addEventListener('click', function () {
+    var bad = cases.filter(function (c) { return problems(c).length; });
+    if (bad.length && !confirm('В кейсе «' + (bad[0].title.ru || bad[0].id) + '» не заполнены обязательные поля — на сайте он будет выглядеть неполным. Всё равно опубликовать?')) { currentId = bad[0].id; refresh(true); return; }
+    var btn = this, since = Date.now();
+    btn.disabled = true; status('Отправляю на сайт…');
+    putFile('src/data/cases.json', b64utf8(JSON.stringify(cases, null, 2) + '\n'), 'Кейсы: обновление из админки')
+      .then(function () { status('Отправлено. Сайт пересобирается — обычно 1–2 минуты…'); return watchDeploy(since); })
+      .then(function (ok) {
+        if (ok === true) status('✓ Опубликовано — изменения уже на сайте.', 'ok');
+        else if (ok === false) status('Сборка сайта завершилась с ошибкой — откройте вкладку Actions на GitHub.', 'err');
+        else status('Отправлено. Сборка идёт дольше обычного — проверьте сайт через пару минут.');
+      })
+      .catch(function (err) { status('Не удалось опубликовать: ' + err.message, 'err'); })
+      .then(function () { btn.disabled = false; });
+  });
+
+  // загрузка картинки: сжатие в WebP (до 1800 px) прямо в браузере → на сайт в /img/
+  var fileInput = document.createElement('input'); fileInput.type = 'file'; fileInput.accept = 'image/*';
+  var uploadPath = null;
+  function compress(file) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.onload = function () {
+        var w = Math.min(1800, img.naturalWidth), h = Math.round(img.naturalHeight * w / img.naturalWidth);
+        var cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+        cv.getContext('2d').drawImage(img, 0, 0, w, h);
+        var dataUrl = cv.toDataURL('image/webp', 0.8), ext = 'webp';
+        if (dataUrl.indexOf('data:image/webp') !== 0) { dataUrl = cv.toDataURL('image/jpeg', 0.85); ext = 'jpg'; }
+        URL.revokeObjectURL(img.src);
+        resolve({ dataUrl: dataUrl, b64: dataUrl.split(',')[1], ext: ext });
+      };
+      img.onerror = function () { reject(new Error('файл не похож на картинку')); };
+      img.src = URL.createObjectURL(file);
+    });
+  }
+  fileInput.addEventListener('change', function () {
+    var f = fileInput.files[0], c = cur(), path = uploadPath;
+    if (!f || !c || !path) return;
+    toast('Сжимаю и загружаю картинку…');
+    compress(f).then(function (r) {
+      var name = (c.id || 'case').replace(/[^a-z0-9-]/g, '') + '-' + Date.now().toString(36) + '.' + r.ext;
+      return putFile('static/img/' + name, r.b64, 'Картинка для кейса ' + c.id).then(function () {
+        var url = '/img/' + name;
+        localPreview[url] = r.dataUrl;
+        set(c, path, url); refresh(true);
+        toast('Картинка загружена. Не забудьте «Опубликовать на сайте».');
+      });
+    }).catch(function (err) { toast('Не удалось загрузить: ' + err.message, true); });
+  });
+
   $('#pvCase').addEventListener('click', function () { pvMode = 'case'; renderPreview(); });
   $('#pvGrid').addEventListener('click', function () { pvMode = 'grid'; renderPreview(); });
 

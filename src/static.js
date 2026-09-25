@@ -59,7 +59,9 @@ module.exports = function buildSite({ root, kit, pages, meta, images }) {
     const segs = segments(kit, page, 1e9);
     const isLd = (s) => s.indexOf('application/ld+json') >= 0;
     const headSeg = local(segs[0], false); // viewport + шрифты + стили
-    const body = segs.slice(1).map((s) => (isLd(s) ? local(s, true) : relLinks(local(s, false)))).join('\n');
+    // в микроразметке адреса картинок должны быть полными, в том числе загруженные через админку (/img/…)
+    const ldAbs = (s) => local(s, true).split('"/img/').join('"' + SITE + '/img/');
+    const body = segs.slice(1).map((s) => (isLd(s) ? ldAbs(s) : relLinks(local(s, false)))).join('\n');
     const is404 = m.slug === '404';
     const url = urlOf(m.slug);
 
@@ -100,7 +102,7 @@ module.exports = function buildSite({ root, kit, pages, meta, images }) {
     '\n</urlset>\n');
 
   fs.writeFileSync(path.join(OUT, 'robots.txt'),
-    'User-agent: *\nDisallow:\n\n' +
+    'User-agent: *\nDisallow: /admin\n\n' +
     '# Яндекс: не индексировать адреса с рекламными метками и параметрами формы как отдельные страницы\n' +
     'Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&gclid&fbclid\n' +
     'Clean-param: service&task /form\n\n' +

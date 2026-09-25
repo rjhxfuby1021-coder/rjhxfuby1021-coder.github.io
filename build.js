@@ -131,3 +131,7 @@ console.log('Админка одним файлом: АДМИНКА.html');
 
 // обычный сайт для хостинга (GitHub Pages): site/
 require('./src/static.js')({ root: __dirname, kit, pages: PAGE_DATA, meta: INSTALL, images: json('data/images.json') });
+
+// админка на сайте: texspeckps.ru/admin (в поиске скрыта: noindex + robots.txt)
+fs.copyFileSync(path.join(__dirname, 'АДМИНКА.html'), path.join(__dirname, 'site', 'admin.html'));
+console.log('Админка на сайте: site/admin.html');
