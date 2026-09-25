@@ -87,7 +87,7 @@
       <!-- ключ живёт только в памяти этой вкладки; сохранить его может менеджер паролей браузера -->
       <form id="connForm" autocomplete="on" style="display:grid;gap:6px">
         <input type="text" name="username" autocomplete="username" value="rjhxfuby1021-coder" style="display:none" aria-hidden="true" tabindex="-1">
-        <input type="password" id="token" name="password" autocomplete="current-password" placeholder="Ключ доступа GitHub (github_pat_…)" aria-label="Ключ доступа GitHub">
+        <input type="password" id="token" name="password" autocomplete="current-password" placeholder="Ключ доступа GitHub (ghp_…)" aria-label="Ключ доступа GitHub">
         <button class="btn btn--sm btn--acc" type="submit">Подключить</button>
       </form>
       <div id="connOk" style="display:none;gap:8px">
@@ -99,11 +99,10 @@
       <details class="hint" style="margin-top:6px">
         <summary style="cursor:pointer">Как получить ключ (один раз)</summary>
         <ol style="padding-left:18px;margin:8px 0 0;display:grid;gap:4px">
-          <li>Откройте <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener" style="color:var(--acc)">github.com → новый ключ</a>.</li>
-          <li>Token name: <b>Админка сайта</b>, Expiration: <b>1 год</b>.</li>
-          <li>Repository access → <b>Only select repositories</b> → <b>rjhxfuby1021-coder.github.io</b>.</li>
-          <li>Permissions → Repository permissions: <b>Contents — Read and write</b>, <b>Actions — Read-only</b>.</li>
-          <li><b>Generate token</b> → скопируйте ключ → вставьте выше → «Подключить». Браузер предложит сохранить — соглашайтесь.</li>
+          <li>Откройте <a href="https://github.com/settings/tokens/new?description=%D0%90%D0%B4%D0%BC%D0%B8%D0%BD%D0%BA%D0%B0%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0&scopes=repo" target="_blank" rel="noopener" style="color:var(--acc)">github.com → новый ключ (classic)</a> — название и нужная галочка «repo» уже подставлены.</li>
+          <li>Expiration: <b>Custom</b> → дата через год (или 90 дней).</li>
+          <li>Проверьте, что отмечена галочка <b>repo</b>. Остальные не нужны.</li>
+          <li>Внизу страницы — <b>Generate token</b> → скопируйте ключ (начинается с <code>ghp_</code>) → вставьте выше → «Подключить». Браузер предложит сохранить — соглашайтесь.</li>
         </ol>
       </details>
       <!-- блоки для Tilda больше не нужны; элементы оставлены для совместимости скрипта -->
