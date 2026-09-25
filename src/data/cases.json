@@ -2847,13 +2847,6 @@
     ],
     "gallery": [
       {
-        "src": "/img/protechnik-scheme.webp",
-        "cap": {
-          "ru": "Схема: шаблон запуска нового потока",
-          "en": "Diagram: the template for launching a new cohort"
-        }
-      },
-      {
         "src": "https://static.tildacdn.com/tild3438-3262-4134-a165-346131306239/2026-08-15_22-42-54.png",
         "cap": {
           "ru": "Главная кабинета: программы, поддержка и данные ученика",
