@@ -1141,6 +1141,225 @@
     ]
   },
   {
+    "id": "ekskurpiter",
+    "dir": "tilda",
+    "cat": "landing",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Лендинг",
+      "en": "Landing page"
+    },
+    "title": {
+      "ru": "Экскурпитер — прогулки по рекам и каналам Петербурга",
+      "en": "Ekskurpiter — river and canal cruises in St. Petersburg"
+    },
+    "lead": {
+      "ru": "Лендинг речных прогулок: пять форматов, маршрут с воды, расписание по причалам и бронирование онлайн — путь от первого экрана до билета в WhatsApp.",
+      "en": "A river cruise landing page: five formats, the route from the water, departures by pier and online booking — a path from the first screen to a ticket in WhatsApp."
+    },
+    "cover": "/img/ekskurpiter-cover.webp",
+    "url": "https://экскурпитер.рф/",
+    "facts": [
+      {
+        "v": "5",
+        "l": {
+          "ru": "форматов прогулок с ценой и длительностью",
+          "en": "cruise formats with price and duration"
+        }
+      },
+      {
+        "v": "7",
+        "l": {
+          "ru": "точек маршрута с фотографиями",
+          "en": "route highlights with photos"
+        }
+      },
+      {
+        "v": "3",
+        "l": {
+          "ru": "шага от выбора до билета",
+          "en": "steps from choice to ticket"
+        }
+      }
+    ],
+    "task": {
+      "ru": "На набережной десятки компаний предлагают одно и то же. Нужно было быстро объяснить туристу, чем эта прогулка лучше, заранее снять вопросы про цену, причал, погоду и возврат билета — и довести до брони онлайн, не заставляя звонить.",
+      "en": "Dozens of companies on the embankment sell the same thing. The site had to show tourists quickly why this cruise is better, answer questions about price, pier, weather and refunds up front — and lead to an online booking without making them call."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Выбор формата",
+          "en": "Pick a format"
+        },
+        "d": {
+          "ru": "Дневная, ночная с мостами, музыкальная или индивидуальная",
+          "en": "Day, night with bridges, music or private"
+        }
+      },
+      {
+        "t": {
+          "ru": "Маршрут",
+          "en": "Route"
+        },
+        "d": {
+          "ru": "Что видно с воды — с фото каждой точки",
+          "en": "What you see from the water, with photos"
+        }
+      },
+      {
+        "t": {
+          "ru": "Расписание",
+          "en": "Schedule"
+        },
+        "d": {
+          "ru": "Время отправления и причал",
+          "en": "Departure time and pier"
+        }
+      },
+      {
+        "t": {
+          "ru": "Бронирование",
+          "en": "Booking"
+        },
+        "d": {
+          "ru": "Форма или звонок — без ожидания",
+          "en": "A form or a call, no waiting"
+        }
+      },
+      {
+        "t": {
+          "ru": "Билет",
+          "en": "Ticket"
+        },
+        "d": {
+          "ru": "Приходит в WhatsApp или на почту",
+          "en": "Arrives in WhatsApp or by email"
+        }
+      }
+    ],
+    "done": [
+      {
+        "ru": "Собрал первый экран с оффером, ценой «от 800 ₽» и ключевыми преимуществами",
+        "en": "Built a first screen with the offer, “from 800 ₽” price and key benefits"
+      },
+      {
+        "ru": "Оформил карточки 5 форматов: цена, длительность, частота рейсов",
+        "en": "Designed cards for 5 formats: price, duration, departure frequency"
+      },
+      {
+        "ru": "Сделал блок «Что вы увидите с воды» из 7 точек маршрута с фото",
+        "en": "Made a “What you’ll see from the water” block with 7 photo highlights"
+      },
+      {
+        "ru": "Разложил расписание отправлений по двум причалам",
+        "en": "Laid out the departure schedule across two piers"
+      },
+      {
+        "ru": "Настроил форму бронирования и заказ обратного звонка",
+        "en": "Set up the booking form and callback request"
+      },
+      {
+        "ru": "Добавил отзывы, частые вопросы и карту с причалами",
+        "en": "Added reviews, FAQ and a map with the piers"
+      },
+      {
+        "ru": "Адаптировал сайт под мобильные устройства",
+        "en": "Made the site mobile-friendly"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Прогулку бронируют за пару минут",
+        "en": "A cruise booked in a couple of minutes"
+      },
+      "text": {
+        "ru": "Турист сразу видит цену, маршрут и время отправления, а сомнения про погоду, причал и возврат снимают отдельные блоки. Остаётся выбрать дату и оставить заявку — билет приходит в WhatsApp.",
+        "en": "Tourists see the price, route and departure time right away, and separate blocks settle doubts about weather, pier and refunds. All that’s left is to pick a date and book — the ticket arrives in WhatsApp."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "Формы заявок",
+      "WhatsApp",
+      "Яндекс Карты"
+    ],
+    "gallery": [
+      {
+        "src": "/img/ekskurpiter-formats.webp",
+        "cap": {
+          "ru": "Форматы прогулок",
+          "en": "Cruise formats"
+        }
+      },
+      {
+        "src": "/img/ekskurpiter-route.webp",
+        "cap": {
+          "ru": "Маршрут: что видно с воды",
+          "en": "Route: what you see from the water"
+        }
+      },
+      {
+        "src": "/img/ekskurpiter-schedule.webp",
+        "cap": {
+          "ru": "Расписание и цены",
+          "en": "Schedule and prices"
+        }
+      },
+      {
+        "src": "/img/ekskurpiter-steps.webp",
+        "cap": {
+          "ru": "Как всё проходит",
+          "en": "How it works"
+        }
+      },
+      {
+        "src": "/img/ekskurpiter-why.webp",
+        "cap": {
+          "ru": "Почему бронируют у нас",
+          "en": "Why book with us"
+        }
+      },
+      {
+        "src": "/img/ekskurpiter-booking.webp",
+        "cap": {
+          "ru": "Бронирование",
+          "en": "Booking"
+        }
+      },
+      {
+        "src": "/img/ekskurpiter-reviews.webp",
+        "cap": {
+          "ru": "Отзывы",
+          "en": "Reviews"
+        }
+      },
+      {
+        "src": "/img/ekskurpiter-faq.webp",
+        "cap": {
+          "ru": "Частые вопросы",
+          "en": "FAQ"
+        }
+      },
+      {
+        "src": "/img/ekskurpiter-contacts.webp",
+        "cap": {
+          "ru": "Причалы и контакты",
+          "en": "Piers and contacts"
+        }
+      },
+      {
+        "src": "/img/ekskurpiter-mobile.webp",
+        "cap": {
+          "ru": "Мобильная версия",
+          "en": "Mobile version"
+        }
+      }
+    ]
+  },
+  {
     "id": "maxfit",
     "dir": "tilda",
     "cat": "multipage",
