@@ -518,17 +518,17 @@
       .then(function () { btn.disabled = false; });
   });
 
-  // загрузка картинки: сжатие в WebP (до 1800 px) прямо в браузере → на сайт в /img/
+  // загрузка картинки: сжатие в WebP (до 2000 px, качество 92) прямо в браузере → на сайт в /img/
   var fileInput = document.createElement('input'); fileInput.type = 'file'; fileInput.accept = 'image/*';
   var uploadPath = null;
   function compress(file) {
     return new Promise(function (resolve, reject) {
       var img = new Image();
       img.onload = function () {
-        var w = Math.min(1800, img.naturalWidth), h = Math.round(img.naturalHeight * w / img.naturalWidth);
+        var w = Math.min(2000, img.naturalWidth), h = Math.round(img.naturalHeight * w / img.naturalWidth);
         var cv = document.createElement('canvas'); cv.width = w; cv.height = h;
         cv.getContext('2d').drawImage(img, 0, 0, w, h);
-        var dataUrl = cv.toDataURL('image/webp', 0.8), ext = 'webp';
+        var dataUrl = cv.toDataURL('image/webp', 0.92), ext = 'webp';
         if (dataUrl.indexOf('data:image/webp') !== 0) { dataUrl = cv.toDataURL('image/jpeg', 0.85); ext = 'jpg'; }
         URL.revokeObjectURL(img.src);
         resolve({ dataUrl: dataUrl, b64: dataUrl.split(',')[1], ext: ext });

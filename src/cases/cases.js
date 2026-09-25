@@ -18,6 +18,18 @@
     });
   });
 
+  /* ---------- маленькие картинки не растягиваем (иначе скриншоты расплываются) ---------- */
+  function fitImage(img) {
+    if (!img.naturalWidth || !img.closest('.pk-ccard__media, .pk-case__cover, .pk-gallery')) return;
+    var box = img.parentElement.clientWidth;
+    if (!box) return; // скрытая картинка — проверим, когда покажется
+    img.classList.toggle('pk-img-small', img.naturalWidth < box * 0.98);
+  }
+  function fitAll() { root.querySelectorAll('img').forEach(fitImage); }
+  root.addEventListener('load', function (e) { if (e.target.tagName === 'IMG') fitImage(e.target); }, true);
+  var fitTimer; window.addEventListener('resize', function () { clearTimeout(fitTimer); fitTimer = setTimeout(fitAll, 150); });
+  fitAll();
+
   var modal = root.querySelector('[data-case-modal]');
   if (!modal) return;
   var scroller = modal.querySelector('.pk-cmodal__scroll');
@@ -45,6 +57,7 @@
     modal.setAttribute('aria-labelledby', 'case-title-' + id);
     counter.textContent = (ids.indexOf(id) + 1) + ' / ' + ids.length;
     scroller.scrollTop = 0;
+    requestAnimationFrame(function () { art.querySelectorAll('img').forEach(fitImage); });
     // одна запись в истории на открытие окна: листание кейсов внутри её только заменяет,
     // поэтому «назад» и Esc всегда возвращают на витрину
     if (!fromHistory && location.hash !== '#' + id) {
