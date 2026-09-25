@@ -194,7 +194,7 @@
     if (gal.length) {
       var base = c.cover ? 1 : 0;
       parts.push('<section class="pk-case__block">' + d.label('h3', 'cs.gallery', 'class="pk-case__label"') +
-        '<ul class="pk-gallery' + (gal.length === 1 ? ' pk-gallery--one' : '') + '">' + gal.map(function (g, j) {
+        '<ul class="pk-gallery' + (gal.length === 1 ? ' pk-gallery--one' : '') + (c.dir === 'salebot' ? ' pk-gallery--wide' : '') + '">' + gal.map(function (g, j) {
           var cap = g.cap ? d.tag('figcaption', k + 'g' + j, g.cap) : '';
           return '<li><figure><button type="button" class="pk-zoom" data-lb="' + (j + base) + '" aria-label="' + esc(ru(L['cs.zoom'])) + '" data-i18n-attr="aria-label:cs.zoom"><img src="' + esc(g.src) + '" alt="" loading="lazy" decoding="async"></button>' + cap + '</figure></li>';
         }).join('') + '</ul></section>');
