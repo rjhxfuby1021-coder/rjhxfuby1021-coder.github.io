@@ -367,7 +367,6 @@
   function renderKeysPage(data) {
     var d = new Dict();
     var total = data.length;
-    var clients = data.filter(function (c) { return c.status === 'client'; }).length;
     var feat = data.filter(function (c) { return c.status === 'client'; }).slice(0, 3);
 
     d.put('k.eye', { ru: 'Портфолио', en: 'Portfolio' });
@@ -375,7 +374,6 @@
     var K_LEAD = { ru: 'Сайты, боты, дизайн и онлайн-школы. Выберите направление — внутри каждый проект разобран отдельно: задача, сценарий, экраны и итог.', en: 'Websites, bots, design and online schools. Pick an area — inside, every project is broken down on its own: task, flow, screens and result.' };
     d.put('k.s1', { ru: plural(total, 'проект', 'проекта', 'проектов') + ' в портфолио', en: 'projects in the portfolio' });
     d.put('k.s2', { ru: 'направления', en: 'areas' });
-    d.put('k.s3', { ru: 'для реальных клиентов', en: 'for real clients' });
     d.put('k.feat', { ru: 'Проекты для клиентов', en: 'Client projects' });
     d.put('k.tg', { ru: 'Свежие работы — в Telegram-канале', en: 'Latest work — on the Telegram channel' });
 
@@ -393,10 +391,9 @@
           '<p class="pk-eyebrow pk-reveal" data-i18n="k.eye">Портфолио</p>' +
           '<h1 class="pk-h1 pk-reveal" id="pk-h1" style="--d:1" data-i18n="k.h1">Кейсы</h1>' +
           d.tag('p', 'k.lead', K_LEAD, 'class="pk-lead pk-reveal" style="--d:2"') +
-          '<ul class="pk-stats pk-reveal" style="--d:3">' +
+          '<ul class="pk-stats pk-stats--3 pk-reveal" style="--d:3">' +
             '<li class="pk-stat"><p class="pk-stat__v"><span data-pk-count="' + total + '">' + total + '</span></p><p class="pk-stat__l" data-i18n="k.s1">' + esc(plural(total, 'проект', 'проекта', 'проектов') + ' в портфолио') + '</p></li>' +
             '<li class="pk-stat"><p class="pk-stat__v">' + DIRS.length + '</p><p class="pk-stat__l" data-i18n="k.s2">направления</p></li>' +
-            '<li class="pk-stat"><p class="pk-stat__v"><span data-pk-count="' + clients + '">' + clients + '</span></p><p class="pk-stat__l" data-i18n="k.s3">для реальных клиентов</p></li>' +
             '<li class="pk-stat"><p class="pk-stat__v">2026</p><p class="pk-stat__l"><a class="pk-link" href="https://t.me/+aq7mXP_tCQ8yNzVi" target="_blank" rel="noopener" data-i18n="k.tg">Свежие работы — в Telegram-канале</a></p></li>' +
           '</ul>' +
         '</div>' +
