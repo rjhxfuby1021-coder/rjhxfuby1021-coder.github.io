@@ -2751,7 +2751,58 @@
       "ru": "Курсов и потоков много, а кабинет GetCourse из коробки не отражал ни структуру школы, ни её техническую суть. Нужно было привести кабинет, страницы программ и каталог к единому виду, не ломая логику платформы, — и параллельно вести контент.",
       "en": "Many courses and cohorts, while the out-of-the-box GetCourse cabinet reflected neither the school's structure nor its technical focus. The cabinet, program pages and catalog needed one look without breaking the platform logic — while running the content in parallel."
     },
-    "flow": [],
+    "flow": [
+      {
+        "t": {
+          "ru": "Лендинг",
+          "en": "Landing"
+        },
+        "d": {
+          "ru": "Страница программы с формой записи",
+          "en": "Program page with a sign-up form"
+        }
+      },
+      {
+        "t": {
+          "ru": "Оплата",
+          "en": "Payment"
+        },
+        "d": {
+          "ru": "Заказ и приём оплаты в GetCourse",
+          "en": "Order and payment in GetCourse"
+        }
+      },
+      {
+        "t": {
+          "ru": "Доступ",
+          "en": "Access"
+        },
+        "d": {
+          "ru": "Ученик попадает в группу потока и получает уроки",
+          "en": "The student joins the cohort group and gets the lessons"
+        }
+      },
+      {
+        "t": {
+          "ru": "Рассылка и бот",
+          "en": "Email & bot"
+        },
+        "d": {
+          "ru": "Приветствие, напоминания и связь в мессенджере",
+          "en": "Welcome, reminders and messenger support"
+        }
+      },
+      {
+        "t": {
+          "ru": "Кабинет",
+          "en": "Cabinet"
+        },
+        "d": {
+          "ru": "Каталог в стиле школы, статусы и прогресс",
+          "en": "Branded catalog, statuses and progress"
+        }
+      }
+    ],
     "done": [
       {
         "ru": "Переверстал каталог курсов под фирменный стиль",
@@ -2796,10 +2847,17 @@
     ],
     "gallery": [
       {
+        "src": "/img/protechnik-scheme.webp",
+        "cap": {
+          "ru": "Схема: шаблон запуска нового потока",
+          "en": "Diagram: the template for launching a new cohort"
+        }
+      },
+      {
         "src": "https://static.tildacdn.com/tild3438-3262-4134-a165-346131306239/2026-08-15_22-42-54.png",
         "cap": {
-          "ru": "Каталог курсов в фирменном стиле",
-          "en": "Branded course catalog"
+          "ru": "Главная кабинета: программы, поддержка и данные ученика",
+          "en": "Cabinet home: programs, support and student details"
         }
       }
     ]
