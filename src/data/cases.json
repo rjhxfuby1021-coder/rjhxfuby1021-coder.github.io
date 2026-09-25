@@ -1004,9 +1004,6 @@
     "gallery": [
       {
         "src": "https://static.tildacdn.com/tild6563-3066-4634-b237-313262663630/2026-05-11_22-26-07.png"
-      },
-      {
-        "src": "https://static.tildacdn.com/tild3531-3235-4633-b266-303230313038/2026-05-11_22-24-14.png"
       }
     ]
   },
@@ -1126,6 +1123,9 @@
       "Геймификация"
     ],
     "gallery": [
+      {
+        "src": "https://static.tildacdn.com/tild3531-3235-4633-b266-303230313038/2026-05-11_22-24-14.png"
+      },
       {
         "src": "https://static.tildacdn.com/tild3532-6365-4035-b661-303265303230/2026-08-15_13-56-02.png"
       },
