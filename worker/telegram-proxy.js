@@ -38,7 +38,8 @@ export default {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ chat_id: env.CHAT_ID, text: text + '\n\nIP: ' + ip })
     });
-    const ok = tg.ok && (await tg.json()).ok;
-    return Response.json({ ok }, { status: ok ? 200 : 502, headers: cors(origin) });
+    const res = await tg.json().catch(() => ({}));
+    // при ошибке отдаём описание от Telegram (без токена) — чтобы было понятно, что чинить
+    return Response.json(res.ok ? { ok: true } : { ok: false, error: res.description || 'telegram error' }, { status: res.ok ? 200 : 502, headers: cors(origin) });
   }
 };
