@@ -39,6 +39,7 @@ const SECTIONS = [
      L('Google Fonts — используется для загрузки шрифтов Сайта;', 'Google Fonts — used to load the Site’s fonts;'),
      L('Salebot — используется для обработки заявок и связи через чат-бота;', 'Salebot — used to process requests and communicate via the chatbot;'),
      L('Telegram — используется для доставки заявок, отправленных через форму на Сайте;', 'Telegram — used to deliver requests sent via the form on the Site;'),
+     L('Cloudflare (Cloudflare, Inc.) — используется для передачи заявок из формы на Сайте в Telegram;', 'Cloudflare (Cloudflare, Inc.) — used to pass requests from the form on the Site to Telegram;'),
      L('Яндекс Метрика — используется для сбора обезличенной статистики посещений;', 'Yandex Metrica — used to collect anonymized visit statistics;'),
      L('мессенджеры (Telegram, WhatsApp) — используются как канал связи по инициативе самого пользователя.', 'messengers (Telegram, WhatsApp) — used as a communication channel at the user’s own initiative.')],
     L('Указанные сервисы обрабатывают данные в соответствии с собственными политиками конфиденциальности.', 'These services process data in accordance with their own privacy policies.')

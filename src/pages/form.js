@@ -3,9 +3,8 @@
   var form = PK && PK.root.querySelector('[data-letter]');
   if (!form) return;
 
-  // По решению владельца заявки уходят напрямую через бота (токен виден в коде страницы).
-  var TELEGRAM_BOT_TOKEN = '8846765812:AAEEoh8-hKoAceggLWREm6-_3KY7Z7DX2AE';
-  var TELEGRAM_CHAT_ID = '7706477564';
+  // Заявка уходит через прослойку на Cloudflare Workers (папка worker/): токен бота хранится там, а не в коде страницы.
+  var FORM_ENDPOINT = 'https://texspeckps-form.texspeckps.workers.dev';
 
   var SERVICE_RU = { salebot: 'Чат-боты', tilda: 'Сайт на Tilda', figma: 'Дизайн в Figma', getcourse: 'GetCourse', webinar: 'Вебинары и рассылки', complex: 'Система под ключ' };
   var preview = form.querySelector('[data-preview]');
@@ -77,10 +76,10 @@
     sendBtn.disabled = true;
     label(sendBtn, 'fm.sending');
     setStatus('', '');
-    fetch('https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage', {
+    fetch(FORM_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: TELEGRAM_CHAT_ID, text: buildMessage() })
+      body: JSON.stringify({ text: buildMessage() })
     })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (data) {
