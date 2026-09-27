@@ -1141,6 +1141,229 @@
     ]
   },
   {
+    "id": "kromka",
+    "dir": "tilda",
+    "cat": "landing",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Лендинг",
+      "en": "Landing page"
+    },
+    "title": {
+      "ru": "Кромка — заточка ножей с курьером",
+      "en": "Kromka — knife sharpening with courier pickup"
+    },
+    "lead": {
+      "ru": "Лендинг мастерской заточки: курьер забирает тупые ножи и через 48 часов привозит острыми. Калькулятор заказа, подписка для ресторанов и гарантия — всё, чтобы вызвать курьера без лишних вопросов.",
+      "en": "A landing page for a sharpening workshop: a courier picks up dull knives and brings them back sharp in 48 hours. An order calculator, a restaurant subscription and a guarantee — everything needed to book a courier without extra questions."
+    },
+    "cover": "/img/kromka-cover.webp",
+    "url": "https://texspeckps.tilda.ws/kromka",
+    "facts": [
+      {
+        "v": "5",
+        "l": {
+          "ru": "позиций в калькуляторе заказа",
+          "en": "items in the order calculator"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "шага от курьера до возврата ножей",
+          "en": "steps from pickup to return"
+        }
+      },
+      {
+        "v": "2",
+        "l": {
+          "ru": "аудитории: частные клиенты и рестораны",
+          "en": "audiences: households and restaurants"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Заточку ножей редко ищут заранее: человек сомневается, стоит ли отдавать нож, сколько это стоит и не испортят ли клинок. Нужно было объяснить процесс, сразу показать цену и снять страх за дорогие ножи, а для ресторанов предложить отдельный понятный формат.",
+      "en": "People rarely plan knife sharpening: they wonder whether it is worth handing over a knife, how much it costs and whether the blade will be ruined. The site had to explain the process, show the price right away and ease fears about expensive knives, and give restaurants a separate, clear offer."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Оффер",
+          "en": "Offer"
+        },
+        "d": {
+          "ru": "Заберём тупые, вернём острыми за 48 часов",
+          "en": "Dull in, sharp back in 48 hours"
+        }
+      },
+      {
+        "t": {
+          "ru": "Процесс",
+          "en": "Process"
+        },
+        "d": {
+          "ru": "Забираем, точим, проверяем, возвращаем",
+          "en": "Pick up, sharpen, test, return"
+        }
+      },
+      {
+        "t": {
+          "ru": "Каталог",
+          "en": "Catalog"
+        },
+        "d": {
+          "ru": "Что точим и сколько это стоит",
+          "en": "What we sharpen and what it costs"
+        }
+      },
+      {
+        "t": {
+          "ru": "Калькулятор",
+          "en": "Calculator"
+        },
+        "d": {
+          "ru": "Сумма заказа и бесплатная доставка от 4 предметов",
+          "en": "Order total and free delivery from 4 items"
+        }
+      },
+      {
+        "t": {
+          "ru": "Заявка",
+          "en": "Request"
+        },
+        "d": {
+          "ru": "Вызов курьера на удобный интервал",
+          "en": "Courier booking for a convenient time slot"
+        }
+      }
+    ],
+    "done": [
+      {
+        "ru": "Собрал первый экран с оффером и четырьмя ключевыми цифрами",
+        "en": "Built a first screen with the offer and four key numbers"
+      },
+      {
+        "ru": "Сделал блок процесса из 4 шагов по дням",
+        "en": "Made a 4-step process block laid out by day"
+      },
+      {
+        "ru": "Оформил каталог услуг с фото и ценами",
+        "en": "Designed a service catalog with photos and prices"
+      },
+      {
+        "ru": "Сделал рабочий калькулятор: сумма, доставка, итог",
+        "en": "Built a working calculator: subtotal, delivery, total"
+      },
+      {
+        "ru": "Добавил отдельный блок подписки для ресторанов и кафе",
+        "en": "Added a separate subscription block for restaurants and cafés"
+      },
+      {
+        "ru": "Вынес гарантию на отдельный акцентный экран",
+        "en": "Gave the guarantee its own accent screen"
+      },
+      {
+        "ru": "Собрал отзывы, раскрывающиеся вопросы и форму вызова курьера",
+        "en": "Added reviews, an expandable FAQ and a courier request form"
+      },
+      {
+        "ru": "Адаптировал сайт под мобильные",
+        "en": "Made the site mobile-friendly"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "От сомнения до курьера без звонка",
+        "en": "From doubt to courier with no call"
+      },
+      "text": {
+        "ru": "Посетитель видит цену уже на первом экране, сам считает заказ в калькуляторе и понимает, что ножу ничего не грозит. Рестораны получают свой сценарий с подпиской, а все пути ведут к одной кнопке «Вызвать курьера».",
+        "en": "Visitors see the price on the first screen, work out their order in the calculator and understand their knife is safe. Restaurants get their own subscription path, and every route leads to one “Book a courier” button."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "Калькулятор",
+      "Формы заявок",
+      "Адаптивный дизайн"
+    ],
+    "gallery": [
+      {
+        "src": "/img/kromka-hero.webp",
+        "cap": {
+          "ru": "Первый экран и ключевые цифры",
+          "en": "First screen and key numbers"
+        }
+      },
+      {
+        "src": "/img/kromka-steps.webp",
+        "cap": {
+          "ru": "Процесс за два дня",
+          "en": "The two-day process"
+        }
+      },
+      {
+        "src": "/img/kromka-catalog.webp",
+        "cap": {
+          "ru": "Что точим и цены",
+          "en": "What we sharpen and prices"
+        }
+      },
+      {
+        "src": "/img/kromka-calc.webp",
+        "cap": {
+          "ru": "Калькулятор заказа",
+          "en": "Order calculator"
+        }
+      },
+      {
+        "src": "/img/kromka-restaurants.webp",
+        "cap": {
+          "ru": "Подписка для ресторанов",
+          "en": "Restaurant subscription"
+        }
+      },
+      {
+        "src": "/img/kromka-guarantee.webp",
+        "cap": {
+          "ru": "Гарантия",
+          "en": "Guarantee"
+        }
+      },
+      {
+        "src": "/img/kromka-reviews.webp",
+        "cap": {
+          "ru": "Отзывы",
+          "en": "Reviews"
+        }
+      },
+      {
+        "src": "/img/kromka-faq.webp",
+        "cap": {
+          "ru": "Вопросы",
+          "en": "FAQ"
+        }
+      },
+      {
+        "src": "/img/kromka-order.webp",
+        "cap": {
+          "ru": "Форма вызова курьера",
+          "en": "Courier request form"
+        }
+      },
+      {
+        "src": "/img/kromka-mobile.webp",
+        "cap": {
+          "ru": "Мобильная версия",
+          "en": "Mobile version"
+        }
+      }
+    ]
+  },
+  {
     "id": "ekskurpiter",
     "dir": "tilda",
     "cat": "landing",
