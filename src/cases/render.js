@@ -62,6 +62,7 @@
     'cs.open': { ru: 'Смотреть кейс', en: 'View case' },
     'cs.site': { ru: 'Открыть сайт', en: 'Visit site' },
     'cs.same': { ru: 'Хочу так же', en: 'I want the same' },
+    'cs.tg': { ru: 'Написать в Telegram', en: 'Message on Telegram' },
     'cs.task': { ru: 'Задача', en: 'The task' },
     'cs.flow': { ru: 'Сценарий', en: 'The flow' },
     'cs.done': { ru: 'Что сделал', en: 'What I did' },
@@ -110,6 +111,7 @@
 
   var ARROW = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   var EXT = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"/></svg>';
+  var TG = '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3l-3.2 15.1c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.1l-4.8-1.5c-1-.3-1.1-1 .2-1.5l18.9-7.3c.9-.3 1.6.2 1.4 1.5z"/></svg>';
   var CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
   var CLOSE = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
   var PREV = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
@@ -157,6 +159,10 @@
         '<div class="pk-case__actions">' +
           (c.url ? '<a class="pk-btn" href="' + esc(c.url) + '" target="_blank" rel="noopener">' + d.label('span', 'cs.site') + EXT + '</a>' : '') +
           '<a class="pk-btn ' + (c.url ? 'pk-btn--ghost' : '') + '" href="' + SITE + 'form?service=' + esc(c.dir) + '">' + d.label('span', 'cs.same') + ARROW + '</a>' +
+          // сообщение в Telegram сразу с названием кейса — писать проще, чем заполнять форму
+          '<a class="pk-btn pk-btn--ghost pk-btn--tg" href="https://t.me/PavelTexSpec?text=' +
+            esc(encodeURIComponent('Здравствуйте! Хочу так же, как в кейсе «' + ru(c.title) + '»')) + '" target="_blank" rel="noopener">' +
+            TG + d.label('span', 'cs.tg') + '</a>' +
         '</div>' +
       '</header>'
     );

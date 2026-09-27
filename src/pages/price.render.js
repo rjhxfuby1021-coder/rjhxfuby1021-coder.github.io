@@ -85,6 +85,8 @@ const GROUPS = [
 
 const ARROW = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 const CLOCK = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>';
+// страницы услуг под поисковые запросы (src/extra/services.render.js)
+const SERVICE_PAGE = { salebot: 'uslugi/chat-boty-salebot', tilda: 'uslugi/sajty-na-tilda', figma: 'uslugi/dizajn-v-figma', getcourse: 'uslugi/nastrojka-getcourse', webinar: 'uslugi/vebinary-i-rassylki' };
 const val = (v) => (typeof v === 'string' ? { ru: v, en: v } : v);
 
 module.exports = function render() {
@@ -120,7 +122,8 @@ module.exports = function render() {
     return '<div class="pk-ppanel" role="tabpanel" id="pp-' + g.id + '" aria-labelledby="pt-' + g.id + '"' + (i === 0 ? '' : ' hidden') + '>' +
       '<div class="pk-ppanel__head"><p class="pk-ppanel__num">' + g.num + ' / ' + g.id.toUpperCase() + '</p>' +
         d.tag('h2', 'pr.' + g.id + '.title', g.title, 'class="pk-h2"') + d.tag('p', 'pr.' + g.id + '.lead', g.lead, 'class="pk-lead"') +
-        '<a class="pk-link" href="' + SITE + g.id + '">' + d.tag('span', 'pr.cases', { ru: 'Смотреть кейсы направления', en: 'See cases in this area' }) + ARROW + '</a>' +
+        '<a class="pk-link" href="' + SITE + SERVICE_PAGE[g.id] + '">' + d.tag('span', 'pr.more', { ru: 'Подробнее об услуге', en: 'About this service' }) + ARROW + '</a>' +
+        (g.id === 'webinar' ? '' : '<a class="pk-link" href="' + SITE + g.id + '">' + d.tag('span', 'pr.cases', { ru: 'Смотреть кейсы направления', en: 'See cases in this area' }) + ARROW + '</a>') +
       '</div>' +
       '<ul class="pk-plist">' + items + '</ul>' +
       (packs ? '<ul class="pk-packs">' + packs + '</ul>' : '') +
@@ -156,3 +159,4 @@ module.exports = function render() {
     jsonld: JSON.stringify({ '@context': 'https://schema.org', '@type': 'OfferCatalog', name: 'Услуги и цены — Павел Корчагин', url: SITE + 'price', itemListElement: offers }, null, 2)
   };
 };
+module.exports.GROUPS = GROUPS;

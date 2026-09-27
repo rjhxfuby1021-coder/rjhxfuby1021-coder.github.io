@@ -87,6 +87,9 @@
         if (!data.ok) throw new Error('Telegram API');
         setStatus('fm.ok.sent', 'is-success');
         label(sendBtn, 'fm.sent');
+        // цель в Метрике и переход на страницу «Спасибо»
+        if (window.ym) { try { window.ym(112984847, 'reachGoal', 'lead'); window.ym(111630027, 'reachGoal', 'lead'); } catch (e) {} }
+        setTimeout(function () { location.href = '/spasibo'; }, 700);
       })
       .catch(function () {
         setStatus('fm.err.send', 'is-error');

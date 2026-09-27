@@ -35,7 +35,8 @@ const PAGES = [
   { slug: 'iambonus', title: 'Обо мне' },
   { slug: 'rezume', title: 'Резюме' },
   { slug: 'politica', title: 'Политика конфиденциальности' },
-  { slug: '404', title: 'Страница не найдена' }
+  { slug: '404', title: 'Страница не найдена' },
+  { slug: 'spasibo', title: 'Спасибо за заявку' }
 ];
 
 fs.mkdirSync(DIST, { recursive: true });
@@ -68,10 +69,35 @@ const data = JSON.parse(read('data/cases.json'));
 const casesCss = read('cases/cases.css');
 const casesJs = read('cases/cases.js');
 const casePages = [cases.renderKeysPage(data)].concat(cases.DIRS.map((d) => cases.renderDirPage(d.id, data)));
+const { renderQuiz, QUIZ_JS, QUIZ_CSS } = require('./src/extra/quiz.js');
+const { Dict } = require('./src/pages/_dict.js');
 for (const page of casePages) {
-  PAGE_DATA[page.slug] = Object.assign(page, { css: casesCss, js: casesJs, nav: 'keys' });
+  // на страницах направлений — квиз «Что вас интересует в этом направлении?»
+  let extraCss = '', extraJs = '';
+  if (page.slug !== 'keys') {
+    const qd = new Dict();
+    const quiz = renderQuiz(qd, page.slug);
+    if (quiz) { page.html += quiz; Object.assign(page.en, qd.en); extraCss = QUIZ_CSS; extraJs = QUIZ_JS; }
+  }
+  PAGE_DATA[page.slug] = Object.assign(page, { css: casesCss + extraCss, js: casesJs + extraJs, nav: 'keys' });
   PARTS[page.slug] = assembleParts(kit, PAGE_DATA[page.slug]);
   fs.writeFileSync(path.join(DIST, page.slug + '.html'), PARTS[page.slug].join('\n'));
+  built.push(page.slug);
+}
+
+// страницы услуг под поисковые запросы и блог «Разборы»
+const renderServices = require('./src/extra/services.render.js');
+const renderBlog = require('./src/extra/blog.render.js');
+const EXTRA_META = [];
+const extraPages = []
+  .concat(renderServices(data).map((p) => Object.assign(p, { css: read('pages/price.css') + renderServices.SERVICES_CSS + QUIZ_CSS, js: QUIZ_JS })))
+  .concat(renderBlog(json('data/blog.json'), data).map((p) => Object.assign(p, { css: renderBlog.BLOG_CSS, js: '' })));
+for (const page of extraPages) {
+  PAGE_DATA[page.slug] = page;
+  PARTS[page.slug] = assembleParts(kit, page);
+  fs.mkdirSync(path.dirname(path.join(DIST, page.slug + '.html')), { recursive: true });
+  fs.writeFileSync(path.join(DIST, page.slug + '.html'), PARTS[page.slug].join('\n'));
+  EXTRA_META.push(Object.assign({ slug: page.slug }, page.meta));
   built.push(page.slug);
 }
 
@@ -91,7 +117,7 @@ fs.mkdirSync(path.join(DIST, 'blocks'), { recursive: true });
 let tooBig = [];
 for (const [slug, parts] of Object.entries(PARTS)) {
   parts.forEach((part, i) => {
-    fs.writeFileSync(path.join(DIST, 'blocks', slug + '-' + (i + 1) + '.html'), part);
+    fs.writeFileSync(path.join(DIST, 'blocks', slug.split('/').join('_') + '-' + (i + 1) + '.html'), part);
     if (part.length > MAX_BLOCK) tooBig.push(slug + '-' + (i + 1) + ' (' + part.length + ')');
   });
 }
@@ -113,8 +139,10 @@ const INSTALL = [
   ['iambonus', 'Обо мне', '/iambonus', 'Обо мне и реферальная программа — Павел Корчагин', 'Технический специалист из Брянска: Figma, Tilda, Salebot, GetCourse, HTML/CSS/JS. Рекомендуйте — получайте 10% от заказа.'],
   ['rezume', 'Резюме', '/rezume', 'Резюме — Корчагин Павел, технический специалист', 'Технический специалист и веб-разработчик: сайты на Tilda, чат-боты Salebot, GetCourse. Удалённо, проектная и частичная занятость.'],
   ['politica', 'Политика конфиденциальности', '/politica', 'Политика конфиденциальности — texspeckps.ru', 'Как texspeckps.ru обрабатывает и защищает персональные данные пользователей.'],
-  ['404', 'Страница 404', '/404 (затем выбрать её в «Настройки сайта» → «Ещё» → «Страница 404»)', 'Страница не найдена — Павел Корчагин', 'Такой страницы нет. Перейдите на главную, к кейсам или напишите мне.']
-].map(([slug, name, url, title, desc]) => ({ slug, name, url, title, desc, parts: PARTS[slug] }));
+  ['404', 'Страница 404', '/404 (затем выбрать её в «Настройки сайта» → «Ещё» → «Страница 404»)', 'Страница не найдена — Павел Корчагин', 'Такой страницы нет. Перейдите на главную, к кейсам или напишите мне.'],
+  ['spasibo', 'Спасибо за заявку', '/spasibo', 'Спасибо! Заявка отправлена — Павел Корчагин', 'Заявка отправлена. Отвечу в течение рабочего дня.', true]
+].map(([slug, name, url, title, desc, noindex]) => ({ slug, name, url, title, desc, noindex, parts: PARTS[slug] }))
+  .concat(EXTRA_META.map((m) => Object.assign({}, m, { parts: PARTS[m.slug] })));
 fs.writeFileSync(
   path.join(__dirname, 'УСТАНОВКА.html'),
   read('install.template.html').replace('/*@PAGES@*/[]', JSON.stringify(INSTALL).replace(/<\//g, '<\\/'))

@@ -1,0 +1,103 @@
+[
+  {
+    "slug": "skolko-stoit-chat-bot",
+    "date": "2026-09-27",
+    "read": 6,
+    "service": "salebot",
+    "cover": "case:sb-channel",
+    "tag": { "ru": "Чат-боты", "en": "Chatbots" },
+    "title": { "ru": "Сколько стоит чат-бот в Telegram и из чего складывается цена", "en": "How much a Telegram chatbot costs and what drives the price" },
+    "desc": { "ru": "Почему один бот стоит 2 000 ₽, а другой 20 000 ₽: разбираю, за что вы платите, и как не переплатить за функции, которые не нужны.", "en": "Why one bot costs 2,000 ₽ and another 20,000 ₽: what you actually pay for, and how not to overpay for features you don’t need." },
+    "body": [
+      { "p": { "ru": "Вопрос «сколько стоит бот» похож на вопрос «сколько стоит ремонт». Ответ зависит от того, что бот должен делать. Бот, который выдаёт PDF за подписку, и бот, который сам записывает клиентов в свободные окна CRM, — это разные по сложности проекты, хотя оба живут в одном Telegram.", "en": "Asking “how much is a bot” is like asking “how much is a renovation”. It depends on what the bot has to do. A bot that sends a PDF for a subscription and a bot that books clients into free CRM slots are very different projects, even though both live in the same Telegram." } },
+      { "h": { "ru": "Три вещи, которые определяют цену", "en": "Three things that set the price" } },
+      { "ul": [
+        { "ru": "Длина сценария. Сколько веток, кнопок и сообщений нужно продумать и протестировать.", "en": "Flow length. How many branches, buttons and messages have to be designed and tested." },
+        { "ru": "Интеграции. Оплата, Google Таблицы, CRM, GetCourse — каждая связка добавляет работу и проверки.", "en": "Integrations. Payments, Google Sheets, CRM, GetCourse — each connection adds work and testing." },
+        { "ru": "ИИ. Ассистент, который отвечает по вашей базе знаний, требует подготовки материалов и настройки ответов.", "en": "AI. An assistant that answers from your knowledge base needs prepared materials and tuned answers." }
+      ] },
+      { "h": { "ru": "Ориентиры по ценам", "en": "Price guidelines" } },
+      { "p": { "ru": "Вот вилки из моего прайса. Точная цифра внутри вилки зависит от объёма, который мы зафиксируем на брифе:", "en": "Here are the ranges from my price list. The exact figure within a range depends on the scope we agree on in the brief:" } },
+      { "ul": [
+        { "ru": "Бот для выдачи лид-магнита — 2 000–5 000 ₽, 1–2 дня.", "en": "Lead magnet bot — 2,000–5,000 ₽, 1–2 days." },
+        { "ru": "Бот для сбора заявок — 3 000–6 000 ₽, 1–2 дня.", "en": "Lead capture bot — 3,000–6,000 ₽, 1–2 days." },
+        { "ru": "Бот-воронка для прогрева и продаж — 5 000–15 000 ₽, 2–5 дней.", "en": "Nurture and sales funnel bot — 5,000–15,000 ₽, 2–5 days." },
+        { "ru": "Бот для платного канала — 7 000–15 000 ₽, 3–5 дней.", "en": "Paid channel bot — 7,000–15,000 ₽, 3–5 days." },
+        { "ru": "ИИ-ассистент на базе знаний — 8 000–20 000 ₽, 3–7 дней.", "en": "Knowledge-base AI assistant — 8,000–20,000 ₽, 3–7 days." }
+      ] },
+      { "note": { "ru": "Самый частый способ переплатить — заказать «бота на всё». Лучше запустить одну функцию, которая точно нужна, посмотреть на реальных людей и потом добавлять ветки.", "en": "The most common way to overpay is ordering a “bot that does everything”. Launch one feature you definitely need, watch real people use it, then add branches." } },
+      { "h": { "ru": "Пример: бот для платного канала", "en": "Example: a paid channel bot" } },
+      { "p": { "ru": "В одном из моих проектов администратор вручную принимал оплаты, выдавал доступ и удалял тех, у кого закончилась подписка. Бот забрал весь цикл: знакомство, оплата, доступ, напоминание о продлении и закрытие доступа после срока. Учёт подписчиков ведётся в одной таблице.", "en": "In one of my projects, an admin took payments by hand, granted access and removed people whose subscription had ended. The bot took over the whole cycle: intro, payment, access, a renewal reminder and closing access after expiry. Subscribers are tracked in one sheet." } },
+      { "case": "sb-channel" },
+      { "h": { "ru": "Что ещё стоит заложить в бюджет", "en": "What else to budget for" } },
+      { "ul": [
+        { "ru": "Тариф Salebot — платформа платная, стоимость зависит от числа подписчиков.", "en": "The Salebot plan — the platform is paid, and the price depends on the number of subscribers." },
+        { "ru": "Правки после запуска — от 500 ₽ за небольшие изменения.", "en": "Post-launch fixes — from 500 ₽ for small changes." },
+        { "ru": "Поддержка — 3 000–7 000 ₽ в месяц, если бот важен для продаж и его нужно регулярно обновлять.", "en": "Support — 3,000–7,000 ₽ a month if the bot matters for sales and needs regular updates." }
+      ] },
+      { "p": { "ru": "Если не уверены, какой бот нужен, пройдите подбор из трёх вопросов на странице услуги — он покажет подходящий вариант, цену и сроки.", "en": "If you’re not sure which bot you need, take the three-question quiz on the service page — it shows the right option, price and timeline." } }
+    ]
+  },
+  {
+    "slug": "lending-na-tilda-bloki",
+    "date": "2026-09-27",
+    "read": 7,
+    "service": "tilda",
+    "cover": "/img/kromka-hero.webp",
+    "tag": { "ru": "Сайты на Tilda", "en": "Tilda websites" },
+    "title": { "ru": "Лендинг на Tilda: 8 блоков, без которых он не приводит заявки", "en": "A Tilda landing page: 8 blocks it needs to bring in leads" },
+    "desc": { "ru": "Структура продающего лендинга на примере сайта мастерской заточки ножей: что показать на первом экране и где снять сомнения до того, как человек уйдёт.", "en": "The structure of a converting landing page using a knife-sharpening workshop site: what to show on the first screen and where to remove doubts before people leave." } ,
+    "body": [
+      { "p": { "ru": "Красивый лендинг и лендинг, который приносит заявки, — не одно и то же. Посетитель решает за несколько секунд, остаться или закрыть вкладку, и каждый блок должен отвечать на его следующий вопрос. Разберу порядок блоков на примере «Кромки» — лендинга мастерской, которая забирает ножи курьером и возвращает острыми.", "en": "A pretty landing page and a landing page that brings leads are not the same thing. Visitors decide in seconds whether to stay, and every block has to answer their next question. Here is the block order, using Kromka — a workshop landing page that picks up knives by courier and returns them sharp." } },
+      { "case": "kromka" },
+      { "h": { "ru": "1. Первый экран: что, для кого и почём", "en": "1. First screen: what, for whom and for how much" } },
+      { "p": { "ru": "Заголовок объясняет суть одной фразой: «Заберём тупые ножи. Вернём острыми». Рядом кнопка действия и четыре цифры: срок, цена от, условия доставки и гарантия. Человек сразу понимает, туда ли он попал.", "en": "The headline explains the point in one line: “We pick up dull knives. We return them sharp.” Next to it are a call-to-action button and four numbers: turnaround, starting price, delivery terms and guarantee. People instantly know they’re in the right place." } },
+      { "h": { "ru": "2. Как это работает", "en": "2. How it works" } },
+      { "p": { "ru": "Процесс по шагам снимает страх неизвестности. У «Кромки» это четыре шага по дням: забираем, точим, проверяем, возвращаем.", "en": "A step-by-step process removes the fear of the unknown. For Kromka it’s four steps by day: pick up, sharpen, test, return." } },
+      { "h": { "ru": "3. Что вы получаете и сколько это стоит", "en": "3. What you get and what it costs" } },
+      { "p": { "ru": "Каталог услуг с фото и ценами. Если цену не показать, половина посетителей уйдёт искать её у конкурентов.", "en": "A service catalog with photos and prices. Hide the price and half your visitors will go looking for it at competitors." } },
+      { "h": { "ru": "4. Калькулятор или подбор", "en": "4. A calculator or a quiz" } },
+      { "p": { "ru": "Когда человек сам посчитал сумму, он уже мысленно сделал заказ. Калькулятор на Tilda собирается в Zero Block, а итог можно передать прямо в форму заявки.", "en": "Once people work out the total themselves, they’ve mentally placed the order. A calculator on Tilda is built in Zero Block, and the total can go straight into the request form." } },
+      { "h": { "ru": "5. Отдельный сценарий для второй аудитории", "en": "5. A separate path for the second audience" } },
+      { "p": { "ru": "У «Кромки» кроме частных клиентов есть рестораны. Для них отдельный блок с подпиской и документами — им не нужно разбираться в ценах за один нож.", "en": "Besides households, Kromka serves restaurants. They get their own block with a subscription and paperwork — they don’t need per-knife prices." } },
+      { "h": { "ru": "6–8. Гарантия, отзывы, вопросы", "en": "6–8. Guarantee, reviews, FAQ" } },
+      { "ul": [
+        { "ru": "Гарантия — на отдельном акцентном экране, одной фразой.", "en": "Guarantee — on its own accent screen, in one sentence." },
+        { "ru": "Отзывы — с именами и деталями, а не «всё супер».", "en": "Reviews — with names and details, not “everything was great”." },
+        { "ru": "Вопросы — те, что задают перед покупкой: «не испортите?», «как платить?», «куда приедет курьер?».", "en": "FAQ — the questions people ask before buying: “will you ruin it?”, “how do I pay?”, “where does the courier come?”." }
+      ] },
+      { "note": { "ru": "Главное правило: каждый блок ведёт к одной и той же кнопке. На лендинге «Кромки» все пути заканчиваются «Вызвать курьера».", "en": "The key rule: every block leads to the same button. On Kromka, every path ends with “Book a courier”." } },
+      { "p": { "ru": "Эта же логика работает для любого бизнеса услуг: экскурсий, юристов, ремонта. Меняются цифры и фото, но порядок вопросов посетителя остаётся тем же.", "en": "The same logic works for any service business: tours, lawyers, repairs. The numbers and photos change, but the order of visitor questions stays the same." } },
+      { "case": "ekskurpiter" }
+    ]
+  },
+  {
+    "slug": "ii-administrator-dlya-salona",
+    "date": "2026-09-27",
+    "read": 5,
+    "service": "salebot",
+    "cover": "case:sb-jador",
+    "tag": { "ru": "ИИ-ассистенты", "en": "AI assistants" },
+    "title": { "ru": "ИИ-администратор для салона: как бот записывает клиентов ночью", "en": "An AI receptionist for a salon: how a bot books clients at night" },
+    "desc": { "ru": "Разбор бота для маникюрного салона: консультация, подбор услуги, запись из расписания CRM и напоминания — без администратора на линии.", "en": "A breakdown of a bot for a nail salon: advice, service matching, booking from the CRM schedule and reminders — with no receptionist on the line." },
+    "body": [
+      { "p": { "ru": "В салоне красоты большая часть сообщений одинаковая: сколько стоит, есть ли окно в субботу, чем отличается одно покрытие от другого. Пока администратор занят клиентом у стойки, человек в мессенджере ждёт ответа — и часто записывается туда, где ответили быстрее.", "en": "In a beauty salon most messages are the same: how much, is there a slot on Saturday, what’s the difference between two coatings. While the receptionist is busy with a client at the desk, the person in the messenger waits — and often books wherever replies faster." } },
+      { "h": { "ru": "Что делает ассистент", "en": "What the assistant does" } },
+      { "ul": [
+        { "ru": "Консультирует в любое время: цены, услуги, отличия процедур.", "en": "Advises at any time: prices, services, differences between treatments." },
+        { "ru": "Помогает выбрать процедуру, если клиент не знает, что ему нужно.", "en": "Helps pick a treatment when the client isn’t sure what they need." },
+        { "ru": "Показывает свободные даты и время прямо из расписания CRM.", "en": "Shows free dates and times straight from the CRM schedule." },
+        { "ru": "Фиксирует запись в системе и напоминает о визите за день и за час.", "en": "Saves the booking in the system and sends reminders a day and an hour before." }
+      ] },
+      { "case": "sb-jador" },
+      { "h": { "ru": "Откуда ИИ знает ответы", "en": "Where the AI gets its answers" } },
+      { "p": { "ru": "Ассистент отвечает не «из интернета», а по базе знаний салона: прайс, список услуг, правила записи и отмены. Поэтому он не придумывает цены и не обещает того, чего салон не делает. Если вопрос выходит за рамки базы, правильно настроенный бот не выдумывает ответ, а предлагает связаться с администратором.", "en": "The assistant doesn’t answer “from the internet” but from the salon’s knowledge base: price list, services, booking and cancellation rules. So it doesn’t invent prices or promise what the salon doesn’t do. If a question falls outside the base, a well-configured bot doesn’t make up an answer but offers to contact the receptionist." } },
+      { "note": { "ru": "Хороший ИИ-ассистент не заменяет администратора, а забирает у него рутину. Сложные случаи всё равно решает человек.", "en": "A good AI assistant doesn’t replace the receptionist; it takes the routine off them. Tricky cases are still handled by a person." } },
+      { "h": { "ru": "Почему важны напоминания", "en": "Why reminders matter" } },
+      { "p": { "ru": "Запись — половина дела. Клиенты забывают о визитах, и пустое окно — это потерянные деньги. Напоминание за день даёт время перенести запись, а за час — не опоздать.", "en": "Booking is only half the job. Clients forget appointments, and an empty slot is lost money. A reminder a day before gives time to reschedule; one an hour before helps them arrive on time." } },
+      { "h": { "ru": "Кому подойдёт такой бот", "en": "Who this bot suits" } },
+      { "p": { "ru": "Любому бизнесу с записью по времени: салонам, барбершопам, студиям, медицинским кабинетам, репетиторам. Главное условие — расписание в CRM, из которого бот может брать свободные окна.", "en": "Any business with timed appointments: salons, barbershops, studios, clinics, tutors. The main requirement is a CRM schedule the bot can read free slots from." } },
+      { "p": { "ru": "Стоимость бота с онлайн-записью — 6 000–15 000 ₽, ИИ-ассистента на базе знаний — 8 000–20 000 ₽. Точную цену назову после короткого брифа.", "en": "A booking bot costs 6,000–15,000 ₽, a knowledge-base AI assistant 8,000–20,000 ₽. I’ll quote the exact price after a short brief." } }
+    ]
+  }
+]

@@ -8,7 +8,7 @@
 */
 (function (global) {
   var MAX_BLOCK = 40000;
-  var NAV = ['keys', 'price', 'otzivi', 'iambonus', 'faq'];
+  var NAV = ['keys', 'price', 'otzivi', 'blog', 'iambonus', 'faq'];
 
   // экранирование для вставки JSON внутрь <script>
   function jsonForScript(obj) {

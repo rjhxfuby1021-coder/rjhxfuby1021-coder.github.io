@@ -62,7 +62,7 @@ module.exports = function buildSite({ root, kit, pages, meta, images }) {
     // в микроразметке адреса картинок должны быть полными, в том числе загруженные через админку (/img/…)
     const ldAbs = (s) => local(s, true).split('"/img/').join('"' + SITE + '/img/');
     const body = segs.slice(1).map((s) => (isLd(s) ? ldAbs(s) : relLinks(local(s, false)))).join('\n');
-    const is404 = m.slug === '404';
+    const is404 = m.slug === '404' || m.noindex; // noindex: 404 и служебные страницы
     const url = urlOf(m.slug);
 
     const head = [
@@ -92,12 +92,14 @@ module.exports = function buildSite({ root, kit, pages, meta, images }) {
 
     const html = '<!doctype html>\n<html lang="ru">\n<head>\n' + head + '\n</head>\n' +
       '<body style="margin:0;background:#0a0a0d">\n' + body + '\n</body>\n</html>\n';
-    fs.writeFileSync(path.join(OUT, (m.slug === 'index' ? 'index' : m.slug) + '.html'), html);
+    const file = path.join(OUT, (m.slug === 'index' ? 'index' : m.slug) + '.html');
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, html);
     written.push(m.slug);
   }
 
   const today = new Date().toISOString().slice(0, 10);
-  const indexable = meta.filter((m) => m.slug !== '404' && pages[m.slug]);
+  const indexable = meta.filter((m) => m.slug !== '404' && !m.noindex && pages[m.slug]);
 
   fs.writeFileSync(path.join(OUT, 'sitemap.xml'),
     '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
