@@ -1141,6 +1141,235 @@
     ]
   },
   {
+    "id": "qledger",
+    "dir": "tilda",
+    "cat": "landing",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Лендинг",
+      "en": "Landing page"
+    },
+    "title": {
+      "ru": "QLedger — лендинг финансового ядра для банков",
+      "en": "QLedger — a landing page for a banking ledger core"
+    },
+    "lead": {
+      "ru": "Технологичный лендинг для сложного B2B-продукта: ядра финансового учёта, в котором ошибка невозможна по построению. Архитектура, инварианты, бенчмарки и документация для разработчиков в одной тёмной инженерной эстетике.",
+      "en": "A high-tech landing page for a complex B2B product: a financial ledger core where errors are impossible by design. Architecture, invariants, benchmarks and developer docs in one dark engineering aesthetic."
+    },
+    "cover": "/img/qledger-cover.webp",
+    "url": "https://texspeckps.tilda.ws/qledger",
+    "facts": [
+      {
+        "v": "7",
+        "l": {
+          "ru": "разделов: от идеи продукта до блога",
+          "en": "sections from product idea to blog"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "графика бенчмарков на 72 часа прогона",
+          "en": "benchmark charts over a 72-hour run"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "вкладки с примером кода: JSON, Python, Go, CLI",
+          "en": "code sample tabs: JSON, Python, Go, CLI"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Продукт сложный и абстрактный: инженерам и руководителям банков нужно за минуту понять, чем ядро отличается от базы данных и блокчейна, и поверить, что оно действительно не допускает ошибок. Сайт должен был говорить на языке архитекторов и при этом оставаться читаемым для бизнеса.",
+      "en": "The product is complex and abstract: bank engineers and executives need to grasp in a minute how the core differs from a database or a blockchain, and trust that it truly prevents errors. The site had to speak the language of architects while staying readable for business."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Позиционирование",
+          "en": "Positioning"
+        },
+        "d": {
+          "ru": "Не база данных и не блокчейн: сравнение с привычными системами",
+          "en": "Not a database, not a blockchain: a comparison with familiar systems"
+        }
+      },
+      {
+        "t": {
+          "ru": "Архитектура",
+          "en": "Architecture"
+        },
+        "d": {
+          "ru": "Схема пути операции и жизненный цикл факта по шагам",
+          "en": "Operation path diagram and a step-by-step fact lifecycle"
+        }
+      },
+      {
+        "t": {
+          "ru": "Инварианты",
+          "en": "Invariants"
+        },
+        "d": {
+          "ru": "Законы ядра с формулами и готовые библиотеки",
+          "en": "Core laws with formulas and ready-made libraries"
+        }
+      },
+      {
+        "t": {
+          "ru": "Доказательства",
+          "en": "Proof"
+        },
+        "d": {
+          "ru": "Бенчмарки, отказоустойчивость и слои аудита",
+          "en": "Benchmarks, fault tolerance and audit layers"
+        }
+      },
+      {
+        "t": {
+          "ru": "Разработчикам",
+          "en": "Developers"
+        },
+        "d": {
+          "ru": "SDK, пример транзакции и формальная верификация",
+          "en": "SDK, a sample transaction and formal verification"
+        }
+      }
+    ],
+    "done": [
+      {
+        "ru": "Собрал тёмную инженерную айдентику с оранжевым акцентом и моноширинными подписями",
+        "en": "Built a dark engineering identity with an orange accent and monospace labels"
+      },
+      {
+        "ru": "Сделал первый экран с визуалом «гироскопического» ядра",
+        "en": "Made a first screen with a “gyroscope” core visual"
+      },
+      {
+        "ru": "Свёл сравнение с традиционными системами в таблицу",
+        "en": "Put the comparison with traditional systems into a table"
+      },
+      {
+        "ru": "Нарисовал схему архитектуры и пошаговый жизненный цикл операции",
+        "en": "Drew the architecture diagram and a step-by-step operation lifecycle"
+      },
+      {
+        "ru": "Оформил законы ядра карточками с формулами",
+        "en": "Designed the core laws as cards with formulas"
+      },
+      {
+        "ru": "Собрал блок бенчмарков с четырьмя графиками и таблицей сравнения",
+        "en": "Built a benchmarks block with four charts and a comparison table"
+      },
+      {
+        "ru": "Сделал раздел для разработчиков с вкладками кода и блог",
+        "en": "Made a developer section with code tabs, plus a blog"
+      },
+      {
+        "ru": "Адаптировал сайт под мобильные",
+        "en": "Made the site mobile-friendly"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Сложный продукт, который читается с первого экрана",
+        "en": "A complex product that reads from the first screen"
+      },
+      "text": {
+        "ru": "Каждый раздел отвечает на один вопрос: что это, как устроено, почему не ломается и как подключить. Бизнес видит главную мысль в заголовках и таблицах, а инженеры находят схемы, формулы и код, не уходя в документацию.",
+        "en": "Each section answers one question: what it is, how it works, why it does not break and how to integrate it. Business readers get the key idea from headlines and tables, while engineers find diagrams, formulas and code without leaving for the docs."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Zero Block",
+      "HTML / CSS / JS",
+      "Адаптивный дизайн"
+    ],
+    "gallery": [
+      {
+        "src": "/img/qledger-hero.webp",
+        "cap": {
+          "ru": "Первый экран",
+          "en": "First screen"
+        }
+      },
+      {
+        "src": "/img/qledger-positioning.webp",
+        "cap": {
+          "ru": "Позиционирование и сравнение",
+          "en": "Positioning and comparison"
+        }
+      },
+      {
+        "src": "/img/qledger-architecture.webp",
+        "cap": {
+          "ru": "Схема архитектуры",
+          "en": "Architecture diagram"
+        }
+      },
+      {
+        "src": "/img/qledger-lifecycle.webp",
+        "cap": {
+          "ru": "Жизненный цикл операции",
+          "en": "Operation lifecycle"
+        }
+      },
+      {
+        "src": "/img/qledger-failover.webp",
+        "cap": {
+          "ru": "Отказоустойчивость и акторы",
+          "en": "Fault tolerance and actors"
+        }
+      },
+      {
+        "src": "/img/qledger-invariants.webp",
+        "cap": {
+          "ru": "Законы ядра",
+          "en": "Core laws"
+        }
+      },
+      {
+        "src": "/img/qledger-benchmarks.webp",
+        "cap": {
+          "ru": "Бенчмарки",
+          "en": "Benchmarks"
+        }
+      },
+      {
+        "src": "/img/qledger-security.webp",
+        "cap": {
+          "ru": "Безопасность и аудит",
+          "en": "Security and audit"
+        }
+      },
+      {
+        "src": "/img/qledger-developers.webp",
+        "cap": {
+          "ru": "Раздел для разработчиков",
+          "en": "Developer section"
+        }
+      },
+      {
+        "src": "/img/qledger-blog.webp",
+        "cap": {
+          "ru": "Блог и подвал",
+          "en": "Blog and footer"
+        }
+      },
+      {
+        "src": "/img/qledger-mobile.webp",
+        "cap": {
+          "ru": "Мобильная версия",
+          "en": "Mobile version"
+        }
+      }
+    ]
+  },
+  {
     "id": "kromka",
     "dir": "tilda",
     "cat": "landing",
