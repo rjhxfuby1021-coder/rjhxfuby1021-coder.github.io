@@ -8,7 +8,11 @@ const path = require('path');
 const { segments } = require('./assemble.js');
 
 const DOMAIN = 'texspeckps.ru';
-const SITE = 'https://' + DOMAIN;
+// Пока GitHub не выдал сертификат, основной адрес сайта — http: иначе canonical, sitemap и микроразметка
+// указывают на https, который не открывается, и поисковики не индексируют страницы.
+// Когда HTTPS заработает — поставить true и пересобрать.
+const HTTPS = false;
+const SITE = (HTTPS ? 'https://' : 'http://') + DOMAIN;
 const METRIKA = [112984847, 111630027]; // оба счётчика, что стояли на Tilda
 const OG_IMAGE = 'https://static.tildacdn.com/tild3366-6336-4861-a230-666439386134/noroot.png';
 
@@ -55,7 +59,7 @@ module.exports = function buildSite({ root, kit, pages, meta, images }) {
     const isLd = (s) => s.indexOf('application/ld+json') >= 0;
     const headSeg = local(segs[0], false); // viewport + шрифты + стили
     // в микроразметке адреса картинок должны быть полными, в том числе загруженные через админку (/img/…)
-    const ldAbs = (s) => local(s, true).split('"/img/').join('"' + SITE + '/img/');
+    const ldAbs = (s) => local(s, true).split('"/img/').join('"' + SITE + '/img/').split('https://' + DOMAIN).join(SITE);
     const body = segs.slice(1).map((s) => (isLd(s) ? ldAbs(s) : relLinks(local(s, false)))).join('\n');
     const is404 = m.slug === '404' || m.noindex; // noindex: 404 и служебные страницы
     const url = urlOf(m.slug);
