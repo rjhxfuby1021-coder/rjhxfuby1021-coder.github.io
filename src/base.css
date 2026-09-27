@@ -283,6 +283,8 @@
 .pk-chip:nth-of-type(4) { right: -2%; top: 40%; --c: #4aa8ff; }
 .pk-chip:nth-of-type(5) { left: 4%; top: 76%; --c: #ff4f8b; }
 .pk-chip:nth-of-type(6) { right: 2%; top: 70%; --c: var(--acc); }
+/* на телефонах карточка с именем занимает низ фото — нижние чипы поднимаем, чтобы не заезжали под неё */
+@media (max-width: 640px) { .pk-chip:nth-of-type(5) { top: 64%; } .pk-chip:nth-of-type(6) { top: 56%; } }
 .pk-motion .pk-chip { animation: pk-float 6s ease-in-out infinite; animation-delay: calc(var(--n) * -1.1s); }
 @keyframes pk-float { 50% { transform: translateY(-10px); } }
 

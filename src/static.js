@@ -11,11 +11,6 @@ const DOMAIN = 'texspeckps.ru';
 const SITE = 'https://' + DOMAIN;
 const METRIKA = [112984847, 111630027]; // оба счётчика, что стояли на Tilda
 const OG_IMAGE = 'https://static.tildacdn.com/tild3366-6336-4861-a230-666439386134/noroot.png';
-const FAVICONS = {
-  svg: 'https://static.tildacdn.com/tild6665-3332-4062-b064-316137646231/favicon.svg',
-  light: 'https://static.tildacdn.com/tild3831-3233-4735-b563-336162333165/ChatGPT_Image_15__20.png',
-  dark: 'https://static.tildacdn.com/tild3132-6362-4339-a431-316365396264/ChatGPT_Image_22__20.png'
-};
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
 const urlOf = (slug) => SITE + (slug === 'index' ? '/' : '/' + slug);
@@ -82,10 +77,12 @@ module.exports = function buildSite({ root, kit, pages, meta, images }) {
       // окна шире 1600 px (большой монитор или уменьшенный масштаб браузера) — сайт пропорционально
       // растягивается на всю ширину, а не остаётся узкой колонкой посередине
       '<script>(function(){function f(){var s=Math.max(1,window.innerWidth/1600);document.documentElement.style.zoom=s>1.01?s.toFixed(3):"";}f();window.addEventListener("resize",f);})();</script>',
-      '<link rel="icon" type="image/svg+xml" href="' + local(FAVICONS.svg) + '">',
-      '<link rel="icon" type="image/png" sizes="32x32" href="' + local(FAVICONS.light) + '" media="(prefers-color-scheme: light)">',
-      '<link rel="icon" type="image/png" sizes="32x32" href="' + local(FAVICONS.dark) + '" media="(prefers-color-scheme: dark)">',
-      '<link rel="apple-touch-icon" href="' + local(FAVICONS.dark) + '">',
+      // фавиконы — логотип «ПК» (static/favicon.svg и PNG из него)
+      '<link rel="icon" href="/favicon.ico" sizes="48x48">',
+      '<link rel="icon" type="image/svg+xml" href="/favicon.svg">',
+      '<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">',
+      '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+      '<meta name="google-site-verification" content="DV8cEYtHsMj-2YuWTqeDUXtLwoGU6D2gNIsM1fyUvX8">',
       headSeg,
       metrika
     ].filter(Boolean).join('\n');
