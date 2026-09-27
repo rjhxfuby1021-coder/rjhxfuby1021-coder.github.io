@@ -132,6 +132,6 @@ console.log('Админка одним файлом: АДМИНКА.html');
 // обычный сайт для хостинга (GitHub Pages): site/
 require('./src/static.js')({ root: __dirname, kit, pages: PAGE_DATA, meta: INSTALL, images: json('data/images.json') });
 
-// админка на сайте: texspeckps.ru/admin (в поиске скрыта: noindex + robots.txt)
-fs.copyFileSync(path.join(__dirname, 'АДМИНКА.html'), path.join(__dirname, 'site', 'admin.html'));
-console.log('Админка на сайте: site/admin.html');
+// админки на сайте нет: страница с полем для ключа GitHub похожа на фишинг, и Яндекс Браузер блокирует из-за неё весь домен.
+// Кейсы публикуются из локального файла АДМИНКА.html.
+try { fs.unlinkSync(path.join(__dirname, 'site', 'admin.html')); } catch (e) {}

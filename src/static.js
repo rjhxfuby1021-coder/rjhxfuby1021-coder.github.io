@@ -105,7 +105,7 @@ module.exports = function buildSite({ root, kit, pages, meta, images }) {
     '\n</urlset>\n');
 
   fs.writeFileSync(path.join(OUT, 'robots.txt'),
-    'User-agent: *\nDisallow: /admin\n\n' +
+    'User-agent: *\nAllow: /\n\n' +
     '# Яндекс: не индексировать адреса с рекламными метками и параметрами формы как отдельные страницы\n' +
     'Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&gclid&fbclid\n' +
     'Clean-param: service&task /form\n\n' +
