@@ -8,9 +8,8 @@ const path = require('path');
 const { segments } = require('./assemble.js');
 
 const DOMAIN = 'texspeckps.ru';
-// Основной адрес сайта. HTTPS выдаёт Cloudflare (домен проксируется через него). Если HTTPS пропадёт — поставить false:
-// указывают на https, который не открывается, и поисковики не индексируют страницы.
-// Когда HTTPS заработает — поставить true и пересобрать.
+// Основной адрес сайта (canonical, sitemap, микроразметка). HTTPS выдаёт Cloudflare — домен проксируется через него.
+// Если HTTPS пропадёт, поставить false: иначе поисковики увидят адреса, которые не открываются.
 const HTTPS = true;
 const SITE = (HTTPS ? 'https://' : 'http://') + DOMAIN;
 const METRIKA = [112984847, 111630027]; // оба счётчика, что стояли на Tilda
