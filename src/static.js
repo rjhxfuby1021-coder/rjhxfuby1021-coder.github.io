@@ -8,10 +8,10 @@ const path = require('path');
 const { segments } = require('./assemble.js');
 
 const DOMAIN = 'texspeckps.ru';
-// Пока GitHub не выдал сертификат, основной адрес сайта — http: иначе canonical, sitemap и микроразметка
+// Основной адрес сайта. HTTPS выдаёт Cloudflare (домен проксируется через него). Если HTTPS пропадёт — поставить false:
 // указывают на https, который не открывается, и поисковики не индексируют страницы.
 // Когда HTTPS заработает — поставить true и пересобрать.
-const HTTPS = false;
+const HTTPS = true;
 const SITE = (HTTPS ? 'https://' : 'http://') + DOMAIN;
 const METRIKA = [112984847, 111630027]; // оба счётчика, что стояли на Tilda
 const OG_IMAGE = 'https://static.tildacdn.com/tild3366-6336-4861-a230-666439386134/noroot.png';
