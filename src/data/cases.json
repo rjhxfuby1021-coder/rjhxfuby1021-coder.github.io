@@ -2449,10 +2449,10 @@
         }
       },
       {
-        "v": "15,4%",
+        "v": "+15,44%",
         "l": {
-          "ru": "посетителей оставляют заявку",
-          "en": "of visitors place an order"
+          "ru": "рост конверсии: до сайта онлайн-заказов не было",
+          "en": "conversion growth: no online orders before the site"
         }
       }
     ],
@@ -2493,8 +2493,8 @@
         "en": "A site that takes orders"
       },
       "text": {
-        "ru": "Гости сами оформляют заказы и доставку, а сайт вышел на первое место в поиске по области. Статистика за неделю: 557 визитов, 86 заявок, конверсия 15,4%; почти три четверти гостей (72,5%) заходят с телефона — поэтому мобильная версия здесь главная. Владелец кафе Рубен оставил отзыв — он в разделе «Отзывы». Для этого же кафе я собрал чат-бота — он в кейсах Salebot.",
-        "en": "Guests place orders and book delivery on their own, and the site reached first place in regional search. One week of stats: 557 sessions, 86 orders, 15.4% conversion; almost three quarters of visitors (72.5%) come from phones, so the mobile version matters most. The owner, Ruben, left a review on the Reviews page. I also built a chatbot for the café — see the Salebot cases."
+        "ru": "До сайта у кафе не было онлайн-заказов совсем — теперь гости сами оформляют заказы и доставку, а сайт вышел на первое место в поиске по области. Статистика за неделю: 557 визитов и 86 заявок — конверсия выросла с нуля до 15,44%. 72,5% гостей заходят с телефона, поэтому мобильная версия здесь главная. Владелец кафе Рубен оставил отзыв — он в разделе «Отзывы». Для этого же кафе я собрал чат-бота — он в кейсах Salebot.",
+        "en": "Before the site the café had no online orders at all — now guests place orders and book delivery on their own, and the site reached first place in regional search. One week of stats: 557 sessions and 86 orders — conversion grew from zero to 15.44%. 72.5% of visitors come from phones, so the mobile version matters most. The owner, Ruben, left a review on the Reviews page. I also built a chatbot for the café — see the Salebot cases."
       }
     },
     "tools": [
