@@ -2442,17 +2442,17 @@
         }
       },
       {
-        "v": "6",
+        "v": "86",
         "l": {
-          "ru": "категорий онлайн-меню",
-          "en": "online menu categories"
+          "ru": "заявок за неделю",
+          "en": "orders in a week"
         }
       },
       {
-        "v": "3",
+        "v": "15,4%",
         "l": {
-          "ru": "точки кафе на одной карте",
-          "en": "café locations on one map"
+          "ru": "посетителей оставляют заявку",
+          "en": "of visitors place an order"
         }
       }
     ],
@@ -2493,8 +2493,8 @@
         "en": "A site that takes orders"
       },
       "text": {
-        "ru": "Гости сами оформляют заказы и доставку, а сайт вышел на первое место в поиске по области. Владелец кафе Рубен оставил отзыв — он в разделе «Отзывы». Для этого же кафе я собрал чат-бота — он в кейсах Salebot.",
-        "en": "Guests place orders and book delivery on their own, and the site reached first place in regional search. The owner, Ruben, left a review on the Reviews page. I also built a chatbot for the café — see the Salebot cases."
+        "ru": "Гости сами оформляют заказы и доставку, а сайт вышел на первое место в поиске по области. Статистика за неделю: 557 визитов, 86 заявок, конверсия 15,4%; почти три четверти гостей (72,5%) заходят с телефона — поэтому мобильная версия здесь главная. Владелец кафе Рубен оставил отзыв — он в разделе «Отзывы». Для этого же кафе я собрал чат-бота — он в кейсах Salebot.",
+        "en": "Guests place orders and book delivery on their own, and the site reached first place in regional search. One week of stats: 557 sessions, 86 orders, 15.4% conversion; almost three quarters of visitors (72.5%) come from phones, so the mobile version matters most. The owner, Ruben, left a review on the Reviews page. I also built a chatbot for the café — see the Salebot cases."
       }
     },
     "tools": [
