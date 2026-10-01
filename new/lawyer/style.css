@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261001231639");
+@import url("../assets/inner-base.css?v=20261001233939");
 /* Для юристов: слоновая кость, тёмно-синий, бордо, PT Serif + PT Sans, разделы как пункты договора */
 :root{--bg:#f6f2ea;--ink:#1a2236;--muted:#6c6a64;--acc:#1b2a4a;--acc-ink:#fff;--bord:#7b1e2b;--line:#d9d2c3;--card:#fffdf8;--fd:"PT Serif",Georgia,serif;--fb:"PT Serif",Georgia,serif;--sans:"PT Sans",system-ui,sans-serif;--maxw:1160px}
 body{counter-reset:sec}

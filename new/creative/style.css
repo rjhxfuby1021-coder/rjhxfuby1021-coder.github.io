@@ -274,3 +274,18 @@ button.ph{border:0;display:block;text-align:left;font:inherit;width:100%}
 @media(max-width:1100px){.notes.n4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:640px){.notes.n4{grid-template-columns:1fr}}
 a.inl{color:var(--blue);border-bottom:1px solid}
+/* ---- правки отображения (проверка 2026-10-02) ---- */
+.final h2{line-height:1.06}
+.stamp b{line-height:1;margin-bottom:2px}
+@media(max-width:860px){.group{grid-template-columns:minmax(0,1fr)}.case-top,.chapter,.two{grid-template-columns:minmax(0,1fr)}.case-top .ph,.page-hd .ph{width:92%;margin:0 auto}}
+@media(max-width:600px){.pager{grid-template-columns:minmax(0,1fr)}.pager a:last-child{text-align:left}}
+.kick{flex-wrap:wrap;row-gap:6px}
+.big404{line-height:.9;margin-bottom:24px}
+h2.t,.page-hd h1{line-height:1.02}
+@media(max-width:600px){.dish .row{flex-wrap:wrap;row-gap:2px}.dish .dots{display:none}.dish .pr{width:100%}.notes.n2{grid-template-columns:minmax(0,1fr)!important}.big10 small{position:static;display:block;margin-top:14px;transform:rotate(-3deg)}}
+.notes.n2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.letter footer{line-height:1.15}.letter footer small{margin-top:6px}
+.case-top .ph{margin-right:14px}
+.big404{margin-bottom:48px}
+.prose .note .hand{margin-bottom:8px}
+.stickers{padding-left:6px}

@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261001231639");
+@import url("../assets/inner-base.css?v=20261001233939");
 /* Для бухгалтеров: таблица — сетка ячеек, зелёная лента, строка формул, ярлыки листов, Open Sans + Ubuntu Mono */
 :root{--bg:#fff;--ink:#1f1f1f;--muted:#6b6b6b;--acc:#217346;--acc-ink:#fff;--xl2:#e9f3ee;--line:#e1e1e1;--card:#fff;--fd:"Open Sans",system-ui,sans-serif;--fb:"Open Sans",system-ui,sans-serif;--m:"Ubuntu Mono",monospace;--maxw:1300px}
 body{padding-bottom:46px;font-size:15.5px;background-image:linear-gradient(#ececec 1px,transparent 1px),linear-gradient(90deg,#ececec 1px,transparent 1px);background-size:120px 32px}

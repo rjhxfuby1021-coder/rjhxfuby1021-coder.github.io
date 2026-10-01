@@ -48,3 +48,5 @@ span.pk-logo.pk-logo--it{font-family:"Fira Sans",system-ui,sans-serif;font-weigh
 /* на тёмных подвалах */
 .site-ft .pk-logo.pk-logo--lawyer .pk-mark.pk-mark{color:#fff;border-color:#fff;outline-color:#fff}
 .site-ft .pk-logo.pk-logo--accountant .pk-mark.pk-mark{background:#217346;color:#fff}
+/* телефон: логотип компактнее, чтобы помещался рядом с кнопкой меню */
+@media(max-width:480px){span.pk-logo.pk-logo{font-size:14px;gap:.5em}span.pk-logo.pk-logo--bold,span.pk-logo.pk-logo--auto,span.pk-logo.pk-logo--kinetic{font-size:12.5px}span.pk-logo.pk-logo--premium,span.pk-logo.pk-logo--cafe,span.pk-logo.pk-logo--creative{font-size:17px}}

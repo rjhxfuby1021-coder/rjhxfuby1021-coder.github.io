@@ -221,7 +221,7 @@ a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{fon
 /* шапка и подвал по умолчанию (стили обычно переопределяют) */
 .site-hd{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
 .site-hd .w{display:flex;align-items:center;justify-content:space-between;gap:18px;height:68px}
-.site-hd .logo{font:700 17px var(--fd)}
+.site-hd .logo{font:700 17px var(--fd);min-width:0}
 .site-hd nav{display:flex;gap:22px;font-size:15px}
 .site-hd nav a{color:var(--muted)}
 .site-hd nav a:hover,.site-hd nav a.on{color:var(--ink)}
@@ -232,9 +232,10 @@ a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{fon
 .mnav.open{display:block}
 @media(max-width:900px){.site-hd nav,.site-hd .hd-cta{display:none}.burger{display:block}}
 .site-ft{border-top:1px solid var(--line);padding:clamp(36px,5vw,60px) 0 24px;font-size:15px}
-.ft-cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+.ft-cols{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:28px}
+.ft-cols a,.ft-cols h4{overflow-wrap:anywhere}
 .ft-cols h4{font:600 14px var(--fd);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:10px}
 .ft-cols a{display:block;padding:3px 0}
 .ft-cols a:hover{color:var(--acc)}
 .ft-base{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:34px;font-size:13.5px;color:var(--muted)}
-@media(max-width:860px){.ft-cols{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){.ft-cols{grid-template-columns:repeat(2,minmax(0,1fr))}}

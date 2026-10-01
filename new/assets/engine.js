@@ -85,8 +85,9 @@ window.ENGINE = function (T) {
   const NAV = [['cases', P.cases], ['services', P.services], ['reviews', P.reviews], ['blog', P.blog], ['about', P.about], ['faq', P.faq]];
   const navItems = NAV.map(([k, h]) => ({ k, h, t: v('nav.' + k, k), on: here === h || (k === 'cases' && here === P.case) || (k === 'blog' && here === P.post) || (k === 'services' && here === P.service) }));
   const hd = document.getElementById('hd'), ft = document.getElementById('ft');
-  if (hd && T.header) { hd.outerHTML = T.header(navItems, H); }
-  if (ft && T.footer) { ft.outerHTML = T.footer(H); }
+  // шапку и подвал подставляем только на внутренних страницах (у главных стилей они свои)
+  if (page && hd && T.header) { hd.outerHTML = T.header(navItems, H); }
+  if (page && ft && T.footer) { ft.outerHTML = T.footer(H); }
   document.querySelectorAll('[data-burger]').forEach((b) => {
     const m = document.getElementById(b.getAttribute('aria-controls'));
     b.addEventListener('click', () => { const o = m.classList.toggle('open'); b.setAttribute('aria-expanded', o); });
