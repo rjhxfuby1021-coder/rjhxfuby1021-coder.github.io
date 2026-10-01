@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Павел Корчагин — дружелюбно</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: Headspace, Duolingo, «пластилиновый» 3D (claymorphism) — круглые формы, яркие пастели, персонажи */
+:root{--bg:#f4f0ff;--ink:#2a2350;--g:#6d6890;--or:#ff8a3d;--gr:#3ccf8e;--bl:#4f8cff;--pk:#ff7eb6;--yl:#ffd23f;--li:#9b7bff;--f:"Nunito",system-ui,sans-serif;--gut:clamp(16px,4vw,44px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:600 17.5px/1.55 var(--f);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.w{max-width:1180px;margin:0 auto;padding:0 var(--gut)}
+.clay{border-radius:32px;background:#fff;box-shadow:inset -6px -8px 16px rgba(42,35,80,.08),inset 6px 6px 14px rgba(255,255,255,.9),0 18px 40px -18px rgba(42,35,80,.28)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:58px;padding:0 28px;border-radius:999px;font-weight:800;font-size:17px;color:#fff;background:var(--or);box-shadow:inset -4px -6px 10px rgba(0,0,0,.14),inset 4px 4px 8px rgba(255,255,255,.35),0 8px 0 #d96a22,0 18px 30px -10px rgba(255,138,61,.6);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(6px);box-shadow:inset -4px -6px 10px rgba(0,0,0,.14),0 2px 0 #d96a22}
+.btn.alt{background:#fff;color:var(--ink);box-shadow:inset -4px -6px 10px rgba(42,35,80,.08),0 8px 0 #d9d3ef,0 18px 30px -12px rgba(42,35,80,.25)}
+.btn.alt:active{box-shadow:0 2px 0 #d9d3ef}
+/* nav */
+.nav .w{display:flex;justify-content:space-between;align-items:center;height:84px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:20px}
+.logo i{width:42px;height:42px;border-radius:50%;background:var(--li);display:grid;place-items:center;color:#fff;font-style:normal;font-size:16px;box-shadow:inset -4px -5px 8px rgba(0,0,0,.18),inset 3px 3px 6px rgba(255,255,255,.4)}
+.nav nav{display:flex;gap:6px;padding:6px;border-radius:999px}
+.nav nav a{padding:9px 16px;border-radius:999px;font-weight:700;font-size:15px;transition:background .2s}
+.nav nav a:hover{background:var(--bg)}
+.nav .btn{height:48px;font-size:15px;padding:0 20px}
+@media(max-width:900px){.nav nav{display:none}}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(20px,4vw,60px);align-items:center;padding:clamp(30px,5vw,60px) 0 clamp(60px,8vw,110px)}
+.hi{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;font-weight:800;font-size:15px}
+.hi b{font-size:22px;display:inline-block;animation:wave 2.2s ease-in-out infinite;transform-origin:70% 70%}
+@keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(16deg)}20%,40%{transform:rotate(-8deg)}}
+.hero h1{font-weight:900;font-size:clamp(40px,5.6vw,76px);line-height:1.2;letter-spacing:-.025em;margin-top:20px}
+.hero h1 .u{background:var(--yl);border-radius:.3em;padding:.02em .14em;box-shadow:inset -3px -4px 8px rgba(0,0,0,.08);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.hero p{font-size:clamp(17px,1.5vw,20px);color:var(--g);max-width:40ch;margin-top:20px;font-weight:600}
+.hero .acts{display:flex;gap:16px;flex-wrap:wrap;margin-top:34px}
+/* clay scene */
+.scene{position:relative;aspect-ratio:1/0.95}
+.blob{position:absolute;border-radius:50%;box-shadow:inset -14px -18px 30px rgba(0,0,0,.18),inset 12px 12px 24px rgba(255,255,255,.45),0 30px 50px -20px rgba(42,35,80,.35);display:grid;place-items:center;animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-14px) rotate(3deg)}}
+.blob .eyes{display:flex;gap:16%;width:46%;justify-content:center}
+.blob .eye{width:22%;aspect-ratio:1;background:#fff;border-radius:50%;position:relative;min-width:14px}
+.blob .eye i{position:absolute;width:52%;height:52%;border-radius:50%;background:var(--ink);left:24%;top:24%;transition:transform .12s}
+.blob .mouth{width:22%;height:11%;border:4px solid var(--ink);border-top:0;border-radius:0 0 40px 40px;margin:8% auto 0}
+.blob small{position:absolute;bottom:-38px;left:50%;transform:translateX(-50%);white-space:nowrap;font-weight:800;font-size:14px;background:#fff;padding:5px 12px;border-radius:999px;box-shadow:0 6px 14px -6px rgba(42,35,80,.3)}
+.b1{width:44%;aspect-ratio:1;left:28%;top:16%;background:var(--li);border-radius:46% 54% 50% 50%}
+.b2{width:24%;aspect-ratio:1;left:2%;top:8%;background:var(--or);animation-delay:-1s}
+.b3{width:22%;aspect-ratio:1;right:2%;top:4%;background:var(--gr);animation-delay:-2s;border-radius:30%}
+.b4{width:20%;aspect-ratio:1;left:6%;bottom:12%;background:var(--bl);animation-delay:-3s;border-radius:28%}
+.b5{width:24%;aspect-ratio:1;right:4%;bottom:10%;background:var(--pk);animation-delay:-4s}
+.coin{position:absolute;right:30%;bottom:2%;width:13%;aspect-ratio:1;border-radius:50%;background:var(--yl);display:grid;place-items:center;font-weight:900;font-size:clamp(16px,2vw,26px);box-shadow:inset -6px -8px 12px rgba(0,0,0,.15),inset 5px 5px 10px rgba(255,255,255,.6),0 14px 24px -10px rgba(0,0,0,.3);animation:float 4s ease-in-out infinite -1.5s}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.scene{max-width:460px;width:100%;margin:10px auto 30px}}
+section{padding:clamp(60px,8vw,110px) 0}
+.sh{text-align:center;max-width:700px;margin:0 auto clamp(36px,5vw,56px)}
+.sh .tag{display:inline-block;padding:6px 14px;border-radius:999px;font-weight:800;font-size:14px;color:#fff;background:var(--li);margin-bottom:14px}
+.sh h2{font-weight:900;font-size:clamp(32px,4.4vw,54px);line-height:1.05;letter-spacing:-.02em}
+.sh p{color:var(--g);margin-top:14px}
+/* help cards */
+.help{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.help .clay{padding:28px;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.help .clay:hover{transform:translateY(-8px) rotate(-1deg)}
+.help .ic{width:64px;height:64px;border-radius:22px;display:grid;place-items:center;font-size:30px;margin-bottom:18px;box-shadow:inset -5px -6px 10px rgba(0,0,0,.15),inset 4px 4px 8px rgba(255,255,255,.45)}
+.help h3{font-weight:900;font-size:22px;line-height:1.2}
+.help p{color:var(--g);margin-top:8px;font-size:16px}
+@media(max-width:860px){.help{grid-template-columns:1fr}}
+/* steps */
+.path{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;position:relative}
+.path div{text-align:center;padding:0 6px}
+.path b{display:grid;place-items:center;width:72px;height:72px;margin:0 auto 14px;border-radius:50%;font-weight:900;font-size:26px;color:#fff;box-shadow:inset -6px -8px 12px rgba(0,0,0,.16),inset 5px 5px 10px rgba(255,255,255,.4),0 12px 20px -10px rgba(42,35,80,.4)}
+.path h4{font-weight:900;font-size:17px}
+.path span{display:block;color:var(--g);font-size:14.5px;margin-top:4px}
+@media(max-width:860px){.path{grid-template-columns:1fr 1fr;row-gap:28px}}
+/* case */
+.story{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;overflow:hidden}
+.story .im{padding:16px}
+.story .im img{width:100%;height:100%;min-height:300px;object-fit:cover;object-position:top;border-radius:24px}
+.story .tx{padding:34px}
+.story h3{font-weight:900;font-size:clamp(24px,2.6vw,34px);line-height:1.12}
+.bubbles{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.bubbles span{padding:10px 16px;border-radius:20px;font-weight:800;font-size:15px;color:#fff;box-shadow:inset -4px -5px 8px rgba(0,0,0,.12)}
+.story blockquote{margin-top:20px;padding:16px 18px;background:var(--bg);border-radius:20px;font-size:15.5px;color:var(--g)}
+@media(max-width:860px){.story{grid-template-columns:1fr}}
+/* works */
+.works{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.wk{padding:12px;display:flex;flex-direction:column;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.wk:hover{transform:translateY(-8px) rotate(var(--r))}
+.wk img{width:100%;aspect-ratio:16/11;object-fit:cover;object-position:top;border-radius:22px}
+.wk .bd{padding:14px 8px 6px}
+.wk h4{font-weight:900;font-size:18px;line-height:1.25}
+.wk .fc{display:inline-flex;gap:6px;align-items:baseline;margin-top:10px;padding:6px 12px;border-radius:999px;background:var(--bg);font-size:13.5px;color:var(--g)}
+.wk .fc b{color:var(--li);font-weight:900;font-size:16px}
+@media(max-width:960px){.works{grid-template-columns:1fr 1fr}}@media(max-width:600px){.works{grid-template-columns:1fr}}
+.center{text-align:center;margin-top:44px}
+/* bot */
+.botg{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,4vw,60px);align-items:center}
+.chatc{padding:22px;height:520px;display:flex;flex-direction:column}
+.chatc .hd{display:flex;align-items:center;gap:12px;font-weight:900;padding-bottom:14px;border-bottom:3px dashed var(--bg)}
+.chatc .hd i{width:44px;height:44px;border-radius:50%;background:var(--pk);box-shadow:inset -4px -5px 8px rgba(0,0,0,.15),inset 3px 3px 6px rgba(255,255,255,.4)}
+.chatc .hd small{display:block;color:var(--gr);font-size:13px}
+#chat{flex:1;overflow-y:auto;padding:14px 2px;display:flex;flex-direction:column;gap:10px;scrollbar-width:none}
+.msg{max-width:84%;padding:12px 16px;border-radius:22px;font-size:15.5px;line-height:1.4;animation:boing .45s cubic-bezier(.3,1.8,.5,1)}
+@keyframes boing{from{opacity:0;transform:scale(.6)}}
+.msg.in{background:var(--bg);align-self:flex-start;border-bottom-left-radius:6px}
+.msg.out{background:var(--li);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+.msg.sys{align-self:center;background:#e6fbf1;color:#169a63;font-size:13px;font-weight:800}
+.msg.typing{display:flex;gap:5px;padding:15px 16px}
+.msg.typing i{width:9px;height:9px;border-radius:50%;background:var(--li);animation:hop 1s infinite}
+.msg.typing i:nth-child(2){animation-delay:.15s}.msg.typing i:nth-child(3){animation-delay:.3s}
+@keyframes hop{50%{transform:translateY(-6px)}}
+#replies{display:flex;flex-wrap:wrap;gap:8px;min-height:50px;padding-top:10px}
+#replies button{padding:10px 16px;border-radius:999px;background:#fff;border:3px solid var(--li);color:var(--li);font-weight:800;font-size:14.5px;transition:.15s}
+#replies button:hover{background:var(--li);color:#fff}
+@media(max-width:860px){.botg{grid-template-columns:1fr}}
+/* price + reviews */
+.prices{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.prices .clay{padding:20px;text-align:center}
+.prices span{display:block;color:var(--g);font-size:15px}
+.prices b{display:block;font-weight:900;font-size:24px;margin-top:4px}
+@media(max-width:860px){.prices{grid-template-columns:1fr 1fr}}
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.rev{padding:26px;display:flex;flex-direction:column;gap:16px}
+.rev .st{color:var(--yl);font-size:22px;letter-spacing:2px;text-shadow:0 2px 0 #e0b100}
+.rev footer{display:flex;gap:12px;align-items:center;margin-top:auto}
+.rev .av{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:900;color:#fff;box-shadow:inset -4px -5px 8px rgba(0,0,0,.15)}
+.rev small{color:var(--g);font-size:13.5px}
+@media(max-width:900px){.revs{grid-template-columns:1fr}}
+.final{text-align:center;padding:clamp(50px,7vw,90px) clamp(20px,4vw,60px);background:var(--li);color:#fff;position:relative;overflow:hidden}
+.final h2{font-weight:900;font-size:clamp(34px,5vw,64px);line-height:1.05;max-width:16ch;margin:0 auto;position:relative}
+.final p{max-width:42ch;margin:16px auto 0;color:#ece6ff;position:relative}
+.final .acts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px;position:relative}
+.final .dot{position:absolute;border-radius:50%;box-shadow:inset -8px -10px 16px rgba(0,0,0,.15),inset 6px 6px 12px rgba(255,255,255,.4)}
+footer.f{padding:30px 0 40px;color:var(--g);font-size:15px}
+footer.f .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer.f a{margin-left:18px;font-weight:800}
+[data-rv]{opacity:0;transform:translateY(30px) scale(.94);transition:opacity .6s,transform .7s cubic-bezier(.3,1.6,.5,1)}[data-rv].in{opacity:1;transform:none}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:#fff;padding:10px 18px;border-radius:999px;font-weight:800;font-size:14px;box-shadow:0 6px 0 #d9d3ef,0 14px 24px -10px rgba(42,35,80,.3)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-rv]{opacity:1;transform:none}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header class="nav"><div class="w"><a class="logo" href="#"><span class="pk-logo pk-logo--friendly"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span></a><nav class="clay"><a data-page="cases">Кейсы</a><a data-page="price">Цены</a><a data-page="reviews">Отзывы</a><a data-page="faq">Вопросы</a><a data-page="blog">Блог</a></nav><a class="btn" href="#contact">Написать</a></div></header>
+
+<main class="w">
+  <div class="hero">
+    <div data-rv>
+      <span class="hi clay"><b>👋</b> Привет! Я Павел</span>
+      <h1>Помогу бизнесу продавать онлайн — <span class="u">без головной боли</span></h1>
+      <p>Нарисую дизайн, соберу сайт, научу чат-бота отвечать клиентам и настрою онлайн-школу. Всё сам, всё понятно, на связи от начала до конца.</p>
+      <div class="acts"><a class="btn" href="#contact">Обсудить проект</a><a class="btn alt" data-page="cases">Посмотреть работы</a></div>
+    </div>
+    <div class="scene" id="scene" aria-hidden="true">
+      <div class="blob b2"><div><div class="eyes"><span class="eye"><i></i></span><span class="eye"><i></i></span></div></div><small>Дизайн</small></div>
+      <div class="blob b3"><div><div class="eyes"><span class="eye"><i></i></span><span class="eye"><i></i></span></div></div><small>Сайт</small></div>
+      <div class="blob b1"><div style="width:100%"><div class="eyes"><span class="eye"><i></i></span><span class="eye"><i></i></span></div><div class="mouth"></div></div><small>Павел — 5 в 1</small></div>
+      <div class="blob b4"><div><div class="eyes"><span class="eye"><i></i></span><span class="eye"><i></i></span></div></div><small>Бот</small></div>
+      <div class="blob b5"><div><div class="eyes"><span class="eye"><i></i></span><span class="eye"><i></i></span></div></div><small>Школа</small></div>
+      <div class="coin">₽</div>
+    </div>
+  </div>
+
+  <section style="padding-top:0">
+    <div class="sh"><span class="tag">Чем помогу</span><h2>Знакомые ситуации?</h2><p>Нажимать ничего не нужно — просто узнайте себя.</p></div>
+    <div class="help" id="help"></div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><span class="tag" style="background:var(--gr)">История</span><h2>Как кафе получило 86 заявок за неделю</h2></div>
+    <a class="clay story" href="https://priyatnogoappetita.tilda.ws/" target="_blank" rel="noopener" data-rv>
+      <div class="im"><img id="cImg" alt="Сайт кафе"></div>
+      <div class="tx"><h3>Раньше заказать еду онлайн было негде. Теперь гости делают это сами — с телефона.</h3>
+        <div class="bubbles" id="bub"></div><blockquote id="cQ"></blockquote></div>
+    </a>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><span class="tag" style="background:var(--bl)">Работы</span><h2>Немного того, что я сделал</h2></div>
+    <div class="works" id="works"></div>
+    <div class="center"><a class="btn alt" data-page="cases">Все 25 работ →</a></div>
+  </section>
+
+  <section style="padding-top:0"><div class="botg">
+    <div data-rv><div class="sh" style="text-align:left;margin:0"><span class="tag" style="background:var(--pk)">Демо</span><h2>Поболтайте с ботом</h2><p>Такой ИИ-администратор работает в салоне «Жадор»: отвечает, подбирает услугу и записывает. Здесь демо-сценарий — попробуйте!</p></div></div>
+    <div class="clay chatc" data-rv><div class="hd"><i></i><div>Салон «Жадор»<small id="st">онлайн</small></div></div><div id="chat"></div><div id="replies"></div></div>
+  </div></section>
+
+  <section style="padding-top:0">
+    <div class="sh"><span class="tag" style="background:var(--or)">Как работаем</span><h2>Пять простых шагов</h2><p>Готовое ТЗ не нужно — я сам задам вопросы.</p></div>
+    <div class="path" id="path" data-rv></div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><span class="tag" style="background:var(--yl);color:var(--ink)">Цены</span><h2>Сколько стоит?</h2><p>Ориентиры — точную сумму скажу после короткого разговора.</p></div>
+    <div class="prices" id="prices" data-rv></div>
+    <div class="center"><a class="btn alt" data-page="price">Все цены и калькулятор</a></div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><span class="tag" style="background:var(--gr)">Отзывы</span><h2>Ни одного плохого отзыва</h2></div>
+    <div class="revs" id="revs"></div>
+    <div class="center"><a class="btn alt" data-page="reviews">Читать все отзывы</a></div>
+  </section>
+
+  <section id="contact" style="padding-top:0"><div class="clay final" data-rv>
+    <span class="dot" style="width:120px;height:120px;background:var(--yl);left:-30px;top:-30px"></span>
+    <span class="dot" style="width:80px;height:80px;background:var(--pk);right:6%;bottom:-20px"></span>
+    <span class="dot" style="width:46px;height:46px;background:var(--gr);right:20%;top:20px"></span>
+    <h2>Давайте сделаем вам хорошо?</h2>
+    <p>Расскажите о задаче в паре строк — заявка придёт мне в Telegram, отвечу в течение рабочего дня.</p>
+    <div class="acts"><a class="btn" data-page="form">Рассказать о задаче</a><a class="btn alt" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a></div>
+  </div></section>
+</main>
+<footer class="f"><div class="w"><span>© 2026 Павел Корчагин, Троицк (Москва)</span><span><a data-page="about">Обо мне</a><a data-page="bonus">Приведи друга −10%</a></span></div></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id);
+const H=[['😕','Сайт есть, а заявок нет','Сделаю сайт, который сразу работает на заявки: понятный путь, SEO и аналитика.','var(--or)'],['😵','Клиенты пишут, а отвечать некому','Настрою чат-бота с ИИ — он ответит и запишет даже ночью.','var(--bl)'],['🤯','Онлайн-школа кажется слишком сложной','Соберу школу на GetCourse целиком: уроки, доступы и оплаты работают сами.','var(--gr)']];
+$('help').innerHTML=H.map(([e,h,p,c])=>`<div class="clay" data-rv><div class="ic" style="background:${c}">${e}</div><h3>${h}</h3><p>${p}</p></div>`).join('');
+$('cImg').src=D.cases[0].img;
+const BC=['var(--li)','var(--gr)','var(--or)','var(--bl)','var(--pk)'];
+$('bub').innerHTML=D.feature.nums.map(([b,s],i)=>`<span style="background:${BC[i]}">${b} — ${s}</span>`).join('');
+$('cQ').textContent='«'+D.feature.review.text+'» — '+D.feature.review.who+', '+D.feature.review.role;
+$('works').innerHTML=D.all.slice(1,7).map((c,i)=>`<a class="clay wk" style="--r:${i%2?1.5:-1.5}deg" data-rv ${c.url?`href="${c.url}" target="_blank" rel="noopener"`:'href="#contact"'}><img src="${c.img}" alt="${c.t}" loading="lazy"><div class="bd"><h4>${c.t}</h4><span class="fc"><b>${c.f[0]}</b>${c.f[1]}</span></div></a>`).join('');
+const SC=['var(--or)','var(--li)','var(--bl)','var(--gr)','var(--pk)'];
+$('path').innerHTML=D.steps.map(([b,s],i)=>`<div><b style="background:${SC[i]}">${i+1}</b><h4>${b}</h4><span>${s}</span></div>`).join('');
+$('prices').innerHTML=D.prices.map(([a,b])=>`<div class="clay"><span>${a}</span><b>${b}</b></div>`).join('');
+const AC=['var(--pk)','var(--or)','var(--gr)'];
+$('revs').innerHTML=D.reviews.map((r,i)=>`<article class="clay rev" data-rv><span class="st">★★★★★</span><p>«${r.text}»</p><footer><span class="av" style="background:${AC[i]}">${r.ini}</span><div><b>${r.who}</b><br><small>${r.role}</small></div></footer></article>`).join('');
+/* глазки следят за курсором */
+const pupils=[...document.querySelectorAll('.eye i')];
+addEventListener('pointermove',e=>{pupils.forEach(p=>{const r=p.parentElement.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2),a=Math.atan2(dy,dx),d=Math.min(r.width*.22,Math.hypot(dx,dy)/30);p.style.transform=`translate(${Math.cos(a)*d}px,${Math.sin(a)*d}px)`})});
+mountBot({chat:$('chat'),replies:$('replies'),status:$('st'),onEnd:r=>r.innerHTML='<a class="btn" style="height:48px;font-size:15px" href="#contact">Хочу такого бота!</a>'});
+reveal();styleSwitch('🎨 Другой стиль');
+</script>
+</body>
+</html>

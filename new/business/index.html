@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Павел Корчагин — деловой</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--ink:#0a0a0a;--g:#6b6b6b;--l:#e4e4e4;--blue:#1d33f2;--soft:#f5f5f3;--f:"Inter Tight",system-ui,sans-serif;--gut:clamp(16px,3.5vw,48px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.5 var(--f);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;background:none;border:0;cursor:pointer;color:inherit}
+.w{max-width:1360px;margin:0 auto;padding:0 var(--gut)}
+.lbl{font-size:13px;font-weight:500;color:var(--g);letter-spacing:.01em}
+.num{font-feature-settings:"tnum"}
+/* top */
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--l)}
+.top .w{display:grid;grid-template-columns:1fr auto auto;gap:32px;align-items:center;height:64px}
+.brand{font-weight:600;font-size:16px;letter-spacing:-.01em}
+.brand span{color:var(--g);font-weight:400}
+.menu{display:flex;gap:28px;font-size:15px;color:var(--g)}
+.menu a:hover{color:var(--ink)}
+.cta{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 20px;background:var(--blue);color:#fff;font-weight:500;font-size:15px;transition:background .2s}
+.cta:hover{background:#0b1fd0}
+.cta.lg{height:60px;padding:0 30px;font-size:17px}
+.cta.ghost{background:none;color:var(--ink);border:1px solid var(--ink)}
+.cta.ghost:hover{background:var(--ink);color:#fff}
+@media(max-width:860px){.menu{display:none}.top .w{grid-template-columns:1fr auto}}
+/* hero */
+.hero{padding:clamp(48px,8vw,110px) 0 0}
+.hero-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.hero .meta{grid-column:1/-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-bottom:24px;border-bottom:1px solid var(--ink)}
+.dot{display:inline-flex;align-items:center;gap:8px}.dot::before{content:"";width:8px;height:8px;border-radius:50%;background:#16a34a}
+.hero h1{grid-column:1/11;font-weight:600;font-size:clamp(44px,8.2vw,136px);line-height:.92;letter-spacing:-.055em;margin-top:clamp(28px,4vw,56px)}
+.hero h1 b{color:var(--blue);font-weight:600}
+.hero .sub{grid-column:1/7;font-size:clamp(17px,1.5vw,21px);color:#333;margin-top:36px;line-height:1.45}
+.hero .acts{grid-column:8/13;display:flex;gap:12px;align-items:flex-end;justify-content:flex-end;flex-wrap:wrap;margin-top:36px}
+@media(max-width:860px){.hero h1,.hero .sub,.hero .acts{grid-column:1/-1}.hero .acts{justify-content:flex-start;margin-top:8px}}
+.kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(48px,7vw,96px);border-top:1px solid var(--l)}
+.kpi div{padding:28px 24px 30px 0}
+.kpi div+div{padding-left:24px;border-left:1px solid var(--l)}
+.kpi b{display:block;font-weight:500;font-size:clamp(36px,4.4vw,64px);letter-spacing:-.05em;line-height:1}
+.kpi span{display:block;margin-top:12px;font-size:14.5px;color:var(--g);max-width:24ch}
+@media(max-width:760px){.kpi{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi div:nth-child(3){padding-left:0;border-left:0}.kpi div:nth-child(n+3){border-top:1px solid var(--l)}}
+/* sections */
+section{padding:clamp(72px,10vw,140px) 0}
+.sh{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-bottom:clamp(36px,5vw,64px);align-items:end}
+.sh .lbl{grid-column:1/4;padding-top:10px;border-top:1px solid var(--ink);align-self:start}
+.sh h2{grid-column:4/11;font-weight:500;font-size:clamp(32px,4.4vw,64px);line-height:1;letter-spacing:-.045em}
+.sh p{grid-column:4/10;color:var(--g);margin-top:18px}
+@media(max-width:860px){.sh .lbl,.sh h2,.sh p{grid-column:1/-1}}
+/* chain */
+.chain{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border:1px solid var(--ink)}
+.chain div{padding:22px 18px 26px;position:relative;min-height:220px;display:flex;flex-direction:column}
+.chain div+div{border-left:1px solid var(--ink)}
+.chain div:last-child{background:var(--blue);color:#fff}
+.chain .n{font-size:13px;color:var(--g)}
+.chain div:last-child .n,.chain div:last-child p{color:#c9ceff}
+.chain h3{font-weight:600;font-size:21px;letter-spacing:-.03em;margin-top:auto}
+.chain em{font-style:normal;font-size:13.5px;display:block;margin:4px 0 8px;font-weight:500}
+.chain p{font-size:14px;color:var(--g);line-height:1.4}
+.chain div:not(:last-child)::after{content:"→";position:absolute;right:-9px;top:20px;background:#fff;font-size:14px;z-index:1;line-height:1}
+@media(max-width:1000px){.chain{grid-template-columns:repeat(3,minmax(0,1fr))}.chain div:nth-child(4){border-left:0}.chain div:nth-child(n+4){border-top:1px solid var(--ink)}.chain div::after{display:none}}
+@media(max-width:560px){.chain{grid-template-columns:1fr}.chain div{border-left:0!important;min-height:0}.chain div+div{border-top:1px solid var(--ink)}.chain h3{margin-top:18px}}
+/* report (feature case) */
+.report{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;border-top:1px solid var(--ink);padding-top:28px}
+.report .shot{grid-column:1/7;background:var(--soft);aspect-ratio:4/3;overflow:hidden}
+.report .shot img{width:100%;height:100%;object-fit:cover;object-position:top}
+.report .body{grid-column:8/13;display:flex;flex-direction:column;gap:22px}
+.report h3{font-weight:500;font-size:clamp(26px,2.6vw,36px);line-height:1.05;letter-spacing:-.04em}
+.kv{display:grid;grid-template-columns:110px 1fr;gap:12px;font-size:15.5px;padding-top:14px;border-top:1px solid var(--l)}
+.kv .lbl{padding-top:2px}
+.bars{grid-column:1/-1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin-top:12px}
+.bars div{padding:24px 20px 26px 0}
+.bars div+div{padding-left:20px;border-left:1px solid var(--l)}
+.bars b{display:block;font-weight:500;font-size:clamp(30px,3.6vw,52px);letter-spacing:-.05em;line-height:1;color:var(--blue)}
+.bars span{display:block;font-size:14px;color:var(--g);margin-top:10px}
+.quote{grid-column:1/-1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-top:8px}
+.quote p{grid-column:4/11;font-size:clamp(19px,1.8vw,24px);line-height:1.35;letter-spacing:-.02em}
+.quote small{grid-column:1/4;color:var(--g);font-size:14px}
+@media(max-width:860px){.report .shot,.report .body,.quote p,.quote small{grid-column:1/-1}.bars{grid-template-columns:repeat(2,minmax(0,1fr))}.bars div{padding-left:0!important;border-left:0!important;border-top:1px solid var(--l)}}
+/* case list */
+.filters{display:flex;gap:0;border:1px solid var(--ink);width:max-content;max-width:100%;overflow-x:auto;margin-bottom:24px}
+.filters button{padding:10px 18px;font-size:14px;font-weight:500;white-space:nowrap}
+.filters button+button{border-left:1px solid var(--ink)}
+.filters button.on{background:var(--ink);color:#fff}
+.rows{border-top:1px solid var(--ink)}
+.row{display:grid;grid-template-columns:60px minmax(0,2.4fr) minmax(0,1.6fr) minmax(0,1.3fr) 110px;gap:20px;align-items:center;padding:22px 0;border-bottom:1px solid var(--l);position:relative;transition:background .2s}
+.row:hover{background:var(--soft)}
+.row .i{font-size:13px;color:var(--g);padding-left:4px}
+.row h4{font-weight:500;font-size:clamp(18px,1.6vw,22px);letter-spacing:-.025em}
+.row h4 small{display:block;font-size:13px;color:var(--g);font-weight:400;letter-spacing:0;margin-top:3px}
+.row .f b{font-weight:600;font-size:22px;letter-spacing:-.03em;color:var(--blue);margin-right:8px}
+.row .f{font-size:14px;color:var(--g)}
+.row .t{font-size:13.5px;color:#333}
+.row .go{justify-self:end;font-size:14px;font-weight:500;padding-right:4px}
+.row .go a{border-bottom:1px solid}
+.row .pv{position:absolute;right:140px;top:50%;width:260px;aspect-ratio:16/10;object-fit:cover;object-position:top;transform:translateY(-50%) scale(.94);opacity:0;pointer-events:none;transition:.25s;box-shadow:0 20px 50px rgba(0,0,0,.18);z-index:3}
+.row:hover .pv{opacity:1;transform:translateY(-50%) scale(1)}
+.row.hide{display:none}
+@media(max-width:860px){.row{grid-template-columns:40px 1fr auto;row-gap:8px}.row .t{grid-column:2/3}.row .f{grid-column:2/4}.row .go{grid-row:1;grid-column:3}.row .pv{display:none}}
+/* services table */
+.svc{border-top:1px solid var(--ink)}
+.svc div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) 160px;gap:24px;padding:24px 0;border-bottom:1px solid var(--l);align-items:baseline}
+.svc h4{font-weight:500;font-size:clamp(19px,1.7vw,24px);letter-spacing:-.03em}
+.svc p{color:var(--g);font-size:15.5px}
+.svc b{font-weight:500;text-align:right;font-size:16px}
+@media(max-width:760px){.svc div{grid-template-columns:1fr}.svc b{text-align:left}}
+.terms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px}
+.terms div{padding-top:14px;border-top:1px solid var(--ink)}
+.terms b{display:block;font-weight:500;margin-bottom:6px}
+.terms span{color:var(--g);font-size:15px}
+.terms .ref{background:var(--blue);color:#fff;padding:18px;border:0}
+.terms .ref span{color:#d4d8ff}
+@media(max-width:760px){.terms{grid-template-columns:1fr}}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));counter-reset:s}
+.steps div{padding:0 20px 0 0;position:relative}
+.steps div::before{counter-increment:s;content:counter(s,decimal-leading-zero);display:block;font-size:13px;color:var(--g);padding-bottom:14px;margin-bottom:18px;border-bottom:1px solid var(--ink)}
+.steps b{display:block;font-weight:500;font-size:19px;letter-spacing:-.025em;margin-bottom:6px}
+.steps span{font-size:14.5px;color:var(--g)}
+@media(max-width:860px){.steps{grid-template-columns:1fr 1fr;row-gap:32px}}
+/* reviews */
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.revs article{border-top:1px solid var(--ink);padding-top:20px;display:flex;flex-direction:column;gap:20px}
+.revs p{font-size:16.5px;line-height:1.5}
+.revs footer{margin-top:auto;font-size:14px;color:var(--g)}
+.revs footer b{color:var(--ink);font-weight:500;display:block}
+@media(max-width:860px){.revs{grid-template-columns:1fr}}
+/* about + faq */
+.two{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.two>.a{grid-column:1/6}.two>.b{grid-column:7/13}
+.about p{font-size:clamp(18px,1.6vw,22px);line-height:1.45;letter-spacing:-.015em}
+.traits{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:32px;border-top:1px solid var(--l)}
+.traits div{padding:16px 16px 16px 0;border-bottom:1px solid var(--l)}
+.traits b{display:block;font-weight:500}.traits span{font-size:14px;color:var(--g)}
+details{border-top:1px solid var(--l)}details:last-child{border-bottom:1px solid var(--l)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:16px;padding:20px 0;font-weight:500;font-size:18px;letter-spacing:-.02em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--blue);font-size:22px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{color:var(--g);padding-bottom:20px;max-width:60ch}
+@media(max-width:860px){.two>.a,.two>.b{grid-column:1/-1}}
+/* final */
+.final{background:var(--blue);color:#fff;padding:clamp(72px,10vw,140px) 0}
+.final h2{font-weight:600;font-size:clamp(40px,7vw,112px);line-height:.92;letter-spacing:-.055em;max-width:12ch}
+.final .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:44px}
+.final .cta{background:#fff;color:var(--blue)}
+.final .cta.ghost{background:none;color:#fff;border-color:#fff}
+.final p{max-width:46ch;color:#d4d8ff;margin-top:28px;font-size:18px}
+footer.f{padding:24px 0;font-size:14px;color:var(--g)}
+footer.f .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+[data-rv]{opacity:0;transform:translateY(16px);transition:.7s cubic-bezier(.2,.8,.2,1)}[data-rv].in{opacity:1;transform:none}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:10px 14px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}[data-rv]{opacity:1;transform:none}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header class="top"><div class="w">
+  <a class="brand" href="#"><span class="pk-logo pk-logo--business"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин<small>техспециалист</small></span></span></a>
+  <nav class="menu"><a data-page="cases">Кейсы</a><a data-page="price">Услуги и цены</a><a data-page="reviews">Отзывы</a><a data-page="blog">Блог</a></nav>
+  <a class="cta" href="#contact">Обсудить проект</a>
+</div></header>
+
+<main>
+<section class="hero" style="padding-bottom:0"><div class="w">
+  <div class="hero-row">
+    <div class="meta lbl"><span class="dot">Принимаю проекты</span><span>Figma · Tilda · Salebot · GetCourse · Bizon365</span><span>Ответ — в течение рабочего дня</span></div>
+    <h1>Один специалист вместо <b>пяти подрядчиков.</b></h1>
+    <p class="sub" id="offer"></p>
+    <div class="acts"><a class="cta lg" href="#contact">Обсудить проект →</a><a class="cta lg ghost" href="#cases">Кейсы</a></div>
+  </div>
+  <div class="kpi" id="kpi"></div>
+</div></section>
+
+<section id="system"><div class="w">
+  <div class="sh"><span class="lbl">01 — Система</span><div style="grid-column:4/11"><h2>От первого клика до оплаты — одна цепочка</h2><p>Каждое звено собираю сам, поэтому заявки не теряются на стыках между подрядчиками. Можно заказать всё или один этап.</p></div></div>
+  <div class="chain" id="chain" data-rv></div>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+  <div class="sh"><span class="lbl">02 — Отчёт по кейсу</span><h2>Кафе «Приятного аппетита»: онлайн-заказы с нуля</h2></div>
+  <div class="report" data-rv id="report"></div>
+</div></section>
+
+<section id="cases" style="padding-top:0"><div class="w">
+  <div class="sh"><span class="lbl">03 — Портфолио</span><h2>Проекты с измеримым результатом</h2></div>
+  <div class="filters" id="filters"><button class="on" data-f="all">Все</button><button data-f="Tilda">Сайты</button><button data-f="Salebot">Боты</button><button data-f="GetCourse">Школы</button><button data-f="Figma">Дизайн</button></div>
+  <div class="rows" id="rows"></div>
+  <a class="cta lg ghost" style="margin-top:32px" data-page="cases">Все 25 проектов →</a>
+</div></section>
+
+<section id="price" style="padding-top:0"><div class="w">
+  <div class="sh"><span class="lbl">04 — Услуги и стоимость</span><div style="grid-column:4/11"><h2>Прозрачные условия до старта</h2><p>Готовое ТЗ не нужно: на созвоне задам вопросы о бизнесе и соберу план работ.</p></div></div>
+  <div class="svc" id="svc" data-rv></div>
+  <div class="terms" data-rv>
+    <div><b>Сроки</b><span>Сайт-визитка — от 5–7 рабочих дней, сложный Zero Block — от 2–3 недель.</span></div>
+    <div><b>Поддержка</b><span>После запуска — правки и доработки, разово или 3–7 тыс ₽ в месяц.</span></div>
+    <div class="ref"><b>10% за рекомендацию</b><span>От оплаченной суммы заказа, а при сопровождении — с каждой ежемесячной оплаты.</span></div>
+  </div>
+  <a data-page="price" class="lbl" style="display:inline-block;margin-top:28px;border-bottom:1px solid">Полный прайс и калькулятор ↗</a>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+  <div class="sh"><span class="lbl">05 — Процесс</span><h2>Пять этапов, каждый согласован</h2></div>
+  <div class="steps" id="steps" data-rv></div>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+  <div class="sh"><span class="lbl">06 — Отзывы</span><h2>Ноль отрицательных отзывов</h2></div>
+  <div class="revs" id="revs" data-rv></div>
+  <a class="lbl" data-page="reviews" style="display:inline-block;margin-top:28px;border-bottom:1px solid">Все отзывы →</a>
+</div></section>
+
+<section id="faq" style="padding-top:0"><div class="w two">
+  <div class="a about" data-rv><span class="lbl" style="display:block;padding-top:10px;border-top:1px solid var(--ink);margin-bottom:24px">07 — Исполнитель</span><p id="about"></p><div class="traits" id="traits"></div><a class="lbl" data-page="about" style="display:inline-block;margin-top:24px;border-bottom:1px solid">Резюме →</a></div>
+  <div class="b" data-rv><span class="lbl" style="display:block;padding-top:10px;border-top:1px solid var(--ink);margin-bottom:12px">08 — Вопросы</span><div id="faqList"></div><a class="lbl" data-page="faq" style="display:inline-block;margin-top:24px;border-bottom:1px solid">Все вопросы →</a></div>
+</div></section>
+</main>
+
+<section class="final" id="contact"><div class="w">
+  <h2>Обсудим ваш проект?</h2>
+  <p>Оставьте заявку — она придёт мне в Telegram. Отвечу в течение рабочего дня с предложением под вашу задачу.</p>
+  <div class="acts"><a class="cta lg" data-page="form">Оставить заявку →</a><a class="cta lg ghost" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a></div>
+</div></section>
+<footer class="f"><div class="w"><span>© 2026 Павел Корчагин</span><span>texspeckps.ru</span></div></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id);
+$('offer').textContent=D.offer;
+$('kpi').innerHTML=D.stats.map(([b,s])=>`<div><b class="num">${b}</b><span>${s}</span></div>`).join('');
+$('chain').innerHTML=D.chain.map(([t,e,p],i)=>`<div><span class="n">0${i+1}</span><h3>${e}</h3><em>${t}</em><p>${p}</p></div>`).join('');
+const F=D.feature, c0=D.cases[0];
+$('report').innerHTML=`<div class="shot"><img src="${c0.img}" alt="${c0.t}" loading="lazy"></div>
+<div class="body"><span class="lbl">Интернет-магазин · Tilda · 2026 · клиент</span>
+<div class="kv"><span class="lbl">Задача</span><span>${F.task}</span></div>
+<div class="kv"><span class="lbl">Решение</span><span>${F.solution}</span></div>
+<div class="kv"><span class="lbl">Стек</span><span>Tilda · онлайн-заказ · CRM · чат-бот в Salebot</span></div>
+<div style="display:flex;gap:12px;flex-wrap:wrap"><a class="cta" href="${c0.url}" target="_blank" rel="noopener">Открыть сайт ↗</a></div></div>
+<div class="bars">${F.nums.map(([b,s])=>`<div><b class="num">${b}</b><span>${s}</span></div>`).join('')}</div>
+<div class="quote"><small>Отзыв заказчика — ${F.review.who}, ${F.review.role}</small><p>«${F.review.text}»</p></div>`;
+$('rows').innerHTML=D.all.map((c,i)=>`<div class="row" data-cat="${c.cat}"><span class="i num">${String(i+1).padStart(2,'0')}</span>
+<h4>${c.t}<small>${c.type} · ${c.client?'клиент':'собственный проект'}</small></h4>
+<span class="f"><b class="num">${c.f[0]}</b>${c.f[1]}</span><span class="t">${c.tools.join(' · ')}</span>
+<span class="go">${c.url?`<a href="${c.url}" target="_blank" rel="noopener">Открыть ↗</a>`:'<span style="color:var(--g)">по запросу</span>'}</span>
+<img class="pv" src="${c.img}" alt="" loading="lazy"></div>`).join('');
+$('filters').onclick=e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));limit(b.dataset.f)};
+function limit(f){let n=0;document.querySelectorAll('.row').forEach(r=>{const ok=f==='all'||r.dataset.cat===f;r.classList.toggle('hide',!(ok&&n<8));if(ok)n++})}limit('all');
+$('svc').innerHTML=D.services.map(([h,p,b])=>`<div><h4>${h}</h4><p>${p}</p><b>${b}</b></div>`).join('');
+$('steps').innerHTML=D.steps.map(([b,s])=>`<div><b>${b}</b><span>${s}</span></div>`).join('');
+$('revs').innerHTML=D.reviews.map(r=>`<article><p>«${r.text}»</p><footer><b>${r.who}</b>${r.role}</footer></article>`).join('');
+$('about').textContent=D.about;
+$('traits').innerHTML=D.traits.map(([b,s])=>`<div><b>${b}</b><span>${s}</span></div>`).join('');
+$('faqList').innerHTML=D.faq.map(([q,a],i)=>`<details ${i?'':'open'}><summary>${q}</summary><p>${a}</p></details>`).join('');
+reveal();styleSwitch();
+</script>
+</body>
+</html>

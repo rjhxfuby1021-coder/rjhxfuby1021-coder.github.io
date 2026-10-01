@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Журнал мастерской — Павел Корчагин</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main id="art"></main>
+<footer id="foot"></footer>
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/content.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const E=CR.esc,slug=CR.param('slug'),B=CONTENT.blog,b=B.find(x=>x.slug===slug),art=document.getElementById('art');
+const cover=b=>b.cover.startsWith('case:')?(CR.full(b.cover.slice(5))||{}).cover:(b.cover.startsWith('/')?'https://texspeckps.ru'+b.cover:b.cover);
+const SVC={salebot:'чат-ботов',tilda:'сайтов на Tilda',figma:'дизайна',getcourse:'онлайн-школ',webinar:'вебинаров'};
+if(!b){art.innerHTML=`<div class="w page-hd"><h1>Этот выпуск <i>не найден</i></h1><a class="pill" style="margin-top:26px" href="blog.html">Все выпуски журнала</a></div>`}
+else{
+  document.title=b.title+' — журнал Павла Корчагина';
+  const block=x=>{
+    if(x.p)return `<p>${CR.fixLinks(x.p)}</p>`;
+    if(x.h)return `<h2>${E(x.h)}</h2>`;
+    if(x.ul)return `<ul>${x.ul.map(li=>`<li>${CR.fixLinks(li)}</li>`).join('')}</ul>`;
+    if(x.note)return `<div class="note"><span class="hand" style="color:var(--ink);font-size:24px;display:block">заметка на полях</span>${CR.fixLinks(x.note)}</div>`;
+    if(x.case){const c=CR.short(x.case);return c?`<a class="case-embed" href="${CR.caseUrl(c.id)}"><img src="${c.img}" alt=""><span><small>история из альбома</small><b>${E(c.t)}</b><br><span style="font-size:15px;color:var(--g)">${E(c.f[0])} — ${E(c.f[1])}</span></span></a>`:''}
+    return '';
+  };
+  const others=B.filter(x=>x.slug!==slug);
+  art.innerHTML=`
+  <div class="w page-hd" style="max-width:980px">
+    <div class="crumbs"><a href="blog.html">журнал</a> → ${E(b.tag.toLowerCase())}</div>
+    <h1 style="font-size:clamp(36px,5vw,72px)">${E(b.title)}</h1>
+    <p class="lead">${E(b.desc)}</p>
+    <span class="hand aside-note">${CR.fmtDate(b.date)} · ${b.read} мин чтения</span>
+  </div>
+  <div class="w" style="max-width:980px"><figure class="ph" style="position:relative;transform:rotate(-1deg)"><img src="${cover(b)}" alt="" style="aspect-ratio:16/8"></figure></div>
+  <section class="sec"><div class="w"><article class="prose">${b.body.map(block).join('')}</article></div></section>
+  <section class="sec tight"><div class="w" style="max-width:980px">
+    <div class="price-note" style="transform:rotate(-.8deg)"><p class="hand" style="font-size:30px;color:var(--ink)">Хотите так же у себя?</p><p style="font-size:17px">Расскажите о задаче — посчитаю стоимость ${SVC[b.service]||'проекта'} под вас и назову сроки до старта.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px"><a class="pill" href="brief.html?service=${b.service}">Обсудить задачу</a><a class="pill o" href="service.html?s=${b.service}">Цены направления</a></div></div>
+    <div class="kick" style="margin-top:60px">Ещё в журнале</div>
+    <div class="pager">${others.map(o=>`<a href="post.html?slug=${o.slug}"><small>${E(o.tag.toLowerCase())}</small><b>${E(o.title)}</b></a>`).join('')}</div>
+  </div></section>`;
+}
+CR.done();
+</script>
+</body>
+</html>

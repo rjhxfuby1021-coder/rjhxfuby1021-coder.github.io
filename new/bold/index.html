@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Павел Корчагин — дерзко</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: Gumroad — необрутализм: розовый, жёлтый, чёрные рамки, жёсткие тени */
+:root{--bg:#f4f4f0;--ink:#000;--pink:#ff90e8;--yel:#ffc900;--blue:#90a8ed;--green:#23a094;--orange:#ff7051;--b:3px solid #000;--sh:6px 6px 0 #000;--d:"Dela Gothic One",Impact,sans-serif;--s:"Rubik",system-ui,sans-serif;--gut:clamp(16px,3.5vw,40px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 18px/1.5 var(--s)}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.w{max-width:1320px;margin:0 auto;padding:0 var(--gut)}
+.box{border:var(--b);box-shadow:var(--sh);background:#fff}
+.btn{display:inline-flex;align-items:center;gap:10px;height:58px;padding:0 26px;border:var(--b);background:var(--pink);font:500 18px var(--s);box-shadow:4px 4px 0 #000;transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-3px,-3px);box-shadow:7px 7px 0 #000}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 #000}
+.btn.y{background:var(--yel)}.btn.k{background:#000;color:#fff}.btn.wh{background:#fff}
+.tag{display:inline-block;padding:4px 12px;border:2px solid #000;border-radius:999px;font:500 14px var(--s);background:#fff}
+h1,h2,h3{font-family:var(--d);font-weight:400;text-transform:uppercase;letter-spacing:-.01em}
+/* top */
+.top{border-bottom:var(--b);background:#fff;position:sticky;top:0;z-index:20}
+.top .w{display:flex;justify-content:space-between;align-items:center;height:76px;gap:16px}
+.logo{font:400 22px var(--d);display:flex;align-items:center;gap:10px}
+.logo i{width:40px;height:40px;border:var(--b);border-radius:50%;background:var(--pink);display:grid;place-items:center;font-style:normal;font-size:16px}
+.top nav{display:flex;gap:6px}
+.top nav a{padding:8px 14px;border:2px solid transparent;border-radius:999px;font-weight:500}
+.top nav a:hover{border-color:#000}
+.top .btn{height:48px;font-size:16px}
+@media(max-width:900px){.top nav{display:none}}
+/* hero */
+.hero{background:var(--pink);border-bottom:var(--b);overflow:hidden;position:relative}
+.hero .w{padding-top:clamp(40px,6vw,80px);padding-bottom:clamp(50px,7vw,90px);position:relative}
+.hero h1{font-size:clamp(26px,8.2vw,150px);line-height:.92}
+.hero h1 .hl{background:var(--yel);border:var(--b);padding:0 .12em;display:inline-block;transform:rotate(-2deg);box-shadow:var(--sh)}
+.hero h1 .x{position:relative;display:inline-block}
+.hero h1 .x::after{content:"";position:absolute;left:-4%;right:-4%;top:48%;height:.12em;background:#000;transform:rotate(-6deg)}
+.hero-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:30px;margin-top:40px;align-items:end}
+.hero p{font-size:clamp(18px,1.6vw,22px);max-width:40ch;font-weight:500}
+.hero .acts{display:flex;gap:14px;flex-wrap:wrap;justify-content:flex-end}
+.sticker{position:absolute;right:clamp(16px,6vw,90px);top:clamp(30px,5vw,60px);width:clamp(110px,12vw,160px);aspect-ratio:1;border-radius:50%;border:var(--b);background:var(--yel);display:grid;place-items:center;text-align:center;font:400 clamp(14px,1.3vw,18px)/1.1 var(--d);transform:rotate(14deg);box-shadow:var(--sh);animation:wob 3s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(4deg) scale(1.05)}}
+@media(max-width:860px){.hero-row{grid-template-columns:1fr}.hero .acts{justify-content:flex-start}.sticker{top:auto;bottom:20px;right:16px;width:96px;font-size:12px}}
+/* ticker */
+.tick{background:#000;color:var(--yel);border-bottom:var(--b);overflow:hidden}
+.tick div{display:flex;gap:34px;width:max-content;padding:14px 0;font:400 22px var(--d);text-transform:uppercase;animation:tk 26s linear infinite}
+.tick span::after{content:"★";margin-left:34px;color:var(--pink)}
+@keyframes tk{to{transform:translateX(-50%)}}
+section{padding:clamp(70px,9vw,120px) 0;border-bottom:var(--b)}
+.st{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:44px}
+.st h2{font-size:clamp(34px,5.4vw,80px);line-height:.95;max-width:14ch}
+.st p{max-width:36ch;font-weight:500}
+/* pains */
+.pains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.pain{position:relative;min-height:250px;perspective:1000px;cursor:pointer}
+.pain .in{position:absolute;inset:0;transition:transform .5s cubic-bezier(.4,1.6,.5,1);transform-style:preserve-3d}
+.pain.on .in{transform:rotateY(180deg)}
+.pain .fc{position:absolute;inset:0;backface-visibility:hidden;border:var(--b);box-shadow:var(--sh);padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.pain .fr{background:#fff}
+.pain .bk{background:var(--yel);transform:rotateY(180deg)}
+.pain .fr b{font:400 24px/1.15 var(--d);text-transform:uppercase}
+.pain .bk p{font-size:17px;font-weight:500}
+.pain small{font-weight:700;font-size:14px;display:flex;justify-content:space-between}
+.pain:nth-child(3n+2) .fr{background:var(--blue)}
+.pain:nth-child(3n+3) .fr{background:var(--orange)}
+.pain.cta-card .fr{background:#000;color:#fff}
+@media(max-width:900px){.pains{grid-template-columns:1fr 1fr}}@media(max-width:560px){.pains{grid-template-columns:1fr}}
+/* big numbers */
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:var(--b);background:#fff;box-shadow:var(--sh)}
+.nums div{padding:26px 22px}
+.nums div+div{border-left:var(--b)}
+.nums b{display:block;font:400 clamp(40px,5vw,72px)/1 var(--d)}
+.nums span{display:block;font-weight:500;margin-top:10px;font-size:15px}
+.nums div:nth-child(1){background:var(--yel)}.nums div:nth-child(3){background:var(--pink)}
+@media(max-width:760px){.nums{grid-template-columns:1fr 1fr}.nums div:nth-child(3){border-left:0}.nums div:nth-child(n+3){border-top:var(--b)}}
+/* feature */
+.feat{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;margin-top:40px}
+.feat .shot{padding:0;overflow:hidden;transform:rotate(-1.5deg)}
+.feat .shot img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-bottom:var(--b)}
+.feat .shot div{padding:16px 20px;font-weight:700;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}
+.feat .txt{padding:28px;background:var(--blue)}
+.feat h3{font-size:clamp(26px,2.8vw,40px);line-height:1}
+.feat .bb{display:grid;grid-template-columns:110px 1fr;gap:10px;padding:14px 0;border-bottom:2px solid #000;font-weight:500}
+.feat .bb b{font-family:var(--d);font-weight:400;text-transform:uppercase;font-size:14px}
+.feat blockquote{margin-top:20px;background:#fff;border:var(--b);padding:18px;font-weight:500;position:relative}
+.feat blockquote::before{content:"";position:absolute;left:24px;top:-14px;width:22px;height:22px;background:#fff;border-left:var(--b);border-top:var(--b);transform:rotate(45deg)}
+.feat blockquote small{display:block;margin-top:10px;font-weight:700}
+@media(max-width:860px){.feat{grid-template-columns:1fr}}
+/* cases */
+.filters{display:flex;gap:10px;flex-wrap:wrap}
+.filters button{padding:10px 18px;border:var(--b);background:#fff;font-weight:700;box-shadow:3px 3px 0 #000}
+.filters button.on{background:#000;color:#fff}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.card{display:flex;flex-direction:column;transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translate(-4px,-4px);box-shadow:10px 10px 0 #000}
+.card .im{position:relative;border-bottom:var(--b);overflow:hidden}
+.card img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top}
+.card .im .tag{position:absolute;top:10px;left:10px}
+.card .bd{padding:16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.card h4{font:700 18px/1.25 var(--s)}
+.card .f{display:flex;gap:10px;align-items:center;background:var(--yel);border:2px solid #000;padding:8px 10px}
+.card .f b{font:400 24px var(--d)}
+.card .f span{font-size:13px;font-weight:500;line-height:1.25}
+.card .tl{font-size:13px;font-weight:500;margin-top:auto}
+.card a.go{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.card.hide{display:none}
+@media(max-width:1100px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.cards{grid-template-columns:1fr}}
+/* bot */
+.botg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:40px;align-items:center}
+.chatw{background:var(--yel);padding:0;overflow:hidden;display:flex;flex-direction:column;height:560px}
+.chatw .hd{background:#000;color:#fff;padding:14px 18px;display:flex;justify-content:space-between;font:400 16px var(--d);text-transform:uppercase}
+.chatw .hd small{font:500 13px var(--s);color:var(--yel);text-transform:none}
+#chat{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px}
+.msg{max-width:84%;padding:10px 14px;border:var(--b);font-weight:500;font-size:16px;line-height:1.35;animation:pop .25s cubic-bezier(.3,1.8,.5,1)}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+.msg.in{background:#fff;align-self:flex-start;box-shadow:3px 3px 0 #000}
+.msg.out{background:var(--pink);align-self:flex-end;box-shadow:-3px 3px 0 #000}
+.msg.sys{border:0;align-self:center;background:#000;color:var(--yel);font-size:12px;text-transform:uppercase}
+.msg.typing{display:flex;gap:5px;padding:14px}
+.msg.typing i{width:8px;height:8px;background:#000;animation:bl 1s infinite}
+.msg.typing i:nth-child(2){animation-delay:.15s}.msg.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bl{50%{transform:translateY(-4px)}}
+#replies{display:flex;flex-wrap:wrap;gap:8px;padding:14px 18px 18px;border-top:var(--b);background:#fff;min-height:74px}
+#replies button{padding:8px 14px;border:var(--b);background:#fff;font-weight:700;box-shadow:3px 3px 0 #000}
+#replies button:hover{background:var(--pink)}
+@media(max-width:860px){.botg{grid-template-columns:1fr}}
+/* price */
+.price{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px}
+.ptab{padding:0}
+.ptab div{display:flex;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:var(--b);font-weight:500}
+.ptab div:last-child{border-bottom:0}
+.ptab div:nth-child(odd){background:#fff}.ptab div:nth-child(even){background:#fdf3d0}
+.ptab b{font-family:var(--d);font-weight:400;white-space:nowrap}
+.rules{display:grid;gap:18px}
+.rules .box{padding:20px}
+.rules h3{font-size:22px;margin-bottom:6px}
+.rules .p{background:var(--green);color:#fff}
+@media(max-width:860px){.price{grid-template-columns:minmax(0,1fr)}}
+/* reviews */
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.rev{padding:24px;display:flex;flex-direction:column;gap:18px}
+.rev:nth-child(1){background:var(--pink);transform:rotate(-1deg)}.rev:nth-child(2){background:#fff;transform:rotate(1deg)}.rev:nth-child(3){background:var(--blue);transform:rotate(-.6deg)}
+.rev .stars{font-size:22px;letter-spacing:2px}
+.rev p{font-weight:500}
+.rev footer{margin-top:auto;display:flex;gap:12px;align-items:center}
+.rev .av{width:46px;height:46px;border:var(--b);border-radius:50%;background:var(--yel);display:grid;place-items:center;font:400 15px var(--d)}
+@media(max-width:900px){.revs{grid-template-columns:1fr}}
+/* faq */
+.faqg{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:40px}
+details{border:var(--b);background:#fff;box-shadow:4px 4px 0 #000;margin-bottom:14px}
+summary{list-style:none;cursor:pointer;padding:18px 20px;font-weight:700;font-size:18px;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 24px/1 var(--d)}
+details[open] summary{background:var(--yel);border-bottom:var(--b)}
+details[open] summary::after{content:"−"}
+details p{padding:16px 20px;font-weight:500}
+@media(max-width:860px){.faqg{grid-template-columns:1fr}}
+/* final */
+.final{background:var(--yel);text-align:center}
+.final h2{font-size:clamp(34px,9vw,140px);line-height:.88}
+.final h2 span{background:var(--pink);border:var(--b);padding:0 .1em;display:inline-block;transform:rotate(2deg);box-shadow:var(--sh)}
+.final p{max-width:40ch;margin:30px auto 0;font-weight:500;font-size:20px}
+.final .acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+footer.f{padding:22px 0;font-weight:500;background:#000;color:#fff}
+footer.f .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+[data-rv]{opacity:0;transform:translateY(30px);transition:transform .5s cubic-bezier(.3,1.6,.5,1),opacity .3s}[data-rv].in{opacity:1;transform:none}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:#fff;border:var(--b);box-shadow:4px 4px 0 #000;padding:10px 14px;font-weight:700}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-rv]{opacity:1;transform:none}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header class="top"><div class="w">
+  <a class="logo" href="#"><span class="pk-logo pk-logo--bold"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span></a>
+  <nav><a data-page="cases">Кейсы</a><a data-page="price">Цены</a><a data-page="reviews">Отзывы</a><a data-page="blog">Блог</a></nav>
+  <a class="btn y" href="#contact">Погнали →</a>
+</div></header>
+
+<main>
+<div class="hero"><div class="w">
+  <h1>Хватит кормить <span class="x">пятерых</span><br><span class="hl">подрядчиков</span></h1>
+  <div class="hero-row">
+    <p>Дизайнер, верстальщик, ботостроитель, настройщик GetCourse и спец по рассылкам — это всё я. Один человек, одна ответственность, ноль «это не ко мне».</p>
+    <div class="acts"><a class="btn k" href="#contact">Хочу так же</a><a class="btn wh" href="#cases">Покажи кейсы</a></div>
+  </div>
+  <div class="sticker">5 в 1<br>без<br>посредников</div>
+</div></div>
+
+<div class="tick" aria-hidden="true"><div id="tick"></div></div>
+
+<section id="pains"><div class="w">
+  <div class="st"><h2>Узнаёте себя? Жмите на карточку</h2><p>Пять типичных бед — и что я с ними делаю. Без воды.</p></div>
+  <div class="pains" id="painsList"></div>
+</div></section>
+
+<section style="background:#fff"><div class="w">
+  <div class="nums" data-rv id="nums"></div>
+  <div class="feat">
+    <div class="box shot" data-rv><img id="fImg" alt="Сайт кафе"><div><span>Кафе «Приятного аппетита»</span><a class="btn" style="height:44px;font-size:15px" href="https://priyatnogoappetita.tilda.ws/" target="_blank" rel="noopener">Зайти на сайт ↗</a></div></div>
+    <div class="box txt" data-rv>
+      <span class="tag">Кейс · Tilda · клиент</span>
+      <h3 style="margin:16px 0 10px">Было 0 онлайн-заказов. Стало 86 заявок за неделю.</h3>
+      <div class="bb"><b>Боль</b><span>Заказать доставку через интернет было негде.</span></div>
+      <div class="bb"><b>Сделал</b><span>Онлайн-меню, корзину, доставку и карту точек. Мобилка — главная.</span></div>
+      <div class="bb"><b>Итог</b><span>Конверсия 15,44%, №1 в поиске по области.</span></div>
+      <blockquote id="fQ"></blockquote>
+    </div>
+  </div>
+</div></section>
+
+<section id="cases"><div class="w">
+  <div class="st"><h2>Работы. Без фотошопа</h2><div class="filters" id="filters"><button class="on" data-f="all">Все</button><button data-f="Tilda">Сайты</button><button data-f="Salebot">Боты</button><button data-f="GetCourse">Школы</button><button data-f="Figma">Дизайн</button></div></div>
+  <div class="cards" id="cards"></div>
+  <div style="text-align:center;margin-top:44px"><a class="btn y" data-page="cases">Все 25 кейсов →</a></div>
+</div></section>
+
+<section id="bot" style="background:var(--blue)"><div class="w botg">
+  <div data-rv>
+    <span class="tag">Демо по мотивам кейса «Жадор»</span>
+    <h2 style="font-size:clamp(34px,5vw,72px);line-height:.95;margin-top:18px">Бот, который не уходит на обед</h2>
+    <p style="font-weight:500;font-size:20px;margin-top:22px;max-width:36ch">ИИ-админ для салона: консультирует, подбирает услугу, пишет прямо в расписание CRM и напоминает о визите. Тыкайте кнопки — он не обидится.</p>
+  </div>
+  <div class="box chatw" data-rv><div class="hd">Салон «Жадор»<small id="st">онлайн</small></div><div id="chat"></div><div id="replies"></div></div>
+</div></section>
+
+<section id="price"><div class="w">
+  <div class="st"><h2>Цены. Без «ну это зависит»</h2><p>Ориентиры «от» — точную сумму назову после короткого созвона. ТЗ писать не надо.</p></div>
+  <div class="price">
+    <div><div class="box ptab" data-rv id="ptab"></div><a class="btn wh" style="margin-top:22px" data-page="price">Полный прайс →</a></div>
+    <div class="rules" data-rv>
+      <div class="box" style="background:var(--yel)"><h3>Сроки</h3><p>Визитка — от 5–7 рабочих дней. Zero Block с анимацией — от 2–3 недель.</p></div>
+      <div class="box"><h3>Можно кусочком</h3><p>Только дизайн, только бот или только GetCourse — ок.</p></div>
+      <div class="box p"><h3>Скинь друга — получи 10%</h3><p>От оплаченной суммы его заказа. При сопровождении — каждый месяц.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section style="background:#fff"><div class="w">
+  <div class="st"><h2>Ноль плохих отзывов. Серьёзно</h2></div>
+  <div class="revs" id="revs"></div>
+  <div style="text-align:center;margin-top:44px"><a class="btn wh" data-page="reviews">Все отзывы</a></div>
+</div></section>
+
+<section><div class="w faqg">
+  <div data-rv><h2 style="font-size:clamp(34px,4.6vw,64px);line-height:.95">Вопросы в лоб</h2><p style="font-weight:500;margin-top:18px">Павел, 31, Троицк (Москва), родом из Брянска. Figma, Tilda, Salebot, GetCourse, а где конструктор пасует — HTML, CSS и JS. Отвечаю за весь результат, а не «за свой кусок».</p></div>
+  <div data-rv><div id="faq"></div><a class="btn wh" style="margin-top:10px" data-page="faq">Ещё вопросы</a></div>
+</div></section>
+</main>
+
+<section class="final" id="contact"><div class="w">
+  <h2>Ну что,<br><span>погнали?</span></h2>
+  <p>Пара строк о задаче — и она у меня в Telegram. Отвечаю в течение рабочего дня.</p>
+  <div class="acts"><a class="btn k" data-page="form">Кинуть заявку →</a><a class="btn" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Написать в Telegram</a></div>
+</div></section>
+<footer class="f"><div class="w"><span>© 2026 Павел Корчагин</span><span>texspeckps.ru</span></div></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id);
+const tk=['Figma','Tilda','Zero Block','Salebot','ИИ-боты','GetCourse','Bizon365','Рассылки','HTML/CSS/JS'];
+$('tick').innerHTML=[...tk,...tk,...tk].map(t=>`<span>${t}</span>`).join('');
+const P=[['Сайт есть. Заявок нет.','Вшиваю SEO, аналитику и воронку прямо в сборку. Сайт продаёт с первого дня, а не висит для красоты.'],['Директ разрывается, отвечать некому','Ставлю ИИ-бота: отвечает, фильтрует и записывает. Даже в 3 ночи.'],['GetCourse — тёмный лес','Собираю школу целиком: курсы, кабинеты, процессы, оплаты. Вы снимаете уроки — остальное крутится само.'],['Макет есть, сайта нет','Рисую и верстаю сам. Никто не «потеряет анимацию при переносе».'],['Деньги пришли, данные — нет','Склеиваю оплату, CRM, школу и рассылки в одну цепь. Ни одна заявка не пропадёт.']];
+$('painsList').innerHTML=P.map(([q,a])=>`<div class="pain" data-rv><div class="in"><div class="fc fr"><b>${q}</b><small><span>Жми</span><span>↻</span></small></div><div class="fc bk"><p>${a}</p><small><span>Решаю</span><span>✓</span></small></div></div></div>`).join('')+
+`<div class="pain cta-card" data-rv><div class="in"><div class="fc fr"><b>Ваша беда не в списке?</b><small><span>Жми</span><span>↻</span></small></div><div class="fc bk"><p>Напишите — разберёмся. Люблю нестандартные задачи.</p><a class="btn k" style="height:46px;font-size:15px;align-self:flex-start" href="#contact">Написать</a></div></div></div>`;
+$('painsList').onclick=e=>{const p=e.target.closest('.pain');if(p&&!e.target.closest('a'))p.classList.toggle('on')};
+$('nums').innerHTML=D.stats.map(([b,s])=>`<div><b>${b}</b><span>${s}</span></div>`).join('');
+$('fImg').src=D.cases[0].img;
+$('fQ').innerHTML=`«${D.feature.review.text}»<small>— ${D.feature.review.who}, ${D.feature.review.role}</small>`;
+$('cards').innerHTML=D.all.map(c=>`<article class="box card" data-cat="${c.cat}"><div class="im"><img src="${c.img}" alt="${c.t}" loading="lazy"><span class="tag" style="${c.client?'background:var(--yel)':''}">${c.client?'Клиент':'Свой'}</span></div>
+<div class="bd"><h4>${c.t}</h4><div class="f"><b>${c.f[0]}</b><span>${c.f[1]}</span></div><span class="tl">${c.tools.join(' / ')}</span>${c.url?`<a class="go" href="${c.url}" target="_blank" rel="noopener">Открыть сайт ↗</a>`:''}</div></article>`).join('');
+$('filters').onclick=e=>{const b=e.target.closest('button');if(!b)return;document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));limit(b.dataset.f)};
+function limit(f){let n=0;document.querySelectorAll('.card').forEach(c=>{const ok=f==='all'||c.dataset.cat===f;c.classList.toggle('hide',!(ok&&n<8));if(ok)n++})}limit('all');
+$('ptab').innerHTML=D.prices.map(([a,b])=>`<div><span>${a}</span><b>${b}</b></div>`).join('');
+$('revs').innerHTML=D.reviews.map(r=>`<article class="box rev" data-rv><span class="stars">★★★★★</span><p>«${r.text}»</p><footer><span class="av">${r.ini}</span><div><b>${r.who}</b><br><small>${r.role}</small></div></footer></article>`).join('');
+$('faq').innerHTML=D.faq.map(([q,a],i)=>`<details ${i?'':'open'}><summary>${q}</summary><p>${a}</p></details>`).join('');
+mountBot({chat:$('chat'),replies:$('replies'),status:$('st'),onEnd:r=>r.innerHTML='<a class="btn k" style="height:46px;width:100%;justify-content:center" href="#contact">Хочу такого бота</a>'});
+reveal();styleSwitch('← Другой стиль');
+</script>
+</body>
+</html>

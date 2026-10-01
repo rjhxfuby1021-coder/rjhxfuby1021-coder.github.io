@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Обо мне — Павел Корчагин</title>
+<meta name="description" content="Павел Корчагин: Tilda, Salebot, GetCourse, Figma, HTML/CSS/JS. Опыт, навыки, образование и формат работы.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<style>
+.me{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,80px);align-items:start}
+.me .ph{position:relative;transform:rotate(-3deg);max-width:420px}
+.me .ph img{aspect-ratio:4/5;object-position:center top}
+.me .lt{font:400 clamp(21px,2vw,27px)/1.5 var(--serif)}
+.me .lt p+p{margin-top:16px}
+.spec{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.spec div{background:#fff;padding:22px;box-shadow:0 10px 26px -14px rgba(30,27,24,.35);transform:rotate(var(--r))}
+.spec b{display:block;font:600 22px var(--serif);margin-bottom:6px}
+.spec span{color:#4a433c;font-size:15.5px}
+@media(max-width:860px){.me,.spec{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main>
+  <div class="w page-hd" style="padding-bottom:20px">
+    <div class="crumbs"><a href="index.html">мастерская</a> → знакомство</div>
+  </div>
+  <div class="w me">
+    <figure class="ph" data-rv><img id="photo" alt="Павел Корчагин"><span>это я, Павел</span></figure>
+    <div data-rv>
+      <h1 style="font:400 clamp(40px,5.6vw,88px)/.95 var(--serif);letter-spacing:-.035em">Знакомство <i style="color:var(--red)">поближе</i></h1>
+      <div class="lt" style="margin-top:26px">
+        <p>Меня зовут Павел, мне 31. Родился в Брянске, живу и работаю в Троицке под Москвой — а проекты веду удалённо, с заказчиками по всей стране.</p>
+        <p>Я из тех, кто не любит отдавать половину работы «другому специалисту». Поэтому научился всему сам: рисовать в Figma, собирать сайты на Tilda, учить ботов в Salebot и настраивать школы на GetCourse. А где конструктор упирается в потолок — пишу HTML, CSS и JavaScript.</p>
+        <p>Больше всего люблю задачи, от которых другие отказываются: разобраться, придумать нестандартный ход и довести до работающего результата.</p>
+      </div>
+      <span class="sign">Павел К.</span>
+    </div>
+  </div>
+
+  <section class="sec"><div class="w two">
+    <div data-rv><div class="kick">Коротко, как в анкете</div><table class="facts-tbl" id="facts"></table>
+      <a class="pill o" style="margin-top:26px" id="hh" target="_blank" rel="noopener">Резюме на hh.ru ↗</a></div>
+    <div data-rv><div class="kick">Характер</div><div class="tools" id="traits" style="margin-bottom:34px"></div>
+      <div class="kick">Учился</div><ul class="timeline" id="edu"></ul></div>
+  </div></section>
+
+  <section class="sec tight"><div class="w">
+    <div class="kick">Чем занимаюсь</div><h2 class="t">Четыре ремесла, <i>одна мастерская</i></h2>
+    <div class="spec" id="spec" style="margin-top:40px"></div>
+  </div></section>
+
+  <section class="sec tight"><div class="w">
+    <div class="kick">Инструменты на столе</div>
+    <div class="tools" id="skills"></div>
+  </div></section>
+</main>
+
+<section class="final"><div class="w">
+  <h2>Давайте <i>познакомимся</i> по-настоящему</h2>
+  <p>Короткий созвон о вашем деле — и я скажу, чем могу помочь, а чем лучше не браться.</p>
+  <div class="acts"><a class="pill" href="brief.html">Рассказать об идее</a><a class="pill o" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a></div>
+</div></section>
+<footer id="foot"></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/content.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const R=CONTENT.resume,E=CR.esc,$=x=>document.getElementById(x);
+$('photo').src='https://static.tildacdn.com/tild3366-6336-4861-a230-666439386134/noroot.png';
+$('facts').innerHTML=R.FACTS.map(([k,v])=>`<tr><td>${E(k)}</td><td>${E(v)}</td></tr>`).join('');
+$('hh').href=R.HH;
+$('traits').innerHTML=CONTENT.bonus.TRAITS.map(([t,d])=>`<span style="--r:${CR.rr()}" title="${E(d)}">${E(t)}</span>`).join('');
+$('edu').innerHTML=R.EDU.map(([y,w,p])=>`<li><small>${E(y)}</small><b>${E(w)}</b><span style="color:var(--g)">${E(p)}</span></li>`).join('');
+$('spec').innerHTML=R.SPEC.map(([h,t])=>`<div style="--r:${CR.rr()}" data-rv><b>${E(h)}</b><span>${E(t)}</span></div>`).join('');
+$('skills').innerHTML=R.SKILLS.map(s=>`<span style="--r:${CR.rr()}">${E(s)}</span>`).join('');
+CR.done();
+</script>
+</body>
+</html>

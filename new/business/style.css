@@ -1,0 +1,67 @@
+@import url("../assets/inner-base.css?v=20261001231639");
+/* Деловой: белый, чёрный, синий Кляйна, Inter Tight, линейки и сетка */
+:root{--bg:#fff;--ink:#0a0a0a;--muted:#6b6b6b;--acc:#1d33f2;--acc-ink:#fff;--line:#e4e4e4;--card:#f5f5f3;--fd:"Inter Tight",system-ui,sans-serif;--fb:"Inter Tight",system-ui,sans-serif;--r:0;--maxw:1360px}
+.kicker{font:500 13px var(--fb);letter-spacing:.01em;text-transform:none;color:var(--muted);padding-top:10px;border-top:1px solid var(--ink);display:block;max-width:260px}
+.pg-title,.sec-title,.cta-title{font-weight:600;letter-spacing:-.05em}
+.pg-title{font-size:clamp(40px,6.6vw,104px);line-height:.94;max-width:14ch}
+.pg-title b,.sec-title b,.cta-title b{color:var(--acc);font-weight:600}
+.pg-hd{border-bottom:1px solid var(--ink)}
+.btn{min-height:52px;font-weight:500}
+.btn-1:hover{background:#0b1fd0}
+.btn-2{box-shadow:inset 0 0 0 1px var(--ink)}
+.btn-2:hover{background:var(--ink);color:#fff}
+.filters{gap:0;border:1px solid var(--ink);width:max-content;max-width:100%;overflow-x:auto}
+.filters button{border:0;border-right:1px solid var(--ink);font-weight:500;padding:10px 18px}
+.filters button:last-child{border-right:0}
+.card{background:none;border-top:1px solid var(--ink)}
+.card-body{padding:16px 0 0}
+.card-title{font-weight:500;letter-spacing:-.025em;font-size:21px}
+.card-fact b{font-size:24px;letter-spacing:-.03em}
+.card-more{color:var(--ink);border-bottom:1px solid;width:max-content}
+.fact{background:none;border-top:1px solid var(--ink);padding:12px 0 0}
+.fact b{font-weight:500;font-size:clamp(30px,3.4vw,52px);letter-spacing:-.05em}
+.chap{border-top:1px solid var(--ink)}
+.chap-no{color:var(--muted);font-weight:500}
+.chap-title{font-weight:500;letter-spacing:-.03em}
+.flow-step,.steps li,.who-item,.spec,.pack,.pager a,.terms,.assistant,.review{background:none;border-top:1px solid var(--ink);padding-left:0;padding-right:0}
+.steps li::before,.flow-n{color:var(--muted);font-weight:500}
+.tags span{border-color:var(--ink);font-size:13px}
+.price-nav a{border:1px solid var(--ink)}
+.pgroup{border-top:1px solid var(--ink)}
+.prow-name{font-weight:500;font-size:19px;letter-spacing:-.02em}
+.prow-price{color:var(--ink);font-weight:500}
+.pack-price strong{color:var(--acc)}
+.review blockquote{font-size:clamp(19px,1.8vw,24px);letter-spacing:-.02em;line-height:1.4}
+.rev-ava{background:var(--acc)}
+.qa summary{font-weight:500;letter-spacing:-.02em}
+.qa summary::after{content:"+";}
+.qa[open] summary::after{content:"−";transform:none}
+.assistant{background:var(--acc);color:#fff;padding:28px!important}
+.assistant .kicker{color:#c9ceff;border-color:#fff}
+.assistant p{color:#d4d8ff}
+.assistant .btn-1{background:#fff;color:var(--acc)}
+.assistant a{color:#fff}
+.timeline li{border-left:1px solid var(--ink)}
+.timeline small{color:var(--ink)}
+.big-num{font-weight:600;letter-spacing:-.06em}
+.field input,.field textarea{border:0;border-bottom:1px solid var(--ink);padding:12px 0}
+.chips span{border-color:var(--ink)}
+.chips input:checked+span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cta{background:var(--acc);color:#fff;text-align:left}
+.cta .w{display:block}
+.cta-title{font-size:clamp(40px,7vw,112px);line-height:.92;max-width:12ch;margin:0}
+.cta-text{color:#d4d8ff;margin:24px 0 0}
+.cta .acts{justify-content:flex-start}
+.cta .btn-1{background:#fff;color:var(--acc)}
+.cta .btn-2{color:#fff;box-shadow:inset 0 0 0 1px #fff}
+.cta .btn-2:hover{background:#fff;color:var(--acc)}
+.prose h2{font-weight:500;letter-spacing:-.03em}
+/* шапка и подвал */
+.site-hd{background:rgba(255,255,255,.92);backdrop-filter:blur(10px)}
+.site-hd .w{height:64px}
+.site-hd .logo{font-weight:600;font-size:16px}
+.site-hd .logo span{color:var(--muted);font-weight:400}
+.site-hd .btn{background:var(--acc)}
+.site-ft .ft-logo{font-weight:600}
+.ft-cols h4{text-transform:none;letter-spacing:0;font-weight:500;padding-top:10px;border-top:1px solid var(--ink)}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:60;background:var(--ink);color:#fff;font-size:13px;font-weight:500;padding:10px 14px}

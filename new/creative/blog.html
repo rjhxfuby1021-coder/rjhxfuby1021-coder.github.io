@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Журнал мастерской — Павел Корчагин</title>
+<meta name="description" content="Разборы о чат-ботах, сайтах на Tilda и автоматизации: сколько стоит, как устроено, на чём не стоит экономить.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main>
+  <div class="w page-hd">
+    <div class="crumbs"><a href="index.html">мастерская</a> → журнал</div>
+    <h1>Журнал: записки <i>с рабочего стола</i></h1>
+    <p class="lead">Пишу о том, о чём меня спрашивают чаще всего: сколько стоит бот, из чего собрать продающий лендинг и как ИИ-администратор разгружает салон. Без воды и без «10 трендов года».</p>
+    <span class="hand aside-note">новые выпуски — раз в неделю</span>
+  </div>
+  <section class="sec tight"><div class="w"><div class="posts" id="posts"></div></div></section>
+  <section class="sec"><div class="w two">
+    <div data-rv><div class="kick">Есть тема для выпуска?</div><h2 class="t">Подскажите, <i>о чём</i> написать</h2></div>
+    <div data-rv style="align-self:end"><p style="font-size:19px;color:#3b352f">Если вас мучает вопрос о сайтах, ботах или онлайн-школах — пришлите его. Лучшие вопросы становятся статьями, а ответ вы получите раньше всех.</p>
+      <a class="pill" style="margin-top:22px" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Предложить тему</a></div>
+  </div></section>
+</main>
+<footer id="foot"></footer>
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/content.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const E=CR.esc;
+const cover=b=>b.cover.startsWith('case:')?(CR.full(b.cover.slice(5))||{}).cover:(b.cover.startsWith('/')?'https://texspeckps.ru'+b.cover:b.cover);
+document.getElementById('posts').innerHTML=CONTENT.blog.map(b=>`<a class="post" href="post.html?slug=${b.slug}" data-rv>
+  <span class="ph" style="--r:${CR.rr()}"><img src="${cover(b)}" alt="" loading="lazy"><span>${E(b.tag.toLowerCase())}</span></span>
+  <span class="meta">${CR.fmtDate(b.date)} · ${b.read} мин чтения</span><h3>${E(b.title)}</h3><p>${E(b.desc)}</p></a>`).join('');
+CR.done();
+</script>
+</body>
+</html>

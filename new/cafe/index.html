@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сайт и бот для кафе — Павел Корчагин</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yeseva+One&family=Raleway:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: сайты бистро и ресторанов — меню на крафтовой бумаге, тёплый томатный, рукописные цены */
+:root{--cream:#fff4e2;--paper:#fbe9cc;--ink:#2b1a12;--tom:#d63a2f;--olive:#5d6b2f;--g:#7d6656;--d:"Yeseva One",Georgia,serif;--s:"Raleway",system-ui,sans-serif;--gut:clamp(16px,4vw,48px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font:500 17px/1.6 var(--s)}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.w{max-width:1200px;margin:0 auto;padding:0 var(--gut)}
+.awn{height:38px;background:repeating-linear-gradient(90deg,var(--tom) 0 46px,#fff 46px 92px);position:relative}
+.awn::after{content:"";position:absolute;left:0;right:0;bottom:-14px;height:14px;background:radial-gradient(circle at 23px 0,var(--tom) 22px,transparent 23px) 0 0/92px 14px,radial-gradient(circle at 69px 0,#fff 22px,transparent 23px) 0 0/92px 14px}
+header .w{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-top:30px;padding-bottom:16px}
+.logo{font:400 26px var(--d)}
+.logo span{color:var(--tom)}
+header nav{display:flex;gap:26px;font-weight:700;font-size:15px}
+header nav a:hover{color:var(--tom)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 26px;border-radius:999px;background:var(--tom);color:#fff;font-weight:700;transition:transform .2s,background .2s}
+.btn:hover{background:#b92d23;transform:rotate(-1.5deg)}
+.btn.o{background:none;color:var(--ink);border:2px solid var(--ink)}
+.btn.o:hover{background:var(--ink);color:var(--cream)}
+@media(max-width:860px){header nav{display:none}}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,70px);align-items:center;padding:clamp(30px,5vw,70px) 0 clamp(60px,8vw,110px)}
+.today{display:inline-block;font:italic 400 18px var(--s);color:var(--olive);border-bottom:2px dashed var(--olive);padding-bottom:2px}
+.hero h1{font:400 clamp(44px,6.4vw,92px)/.98 var(--d);margin-top:18px}
+.hero h1 em{font-style:normal;color:var(--tom)}
+.hero p{font-size:clamp(17px,1.5vw,20px);max-width:42ch;margin-top:22px;color:#4e3a2e}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.plate{position:relative;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 0 0 14px #f3dcb8,0 40px 70px -30px rgba(43,26,18,.5);padding:13%;display:grid;place-items:center}
+.plate img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:50%;animation:spin 60s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tag{position:absolute;background:var(--olive);color:#fff;padding:10px 16px;border-radius:14px;font-weight:700;font-size:15px;box-shadow:0 10px 20px -8px rgba(0,0,0,.35)}
+.tag b{display:block;font:400 26px var(--d)}
+.tag.t1{left:-6%;top:12%;transform:rotate(-6deg)}
+.tag.t2{right:-4%;bottom:14%;background:var(--tom);transform:rotate(5deg)}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.plate{max-width:380px;width:80%;margin:20px auto}}
+section{padding:clamp(60px,8vw,110px) 0}
+.sh{text-align:center;margin-bottom:clamp(30px,5vw,56px)}
+.sh small{font:italic 400 18px var(--s);color:var(--olive)}
+.sh h2{font:400 clamp(34px,4.6vw,62px)/1.05 var(--d);margin-top:6px}
+.sh h2 em{font-style:normal;color:var(--tom)}
+.orn{display:flex;align-items:center;gap:14px;justify-content:center;color:var(--tom);margin-top:12px}
+.orn::before,.orn::after{content:"";width:60px;height:2px;background:currentColor}
+/* menu */
+.menu{background:var(--paper);border-radius:6px;padding:clamp(28px,5vw,64px);box-shadow:0 30px 60px -40px rgba(43,26,18,.6);position:relative;background-image:radial-gradient(rgba(43,26,18,.05) 1px,transparent 1px);background-size:5px 5px}
+.menu::before{content:"";position:absolute;inset:12px;border:1.5px solid rgba(43,26,18,.3);pointer-events:none}
+.mcols{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px)}
+.mcols h3{font:400 28px var(--d);color:var(--tom);margin-bottom:12px}
+.dish{padding:12px 0;border-bottom:1px dashed rgba(43,26,18,.25)}
+.dish .row{display:flex;align-items:baseline;gap:8px}
+.dish b{font-weight:700;font-size:18px}
+.dish .dots{flex:1;border-bottom:2px dotted rgba(43,26,18,.35);transform:translateY(-4px)}
+.dish .pr{font:400 19px var(--d);white-space:nowrap}
+.dish p{font-style:italic;color:var(--g);font-size:15px;margin-top:2px}
+.dish .new{display:inline-block;margin-left:8px;background:var(--olive);color:#fff;font:700 11px var(--s);padding:2px 8px;border-radius:999px;vertical-align:3px}
+.combo{margin-top:30px;background:var(--tom);color:#fff;border-radius:16px;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.combo b{font:400 26px var(--d)}
+.combo p{color:#ffe1d8;font-size:15px}
+@media(max-width:760px){.mcols{grid-template-columns:1fr}}
+/* chef case */
+.chef{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,70px);align-items:center}
+.chef .ph{position:relative}
+.chef .ph img{border-radius:20px;width:100%;aspect-ratio:4/3.3;object-fit:cover;object-position:top;box-shadow:0 30px 60px -30px rgba(43,26,18,.5)}
+.chef .ph .bot{position:absolute;right:-16px;bottom:-26px;width:44%;border-radius:16px;border:6px solid var(--cream);box-shadow:0 20px 40px -20px rgba(0,0,0,.5)}
+.chef h3{font:400 clamp(28px,3vw,42px)/1.08 var(--d)}
+.chef p{color:#4e3a2e;margin-top:14px}
+.receipt{margin-top:22px;background:#fff;padding:18px 20px;font:500 15px/1.7 "Courier New",monospace;box-shadow:0 10px 30px -18px rgba(0,0,0,.4);position:relative;transform:rotate(-1deg)}
+.receipt::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:10px;background:linear-gradient(-45deg,transparent 7px,#fff 0) 0 0/14px 10px,linear-gradient(45deg,transparent 7px,#fff 0) 0 0/14px 10px}
+.receipt div{display:flex;justify-content:space-between;gap:10px}
+.receipt .tot{border-top:2px dashed #999;margin-top:8px;padding-top:8px;font-weight:700;color:var(--tom)}
+.chef blockquote{margin-top:34px;font:italic 400 17px var(--s);color:var(--g)}
+@media(max-width:860px){.chef{grid-template-columns:1fr}}
+/* features */
+.feats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.feat{background:#fff;border-radius:20px;padding:24px;text-align:center}
+.feat i{display:grid;place-items:center;width:64px;height:64px;margin:0 auto 14px;border-radius:50%;background:var(--paper);font-style:normal;font-size:30px}
+.feat b{display:block;font:400 21px var(--d)}
+.feat span{display:block;font-size:14.5px;color:var(--g);margin-top:6px}
+@media(max-width:900px){.feats{grid-template-columns:1fr 1fr}}
+/* other works */
+.works{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.wk{background:#fff;border-radius:18px;overflow:hidden;transition:transform .3s}
+.wk:hover{transform:translateY(-6px) rotate(-.6deg)}
+.wk img{width:100%;aspect-ratio:16/11;object-fit:cover;object-position:top}
+.wk div{padding:14px 18px 18px}
+.wk b{display:block;font-weight:700}
+.wk span{font-size:14px;color:var(--g)}
+@media(max-width:900px){.works{grid-template-columns:1fr 1fr}}@media(max-width:560px){.works{grid-template-columns:1fr}}
+.reviewbook{max-width:760px;margin:0 auto;text-align:center}
+.reviewbook p{font:400 clamp(22px,2.4vw,30px)/1.35 var(--d)}
+.reviewbook small{display:block;margin-top:16px;color:var(--g);font-style:italic}
+.final{background:var(--ink);color:var(--cream);text-align:center;border-radius:28px;padding:clamp(50px,7vw,90px) 24px}
+.final h2{font:400 clamp(34px,5vw,64px)/1.05 var(--d)}
+.final h2 em{font-style:normal;color:#ff8a72}
+.final p{max-width:42ch;margin:16px auto 0;color:#e8d6bd}
+.final .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.final .btn.o{color:var(--cream);border-color:var(--cream)}
+footer{padding:28px 0 40px;font-size:14px;color:var(--g)}
+footer .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer a{margin-left:16px;font-weight:700}
+[data-rv]{opacity:0;transform:translateY(24px);transition:.8s cubic-bezier(.2,.8,.2,1)}[data-rv].in{opacity:1;transform:none}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:8px 16px;font-weight:700;font-size:14px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-rv]{opacity:1;transform:none}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<div class="awn" aria-hidden="true"></div>
+<header><div class="w"><a class="logo" href="#"><span class="pk-logo pk-logo--cafe"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин<small>сайты для кафе</small></span></span></a><nav><a href="#menu">Меню услуг</a><a href="#case">Кейс кафе</a><a data-page="cases">Все работы</a><a data-page="reviews">Отзывы</a></nav><a class="btn" href="#contact">Заказать</a></div></header>
+
+<main class="w">
+  <div class="hero">
+    <div data-rv>
+      <span class="today">Сегодня в меню:</span>
+      <h1>Сайт и бот, через которые <em>заказывают еду</em></h1>
+      <p>Делаю для кафе и ресторанов онлайн-меню с корзиной и доставкой, чат-бота для VK и Telegram и связываю их в одну систему. Гости заказывают сами — даже когда вы заняты на кухне.</p>
+      <div class="acts"><a class="btn" href="#contact">Обсудить ваше кафе</a><a class="btn o" href="#case">Как это было у других</a></div>
+    </div>
+    <div class="plate" data-rv>
+      <img id="plateImg" alt="Сайт кафе «Приятного аппетита»">
+      <span class="tag t1"><b>86</b>заявок за неделю</span>
+      <span class="tag t2"><b>№1</b>в поиске по области</span>
+    </div>
+  </div>
+
+  <section id="menu" style="padding-top:0">
+    <div class="sh"><small>à la carte</small><h2>Меню <em>услуг</em></h2><div class="orn">✦</div></div>
+    <div class="menu" data-rv>
+      <div class="mcols">
+        <div><h3>Основные блюда</h3>
+          <div class="dish"><div class="row"><b>Сайт-магазин с онлайн-меню</b><span class="dots"></span><span class="pr">от 15 000 ₽</span></div><p>корзина, доставка, карта точек, мобильная версия в первую очередь</p></div>
+          <div class="dish"><div class="row"><b>Лендинг кафе</b><span class="dots"></span><span class="pr">от 2 000 ₽</span></div><p>меню, атмосфера, бронь столика и контакты</p></div>
+          <div class="dish"><div class="row"><b>Дизайн в Figma</b><span class="dots"></span><span class="pr">от 10 000 ₽</span></div><p>чтобы сайт выглядел так же вкусно, как ваши блюда</p></div>
+        </div>
+        <div><h3>Напитки и десерты</h3>
+          <div class="dish"><div class="row"><b>Чат-бот для VK и Telegram</b><span class="new">хит</span><span class="dots"></span><span class="pr">от 5 000 ₽</span></div><p>рассказывает о кафе, ведёт к заказу, собирает отзывы за промокод</p></div>
+          <div class="dish"><div class="row"><b>ИИ-администратор</b><span class="dots"></span><span class="pr">от 8 000 ₽</span></div><p>отвечает гостям круглосуточно по вашему меню</p></div>
+          <div class="dish"><div class="row"><b>Подключение к CRM и уведомления</b><span class="dots"></span><span class="pr">от 1 500 ₽</span></div><p>каждый заказ — сразу в учёт и в Telegram</p></div>
+        </div>
+      </div>
+      <div class="combo"><div><b>Комбо «Сайт + бот»</b><p>Как у кафе «Приятного аппетита»: заказ на сайте, вопросы и отзывы — в боте.</p></div><a class="btn" style="background:#fff;color:var(--tom)" data-page="price">Полное меню цен →</a></div>
+    </div>
+  </section>
+
+  <section id="case" style="padding-top:0">
+    <div class="chef">
+      <div class="ph" data-rv><img id="caseImg" alt="Сайт кафе"><img class="bot" id="botImg" alt="Бот кафе"></div>
+      <div data-rv>
+        <span class="today">Фирменное блюдо</span>
+        <h3 style="margin-top:12px">Кафе «Приятного аппетита»: от нуля онлайн-заказов до 86 заявок в неделю</h3>
+        <p>До сайта заказать доставку через интернет было негде. Я собрал сайт-магазин с онлайн-меню и корзиной, а потом — бота, который рассказывает о кафе, ведёт к заказу и собирает отзывы.</p>
+        <div class="receipt" id="receipt"></div>
+        <blockquote id="rq"></blockquote>
+        <a class="btn o" style="margin-top:22px" href="https://priyatnogoappetita.tilda.ws/" target="_blank" rel="noopener">Заглянуть на сайт кафе ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><small>что получает кафе</small><h2>Без звонков и <em>потерянных заказов</em></h2></div>
+    <div class="feats" data-rv>
+      <div class="feat"><i>🍕</i><b>Онлайн-меню</b><span>гость выбирает блюда сам, с фото и ценами</span></div>
+      <div class="feat"><i>🛵</i><b>Доставка</b><span>оформление заказа в пару касаний с телефона</span></div>
+      <div class="feat"><i>💬</i><b>Бот 24/7</b><span>отвечает на вопросы и ведёт к заказу</span></div>
+      <div class="feat"><i>⭐</i><b>Отзывы</b><span>собираются сами — за промокод</span></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><small>с той же кухни</small><h2>Другие <em>работы</em></h2></div>
+    <div class="works" id="works"></div>
+    <div style="text-align:center;margin-top:34px"><a class="btn o" data-page="cases">Все 25 работ</a></div>
+  </section>
+
+  <section style="padding-top:0"><div class="reviewbook" data-rv>
+    <div class="sh" style="margin-bottom:24px"><small>книга отзывов</small></div>
+    <p id="rb"></p><small id="rbw"></small>
+    <div style="margin-top:26px"><a class="btn o" data-page="reviews">Все отзывы</a></div>
+  </div></section>
+
+  <section id="contact" style="padding-top:0"><div class="final" data-rv>
+    <h2>Накроем ваше кафе <em>в интернете?</em></h2>
+    <p>Расскажите, что у вас за заведение — я предложу состав «блюд» под ваш бюджет. Отвечаю в течение рабочего дня.</p>
+    <div class="acts"><a class="btn" data-page="form">Оставить заявку</a><a class="btn o" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Написать в Telegram</a></div>
+  </div></section>
+</main>
+<footer><div class="w"><span>© 2026 Павел Корчагин · сайты, боты и онлайн-школы</span><span><a data-page="about">Обо мне</a><a data-page="faq">Вопросы</a></span></div></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id),by=id=>D.all.find(c=>c.id===id);
+$('plateImg').src=by('cafe-shop').img;$('caseImg').src=by('cafe-shop').img;$('botImg').src=by('sb-cafe').img;
+$('receipt').innerHTML='<div style="justify-content:center;font-weight:700">ЧЕК № 2026 · за неделю</div>'+D.feature.nums.map(([b,s])=>`<div><span>${s}</span><span>${b}</span></div>`).join('')+'<div class="tot"><span>Было онлайн-заказов</span><span>0</span></div>';
+$('rq').textContent='«'+D.feature.review.text+'» — '+D.feature.review.who+', '+D.feature.review.role;
+$('works').innerHTML=['sb-cafe','ekskurpiter','wave-sup','kromka','weekend-reset','diva-n'].map(by).map(c=>`<a class="wk" data-rv ${c.url?`href="${c.url}" target="_blank" rel="noopener"`:'data-page="cases"'}><img src="${c.img}" alt="${c.t}" loading="lazy"><div><b>${c.t}</b><span>${c.f[0]} — ${c.f[1]}</span></div></a>`).join('');
+const r=D.reviews[1];$('rb').textContent='«'+r.text+'»';$('rbw').textContent='— '+r.who+', '+r.role;
+reveal();styleSwitch('Сменить стиль');
+</script>
+</body>
+</html>

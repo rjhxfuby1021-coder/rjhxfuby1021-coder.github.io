@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сайты и автоматизация для бухгалтеров — Павел Корчагин</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: Excel / Google Таблицы — сетка ячеек, строка формул, зелёная лента, листы внизу */
+:root{--bg:#fff;--grid:#e1e1e1;--hd:#f3f3f3;--ink:#1f1f1f;--g:#6b6b6b;--xl:#217346;--xl2:#e9f3ee;--sel:#1a73e8;--f:"Open Sans",system-ui,sans-serif;--m:"Ubuntu Mono",monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 15.5px/1.55 var(--f);padding-bottom:44px}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+/* ribbon */
+.ribbon{background:var(--xl);color:#fff;position:sticky;top:0;z-index:30}
+.ribbon .t{display:flex;align-items:center;gap:14px;height:40px;padding:0 16px;font-size:13px}
+.ribbon .t b{font-size:14px}
+.ribbon .t .doc{opacity:.85}
+.ribbon .t .save{margin-left:auto;background:#fff;color:var(--xl);font-weight:700;padding:5px 14px;border-radius:4px}
+.tabs{display:flex;gap:2px;padding:0 10px;background:var(--xl)}
+.tabs a{padding:7px 14px;font-size:13px;color:#d9eee3;border-radius:4px 4px 0 0}
+.tabs a.on,.tabs a:hover{background:#fff;color:var(--xl);font-weight:600}
+.fbar{display:flex;align-items:center;border-bottom:1px solid var(--grid);background:#fff;font:15px var(--m);height:34px}
+.fbar .nm{width:84px;text-align:center;border-right:1px solid var(--grid);height:100%;display:grid;place-items:center;color:var(--g)}
+.fbar .fx{padding:0 12px;color:var(--g);font-style:italic;border-right:1px solid var(--grid);height:100%;display:grid;place-items:center}
+.fbar .fm{padding:0 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fbar .fm em{font-style:normal;color:var(--xl);font-weight:700}
+@media(max-width:700px){.tabs a:nth-child(n+5){display:none}.ribbon .t .doc{display:none}}
+/* sheet */
+.sheet{display:grid;grid-template-columns:44px repeat(8,minmax(0,1fr));border-left:1px solid var(--grid)}
+.ch,.rh{background:var(--hd);color:var(--g);font:13px var(--m);display:grid;place-items:center;border-right:1px solid var(--grid);border-bottom:1px solid var(--grid)}
+.ch{height:26px}
+.rh{min-height:32px}
+.cell{border-right:1px solid var(--grid);border-bottom:1px solid var(--grid);padding:6px 10px;min-height:32px;position:relative;cursor:cell;transition:background .15s}
+.cell:hover{outline:2px solid var(--sel);outline-offset:-2px;z-index:2}
+.cell.hl{background:var(--xl2)}
+.sp2{grid-column:span 2}.sp3{grid-column:span 3}.sp4{grid-column:span 4}.sp5{grid-column:span 5}.sp6{grid-column:span 6}.sp8{grid-column:span 8}
+.big{font:800 clamp(30px,4.6vw,64px)/1.05 var(--f);letter-spacing:-.03em;padding:18px 14px}
+.big em{font-style:normal;color:var(--xl)}
+.num{font:700 clamp(22px,2.4vw,32px) var(--m);color:var(--xl);text-align:right}
+.lbl{font-size:13px;color:var(--g)}
+.btn{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;background:var(--xl);color:#fff;font-weight:700;font-size:14.5px;border-radius:4px;transition:background .2s}
+.btn:hover{background:#1a5c38}
+.btn.o{background:#fff;color:var(--xl);box-shadow:inset 0 0 0 1.5px var(--xl)}
+.sec-h{font:700 13px var(--m);color:#fff;background:#3b3b3b;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center}
+/* calc */
+.calc input{width:100%;font:700 22px var(--m);border:0;background:#fffbe6;padding:4px 6px;color:var(--ink);text-align:right;outline:2px solid #f4d35e;outline-offset:-2px}
+.res{background:#fdecea}
+.res .num{color:#c0392b}
+/* chart */
+.chart{display:flex;align-items:flex-end;gap:10px;height:170px;padding:14px 10px 0}
+.chart div{flex:1;background:var(--xl);border-radius:3px 3px 0 0;position:relative;transition:height 1.2s cubic-bezier(.2,.8,.2,1);height:0}
+.chart div span{position:absolute;top:-20px;left:0;right:0;text-align:center;font:700 13px var(--m)}
+.chart div i{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font:400 12px var(--m);font-style:normal;color:var(--g)}
+.thumb{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border:1px solid var(--grid)}
+.case b{display:block;font-weight:700}
+.case span{font-size:13.5px;color:var(--g)}
+.case .tag{display:inline-block;font:700 12px var(--m);background:var(--xl2);color:var(--xl);padding:1px 6px;border-radius:3px;margin-top:6px}
+.comment{position:absolute;right:0;top:0;width:0;height:0;border-top:8px solid #e74c3c;border-left:8px solid transparent}
+.cell .tip{display:none;position:absolute;right:-6px;top:calc(100% - 4px);width:260px;background:#fffde7;border:1px solid #c9c27a;padding:10px;font-size:13.5px;z-index:5;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.cell:hover .tip{display:block}
+.sheets{position:fixed;left:0;right:0;bottom:0;height:40px;background:var(--hd);border-top:1px solid var(--grid);display:flex;align-items:stretch;z-index:30;font-size:13px;overflow-x:auto}
+.sheets a{display:grid;place-items:center;padding:0 18px;border-right:1px solid var(--grid);white-space:nowrap;color:var(--g)}
+.sheets a.on{background:#fff;color:var(--xl);font-weight:700;border-bottom:3px solid var(--xl)}
+.sheets .add{font-size:20px}
+.style-switch{position:fixed;right:12px;bottom:48px;z-index:50;background:#fff;border:1px solid var(--grid);padding:7px 12px;font:700 13px var(--m);color:var(--xl);border-radius:4px;box-shadow:0 6px 18px -8px rgba(0,0,0,.3)}
+@media(max-width:900px){.sheet{grid-template-columns:repeat(4,minmax(0,1fr))}.rh,.ch{display:none}.sp3,.sp4,.sp5,.sp6,.sp8,.m4{grid-column:span 4}.cell.x{display:none}.cell.sp2:not(.m4){grid-column:span 2}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<div class="ribbon">
+  <div class="t"><span class="pk-logo pk-logo--accountant"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span><span class="doc">— автоматизация и сайты для бухгалтеров</span><a class="save" href="#contact">Сохранить заявку</a></div>
+  <nav class="tabs"><a class="on" href="#home">Главная</a><a href="#calc">Формулы</a><a href="#cases">Кейсы</a><a href="#price">Прайс</a><a href="#rev">Рецензии</a></nav>
+</div>
+<div class="fbar"><span class="nm" id="cellName">A1</span><span class="fx">fx</span><span class="fm" id="formula">=<em>ПАВЕЛ</em>(дизайн; сайт; бот; школа; рассылки) → 1 исполнитель</span></div>
+
+<main>
+<div class="sheet" id="home">
+  <div class="ch"></div><div class="ch">A</div><div class="ch">B</div><div class="ch">C</div><div class="ch">D</div><div class="ch x">E</div><div class="ch x">F</div><div class="ch x">G</div><div class="ch x">H</div>
+  <div class="rh">1</div><div class="cell sp8 big" data-f="=ЗАГОЛОВОК()">Сайт и автоматизация, которые <em>сходятся до копейки</em></div>
+  <div class="rh">2</div><div class="cell sp6" style="padding:12px 14px;font-size:16.5px" data-f="=ОПИСАНИЕ()">Для бухгалтеров и бухгалтерских компаний: сайт с понятным прайсом, приём заявок без потерь, бот-напоминания клиентам о документах и сроках, учёт в Google Таблицах.</div><div class="cell sp2 m4" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap"><a class="btn" href="#contact">Обсудить</a></div>
+  <div class="rh">3</div><div class="cell sp8 sec-h">Ключевые показатели</div>
+  <div class="rh">4</div><div class="cell sp2 lbl">Завершённых проектов</div><div class="cell sp2 num hl" data-f="=СЧЁТ(проекты)">10+</div><div class="cell sp2 lbl">Отрицательных отзывов</div><div class="cell sp2 num hl" data-f="=СЧЁТЕСЛИ(отзывы;&quot;плохой&quot;)">0</div>
+  <div class="rh">5</div><div class="cell sp2 lbl">Заявок за неделю у кафе</div><div class="cell sp2 num hl" data-f="=СУММ(заявки_неделя)">86</div><div class="cell sp2 lbl">Конверсия сайта кафе</div><div class="cell sp2 num hl" data-f="=86/557">15,44%</div>
+  <div class="rh">6</div><div class="cell sp2 lbl">Исполнителей вместо</div><div class="cell sp2 num hl" data-f="=5-4">1 из 5</div><div class="cell sp2 lbl">Ответ на заявку</div><div class="cell sp2 num hl" data-f="=РАБДЕНЬ(сегодня;1)">≤ 1 дн.</div>
+
+  <div class="rh" id="calc">7</div><div class="cell sp8 sec-h">Формула: сколько стоят потерянные заявки — введите свои цифры</div>
+  <div class="rh">8</div><div class="cell sp3 lbl calc">Обращений в месяц</div><div class="cell calc sp5 m4"><input id="i1" type="number" value="40" min="0"></div>
+  <div class="rh">9</div><div class="cell sp3 lbl">Средний чек клиента, ₽</div><div class="cell calc sp5 m4"><input id="i2" type="number" value="5000" min="0"></div>
+  <div class="rh">10</div><div class="cell sp3 lbl">Доля обращений без ответа, %</div><div class="cell calc sp5 m4"><input id="i3" type="number" value="20" min="0" max="100"></div>
+  <div class="rh">11</div><div class="cell sp3 lbl res" style="font-weight:700;color:#c0392b">Недополученная выручка в месяц</div><div class="cell sp5 m4 res"><div class="num" id="loss">40 000 ₽</div></div>
+  <div class="rh">12</div><div class="cell sp8" style="font-size:13.5px;color:var(--g)">Расчёт по вашим данным. Бот и приём заявок в CRM закрывают обращения, на которые не успели ответить. <a href="#contact" style="color:var(--xl);font-weight:700">Посчитать решение →</a></div>
+
+  <div class="rh">13</div><div class="cell sp8 sec-h">Диаграмма: кейс кафе, неделя после запуска</div>
+  <div class="rh">14</div><div class="cell sp8"><div class="chart" id="chart"></div><div style="height:30px"></div></div>
+
+  <div class="rh" id="cases">15</div><div class="cell sp8 sec-h">Лист «Кейсы» — с учётом в таблицах и автоматизацией</div>
+  <div class="rh">16</div><div id="caseRow" style="display:contents"></div>
+  <div class="rh">17</div><div class="cell sp8"><a class="btn o" data-page="cases">Открыть все 25 кейсов</a></div>
+
+  <div class="rh" id="price">18</div><div class="cell sp8 sec-h">Лист «Прайс»</div>
+  <div id="priceRows" style="display:contents"></div>
+
+  <div class="rh" id="rev">27</div><div class="cell sp8 sec-h">Лист «Рецензии»</div>
+  <div id="revRows" style="display:contents"></div>
+
+  <div class="rh" id="contact">31</div><div class="cell sp8 sec-h">Итог</div>
+  <div class="rh">32</div><div class="cell sp5 big" style="font-size:clamp(26px,3.6vw,48px)">Сведём ваш баланс заявок?</div><div class="cell sp3 m4" style="display:flex;flex-direction:column;justify-content:center;gap:8px"><a class="btn" data-page="form">Оставить заявку</a><a class="btn o" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a></div>
+  <div class="rh">33</div><div class="cell sp8 lbl">Павел Корчагин, 31 год, Троицк (Москва) · Figma, Tilda, Salebot, GetCourse, Google Таблицы · отвечаю в течение рабочего дня · <a data-page="about" style="color:var(--xl)">резюме</a></div>
+</div>
+</main>
+<nav class="sheets"><a class="on" href="#home">Главная</a><a href="#calc">Формулы</a><a href="#cases">Кейсы</a><a href="#price">Прайс</a><a href="#rev">Рецензии</a><a class="add" href="#contact" title="Новая заявка">＋</a></nav>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id),by=id=>D.all.find(c=>c.id===id);
+const fmt=n=>Math.round(n).toLocaleString('ru-RU')+' ₽';
+function calc(){const a=+$('i1').value||0,b=+$('i2').value||0,c=Math.min(100,+$('i3').value||0);$('loss').textContent=fmt(a*b*c/100);$('formula').innerHTML=`=<em>B8</em>*<em>B9</em>*<em>B10</em>% → ${fmt(a*b*c/100)}`;$('cellName').textContent='B11'}
+['i1','i2','i3'].forEach(i=>$(i).addEventListener('input',calc));calc();
+/* chart */
+const CH=[['Визиты',557],['Заявки',86],['Конв. %',15.44]];
+const mx=557;$('chart').innerHTML=CH.map(([l,v])=>`<div data-h="${Math.max(8,v/mx*100)}"><span>${String(v).replace('.',',')}</span><i>${l}</i></div>`).join('');
+new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){document.querySelectorAll('.chart div').forEach(d=>d.style.height=d.dataset.h+'%');o.disconnect()}},{threshold:.3}).observe($('chart'));
+/* cases row: 4 cells x 2 cols */
+const CS=[['qledger','финансовый продукт'],['sb-referral','статистика в Google Таблице'],['sb-channel','учёт подписчиков в таблице'],['cafe-shop','заказы в CRM']];
+$('caseRow').innerHTML=CS.map(([id,tag])=>{const c=by(id);return `<a class="cell sp2 case m4" ${c.url?`href="${c.url}" target="_blank" rel="noopener"`:'data-page="cases"'} data-f="=КЕЙС(&quot;${c.t.split(' —')[0]}&quot;)"><img class="thumb" src="${c.img}" alt="${c.t}" loading="lazy"><b style="margin-top:8px">${c.t}</b><span>${c.f[0]} — ${c.f[1]}</span><span class="tag">${tag}</span></a>`}).join('');
+/* price rows 19-26 */
+const AP=[['Сайт бухгалтерской компании','от 10 000 ₽','несколько страниц, прайс по услугам'],['Лендинг частного бухгалтера','от 2 000 ₽','услуги, цены, заявка'],['Чат-бот приёма заявок','от 3 000 ₽','квалификация, уведомление, запись в таблицу'],['Бот-напоминания клиентам','от 2 000 ₽','о сроках сдачи и документах'],['ИИ-ассистент по услугам','от 8 000 ₽','ответы по вашей базе знаний 24/7'],['Заявки и оплаты в CRM','от 1 500 ₽','уведомления в Telegram и на почту'],['SEO и Яндекс Метрика','от 2 000 ₽','цели на заявки'],['Поддержка','3–7 тыс ₽/мес','правки, обновления, консультации']];
+$('priceRows').innerHTML=AP.map(([a,b,c],i)=>`<div class="rh">${19+i}</div><div class="cell sp3 m4" style="font-weight:600">${a}</div><div class="cell sp3 lbl x">${c}</div><div class="cell sp2 m4" style="text-align:right;font:700 16px var(--m);color:var(--xl)">${b}</div>`).join('');
+$('revRows').innerHTML=D.reviews.map((r,i)=>`<div class="rh">${28+i}</div><div class="cell sp2 m4" style="font-weight:700">${r.who}<div class="lbl">${r.role}</div></div><div class="cell sp6 m4" style="font-size:14.5px">${r.text}</div>`).join('');
+/* формула выбранной ячейки */
+document.querySelectorAll('[data-f]').forEach(c=>c.addEventListener('mouseenter',()=>{$('formula').textContent=c.dataset.f.replace(/&quot;/g,'"')}));
+/* активный лист */
+const secs=['home','calc','cases','price','rev'].map(id=>$(id));
+addEventListener('scroll',()=>{let k=0;secs.forEach((s,i)=>{if(s.getBoundingClientRect().top<160)k=i});document.querySelectorAll('.sheets a').forEach((a,i)=>a.classList.toggle('on',i===k));document.querySelectorAll('.tabs a').forEach((a,i)=>a.classList.toggle('on',i===k))},{passive:true});
+styleSwitch('=СТИЛЬ()');
+</script>
+</body>
+</html>

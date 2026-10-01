@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Направление — мастерская Павла Корчагина</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main id="page"></main>
+<footer id="foot"></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/content.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const s=CR.param('s'),S=CONTENT.services.find(x=>x.dir===s),G=CONTENT.price.find(g=>g.id===s),E=CR.esc,page=document.getElementById('page');
+// творческие вступления — своя подача для каждого направления
+const VOICE={
+  salebot:{h:'Бот, который <i>говорит</i> с вашими клиентами, пока вы заняты',p:'Представьте сотрудника, который не устаёт, не путает расписание и отвечает в три часа ночи так же вежливо, как в полдень. Я собираю таких в Salebot: продают, записывают, выдают подарки за подписку и даже играют с аудиторией.',note:'боты бывают добрыми ✳'},
+  tilda:{h:'Сайт, который <i>не перепутаешь</i> с шаблоном',p:'Хороший сайт похож на хорошую витрину: человек останавливается, заходит и сам понимает, что делать дальше. Я собираю такие на Tilda и в Zero Block — а где готовых блоков мало, дописываю код.',note:'от лендинга до магазина'},
+  figma:{h:'Сначала <i>рисую</i> — потом всё остальное',p:'Самые дорогие ошибки сайта появляются до первой строчки вёрстки. Поэтому я начинаю с прототипа: кто придёт, что ищет, где споткнётся. А потом одеваю каркас в визуал, который сразу готов к сборке.',note:'прототип → UI → вёрстка'},
+  getcourse:{h:'Школа, которая <i>работает сама</i>, пока вы снимаете уроки',p:'GetCourse умеет почти всё — если его правильно настроить. Я беру на себя техническую кухню: уроки, доступы, процессы, оплаты и красивые карточки курсов вместо серых плиток.',note:'ученик видит свой прогресс'},
+  webinar:{h:'Эфир, на который <i>приходят</i>, и письма, которые читают',p:'Вебинар продаёт, только если люди до него дошли. Настраиваю комнату в Bizon365, бота-напоминалку и цепочки писем, которые мягко возвращают тех, кто отвлёкся.',note:'автовебинары тоже'}
+};
+const STEPS=[['Знакомимся','Созвон без ТЗ — вопросы задам я.'],['Считаем','Объём, сроки и цена фиксируются заранее.'],['Делаю и показываю','Вы видите промежуточный результат, а не только финал.'],['Запускаем','Проверка на всех устройствах — и я остаюсь на связи.']];
+if(!S){page.innerHTML=`<div class="w page-hd"><h1>Такого раздела <i>нет в меню</i></h1><a class="pill" style="margin-top:26px" href="services.html">Открыть меню мастерской</a></div>`}
+else{
+  const V=VOICE[s];document.title=S.name+' — мастерская Павла Корчагина';
+  const cases=(S.cases||[]).map(CR.short).filter(Boolean);
+  page.innerHTML=`
+  <div class="w page-hd">
+    <div class="crumbs"><a href="services.html">меню</a> → ${E(S.name.toLowerCase())}</div>
+    <h1>${V.h}</h1><p class="lead">${E(V.p)}</p><span class="hand aside-note">${V.note}</span>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="pill" href="brief.html?service=${s}">Обсудить задачу</a><a class="pill o" href="#menu">Цены направления</a></div>
+  </div>
+  <section class="sec tight"><div class="w">
+    <div class="kick">Кому это особенно пригодится</div>
+    <div class="notes n4" style="margin-top:20px">${S.who.map(([w,t])=>`<article class="letter" style="--r:${CR.rr()}" data-rv><footer style="margin:0 0 8px">${E(w)}</footer><p>${E(t)}</p></article>`).join('')}</div>
+  </div></section>
+  <section class="sec" id="menu"><div class="w">
+    <div class="kick">Меню направления</div><h2 class="t">Что можно <i>заказать</i></h2>
+    <div style="max-width:860px;margin-top:30px">${G.items.map(([n,d,p,t])=>`<div class="dish"><div class="row"><b>${E(n)}</b><span class="dots"></span><span class="pr">${E(p)}</span></div><p>${E(d)}${t?` <span class="tm">· ${E(t)}</span>`:''}</p></div>`).join('')}</div>
+    ${(G.packs||[]).length?`<div class="packs" style="max-width:860px">${G.packs.map(([n,d,o,p])=>`<div class="pack" style="--r:${CR.rr()}"><b>${E(n)}</b><p>${E(d)}</p><p style="margin-top:10px"><s>${E(o)}</s><strong>${E(p)}</strong></p></div>`).join('')}</div>`:''}
+  </div></section>
+  ${cases.length?`<section class="sec tight"><div class="w"><div class="kick">Истории из альбома</div><h2 class="t">Уже <i>получалось</i> так</h2><div class="gal">${cases.map((c,i)=>CR.card(c,i)).join('')}</div></div></section>`:''}
+  <section class="sec tight"><div class="w recipe">
+    <div data-rv><div class="kick">Как пойдёт работа</div><h2 class="t">Четыре шага <i>без сюрпризов</i></h2></div>
+    <ol data-rv>${STEPS.map(([b,t])=>`<li><div><b>${b}</b><span>${t}</span></div></li>`).join('')}</ol>
+  </div></section>
+  <section class="sec tight"><div class="w two">
+    <div data-rv><div class="kick">Спрашивают чаще всего</div><h2 class="t">Вопросы <i>о направлении</i></h2></div>
+    <div data-rv>${S.faq.map(([q,a])=>`<details><summary>${E(q)}</summary><p>${CR.fixLinks(a)}</p></details>`).join('')}</div>
+  </div></section>
+  <section class="final"><div class="w"><h2>Начнём с <i>разговора?</i></h2><p>Расскажите, что хотите получить, — я предложу состав работ и назову цену до старта.</p>
+    <div class="acts"><a class="pill" href="brief.html?service=${s}">Рассказать о задаче</a><a class="pill o" href="services.html">Всё меню</a></div></div></section>`;
+}
+CR.done();
+</script>
+</body>
+</html>

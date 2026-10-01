@@ -1,0 +1,71 @@
+@import url("../assets/inner-base.css?v=20261001231639");
+/* Для автосервисов: графит, сигнальный жёлтый, «зебра», Oswald + Roboto, заказ-наряд */
+:root{--bg:#17191c;--ink:#eef0f2;--muted:#9aa1a9;--acc:#ffcc00;--acc-ink:#111;--red:#e8452c;--line:#2c3036;--card:#212429;--fd:"Oswald",Impact,sans-serif;--fb:"Roboto",system-ui,sans-serif;--maxw:1240px}
+.kicker{font:500 13px "Roboto Mono",monospace;letter-spacing:0;text-transform:none;color:var(--acc)}
+.pg-title,.sec-title,.cta-title,.chap-title,.card-title,.post-title,.pack b,.steps b,.who-item b,.spec b,.pager b,.prow-name,.fact b,.big-num,.qa summary{font-family:var(--fd);font-weight:600;text-transform:uppercase;letter-spacing:.01em}
+.pg-title span,.sec-title span,.cta-title span{color:var(--acc)}
+.pg-title{font-size:clamp(42px,6.6vw,100px);line-height:.92}
+.pg-hd{border-bottom:14px solid transparent;border-image:repeating-linear-gradient(-45deg,#ffcc00 0 18px,#111 18px 36px) 14}
+.btn{font:600 16px var(--fd);text-transform:uppercase;letter-spacing:.04em;clip-path:polygon(0 0,100% 0,100% 72%,92% 100%,0 100%)}
+.btn-1:hover{background:#ffe066}
+.btn-2{clip-path:none;box-shadow:inset 0 0 0 2px var(--muted)}
+.btn-2:hover{box-shadow:inset 0 0 0 2px var(--acc);color:var(--acc)}
+.filters button{border:2px solid var(--line);font:600 14px var(--fd);text-transform:uppercase}
+.filters button.on{background:var(--acc);color:#111;border-color:var(--acc)}
+.card{border-bottom:3px solid transparent;transition:border-color .3s,transform .3s}
+.card:hover{border-color:var(--acc);transform:translateY(-4px)}
+.card-img img{filter:grayscale(.6)}
+.card:hover .card-img img{filter:none}
+.card-title{font-size:20px}
+.card-type{font-family:"Roboto Mono",monospace;font-size:12px}
+.card-more{color:var(--acc)}
+.fact{background:var(--card);border-left:4px solid var(--acc)}
+.case-cover img{clip-path:polygon(0 0,100% 0,100% 88%,86% 100%,0 100%);filter:grayscale(.3) contrast(1.05)}
+.chap{border-top:1px solid var(--line)}
+.chap-no{font-family:"Roboto Mono",monospace;color:var(--acc)}
+.done-list li::before{content:"🔧";font-size:13px}
+.tags span{border:1px solid var(--line);font-family:"Roboto Mono",monospace;font-size:12px}
+.flow-step,.steps li,.who-item,.spec,.pager a,.terms,.assistant,.review{background:var(--card);border-top:3px solid var(--acc)}
+/* заказ-наряд: светлый лист */
+.pgroup{border:0;padding:14px 0}
+.pgroup>.w{background:#f1f2ee;color:#1b1d20;padding:clamp(20px,3.6vw,40px);position:relative}
+.pgroup>.w::before{content:"ЗАКАЗ-НАРЯД";position:absolute;right:clamp(20px,3.6vw,40px);top:clamp(16px,3vw,30px);font:500 12px "Roboto Mono",monospace;color:#7a7f86}
+.pgroup .sec-lead,.pgroup .prow-desc{color:#5b6068}
+.pgroup-hd .kicker{color:#7a7f86}
+.pgroup .sec-title{color:#1b1d20}
+.pgroup .btn-2{color:#1b1d20}
+.pgroup .prow{border-bottom:1px solid #d4d6d0}
+.prow-price{font:600 18px var(--fd);color:inherit}
+.pgroup .pack{background:#fff;border-top:3px solid #111}
+.pgroup .pack p,.pgroup .pack-price s{color:#5b6068}
+.pgroup .pack-price strong{color:var(--red)}
+.price-nav a{border:2px solid var(--line);font:600 14px var(--fd);text-transform:uppercase}
+.price-nav a:hover{border-color:var(--acc)}
+.steps li::before{font-family:"Roboto Mono",monospace;color:var(--acc)}
+.rev-ava{background:var(--acc);color:#111}
+.qa summary{font-size:18px}
+.qa summary::after{color:var(--acc)}
+.assistant{border-left:4px solid var(--acc);border-top:0}
+.field input,.field textarea{background:var(--card);border:2px solid var(--line);color:var(--ink)}
+.field input:focus,.field textarea:focus{border-color:var(--acc)}
+.chips span{border:2px solid var(--line);font:600 14px var(--fd);text-transform:uppercase}
+.chips input:checked+span{background:var(--acc);color:#111;border-color:var(--acc)}
+.cta{background:var(--acc);color:#111;text-align:left}
+.cta-title{color:#111;margin:0;max-width:13ch}
+.cta-title span{color:#111;text-decoration:underline 6px}
+.cta-text{color:#111;margin-left:0;font-weight:500}
+.cta .acts{justify-content:flex-start}
+.cta .btn-1{background:#111;color:var(--acc)}
+.cta .btn-2{color:#111;box-shadow:inset 0 0 0 2px #111}
+.big-num{color:var(--acc)}
+.prose .note{background:var(--card);border-left-color:var(--acc)}
+.site-hd{background:var(--bg);border-bottom:1px solid var(--line)}
+.site-hd .w{height:76px}
+.site-hd .logo{font:700 20px var(--fd);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.site-hd .logo .lg{width:34px;height:34px;background:var(--acc);color:#111;display:grid;place-items:center;font-style:normal;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
+.site-hd nav a{font:500 14px var(--fd);text-transform:uppercase;letter-spacing:.06em}
+.site-hd nav a.on,.site-hd nav a:hover{color:var(--acc)}
+.site-ft{border-top:14px solid transparent;border-image:repeating-linear-gradient(-45deg,#ffcc00 0 18px,#111 18px 36px) 14}
+.site-ft .ft-logo{font:700 20px var(--fd);text-transform:uppercase;color:var(--acc)}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:60;background:var(--acc);color:#111;padding:10px 16px;font:600 14px var(--fd);text-transform:uppercase}
+[data-rv]{transform:translateX(-26px)}

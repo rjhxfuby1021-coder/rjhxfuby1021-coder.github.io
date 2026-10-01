@@ -163,3 +163,6 @@ require('./src/static.js')({ root: __dirname, kit, pages: PAGE_DATA, meta: INSTA
 // админки на сайте нет: страница с полем для ключа GitHub похожа на фишинг, и Яндекс Браузер блокирует из-за неё весь домен.
 // Кейсы публикуются из локального файла АДМИНКА.html.
 try { fs.unlinkSync(path.join(__dirname, 'site', 'admin.html')); } catch (e) {}
+
+// новый сайт со стилями (new/) — главный; нынешний сайт уезжает в /ai/ как «ИИшный» стиль
+require('./src/merge-new.js')(__dirname);

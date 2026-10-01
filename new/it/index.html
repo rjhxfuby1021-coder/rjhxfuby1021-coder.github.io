@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs · Павел Корчагин — для IT-команд</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: документация Stripe и GitHub Docs — боковое меню, справочник API, вкладки кода, changelog */
+:root{--bg:#fff;--side:#f7f8fa;--ink:#1a1f36;--g:#5e6578;--l:#e6e8ef;--acc:#6e56cf;--acc2:#f1eefe;--code:#0f1424;--ok:#1aa179;--f:"Fira Sans",system-ui,sans-serif;--m:"Fira Code",ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--f);-webkit-font-smoothing:antialiased}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+code{font:14px var(--m);background:var(--side);border:1px solid var(--l);border-radius:5px;padding:1px 6px;color:#b4235f}
+.top{position:sticky;top:0;z-index:30;height:58px;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--l);display:flex;align-items:center;gap:20px;padding:0 20px}
+.top .brand{font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px}
+.top .brand i{width:26px;height:26px;border-radius:7px;background:var(--acc);color:#fff;display:grid;place-items:center;font:600 12px var(--m);font-style:normal}
+.top .brand small{font-weight:500;color:var(--g)}
+.search{flex:1;max-width:360px;display:flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid var(--l);border-radius:8px;color:var(--g);font-size:14px;background:var(--side)}
+.search kbd{margin-left:auto;font:12px var(--m);border:1px solid var(--l);border-radius:4px;padding:0 5px;background:#fff}
+.top nav{display:flex;gap:18px;font-size:14.5px;margin-left:auto}
+.top nav a{color:var(--g)}
+.top .cta{background:var(--acc);color:#fff;padding:7px 14px;border-radius:8px;font-weight:600;font-size:14px}
+.top .cta:hover{text-decoration:none;background:#5b45b8}
+@media(max-width:900px){.search,.top nav{display:none}.top .cta{margin-left:auto}}
+.layout{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1400px;margin:0 auto}
+aside{position:sticky;top:58px;height:calc(100vh - 58px);overflow-y:auto;border-right:1px solid var(--l);padding:24px 16px;background:var(--side);font-size:14.5px}
+aside h5{font:600 11.5px var(--f);text-transform:uppercase;letter-spacing:.08em;color:var(--g);margin:18px 10px 6px}
+aside h5:first-child{margin-top:0}
+aside a{display:block;padding:5px 10px;border-radius:6px;color:var(--ink)}
+aside a:hover{background:#eceef3;text-decoration:none}
+aside a.on{background:var(--acc2);color:var(--acc);font-weight:600}
+aside .m{font:500 11px var(--m);padding:1px 5px;border-radius:4px;margin-right:6px}
+.get{background:#e3f6ef;color:var(--ok)}.post{background:#fff1dc;color:#b86e00}
+@media(max-width:900px){.layout{grid-template-columns:1fr}aside{display:none}}
+.doc{padding:clamp(24px,4vw,56px) clamp(16px,4vw,60px) 80px;min-width:0}
+.crumb{font-size:13.5px;color:var(--g)}
+h1{font:700 clamp(32px,4.2vw,52px)/1.1 var(--f);letter-spacing:-.025em;margin-top:10px}
+h1 span{color:var(--acc)}
+.lead{font-size:clamp(17px,1.5vw,19px);color:var(--g);max-width:62ch;margin-top:14px}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.badges span{font:500 12.5px var(--m);border:1px solid var(--l);border-radius:999px;padding:3px 10px;color:var(--g)}
+.badges span b{color:var(--ok)}
+h2{font:700 clamp(22px,2.4vw,28px) var(--f);letter-spacing:-.015em;margin:64px 0 8px;padding-top:24px;border-top:1px solid var(--l)}
+h2 a.h{color:var(--l);margin-left:8px;opacity:0}
+h2:hover a.h{opacity:1}
+.sub{color:var(--g);max-width:64ch}
+/* endpoint */
+.ep{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;margin-top:22px;align-items:start}
+.sig{font:500 15px var(--m);display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--l);border-radius:10px;background:var(--side)}
+.params{margin-top:16px;border-top:1px solid var(--l)}
+.params div{padding:12px 0;border-bottom:1px solid var(--l)}
+.params b{font:500 14.5px var(--m)}
+.params small{font:12.5px var(--m);color:var(--g);margin-left:8px}
+.params p{font-size:14.5px;color:var(--g);margin-top:2px}
+.code{background:var(--code);border-radius:12px;overflow:hidden;color:#d6deeb;font:13.5px/1.7 var(--m)}
+.code .tb{display:flex;align-items:center;gap:2px;background:#151b30;padding:6px 8px;border-bottom:1px solid #222a44}
+.code .tb button{padding:4px 10px;border-radius:6px;font:500 12.5px var(--m);color:#8b93ad}
+.code .tb button.on{background:#232c4a;color:#fff}
+.code .tb .run{margin-left:auto;background:var(--acc);color:#fff;font-weight:500}
+.code pre{padding:16px;overflow-x:auto;white-space:pre}
+.k{color:#c792ea}.s{color:#ecc48d}.n{color:#f78c6c}.c{color:#637777}.p{color:#82aaff}
+.resp{border-top:1px solid #222a44}
+.resp .st{padding:8px 16px;font:500 12.5px var(--m);color:#7fdbb6;background:#121a2e}
+@media(max-width:1100px){.ep{grid-template-columns:1fr}}
+/* changelog */
+.cl{margin-top:22px}
+.ce{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding:22px 0;border-bottom:1px solid var(--l)}
+.ce .v{font:500 13px var(--m);color:var(--g)}
+.ce .v b{display:block;color:var(--ink);font-size:14px}
+.ce h4{font:600 18px var(--f)}
+.ce p{color:var(--g);font-size:15px;margin-top:4px}
+.ce .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.ce .tags span{font:12px var(--m);background:var(--acc2);color:var(--acc);padding:2px 8px;border-radius:5px}
+.ce .row{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:20px;align-items:start}
+.ce img{border:1px solid var(--l);border-radius:8px;aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
+@media(max-width:760px){.ce{grid-template-columns:1fr;gap:6px}.ce .row{grid-template-columns:1fr}}
+.callout{display:flex;gap:12px;padding:14px 16px;border-radius:10px;background:var(--acc2);border:1px solid #ddd5fb;margin-top:22px;font-size:15px}
+.callout b{color:var(--acc)}
+table.t{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px}
+table.t th{text-align:left;font:600 12.5px var(--f);text-transform:uppercase;letter-spacing:.06em;color:var(--g);padding:10px;border-bottom:1px solid var(--l)}
+table.t td{padding:12px 10px;border-bottom:1px solid var(--l)}
+table.t td:last-child{font:500 14px var(--m);white-space:nowrap}
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
+.revs article{border:1px solid var(--l);border-radius:12px;padding:18px;font-size:15px}
+.revs footer{margin-top:12px;font-size:13.5px;color:var(--g)}
+.revs footer b{color:var(--ink);display:block}
+@media(max-width:1000px){.revs{grid-template-columns:1fr}}
+.next{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.next a{border:1px solid var(--l);border-radius:12px;padding:18px;color:var(--ink)}
+.next a:hover{border-color:var(--acc);text-decoration:none}
+.next small{color:var(--g);display:block}
+.next b{color:var(--acc)}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:#fff;border:1px solid var(--l);border-radius:8px;padding:8px 12px;font:500 13px var(--m);color:var(--acc);box-shadow:0 8px 20px -10px rgba(26,31,54,.25)}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header class="top"><a class="brand" href="#"><span class="pk-logo pk-logo--it"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span><small> / docs</small></a><span class="search">🔍 Поиск по документации <kbd>Ctrl K</kbd></span><nav><a data-page="cases">Кейсы</a><a data-page="price">Прайс</a><a data-page="blog">Блог</a></nav><a class="cta" href="#start">Начать проект</a></header>
+<div class="layout">
+<aside id="side">
+  <h5>Начало</h5><a href="#intro" class="on">Обзор</a><a href="#quick">Быстрый старт</a>
+  <h5>Справочник</h5><a href="#create"><span class="m post">POST</span>/projects</a><a href="#stack"><span class="m get">GET</span>/stack</a>
+  <h5>Ресурсы</h5><a href="#changelog">Changelog (кейсы)</a><a href="#pricing">Тарифы</a><a href="#reviews">Отзывы</a><a href="#start">Поддержка</a>
+</aside>
+<main class="doc">
+  <section id="intro">
+    <div class="crumb">Docs › Обзор</div>
+    <h1>Сайты, боты и онлайн-школы <span>для IT-команд</span></h1>
+    <p class="lead">Делаю лендинги для сложных технических продуктов — так, чтобы их понимали и бизнес, и инженеры. Плюс чат-боты, автоматизации и школы на GetCourse. Один исполнитель, понятный интерфейс взаимодействия.</p>
+    <div class="badges"><span>status: <b>accepting projects</b></span><span>response_time: 1 рабочий день</span><span>negative_reviews: 0</span><span>projects: 25</span></div>
+    <div class="callout"><span>💡</span><div><b>Флагманский пример:</b> лендинг QLedger — финансового ядра для банков, со схемами, бенчмарками и вкладками кода. <a href="https://texspeckps.tilda.ws/qledger" target="_blank" rel="noopener">Открыть ↗</a></div></div>
+  </section>
+
+  <section id="quick"><h2>Быстрый старт<a class="h" href="#quick">#</a></h2>
+    <p class="sub">Готовое ТЗ не нужно. Три шага:</p>
+    <ol style="margin:12px 0 0 20px;color:var(--g)"><li>Отправьте бриф — <a data-page="form">форма</a> или <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a>.</li><li>Созвон: задам вопросы о продукте, аудитории и целях.</li><li>Получите план работ, сроки и смету.</li></ol>
+  </section>
+
+  <section id="create"><h2><code style="font-size:.7em;background:#fff1dc;color:#b86e00;border:0">POST</code> /projects<a class="h" href="#create">#</a></h2>
+    <p class="sub">Создаёт проект. Возвращает состав работ и ориентир по стоимости.</p>
+    <div class="ep">
+      <div>
+        <div class="sig"><span class="m post" style="font:500 12px var(--m);padding:2px 6px;border-radius:4px">POST</span>https://texspeckps.ru/api/projects</div>
+        <div class="params">
+          <div><b>type</b><small>string · required</small><p>Тип проекта: <code>landing</code>, <code>multipage</code>, <code>bot</code>, <code>ai_assistant</code>, <code>school</code>.</p></div>
+          <div><b>stack</b><small>array</small><p>Инструменты: Figma, Tilda, Zero Block, Salebot, GetCourse, Bizon365, HTML/CSS/JS.</p></div>
+          <div><b>design</b><small>boolean</small><p>Нужен ли дизайн в Figma с нуля.</p></div>
+          <div><b>support</b><small>boolean</small><p>Сопровождение после запуска, 3–7 тыс ₽/мес.</p></div>
+        </div>
+      </div>
+      <div class="code">
+        <div class="tb"><button class="on" data-l="curl">cURL</button><button data-l="js">Node.js</button><button data-l="py">Python</button><button class="run" id="run">▶ Отправить</button></div>
+        <pre id="req"></pre>
+        <div class="resp" id="resp" hidden><div class="st">200 OK · пример ответа</div><pre id="res"></pre></div>
+      </div>
+    </div>
+    <p style="font-size:13.5px;color:var(--g);margin-top:10px">Это иллюстрация: настоящего API нет, а цифры взяты из прайса. Заявка отправляется <a data-page="form">через бриф</a>.</p>
+  </section>
+
+  <section id="stack"><h2><code style="font-size:.7em;background:#e3f6ef;color:var(--ok);border:0">GET</code> /stack<a class="h" href="#stack">#</a></h2>
+    <p class="sub">Цепочка «клик → заявка → оплата», каждое звено которой настраиваю сам.</p>
+    <div class="code" style="margin-top:16px"><pre id="stackJson"></pre></div>
+  </section>
+
+  <section id="changelog"><h2>Changelog · кейсы<a class="h" href="#changelog">#</a></h2>
+    <p class="sub">Последние релизы. Полный список — <a data-page="cases">все 25 проектов</a>.</p>
+    <div class="cl" id="cl"></div>
+  </section>
+
+  <section id="pricing"><h2>Тарифы<a class="h" href="#pricing">#</a></h2>
+    <table class="t"><thead><tr><th>Ресурс</th><th>Лимиты</th><th>Цена</th></tr></thead><tbody id="pt"></tbody></table>
+    <p style="margin-top:12px;font-size:14.5px"><a data-page="price">Полный прайс и калькулятор →</a></p>
+  </section>
+
+  <section id="reviews"><h2>Отзывы<a class="h" href="#reviews">#</a></h2>
+    <div class="revs" id="revs"></div>
+  </section>
+
+  <section id="start"><h2>Поддержка и старт<a class="h" href="#start">#</a></h2>
+    <p class="sub">Павел Корчагин, 31, Троицк (Москва). Отвечаю в течение рабочего дня. За рекомендацию — 10% от оплаченного заказа.</p>
+    <div class="next"><a data-page="form"><small>Следующий шаг</small><b>Отправить бриф →</b></a><a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener"><small>Или напрямую</small><b>Telegram @PavelTexSpec →</b></a></div>
+  </section>
+</main>
+</div>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id),by=id=>D.all.find(c=>c.id===id);
+const REQ={
+ curl:`<span class="p">curl</span> -X POST https://texspeckps.ru/api/projects \\
+  -H <span class="s">"Content-Type: application/json"</span> \\
+  -d <span class="s">'{
+    "type": "landing",
+    "stack": ["Figma", "Tilda", "Zero Block"],
+    "design": true,
+    "support": true
+  }'</span>`,
+ js:`<span class="k">const</span> res = <span class="k">await</span> <span class="p">fetch</span>(<span class="s">"https://texspeckps.ru/api/projects"</span>, {
+  method: <span class="s">"POST"</span>,
+  body: JSON.<span class="p">stringify</span>({
+    type: <span class="s">"landing"</span>,
+    stack: [<span class="s">"Figma"</span>, <span class="s">"Tilda"</span>, <span class="s">"Zero Block"</span>],
+    design: <span class="k">true</span>, support: <span class="k">true</span>
+  })
+});`,
+ py:`<span class="k">import</span> requests
+
+res = requests.<span class="p">post</span>(<span class="s">"https://texspeckps.ru/api/projects"</span>, json={
+    <span class="s">"type"</span>: <span class="s">"landing"</span>,
+    <span class="s">"stack"</span>: [<span class="s">"Figma"</span>, <span class="s">"Tilda"</span>, <span class="s">"Zero Block"</span>],
+    <span class="s">"design"</span>: <span class="k">True</span>, <span class="s">"support"</span>: <span class="k">True</span>,
+})`};
+const setL=l=>{$('req').innerHTML=REQ[l];document.querySelectorAll('.tb button[data-l]').forEach(b=>b.classList.toggle('on',b.dataset.l===l))};
+document.querySelector('.tb').addEventListener('click',e=>{const b=e.target.closest('button[data-l]');if(b)setL(b.dataset.l)});setL('curl');
+$('run').onclick=()=>{const r=$('resp');r.hidden=false;$('res').innerHTML='';const txt=`{
+  <span class="s">"id"</span>: <span class="s">"prj_2026"</span>,
+  <span class="s">"status"</span>: <span class="s">"brief_needed"</span>,
+  <span class="s">"executor"</span>: <span class="s">"Павел Корчагин"</span>,
+  <span class="s">"items"</span>: [
+    { <span class="s">"name"</span>: <span class="s">"Дизайн в Figma"</span>, <span class="s">"from_rub"</span>: <span class="n">10000</span> },
+    { <span class="s">"name"</span>: <span class="s">"Лендинг на Tilda"</span>, <span class="s">"from_rub"</span>: <span class="n">2000</span> },
+    { <span class="s">"name"</span>: <span class="s">"Поддержка"</span>, <span class="s">"per_month_rub"</span>: <span class="s">"3000–7000"</span> }
+  ],
+  <span class="s">"eta"</span>: <span class="s">"от 5–7 рабочих дней"</span>,
+  <span class="s">"next"</span>: <span class="s">"https://texspeckps.ru/form"</span>
+}`;let i=0;const lines=txt.split('\n');(function f(){if(i<lines.length){$('res').innerHTML+=(i?'\n':'')+lines[i++];setTimeout(f,60)}})()};
+$('stackJson').innerHTML='[\n'+D.chain.map(([t,e,p],i)=>`  { <span class="s">"step"</span>: <span class="n">${i+1}</span>, <span class="s">"layer"</span>: <span class="s">"${e}"</span>, <span class="s">"tool"</span>: <span class="s">"${t}"</span> }${i<D.chain.length-1?',':''}  <span class="c">// ${p}</span>`).join('\n')+'\n]';
+const CL=[['qledger','2026','B2B-лендинг'],['pro-technik','2026','онлайн-школа'],['sb-portfolio-ai','2026','ИИ + база знаний'],['sb-autowebinar','2026','автоворонка'],['cafe-shop','2026','e-commerce']];
+$('cl').innerHTML=CL.map(([id,v,k])=>{const c=by(id);return `<div class="ce"><div class="v"><b>${v}</b>${c.client?'client':'own'}</div><div class="row"><div><h4>${c.url?`<a href="${c.url}" target="_blank" rel="noopener">${c.t}</a>`:c.t}</h4><p>${c.p}</p><p style="margin-top:6px"><b style="color:var(--ok);font-family:var(--m)">+ ${c.f[0]}</b> ${c.f[1]}</p><div class="tags"><span>${k}</span>${c.tools.map(t=>`<span>${t}</span>`).join('')}</div></div><img src="${c.img}" alt="${c.t}" loading="lazy"></div></div>`}).join('');
+const IP=[['Лендинг для продукта','структура, дизайн, адаптив, формы','от 2 000 ₽'],['Многостраничный сайт','единый стиль, навигация','от 10 000 ₽'],['Вёрстка из Figma','сетка, шрифты и анимации сохраняются','от 5 000 ₽'],['ИИ-ассистент','ответы по вашей базе знаний','от 8 000 ₽'],['Онлайн-школа на GetCourse','курсы, доступы, процессы','от 10 000 ₽'],['UX/UI-аудит сайта','где теряются посетители + список правок','от 3 000 ₽']];
+$('pt').innerHTML=IP.map(([a,b,c])=>`<tr><td>${a}</td><td style="color:var(--g)">${b}</td><td>${c}</td></tr>`).join('');
+$('revs').innerHTML=D.reviews.map(r=>`<article>${r.text}<footer><b>${r.who}</b>${r.role}</footer></article>`).join('');
+const secs=[...document.querySelectorAll('main section')],links=[...document.querySelectorAll('aside a')];
+addEventListener('scroll',()=>{let id=secs[0].id;secs.forEach(s=>{if(s.getBoundingClientRect().top<120)id=s.id});links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id))},{passive:true});
+styleSwitch('style.switch()');
+</script>
+</body>
+</html>

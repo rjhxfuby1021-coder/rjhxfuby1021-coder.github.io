@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Политика конфиденциальности — Павел Корчагин</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<style>.prose > p:first-of-type::first-letter{float:none;font:inherit;color:inherit;margin:0}.prose h2{font-size:clamp(24px,2.4vw,32px)}.prose{font-size:17px}</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main>
+  <div class="w page-hd" style="max-width:980px">
+    <div class="crumbs"><a href="index.html">мастерская</a> → документы</div>
+    <h1 style="font-size:clamp(36px,5vw,72px)">Политика <i>конфиденциальности</i></h1>
+    <p class="lead">Документ скучный, но важный: как я обращаюсь с данными, которые вы оставляете на сайте. Если коротко — бережно и только для того, чтобы ответить вам.</p>
+  </div>
+  <section class="sec tight"><div class="w"><article class="prose" id="doc"></article></div></section>
+</main>
+<footer id="foot"></footer>
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/content.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+document.getElementById('doc').innerHTML=CONTENT.policy.map(([h,ps],i)=>`<h2>${i+1}. ${CR.esc(h)}</h2>${[].concat(ps).map(p=>Array.isArray(p)?`<ul>${p.map(li=>`<li>${CR.fixLinks(li)}</li>`).join('')}</ul>`:`<p>${CR.fixLinks(p)}</p>`).join('')}`).join('');
+CR.done();
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Письма заказчиков — Павел Корчагин</title>
+<meta name="description" content="Отзывы заказчиков о сайтах, ботах и онлайн-школах Павла Корчагина — целиком, без сокращений.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<style>
+.mail{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(24px,5vw,70px);align-items:center;padding:clamp(40px,5vw,70px) 0;border-top:1.5px solid var(--ink)}
+.mail:nth-child(even){grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr)}
+.mail:nth-child(even) .letter{order:2}
+.mail .letter p{font-size:19px}
+.mail .ph{position:relative;transform:rotate(var(--r))}
+.mail .ph img{aspect-ratio:4/3}
+.mail .proj{display:block;margin-top:14px;font:700 22px var(--hand);color:var(--blue)}
+@media(max-width:860px){.mail,.mail:nth-child(even){grid-template-columns:1fr}.mail:nth-child(even) .letter{order:0}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main>
+  <div class="w page-hd">
+    <div class="crumbs"><a href="index.html">мастерская</a> → письма</div>
+    <h1>Письма, которые <i>приходят</i> после запуска</h1>
+    <p class="lead">Я не прошу заказчиков писать красиво — просто сохраняю то, что они сами присылают, когда проект заработал. Здесь письма целиком, вместе со смайликами.</p>
+    <span class="hand aside-note">отрицательных пока ни одного — стараюсь, чтобы так и оставалось</span>
+  </div>
+  <div class="w" id="mails"></div>
+
+  <section class="sec"><div class="w two">
+    <div data-rv><div class="kick">Мы уже работали вместе?</div><h2 class="t">Напишите <i>своё письмо</i></h2></div>
+    <div data-rv style="align-self:end"><p style="font-size:19px;color:#3b352f">Если я делал для вас сайт, бота или школу — буду рад паре строк о том, как всё работает сейчас. А если ещё нет — давайте это исправим.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px"><a class="pill" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Прислать отзыв в Telegram</a><a class="pill o" href="brief.html">Начать проект</a></div></div>
+  </div></section>
+</main>
+<footer id="foot"></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/content.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const E=CR.esc;
+document.getElementById('mails').innerHTML=CONTENT.reviews.map(r=>{
+  const id=(r.link||'').split('#')[1],c=id&&CR.short(id);
+  return `<div class="mail" data-rv>
+    <article class="letter" style="--r:${CR.rr()}"><p>${E(r.text)}</p><footer>${E(r.name)}<small>${E(r.role)} · ${E(r.project)}</small></footer></article>
+    ${c?`<a class="ph" style="--r:${CR.rr()}" href="${CR.caseUrl(c.id)}"><img src="${c.img}" alt="${E(c.t)}" loading="lazy"><span>${E(r.project.toLowerCase())}</span></a>`:''}
+  </div>`}).join('');
+CR.done();
+</script>
+</body>
+</html>

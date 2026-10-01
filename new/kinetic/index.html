@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Павел Корчагин — экспериментальный</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;500;800;900&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: кинетическая типографика победителей Awwwards — огромные слова, движение от прокрутки, оранжевый на светло-сером */
+:root{--bg:#e8e8e3;--ink:#0d0d0d;--or:#ff4f00;--g:#6b6b66;--d:"Unbounded",system-ui,sans-serif;--s:"Manrope",system-ui,sans-serif;--gut:clamp(14px,3vw,40px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip}
+body{background:var(--bg);color:var(--ink);font:500 17px/1.5 var(--s);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.w{padding:0 var(--gut)}
+header{position:fixed;inset:0 0 auto;z-index:40;mix-blend-mode:difference;color:#fff}
+header .w{display:flex;justify-content:space-between;align-items:center;height:70px;font:500 13px var(--d);text-transform:uppercase;letter-spacing:.04em}
+header nav{display:flex;gap:24px}
+@media(max-width:760px){header nav a:nth-child(n+3){display:none}}
+/* hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:80px;overflow:hidden;position:relative}
+.mega{font:900 clamp(64px,17vw,300px)/.82 var(--d);letter-spacing:-.06em;text-transform:uppercase;white-space:nowrap}
+.mega .ln{display:block;will-change:transform}
+.mega .ln:nth-child(2){color:var(--or);padding-left:8vw}
+.mega .ln:nth-child(3){-webkit-text-stroke:2px var(--ink);color:transparent}
+.swap{display:inline-block;position:relative;overflow:hidden;vertical-align:top;height:.84em}
+.swap span{display:block;transition:transform .7s cubic-bezier(.7,0,.2,1)}
+.hero .meta{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-top:clamp(24px,4vw,50px)}
+.hero p{max-width:40ch;font-size:clamp(16px,1.4vw,19px)}
+.go{display:inline-flex;align-items:center;justify-content:center;width:clamp(120px,12vw,170px);aspect-ratio:1;border-radius:50%;background:var(--or);color:#fff;font:800 14px/1.15 var(--d);text-transform:uppercase;text-align:center;transition:transform .4s cubic-bezier(.3,1.6,.5,1)}
+.go:hover{transform:scale(1.08) rotate(-8deg)}
+/* scrolling rows */
+.rows{padding:clamp(40px,6vw,80px) 0;overflow:hidden;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.row{display:flex;gap:.4em;white-space:nowrap;font:800 clamp(40px,8vw,130px)/1.05 var(--d);text-transform:uppercase;letter-spacing:-.04em;will-change:transform}
+.row span:nth-child(even){color:transparent;-webkit-text-stroke:2px var(--ink)}
+.row .o{color:var(--or)!important;-webkit-text-stroke:0!important}
+section{padding:clamp(70px,10vw,140px) 0}
+.lbl{font:500 13px var(--d);text-transform:uppercase;letter-spacing:.06em;color:var(--g);display:flex;gap:14px;align-items:center}
+.lbl::before{content:"";width:12px;height:12px;background:var(--or);border-radius:50%}
+/* counters */
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin-top:40px;border-top:2px solid var(--ink)}
+.nums div{padding:22px 16px 0 0}
+.nums b{display:block;font:900 clamp(48px,7vw,120px)/.9 var(--d);letter-spacing:-.06em}
+.nums div:nth-child(2) b{color:var(--or)}
+.nums span{display:block;margin-top:10px;font-size:14.5px;color:var(--g);max-width:22ch}
+@media(max-width:760px){.nums{grid-template-columns:1fr 1fr;row-gap:24px}}
+/* case big */
+.case{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,60px);align-items:end;margin-top:30px}
+.case h2{font:900 clamp(40px,6vw,104px)/.88 var(--d);letter-spacing:-.05em;text-transform:uppercase}
+.case h2 em{font-style:normal;color:var(--or)}
+.case .im{overflow:hidden;border-radius:4px;aspect-ratio:4/3}
+.case .im img{width:100%;height:120%;object-fit:cover;object-position:top;will-change:transform}
+.case p{max-width:46ch;margin-top:18px}
+.case blockquote{margin-top:18px;font-size:15px;color:var(--g);border-left:3px solid var(--or);padding-left:12px}
+@media(max-width:860px){.case{grid-template-columns:1fr}}
+/* index */
+.idx{margin-top:30px;border-top:2px solid var(--ink)}
+.it{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:clamp(14px,2vw,22px) 0;border-bottom:2px solid var(--ink);position:relative;overflow:hidden}
+.it::before{content:"";position:absolute;inset:0;background:var(--or);transform:translateY(101%);transition:transform .45s cubic-bezier(.7,0,.2,1);z-index:-1}
+.it:hover::before{transform:none}
+.it{isolation:isolate}
+.it h3{font:800 clamp(24px,4.4vw,72px)/1 var(--d);letter-spacing:-.04em;text-transform:uppercase;transition:transform .45s cubic-bezier(.7,0,.2,1),color .3s}
+.it:hover h3{transform:translateX(20px);color:#fff}
+.it span{font:500 13px var(--d);text-transform:uppercase;color:var(--g);text-align:right;flex:none;transition:color .3s}
+.it:hover span{color:#fff}
+.cursor-img{position:fixed;left:0;top:0;width:min(360px,40vw);aspect-ratio:4/3;object-fit:cover;object-position:top;pointer-events:none;z-index:30;opacity:0;transform:translate(-50%,-50%) rotate(-4deg) scale(.6);transition:opacity .3s,transform .4s cubic-bezier(.3,1.5,.5,1);border:3px solid var(--ink)}
+.cursor-img.on{opacity:1;transform:translate(-50%,-50%) rotate(-4deg) scale(1)}
+@media(hover:none){.cursor-img{display:none}}
+/* services strip */
+.svc{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:2px solid var(--ink);margin-top:30px}
+.svc div{padding:20px 16px 26px 0;border-right:2px solid var(--ink)}
+.svc div:last-child{border-right:0}
+.svc div+div{padding-left:16px}
+.svc b{display:block;font:800 18px/1.15 var(--d);text-transform:uppercase;letter-spacing:-.02em}
+.svc p{font-size:14.5px;color:var(--g);margin-top:10px}
+.svc i{display:block;font-style:normal;font:500 14px var(--d);color:var(--or);margin-top:14px}
+@media(max-width:1000px){.svc{grid-template-columns:1fr 1fr}.svc div{border-right:0;border-bottom:2px solid var(--ink);padding-left:0!important}}
+.more{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font:800 15px var(--d);text-transform:uppercase;border-bottom:3px solid var(--or);padding-bottom:4px}
+.more:hover{color:var(--or)}
+/* reviews */
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,40px);margin-top:30px}
+.revs p{font:300 clamp(17px,1.4vw,20px)/1.45 var(--d)}
+.revs footer{margin-top:16px;font-size:14px;color:var(--g)}
+.revs footer b{color:var(--ink);display:block}
+@media(max-width:900px){.revs{grid-template-columns:1fr}}
+/* final */
+.final{background:var(--ink);color:var(--bg);overflow:hidden;padding:clamp(70px,10vw,140px) 0}
+.final .mega{color:var(--bg);font-size:clamp(56px,14vw,240px)}
+.final .mega .ln:nth-child(2){color:var(--or)}
+.final .acts{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-top:40px}
+.final p{max-width:40ch;color:#b8b8b2}
+.final .links{display:flex;gap:24px;flex-wrap:wrap;font:800 16px var(--d);text-transform:uppercase}
+.final .links a{border-bottom:3px solid var(--or);padding-bottom:3px}
+footer.f{background:var(--ink);color:#77776f;padding:0 0 28px;font:500 12px var(--d);text-transform:uppercase}
+footer.f .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #2a2a28;padding-top:20px}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:var(--or);color:#fff;padding:10px 16px;border-radius:999px;font:800 12px var(--d);text-transform:uppercase}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.row,.mega .ln{transform:none!important}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header><div class="w"><a href="#"><span class="pk-logo pk-logo--kinetic"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span></a><nav><a data-page="cases">Кейсы</a><a data-page="price">Цены</a><a data-page="reviews">Отзывы</a><a href="#contact">Связь</a></nav></div></header>
+
+<main>
+<div class="hero w">
+  <h1 class="mega" aria-label="Сайты, боты, школы — один человек">
+    <span class="ln" data-x="-0.15">Делаю</span>
+    <span class="ln" data-x="0.25"><span class="swap" id="swap"><span>сайты</span></span></span>
+    <span class="ln" data-x="-0.35">сам</span>
+  </h1>
+  <div class="meta">
+    <p>Дизайн, сайт, чат-бот, онлайн-школа и рассылки — одним человеком и в одной системе, которая сама доводит клиента до оплаты.</p>
+    <a class="go" href="#contact">Обсудить проект →</a>
+  </div>
+</div>
+
+<div class="rows" aria-hidden="true">
+  <div class="row" data-v="1"><span>Figma</span><span class="o">✳</span><span>Tilda</span><span class="o">✳</span><span>Zero Block</span><span class="o">✳</span><span>Figma</span><span class="o">✳</span><span>Tilda</span></div>
+  <div class="row" data-v="-1"><span>Salebot</span><span class="o">✳</span><span>GetCourse</span><span class="o">✳</span><span>Bizon365</span><span class="o">✳</span><span>Salebot</span><span class="o">✳</span><span>GetCourse</span></div>
+  <div class="row" data-v="1.4"><span>ИИ-боты</span><span class="o">✳</span><span>Рассылки</span><span class="o">✳</span><span>HTML/CSS/JS</span><span class="o">✳</span><span>ИИ-боты</span></div>
+</div>
+
+<section class="w">
+  <span class="lbl">В цифрах</span>
+  <div class="nums" id="nums"></div>
+</section>
+
+<section class="w" style="padding-top:0">
+  <span class="lbl">Главный кейс</span>
+  <div class="case">
+    <div>
+      <h2>Кафе: <em>0 → 86</em> заявок в неделю</h2>
+      <p>До сайта онлайн-заказов не было совсем. Сайт-магазин с онлайн-меню, корзиной и доставкой вывел кафе на №1 в поиске по области. Конверсия — 15,44%.</p>
+      <blockquote id="q"></blockquote>
+      <a class="more" href="https://priyatnogoappetita.tilda.ws/" target="_blank" rel="noopener">Открыть сайт ↗</a>
+    </div>
+    <a class="im" href="https://priyatnogoappetita.tilda.ws/" target="_blank" rel="noopener"><img id="cImg" alt="Сайт кафе"></a>
+  </div>
+</section>
+
+<section class="w" style="padding-top:0">
+  <span class="lbl">Проекты · наведите</span>
+  <div class="idx" id="idx"></div>
+  <a class="more" data-page="cases">Все 25 проектов →</a>
+</section>
+
+<section class="w" style="padding-top:0">
+  <span class="lbl">Что делаю</span>
+  <div class="svc" id="svc"></div>
+  <a class="more" data-page="price">Цены и калькулятор →</a>
+</section>
+
+<section class="w" style="padding-top:0">
+  <span class="lbl">Отзывы · 0 отрицательных</span>
+  <div class="revs" id="revs"></div>
+  <a class="more" data-page="reviews">Все отзывы →</a>
+</section>
+</main>
+
+<section class="final" id="contact"><div class="w">
+  <h2 class="mega"><span class="ln" data-x="0.2">Давайте</span><span class="ln" data-x="-0.3">начнём</span></h2>
+  <div class="acts"><p>Заявка придёт мне в Telegram. Отвечаю в течение рабочего дня. Готовое ТЗ не нужно — вопросы задам сам.</p>
+  <div class="links"><a data-page="form">Заявка ↗</a><a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram ↗</a><a data-page="about">Резюме ↗</a></div></div>
+</div></section>
+<footer class="f"><div class="w"><span>© 2026 Павел Корчагин · Троицк, Москва</span><span>texspeckps.ru</span></div></footer>
+<img class="cursor-img" id="ci" alt="">
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id);
+/* смена слова */
+const W=['сайты','ботов','школы','дизайн','рассылки'];let wi=0;const sw=$('swap');
+const sp=sw.firstElementChild;
+setInterval(()=>{wi=(wi+1)%W.length;sp.style.transform='translateY(-105%)';setTimeout(()=>{sp.style.transition='none';sp.textContent=W[wi];sp.style.transform='translateY(105%)';sp.offsetHeight;sp.style.transition='';sp.style.transform='translateY(0)'},700)},2400);
+/* движение от прокрутки + скорость */
+const rows=[...document.querySelectorAll('.row')],lns=[...document.querySelectorAll('.mega .ln')];
+let last=scrollY,vel=0;
+function loop(){const y=scrollY;vel+=((y-last)-vel)*.1;last=y;
+  rows.forEach(r=>{const v=+r.dataset.v,rect=r.getBoundingClientRect();const p=(innerHeight-rect.top)*.35*v;r.style.transform=`translateX(${-200+p}px) skewX(${Math.max(-12,Math.min(12,-vel*.4*Math.sign(v)))}deg)`});
+  lns.forEach(l=>{const rect=l.getBoundingClientRect();l.style.transform=`translateX(${(rect.top-innerHeight/2)*+l.dataset.x}px)`});
+  requestAnimationFrame(loop)}
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)loop();
+/* счётчики */
+const N=[[10,'+','завершённых проектов'],[86,'','заявок в неделю у кафе'],[25,'','проектов в портфолио'],[0,'','отрицательных отзывов']];
+$('nums').innerHTML=N.map(([n,s,t])=>`<div><b data-n="${n}" data-s="${s}">0${s}</b><span>${t}</span></div>`).join('');
+new IntersectionObserver((e,o)=>{if(!e[0].isIntersecting)return;o.disconnect();document.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n,t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1400),v=Math.round(n*(1-Math.pow(1-k,3)));b.textContent=v+b.dataset.s;if(k<1)requestAnimationFrame(f)})(t0)})}).observe($('nums'));
+$('cImg').src=D.cases[0].img;
+$('q').textContent='«'+D.feature.review.text+'» — '+D.feature.review.who;
+const ci=$('ci');
+$('idx').innerHTML=D.all.slice(1,9).map(c=>`<a class="it" data-img="${c.img}" ${c.url?`href="${c.url}" target="_blank" rel="noopener"`:'data-page="cases"'}><h3>${c.t.split(/ — |: /)[0]}</h3><span>${c.type}<br>${c.f[0]}</span></a>`).join('');
+document.querySelectorAll('.it').forEach(a=>{a.addEventListener('mouseenter',()=>{ci.src=a.dataset.img;ci.classList.add('on')});a.addEventListener('mouseleave',()=>ci.classList.remove('on'))});
+addEventListener('mousemove',e=>{ci.style.left=e.clientX+'px';ci.style.top=e.clientY+'px'});
+$('svc').innerHTML=D.services.map(([h,p,b])=>`<div><b>${h}</b><p>${p}</p><i>${b}</i></div>`).join('');
+$('revs').innerHTML=D.reviews.map(r=>`<article><p>«${r.text}»</p><footer><b>${r.who}</b>${r.role}</footer></article>`).join('');
+styleSwitch('Стиль ↺');
+</script>
+</body>
+</html>

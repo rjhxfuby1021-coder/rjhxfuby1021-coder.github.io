@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сайты для юристов — Павел Корчагин</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: сайты юридических фирм (Clifford Chance, «Пепеляев Групп») — слоновая кость, тёмно-синий, бордо, структура договора */
+:root{--paper:#f6f2ea;--sheet:#fffdf8;--ink:#1a2236;--navy:#1b2a4a;--bord:#7b1e2b;--g:#6c6a64;--line:#d9d2c3;--serif:"PT Serif",Georgia,serif;--sans:"PT Sans",system-ui,sans-serif;--gut:clamp(16px,4vw,48px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.7 var(--serif);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.w{max-width:1160px;margin:0 auto;padding:0 var(--gut)}
+.sc{font:700 12.5px var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 26px;background:var(--navy);color:#fff;font:700 13.5px var(--sans);letter-spacing:.1em;text-transform:uppercase;transition:background .3s}
+.btn:hover{background:var(--bord)}
+.btn.o{background:none;color:var(--navy);box-shadow:inset 0 0 0 1px var(--navy)}
+.btn.o:hover{background:var(--navy);color:#fff}
+header{border-bottom:3px double var(--navy);background:var(--sheet)}
+header .w{display:flex;justify-content:space-between;align-items:center;height:84px;gap:16px}
+.logo{display:flex;align-items:center;gap:12px}
+.logo i{width:42px;height:42px;border:1.5px solid var(--navy);display:grid;place-items:center;font:700 18px var(--serif);font-style:normal;color:var(--navy)}
+.logo b{display:block;font:700 18px var(--serif)}
+.logo small{display:block;font:400 12px var(--sans);color:var(--g);letter-spacing:.08em;text-transform:uppercase}
+header nav{display:flex;gap:28px;font:700 13px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--g)}
+header nav a:hover{color:var(--bord)}
+@media(max-width:900px){header nav{display:none}}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,5vw,70px);align-items:center;padding:clamp(50px,7vw,100px) 0}
+.hero h1{font:400 clamp(38px,5vw,66px)/1.1 var(--serif);color:var(--navy);margin-top:18px}
+.hero h1 i{color:var(--bord)}
+.hero p{color:#4a4a52;max-width:46ch;margin-top:20px}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.seal{position:relative;background:var(--sheet);border:1px solid var(--line);padding:clamp(24px,3vw,36px);box-shadow:0 30px 60px -40px rgba(27,42,74,.5)}
+.seal::before{content:"";position:absolute;inset:8px;border:1px solid var(--line);pointer-events:none}
+.seal .row{display:flex;justify-content:space-between;gap:14px;padding:12px 0;border-bottom:1px dotted var(--line);font-size:15.5px}
+.seal .row b{font-family:var(--sans);color:var(--navy);white-space:nowrap}
+.stamp{position:absolute;right:-18px;bottom:-26px;width:130px;height:130px;border-radius:50%;border:3px double var(--bord);color:var(--bord);display:grid;place-items:center;text-align:center;font:700 11px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;transform:rotate(-12deg);background:rgba(246,242,234,.85)}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.stamp{right:10px}}
+/* contract */
+.contract{background:var(--sheet);border:1px solid var(--line);box-shadow:0 40px 80px -60px rgba(27,42,74,.6);padding:clamp(24px,5vw,72px) clamp(20px,6vw,90px);position:relative}
+.contract .title{text-align:center;border-bottom:1px solid var(--line);padding-bottom:26px;margin-bottom:10px}
+.contract .title h2{font:700 clamp(22px,2.4vw,30px) var(--serif);text-transform:uppercase;letter-spacing:.06em;color:var(--navy)}
+.contract .title p{color:var(--g);font-size:15px;margin-top:6px}
+.contract .meta{display:flex;justify-content:space-between;font:400 14px var(--sans);color:var(--g);margin-bottom:24px}
+.par{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:30px;padding:26px 0;border-bottom:1px solid var(--line)}
+.par h3{font:700 19px var(--serif);color:var(--navy);margin-bottom:10px}
+.par h3 span{color:var(--bord);margin-right:8px}
+.par ol{list-style:none;counter-reset:c}
+.par li{counter-increment:c;padding:5px 0 5px 44px;position:relative}
+.par li::before{content:attr(data-n);position:absolute;left:0;color:var(--g);font:400 14px var(--sans);top:7px}
+.note{font:italic 400 14.5px/1.55 var(--serif);color:var(--bord);border-left:2px solid var(--bord);padding-left:14px;align-self:start;opacity:.55;transition:opacity .4s}
+.par:hover .note{opacity:1}
+@media(max-width:860px){.par{grid-template-columns:1fr;gap:12px}}
+.ptab{width:100%;border-collapse:collapse;font-size:16px;margin-top:6px}
+.ptab td{padding:9px 0;border-bottom:1px dotted var(--line)}
+.ptab td:last-child{text-align:right;font:700 15px var(--sans);color:var(--navy);white-space:nowrap}
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
+.sign div{font:400 14px var(--sans);color:var(--g)}
+.sign b{display:block;font:700 15px var(--serif);color:var(--ink);margin-bottom:24px}
+.sign .ln{border-bottom:1px solid var(--ink);height:44px;position:relative;margin-bottom:6px}
+.sign .ln em{position:absolute;left:10px;bottom:2px;font:italic 400 30px var(--serif);color:var(--navy);transform:rotate(-4deg)}
+.sign .ln a{position:absolute;left:0;bottom:6px;font:700 13px var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--bord);border-bottom:1px dashed var(--bord)}
+@media(max-width:640px){.sign{grid-template-columns:1fr}}
+section{padding:clamp(60px,8vw,100px) 0}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:30px;border-bottom:1px solid var(--navy);padding-bottom:16px}
+.sh h2{font:400 clamp(28px,3.6vw,44px)/1.15 var(--serif);color:var(--navy)}
+.sh h2 i{color:var(--bord)}
+/* case */
+.case{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(24px,4vw,60px);align-items:center}
+.case img{width:100%;aspect-ratio:16/11;object-fit:cover;object-position:top;border:1px solid var(--line)}
+.case h3{font:400 clamp(24px,2.6vw,34px)/1.2 var(--serif);color:var(--navy)}
+.case p{color:#4a4a52;margin-top:12px}
+.case dl{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
+.case dt{font:700 34px/1 var(--serif);color:var(--bord)}
+.case dd{font:400 13.5px var(--sans);color:var(--g);margin-top:4px}
+@media(max-width:860px){.case{grid-template-columns:1fr}}
+.works{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.wk img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border:1px solid var(--line);filter:grayscale(.5);transition:filter .5s}
+.wk:hover img{filter:none}
+.wk b{display:block;font:700 17px var(--serif);margin-top:12px;color:var(--navy)}
+.wk span{font:400 14px var(--sans);color:var(--g)}
+@media(max-width:900px){.works{grid-template-columns:1fr 1fr}}@media(max-width:560px){.works{grid-template-columns:1fr}}
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.revs article{border-top:3px solid var(--navy);padding-top:18px}
+.revs p{font-style:italic}
+.revs footer{margin-top:14px;font:400 14px var(--sans);color:var(--g)}
+.revs footer b{color:var(--ink);display:block}
+@media(max-width:900px){.revs{grid-template-columns:1fr}}
+footer.f{background:var(--navy);color:#b9c1d3;padding:30px 0;font:400 14px var(--sans)}
+footer.f .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer.f a{margin-left:18px;color:#fff}
+[data-rv]{opacity:0;transition:opacity 1s ease}[data-rv].in{opacity:1}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:var(--sheet);border:1px solid var(--navy);padding:9px 14px;font:700 12px var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}[data-rv]{opacity:1}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header><div class="w"><a class="logo" href="#"><span class="pk-logo pk-logo--lawyer"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин<small>сайты для юридических практик</small></span></span></a><nav><a href="#contract">Условия</a><a href="#case">Практика</a><a data-page="cases">Кейсы</a><a data-page="reviews">Отзывы</a></nav><a class="btn" href="#sign">Консультация</a></div></header>
+
+<main class="w">
+  <div class="hero">
+    <div data-rv>
+      <span class="sc" style="color:var(--bord)">Для юристов, адвокатов и юридических агентств</span>
+      <h1>Сайт, который говорит о вашей практике <i>так же точно, как вы</i></h1>
+      <p>Понятная структура по направлениям права, предсказуемый порядок работы с клиентом и удобная запись на консультацию. Без шаблонной Фемиды и громких обещаний.</p>
+      <div class="acts"><a class="btn" href="#sign">Обсудить проект</a><a class="btn o" href="#contract">Ознакомиться с условиями</a></div>
+    </div>
+    <div class="seal" data-rv>
+      <span class="sc" style="color:var(--g)">Выписка · ключевые показатели</span>
+      <div class="row" style="margin-top:12px"><span>Завершённых проектов</span><b>10+</b></div>
+      <div class="row"><span>Проектов в портфолио</span><b>25</b></div>
+      <div class="row"><span>Отрицательных отзывов</span><b>0</b></div>
+      <div class="row"><span>Срок ответа на заявку</span><b>1 рабочий день</b></div>
+      <div class="row"><span>Исполнителей на проекте</span><b>1 вместо 5</b></div>
+      <span class="stamp">Ответственность<br>за результат<br>целиком</span>
+    </div>
+  </div>
+
+  <div class="contract" id="contract" data-rv>
+    <div class="title"><h2>Условия сотрудничества</h2><p>изложены в форме договора — для удобства юриста</p></div>
+    <div class="meta"><span>г. Троицк (Москва) · удалённо по всей России</span><span>2026</span></div>
+
+    <div class="par"><div><h3><span>§ 1.</span>Предмет</h3><ol>
+      <li data-n="1.1">Исполнитель проектирует и создаёт сайт юридической практики: дизайн в Figma, сборка на Tilda, мобильная версия.</li>
+      <li data-n="1.2">По желанию Заказчика — чат-бот для первичных вопросов и записи на консультацию, приём заявок в CRM и Telegram.</li>
+      <li data-n="1.3">Заказчик вправе заказать как полный цикл, так и отдельный этап.</li></ol></div>
+      <p class="note">Готовое техническое задание не требуется: вопросы о практике Исполнитель задаёт сам.</p></div>
+
+    <div class="par"><div><h3><span>§ 2.</span>Обязательства Исполнителя</h3><ol>
+      <li data-n="2.1">Структурировать услуги по практикам права так, чтобы клиент находил своё направление сразу.</li>
+      <li data-n="2.2">Описать порядок работы с клиентом — от первого вопроса до консультации.</li>
+      <li data-n="2.3">Проверить сайт на всех устройствах до сдачи.</li>
+      <li data-n="2.4">Оставаться на связи после запуска: правки и поддержка — разово или ежемесячно.</li></ol></div>
+      <p class="note">Ответственность за результат несёт один человек — искать виновного между подрядчиками не придётся.</p></div>
+
+    <div class="par"><div><h3><span>§ 3.</span>Стоимость и сроки</h3>
+      <table class="ptab" id="ptab"></table>
+      <ol style="margin-top:12px"><li data-n="3.1">Сайт-визитка — от 5–7 рабочих дней; сложный дизайн с анимацией — от 2–3 недель.</li><li data-n="3.2">Окончательная смета согласуется после первичной консультации.</li></ol></div>
+      <p class="note">Полный прайс и калькулятор — <a data-page="price" style="border-bottom:1px solid">на странице цен</a>.</p></div>
+
+    <div class="par"><div><h3><span>§ 4.</span>Рекомендации</h3><ol><li data-n="4.1">Лицо, рекомендовавшее Исполнителя, получает 10% от оплаченной суммы заказа, а при сопровождении — с каждой ежемесячной оплаты.</li></ol></div>
+      <p class="note"><a data-page="bonus" style="border-bottom:1px solid">Подробнее о программе</a></p></div>
+
+    <div class="sign" id="sign">
+      <div><b>Исполнитель</b><div class="ln"><em>П. Корчагин</em></div>Павел Корчагин</div>
+      <div><b>Заказчик</b><div class="ln"><a data-page="form">Поставить подпись: оставить заявку →</a></div>или <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener" style="border-bottom:1px solid">написать в Telegram</a></div>
+    </div>
+  </div>
+
+  <section id="case">
+    <div class="sh"><h2>Практика: <i>юридическое агентство</i></h2><span class="sc" style="color:var(--g)">собственный проект</span></div>
+    <div class="case" data-rv>
+      <img id="yImg" alt="Сайт «Юрдирект»">
+      <div><h3>Юрдирект — сайт юридического агентства</h3>
+        <p>Сайт показывает агентство надёжным партнёром в пяти практиках права и делает процесс работы предсказуемым — от вопроса до консультации. Клиент сразу находит свою практику и оставляет заявку без лишних барьеров.</p>
+        <dl><div><dt>5</dt><dd>практик права</dd></div><div><dt>3</dt><dd>канала заявок: форма, Telegram, WhatsApp</dd></div></dl>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><h2>Иные <i>работы</i></h2><a class="btn o" data-page="cases">Все 25 проектов</a></div>
+    <div class="works" id="works"></div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><h2>Отзывы <i>заказчиков</i></h2><a class="btn o" data-page="reviews">Все отзывы</a></div>
+    <div class="revs" id="revs"></div>
+  </section>
+</main>
+<footer class="f"><div class="w"><span>© 2026 Павел Корчагин</span><span><a data-page="about">Резюме</a><a data-page="faq">Вопросы</a></span></div></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id),by=id=>D.all.find(c=>c.id===id);
+const LP=[['Сайт юридической практики (несколько страниц)','от 10 000 ₽'],['Лендинг частного юриста','от 2 000 ₽'],['Дизайн в Figma','от 10 000 ₽'],['Чат-бот приёма заявок','от 3 000 ₽'],['ИИ-ассистент для первичных вопросов','от 8 000 ₽'],['Заявки в CRM и Telegram','от 1 500 ₽'],['Поддержка после запуска','3–7 тыс ₽/мес']];
+$('ptab').innerHTML=LP.map(([a,b])=>`<tr><td>${a}</td><td>${b}</td></tr>`).join('');
+$('yImg').src=by('yurdirect').img;
+$('works').innerHTML=['qledger','mechanic','maxfit','vera-portfolio','sb-portfolio-ai','cafe-shop'].map(by).map(c=>`<a class="wk" data-rv ${c.url?`href="${c.url}" target="_blank" rel="noopener"`:'data-page="cases"'}><img src="${c.img}" alt="${c.t}" loading="lazy"><b>${c.t}</b><span>${c.f[0]} — ${c.f[1]}</span></a>`).join('');
+$('revs').innerHTML=D.reviews.map(r=>`<article data-rv><p>«${r.text}»</p><footer><b>${r.who}</b>${r.role}</footer></article>`).join('');
+reveal();styleSwitch('Сменить стиль');
+</script>
+</body>
+</html>

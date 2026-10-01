@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Альбом работ — Павел Корчагин</title>
+<meta name="description" content="25 проектов: сайты на Tilda, чат-боты в Salebot, онлайн-школы на GetCourse и дизайн в Figma — с историями, цифрами и живыми ссылками.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main>
+  <div class="w page-hd">
+    <div class="crumbs"><a href="index.html">мастерская</a> → альбом</div>
+    <h1>Альбом, где у каждой работы <i>своя история</i></h1>
+    <p class="lead">Двадцать пять проектов — для заказчиков и для себя. Здесь нет «типового лендинга №7»: кафе, которое вышло в топ поиска, бот-администратор салона, школа для технических специалистов и банковский продукт, который нужно было объяснить человеческим языком.</p>
+    <span class="hand aside-note">листайте и выбирайте по настроению ↓</span>
+  </div>
+
+  <div class="w">
+    <div class="tabs" id="tabs" role="tablist" aria-label="Направления"></div>
+    <div class="gal" id="gal" style="margin-top:20px"></div>
+  </div>
+
+  <section class="sec"><div class="w two">
+    <div data-rv>
+      <div class="kick">Не нашли похожее?</div>
+      <h2 class="t">Самые интересные истории <i>ещё не написаны</i></h2>
+    </div>
+    <div data-rv style="align-self:end">
+      <p style="font-size:19px;color:#3b352f">Если вашей задачи нет в альбоме — это даже лучше. Я люблю проекты, к которым не подходит готовый шаблон: разберусь в деле, предложу ход и доведу до работающего результата.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:26px"><a class="pill" href="brief.html">Рассказать о своей задаче</a><a class="pill o" href="services.html">Что я умею</a></div>
+    </div>
+  </div></section>
+</main>
+<footer id="foot"></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const A=DATA.all,$=id=>document.getElementById(id);
+const T=[['all','Все работы'],['Tilda','Сайты'],['Salebot','Боты'],['GetCourse','Школы'],['Figma','Дизайн']];
+const count=k=>k==='all'?A.length:A.filter(c=>c.cat===k).length;
+$('tabs').innerHTML=T.map(([k,l])=>`<button role="tab" data-f="${k}">${l}<sup>${count(k)}</sup></button>`).join('');
+$('gal').innerHTML=A.map((c,i)=>CR.card(c,i,{rv:false})).join('');
+function filt(f){
+  if(!T.some(t=>t[0]===f))f='all';
+  document.querySelectorAll('#tabs button').forEach(b=>{const on=b.dataset.f===f;b.classList.toggle('on',on);b.setAttribute('aria-selected',on)});
+  document.querySelectorAll('#gal .card').forEach(c=>c.classList.toggle('hide',f!=='all'&&c.dataset.cat!==f));
+  history.replaceState(null,'',f==='all'?'cases.html':'cases.html?f='+f);
+}
+$('tabs').onclick=e=>{const b=e.target.closest('button');if(b)filt(b.dataset.f)};
+filt(CR.param('f')||'all');
+CR.done();
+</script>
+</body>
+</html>

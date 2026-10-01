@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Услуги и цены — мастерская Павла Корчагина</title>
+<meta name="description" content="Чат-боты в Salebot, сайты на Tilda, дизайн в Figma, онлайн-школы на GetCourse, вебинары и рассылки — цены и сроки по каждой услуге.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main>
+  <div class="w page-hd">
+    <div class="crumbs"><a href="index.html">мастерская</a> → меню</div>
+    <h1>Меню мастерской: <i>что готовлю</i> и сколько это стоит</h1>
+    <p class="lead">Цены — честные вилки «от и до». Нижняя граница — для простой задачи, верхняя — когда нужно много сценариев, страниц или нестандартная анимация. Точную сумму назову после короткого разговора, и она уже не поползёт вверх посреди работы.</p>
+    <span class="hand aside-note">можно заказать одно «блюдо» или весь обед ↓</span>
+  </div>
+
+  <div class="w"><nav class="menu-tabs" id="mtabs" aria-label="Разделы меню"></nav></div>
+  <div class="w" id="groups"></div>
+
+  <section class="sec"><div class="w recipe">
+    <div data-rv>
+      <div class="kick">Как складывается цена</div>
+      <h2 class="t">Платите за то, <i>что нужно</i>, а не за «всё и сразу»</h2>
+    </div>
+    <ol data-rv>
+      <li><div><b>Сначала — разговор</b><span>Готовое ТЗ не нужно: на созвоне я сам расспрошу о деле, аудитории и целях.</span></div></li>
+      <li><div><b>Потом — смета</b><span>Фиксирую объём, сроки и стоимость до начала работы. Без «ой, тут ещё доплатить».</span></div></li>
+      <li><div><b>Можно по кусочку</b><span>Только дизайн, только бот, только настройка GetCourse — тоже нормальный заказ.</span></div></li>
+      <li><div><b>После запуска — рядом</b><span>Поддержка разово или ежемесячно, правки и доработки без поиска нового подрядчика.</span></div></li>
+    </ol>
+  </div></section>
+
+  <section class="sec tight"><div class="w two">
+    <div class="price-note" data-rv style="margin:0"><p class="hand" style="color:var(--ink);font-size:30px">Порекомендуйте меня</p><p style="font-size:17px;margin-top:8px">Если приведёте знакомого, которому нужен сайт, бот или школа, — 10% от оплаченной им суммы ваши. А если проект уйдёт на сопровождение — с каждой ежемесячной оплаты.</p><a href="bonus.html" class="hand" style="display:inline-block;margin-top:12px;font-size:24px;border-bottom:2px solid">как это работает →</a></div>
+    <div data-rv style="align-self:center"><p class="hand" style="font-size:30px">Не нашли своё в меню?</p><p style="font-size:18px;margin-top:8px;color:#3b352f">Опишите задачу своими словами — я скажу, из каких «блюд» она складывается и сколько будет стоить.</p><a class="pill" style="margin-top:20px" href="brief.html">Описать задачу</a></div>
+  </div></section>
+</main>
+<footer id="foot"></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/content.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const G=CONTENT.price,E=CR.esc,$=x=>document.getElementById(x);
+// своя подводка к каждому разделу — голос мастерской
+const INTRO={
+  salebot:['раздел первый','Боты, которые разговаривают','Учу бота отвечать вашим клиентам, продавать, записывать и развлекать — круглосуточно и без выходных.'],
+  tilda:['раздел второй','Сайты, у которых есть характер','Собираю на Tilda так, чтобы сайт не выглядел шаблоном и вёл человека к заявке, а не просто «был».'],
+  figma:['раздел третий','Дизайн, с которого всё начинается','Сначала думаю, кто придёт и что его остановит, — потом рисую. Макеты сразу готовы к вёрстке.'],
+  getcourse:['раздел четвёртый','Школы, которые работают сами','Беру на себя техническую кухню GetCourse: уроки, доступы, процессы и оплаты.'],
+  webinar:['раздел пятый','Вебинары и письма, которые возвращают','Эфиры и автовебинары в Bizon365, цепочки писем и сообщений для тех, кто не купил с первого раза.']
+};
+$('mtabs').innerHTML=G.map(g=>`<a href="#${g.id}" style="--r:${CR.rr()}">${E(g.tab)}</a>`).join('');
+$('groups').innerHTML=G.map(g=>{const [no,h,lead]=INTRO[g.id]||[g.num,g.title,g.lead];
+  return `<section class="group" id="${g.id}">
+    <div data-rv><h2><small>${no}</small>${E(h)}</h2><p class="gl">${E(lead)}</p>
+      <a class="pill o" style="margin-top:22px" href="service.html?s=${g.id}">Подробнее о направлении</a></div>
+    <div data-rv>${g.items.map(([n,d,p,t])=>`<div class="dish"><div class="row"><b>${E(n)}</b><span class="dots"></span><span class="pr">${E(p)}</span></div><p>${E(d)}${t?` <span class="tm">· ${E(t)}</span>`:''}</p></div>`).join('')}
+      ${(g.packs||[]).length?`<p class="hand" style="font-size:28px;margin-top:30px">Готовые наборы — выгоднее, чем по отдельности:</p><div class="packs">${g.packs.map(([n,d,o,p])=>`<div class="pack" style="--r:${CR.rr()}"><b>${E(n)}</b><p>${E(d)}</p><p style="margin-top:10px"><s>${E(o)}</s><strong>${E(p)}</strong></p></div>`).join('')}</div>`:''}
+    </div></section>`}).join('');
+CR.done();
+</script>
+</body>
+</html>

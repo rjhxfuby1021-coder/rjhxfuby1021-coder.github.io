@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вопросы и ИИ-ассистент — Павел Корчагин</title>
+<meta name="description" content="Ответы на частые вопросы о сроках, ценах и работе — и ИИ-ассистент, который отвечает круглосуточно.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<style>
+.ai{background:var(--ink);color:var(--paper);padding:clamp(28px,4vw,48px);transform:rotate(-1deg);box-shadow:0 30px 60px -30px rgba(30,27,24,.6);position:relative}
+.ai::before{content:"";position:absolute;top:-12px;left:40px;width:100px;height:26px;background:rgba(246,210,74,.85);transform:rotate(-4deg)}
+.ai h2{font:400 clamp(30px,3.4vw,48px)/1.05 var(--serif)}
+.ai h2 i{color:var(--yel)}
+.ai p{color:#d6cfc4;margin-top:12px;font-size:17px}
+.ai .on{display:inline-flex;align-items:center;gap:8px;font:700 22px var(--hand);color:var(--yel)}
+.ai .on::before{content:"";width:9px;height:9px;border-radius:50%;background:#5bd47a;box-shadow:0 0 0 4px rgba(91,212,122,.25)}
+.ai .pill{background:var(--yel);color:var(--ink);margin-top:22px}
+.ai .pill:hover{background:#fff}
+.qa details{padding:4px 0}
+.qa summary{font-size:clamp(20px,1.8vw,24px)}
+.qa details p{font-size:17px}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main>
+  <div class="w page-hd">
+    <div class="crumbs"><a href="index.html">мастерская</a> → вопросы</div>
+    <h1>Спросите <i>что угодно</i> — даже то, что кажется глупым</h1>
+    <p class="lead">Глупых вопросов о сайтах не бывает: бывают вопросы, которые никто не догадался объяснить. Ниже — то, что спрашивают чаще всего. А если вашего вопроса нет, мой ИИ-ассистент ответит прямо сейчас, в любое время суток.</p>
+  </div>
+
+  <section class="sec tight"><div class="w two" style="align-items:start">
+    <div class="qa" id="qa" data-rv></div>
+    <aside class="ai" data-rv>
+      <span class="on">ассистент на связи 24/7</span>
+      <h2 style="margin-top:12px">Не нашли ответ? <i>Спросите</i> ассистента</h2>
+      <p>Он знает всё об услугах, сроках, ценах и проектах. Если вопрос нестандартный — передаст его мне вместе с темой разговора.</p>
+      <button class="pill" data-open-chat>Задать вопрос ассистенту</button>
+      <p style="font-size:14px;margin-top:16px">Или по-старинке: <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener" style="color:var(--yel);border-bottom:1px solid">написать мне в Telegram</a></p>
+    </aside>
+  </div></section>
+
+  <section class="sec"><div class="w recipe">
+    <div data-rv><div class="kick">Ещё полезное</div><h2 class="t">Куда заглянуть <i>дальше</i></h2></div>
+    <ol data-rv>
+      <li><div><b><a href="services.html">Меню мастерской</a></b><span>Все услуги с ценами и сроками — без «уточняйте у менеджера».</span></div></li>
+      <li><div><b><a href="cases.html">Альбом работ</a></b><span>25 историй: что было, что сделал и чем закончилось.</span></div></li>
+      <li><div><b><a href="blog.html">Журнал</a></b><span>Разборы о том, сколько стоит бот и как собрать лендинг, который продаёт.</span></div></li>
+    </ol>
+  </div></section>
+</main>
+<footer id="foot"></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/content.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+document.getElementById('qa').innerHTML=CONTENT.faq.map(([q,a],i)=>`<details ${i?'':'open'}><summary>${CR.esc(q)}</summary><p>${CR.fixLinks(a)}</p></details>`).join('');
+// ИИ-ассистент Salebot (тот же, что на texspeckps.ru); если виджет не загрузился — ведём в Telegram
+(function(){var ready=false,want=false;
+  function open(){try{window.ChatBotPro.open()}catch(e){}setTimeout(function(){if(!document.getElementById('parent_frame')){window.open('https://t.me/PavelTexSpec','_blank','noopener');var a=document.querySelector('.ai p:last-of-type');if(a)a.textContent='Ассистент работает на texspeckps.ru — здесь открыл Telegram.'}},1200)}
+  var s=document.createElement('script');s.src='https://salebot.pro/js/chatbot.js?v=1';s.async=true;
+  s.onload=function(){if(!window.ChatBotPro)return;window.ChatBotPro.init({guid:'deff08aa10e87edf46d7e68751d94d'});ready=true;if(want)open()};
+  document.head.appendChild(s);
+  document.querySelectorAll('[data-open-chat]').forEach(function(b){b.addEventListener('click',function(){if(ready){open();return}want=true;setTimeout(function(){if(!ready)window.open('https://t.me/PavelTexSpec','_blank','noopener')},4000)})});
+})();
+CR.done();
+</script>
+</body>
+</html>

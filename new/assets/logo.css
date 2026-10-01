@@ -1,0 +1,50 @@
+/* Единый логотип для всех стилей: монограмма «ПК» в плашке + «Павел Корчагин».
+   Знак и написание везде одинаковые; меняются только цвет, форма плашки и шрифт под стиль. */
+span.pk-logo.pk-logo{display:inline-flex;align-items:center;gap:.6em;line-height:1.05;white-space:nowrap;color:inherit;text-decoration:none;font-size:17px;font-weight:700;letter-spacing:-.01em}
+.pk-logo .pk-mark.pk-mark{display:inline-grid;place-items:center;flex:none;width:2.15em;height:2.15em;border-radius:.55em;background:#141414;color:#fff;font-size:.8em;font-weight:800;letter-spacing:-.03em;line-height:1}
+.pk-logo .pk-word.pk-word{color:inherit;font-style:normal;background:none;display:inline-flex;flex-direction:column}
+.pk-logo .pk-word small{color:inherit;display:block;font-size:.66em;font-weight:500;opacity:.65;letter-spacing:.04em;margin-top:3px;text-transform:none}
+
+.pk-logo.pk-logo--chooser .pk-mark.pk-mark{background:#141414}
+span.pk-logo.pk-logo--business{font-family:"Inter Tight",system-ui,sans-serif;font-weight:600}
+.pk-logo.pk-logo--business .pk-mark.pk-mark{background:#1d33f2;border-radius:0}
+span.pk-logo.pk-logo--creative{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:clamp(20px,2.4vw,28px)}
+.pk-logo.pk-logo--creative .pk-mark.pk-mark{background:#e8452c;border-radius:50%;transform:rotate(-8deg);font-family:"Caveat",cursive;font-size:.75em;font-weight:700}
+span.pk-logo.pk-logo--bold{font-family:"Dela Gothic One",Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:18px}
+.pk-logo.pk-logo--bold .pk-mark.pk-mark{background:#ff90e8;color:#000;border:3px solid #000;border-radius:50%;box-shadow:3px 3px 0 #000;font-weight:400}
+span.pk-logo.pk-logo--premium{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;font-size:22px;letter-spacing:.04em}
+.pk-logo.pk-logo--premium .pk-mark.pk-mark{background:none;color:#c8a46a;border:1px solid #c8a46a;border-radius:0;font-weight:400;font-size:.7em;letter-spacing:.08em}
+span.pk-logo.pk-logo--bento{font-family:"Onest",system-ui,sans-serif;font-weight:600;font-size:15px}
+.pk-logo.pk-logo--bento .pk-mark.pk-mark{background:linear-gradient(135deg,#0071e3,#7a5cff);border-radius:.6em}
+span.pk-logo.pk-logo--retro{font-family:"Pixelify Sans",monospace;font-weight:700;font-size:15px}
+.pk-logo.pk-logo--retro .pk-mark.pk-mark{background:#000080;color:#fff;border-radius:0;box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #6f8fff;font-family:"Pixelify Sans",monospace}
+span.pk-logo.pk-logo--glass{font-family:"Geologica",system-ui,sans-serif;font-weight:600}
+.pk-logo.pk-logo--glass .pk-mark.pk-mark{background:linear-gradient(135deg,#5b5bf7,#c04cf2 55%,#ff6f91);border-radius:50%;box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
+span.pk-logo.pk-logo--terminal{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:500;font-size:14px}
+.pk-logo.pk-logo--terminal .pk-mark.pk-mark{background:none;color:#3fe17a;border:1px solid #3fe17a;border-radius:4px;font-weight:700}
+span.pk-logo.pk-logo--friendly{font-family:"Nunito",system-ui,sans-serif;font-weight:900;font-size:19px}
+.pk-logo.pk-logo--friendly .pk-mark.pk-mark{background:#9b7bff;border-radius:50%;box-shadow:inset -4px -5px 8px rgba(0,0,0,.18),inset 3px 3px 6px rgba(255,255,255,.4)}
+span.pk-logo.pk-logo--kinetic{font-family:"Unbounded",system-ui,sans-serif;font-weight:800;text-transform:uppercase;font-size:13px;letter-spacing:.02em}
+.pk-logo.pk-logo--kinetic .pk-mark.pk-mark{background:#ff4f00;border-radius:50%}
+span.pk-logo.pk-logo--cafe{font-family:"Yeseva One",Georgia,serif;font-weight:400;font-size:22px}
+.pk-logo.pk-logo--cafe .pk-mark.pk-mark{background:#d63a2f;border-radius:50%;box-shadow:0 0 0 3px #fff4e2,0 0 0 5px #d63a2f;font-weight:400}
+.pk-logo.pk-logo--cafe small{font-family:"Raleway",system-ui,sans-serif;font-style:italic}
+span.pk-logo.pk-logo--auto{font-family:"Oswald",Impact,sans-serif;font-weight:700;text-transform:uppercase;font-size:19px}
+.pk-logo.pk-logo--auto .pk-mark.pk-mark{background:#ffcc00;color:#111;border-radius:0;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);width:2.4em}
+span.pk-logo.pk-logo--medical{font-family:"Mulish",system-ui,sans-serif;font-weight:800}
+.pk-logo.pk-logo--medical .pk-mark.pk-mark{background:#0f9d9a;border-radius:.35em}
+span.pk-logo.pk-logo--expert{font-family:"Lora",Georgia,serif;font-weight:500;font-size:20px}
+.pk-logo.pk-logo--expert .pk-mark.pk-mark{background:#c0623f;border-radius:999px 999px .35em .35em;font-family:"Lora",Georgia,serif;font-weight:500}
+span.pk-logo.pk-logo--lawyer{font-family:"PT Serif",Georgia,serif;font-weight:700}
+.pk-logo.pk-logo--lawyer .pk-mark.pk-mark{background:none;color:#1b2a4a;border:1.5px solid #1b2a4a;border-radius:0;font-family:"PT Serif",Georgia,serif;outline:1px solid #1b2a4a;outline-offset:2px}
+.pk-logo.pk-logo--lawyer small{font-family:"PT Sans",system-ui,sans-serif;text-transform:uppercase}
+span.pk-logo.pk-logo--accountant{font-family:"Open Sans",system-ui,sans-serif;font-weight:700;font-size:14px}
+.pk-logo.pk-logo--accountant .pk-mark.pk-mark{background:#fff;color:#217346;border-radius:3px}
+span.pk-logo.pk-logo--it{font-family:"Fira Sans",system-ui,sans-serif;font-weight:700;font-size:15px}
+.pk-logo.pk-logo--it .pk-mark.pk-mark{background:#6e56cf;border-radius:.35em;font-family:"Fira Code",monospace;font-weight:500}
+/* светлый знак на тёмном фоне подвала/шапки, где нужно */
+.pk-on-dark .pk-logo.pk-logo--business .pk-mark.pk-mark{background:#fff;color:#1d33f2}
+
+/* на тёмных подвалах */
+.site-ft .pk-logo.pk-logo--lawyer .pk-mark.pk-mark{color:#fff;border-color:#fff;outline-color:#fff}
+.site-ft .pk-logo.pk-logo--accountant .pk-mark.pk-mark{background:#217346;color:#fff}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>История проекта — Павел Корчагин</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main id="story"></main>
+<div class="lightbox" id="lb" role="dialog" aria-label="Увеличенное изображение"><img alt=""></div>
+
+<section class="final"><div class="w">
+  <h2>Хотите <i>свою историю</i> в этом альбоме?</h2>
+  <p>Расскажите, что у вас за дело и что не получается. Я задам вопросы и предложу, с какой главы начать.</p>
+  <div class="acts"><a class="pill" href="brief.html">Рассказать об идее</a><a class="pill o" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Написать в Telegram</a></div>
+</div></section>
+<footer id="foot"></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/content.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const id=CR.param('id'),c=CR.full(id),s=CR.short(id),$=x=>document.getElementById(x),E=CR.esc;
+const story=$('story');
+if(!c){
+  document.title='История не найдена — Павел Корчагин';
+  story.innerHTML=`<div class="w page-hd"><div class="crumbs"><a href="cases.html">альбом</a> → ?</div><h1>Эта страница <i>потерялась</i> между листами</h1><p class="lead">Такой истории в альбоме нет. Возможно, ссылка устарела.</p><a class="pill" style="margin-top:26px" href="cases.html">Открыть альбом</a></div>`;
+}else{
+  document.title=c.title+' — история проекта · Павел Корчагин';
+  const cat=CR.CAT[CR.DIR[c.dir]]||'';
+  const sticky=(c.facts||[]).map(f=>`<div style="--r:${CR.rr()}"><b>${E(f.v)}</b><span>${E(f.l)}</span></div>`).join('');
+  const flow=(c.flow||[]).length?`<div class="chapter" data-rv><div class="no"><small>глава вторая</small>Как это устроено</div><div class="body"><div class="flow">${c.flow.map(f=>`<div style="--r:${CR.rr()}"><b>${E(f.t)}</b><span>${E(f.d)}</span></div>`).join('')}</div></div></div>`:'';
+  const n=(c.flow||[]).length?['первая','вторая','третья','четвёртая']:['первая','','вторая','третья'];
+  const album=(c.gallery||[]).length?`<section class="sec tight"><div class="w"><div class="kick">Фотоальбом проекта</div><div class="album" id="album">${c.gallery.map((g,i)=>`<button class="ph" style="--r:${CR.rr()}" data-src="${g.src}"><img src="${g.src}" alt="${E(c.title)} — экран ${i+1}" loading="lazy"><span>экран ${i+1}</span></button>`).join('')}</div></div></section>`:'';
+  const rel=c.related&&CR.short(c.related);
+  const order=DATA.all.map(x=>x.id),k=order.indexOf(id);
+  const prev=CR.short(order[(k-1+order.length)%order.length]),next=CR.short(order[(k+1)%order.length]);
+  story.innerHTML=`
+  <div class="w page-hd" style="padding-bottom:0">
+    <div class="crumbs"><a href="index.html">мастерская</a> → <a href="cases.html${cat?'?f='+CR.DIR[c.dir]:''}">${cat?cat.toLowerCase():'альбом'}</a> → история</div>
+    <div class="case-top" style="margin-top:20px">
+      <div>
+        <div class="kick" style="margin-bottom:0">${E(c.type)} · ${c.year} · ${c.status==='client'?'для заказчика':'собственный проект'}</div>
+        <h1 style="font-size:clamp(38px,5vw,76px)">${E(c.title)}</h1>
+        <p class="lead">${E(c.lead)}</p>
+        <div class="stickers">${sticky}</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:30px">${c.url?`<a class="pill" href="${c.url}" target="_blank" rel="noopener">Заглянуть на живой сайт ↗</a>`:''}<a class="pill ${c.url?'o':''}" href="brief.html?task=${encodeURIComponent('Похоже на «'+c.title+'»')}">Хочу похожее</a></div>
+      </div>
+      <div class="ph"><img src="${c.cover}" alt="${E(c.title)}"><span>${E(s?s.type:c.type).toLowerCase()}</span></div>
+    </div>
+  </div>
+  <section class="sec"><div class="w">
+    <div class="chapter" data-rv><div class="no"><small>глава ${n[0]}</small>С чего всё началось</div><div class="body"><p class="dropcap">${E(c.task)}</p></div></div>
+    ${flow}
+    <div class="chapter" data-rv><div class="no"><small>глава ${n[2]}</small>Что я сделал своими руками</div><div class="body"><ul class="checks">${(c.done||[]).map(d=>`<li>${E(d)}</li>`).join('')}</ul></div></div>
+    <div class="chapter" data-rv><div class="no"><small>глава ${n[3]}</small>${E(c.result.title)}</div><div class="body"><blockquote class="pull" style="margin-top:0">${E(c.result.text)}</blockquote>
+      <div class="kick" style="margin-top:34px">Инструменты на столе</div><div class="tools">${(c.tools||[]).map(t=>`<span style="--r:${CR.rr()}">${E(t)}</span>`).join('')}</div></div></div>
+  </div></section>
+  ${album}
+  <section class="sec tight"><div class="w">
+    ${rel?`<div class="kick">У этой истории есть продолжение</div><div style="max-width:420px;margin-bottom:50px">${CR.card(rel,1,{rv:false})}</div>`:''}
+    <div class="kick">Листать альбом дальше</div>
+    <div class="pager"><a href="${CR.caseUrl(prev.id)}"><small>← предыдущая</small><b>${E(prev.t)}</b></a><a href="${CR.caseUrl(next.id)}"><small>следующая →</small><b>${E(next.t)}</b></a></div>
+  </div></section>`;
+  const lb=$('lb');
+  story.addEventListener('click',e=>{const b=e.target.closest('[data-src]');if(b){lb.querySelector('img').src=b.dataset.src;lb.classList.add('open')}});
+  lb.onclick=()=>lb.classList.remove('open');
+  addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('open')});
+}
+CR.done();
+</script>
+</body>
+</html>

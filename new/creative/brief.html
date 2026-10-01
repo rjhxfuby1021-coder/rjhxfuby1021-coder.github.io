@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Рассказать об идее — Павел Корчагин</title>
+<meta name="description" content="Письмо мастерской: расскажите о задаче, и Павел Корчагин ответит в течение рабочего дня.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<style>
+.consent{display:flex;gap:10px;align-items:flex-start;font:400 15px/1.5 var(--sans);margin-top:18px}
+.consent input{margin-top:4px;width:18px;height:18px;accent-color:var(--red)}
+.consent a{color:var(--blue);border-bottom:1px solid}
+.sendrow{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:24px}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main>
+  <div class="w page-hd" style="text-align:center">
+    <div class="crumbs"><a href="index.html">мастерская</a> → письмо</div>
+    <h1 style="margin-left:auto;margin-right:auto">Напишите мне <i>письмо</i> — пропуски подскажут</h1>
+    <p class="lead" style="margin-left:auto;margin-right:auto">ТЗ не нужно. Заполните пропуски так, как сказали бы вслух, — письмо придёт мне в Telegram, а ответ вы получите в течение рабочего дня.</p>
+  </div>
+
+  <section class="sec tight"><div class="w">
+    <form class="letter-form" id="f" novalidate>
+      <p>Здравствуйте, Павел!</p>
+      <p>Меня зовут <input class="blank" name="name" autocomplete="name" placeholder="имя" required aria-label="Ваше имя">. Мне нужна помощь с этим:</p>
+      <div class="chips" role="radiogroup" aria-label="Что нужно" id="svc"></div>
+      <p>Если коротко, задача такая: <input class="blank wide" name="task" placeholder="пара слов о задаче" aria-label="Задача"></p>
+      <p>Бюджет примерно <input class="blank" name="budget" inputmode="numeric" placeholder="сумма" aria-label="Бюджет в рублях" style="min-width:120px"> ₽, а связаться со мной удобнее так: <input class="blank wide" name="contact" placeholder="@telegram или телефон" required aria-label="Контакт для связи"></p>
+      <p>И ещё хочу добавить:</p>
+      <textarea name="comment" placeholder="ссылки, примеры, сроки — всё, что поможет понять задачу" aria-label="Комментарий"></textarea>
+      <p style="text-align:right;font:700 30px var(--hand);color:var(--red)">Спасибо!</p>
+      <label class="consent"><input type="checkbox" name="agree" required> <span>Согласен на обработку персональных данных по <a href="privacy.html" target="_blank">политике конфиденциальности</a></span></label>
+      <div class="sendrow"><button class="pill" type="submit" id="send">Отправить письмо</button><span class="hand" style="font-size:24px;color:var(--g)">отвечаю в течение рабочего дня</span></div>
+      <div class="form-status" id="st" role="status" aria-live="polite"></div>
+    </form>
+  </div></section>
+
+  <section class="sec tight"><div class="w" style="text-align:center">
+    <p class="hand" style="font-size:30px">Не любите формы?</p>
+    <p style="font-size:18px;margin-top:6px;color:#3b352f">Напишите как удобно — <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener" style="color:var(--blue);border-bottom:1px solid">в Telegram @PavelTexSpec</a>.</p>
+  </div></section>
+</main>
+<footer id="foot"></footer>
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const f=document.getElementById('f'),st=document.getElementById('st'),send=document.getElementById('send');
+const SV=[['salebot','Чат-бот'],['tilda','Сайт на Tilda'],['figma','Дизайн в Figma'],['getcourse','GetCourse'],['webinar','Вебинары и рассылки'],['complex','Всё под ключ']];
+document.getElementById('svc').innerHTML=SV.map(([v,l])=>`<label><input type="radio" name="service" value="${v}"><span style="--r:${CR.rr()}">${l}</span></label>`).join('');
+// предзаполнение: brief.html?service=tilda&task=...
+const pS=CR.param('service'),pT=CR.param('task');
+if(pS){const r=f.querySelector(`input[name="service"][value="${pS.replace(/[^a-z]/g,'')}"]`);if(r)r.checked=true}
+if(pT)f.task.value=pT;
+// поле растёт вместе с текстом
+const fit=i=>{i.style.width=Math.max(i.classList.contains('wide')?240:140,(i.value||i.placeholder).length*13+30)+'px'};
+f.querySelectorAll('.blank').forEach(i=>{fit(i);i.addEventListener('input',()=>{fit(i);i.removeAttribute('aria-invalid')})});
+const ENDPOINT='https://texspeckps-form.texspeckps.workers.dev';
+function message(){const s=f.querySelector('input[name="service"]:checked');const L=s?SV.find(x=>x[0]===s.value)[1]:'не выбрано';
+  return ['Новая заявка с сайта (творческий стиль)','Имя: '+f.name.value.trim(),'Что нужно: '+L,'Задача: '+(f.task.value.trim()||'—'),'Бюджет: '+(f.budget.value.trim()?f.budget.value.trim()+' ₽':'—'),'Контакт: '+f.contact.value.trim(),'Комментарий: '+(f.comment.value.trim()||'—')].join('\n')}
+function say(t,c){st.textContent=t;st.className='form-status '+(c||'')}
+f.addEventListener('submit',e=>{e.preventDefault();
+  let ok=true;['name','contact'].forEach(n=>{if(!f[n].value.trim()){f[n].setAttribute('aria-invalid','true');ok=false}});
+  if(!ok){say('Пропущено имя или контакт — без них я не смогу ответить','err');return}
+  if(!f.agree.checked){say('Нужно согласие на обработку данных — галочка внизу','err');return}
+  send.disabled=true;send.textContent='Отправляю…';say('');
+  const text=message();
+  fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text})})
+    .then(r=>{if(!r.ok)throw 0;return r.json()}).then(d=>{if(!d.ok)throw 0;say('Письмо отправлено!','ok');setTimeout(()=>location.href='thanks.html',700)})
+    .catch(()=>{ // запасной путь: копируем письмо и открываем Telegram
+      const done=()=>{say('Напрямую отправить не вышло — я скопировал письмо. Вставьте его в открывшийся Telegram.','err');window.open('https://t.me/PavelTexSpec','_blank','noopener')};
+      (navigator.clipboard?navigator.clipboard.writeText(text):Promise.reject()).then(done,()=>{say('Не получилось отправить. Напишите, пожалуйста, в Telegram @PavelTexSpec.','err')});
+      send.disabled=false;send.textContent='Попробовать ещё раз'});
+});
+CR.done();
+</script>
+</body>
+</html>

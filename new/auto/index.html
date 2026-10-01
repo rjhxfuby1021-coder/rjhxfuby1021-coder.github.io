@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сайты для автосервисов — Павел Корчагин</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@400;500;700&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: сайты СТО и производителей инструмента — графит, сигнальный жёлтый, «зебра», заказ-наряд */
+:root{--bg:#17191c;--bg2:#212429;--steel:#2c3036;--ink:#eef0f2;--g:#9aa1a9;--y:#ffcc00;--red:#e8452c;--d:"Oswald",Impact,sans-serif;--s:"Roboto",system-ui,sans-serif;--m:"Roboto Mono",monospace;--gut:clamp(16px,4vw,48px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--s)}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.w{max-width:1240px;margin:0 auto;padding:0 var(--gut)}
+.zebra{height:14px;background:repeating-linear-gradient(-45deg,var(--y) 0 18px,#111 18px 36px)}
+h1,h2,h3{font-family:var(--d);text-transform:uppercase;font-weight:600;letter-spacing:.01em}
+.btn{display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 26px;background:var(--y);color:#111;font:600 17px var(--d);text-transform:uppercase;letter-spacing:.04em;clip-path:polygon(0 0,100% 0,100% 70%,92% 100%,0 100%);transition:background .2s}
+.btn:hover{background:#ffe066}
+.btn.o{background:none;color:var(--ink);box-shadow:inset 0 0 0 2px var(--g);clip-path:none}
+.btn.o:hover{box-shadow:inset 0 0 0 2px var(--y);color:var(--y)}
+header{border-bottom:1px solid var(--steel)}
+header .w{display:flex;justify-content:space-between;align-items:center;height:76px;gap:16px}
+.logo{font:700 22px var(--d);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.logo i{width:36px;height:36px;background:var(--y);color:#111;display:grid;place-items:center;font-style:normal;clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%)}
+header nav{display:flex;gap:28px;font:500 15px var(--d);text-transform:uppercase;letter-spacing:.06em;color:var(--g)}
+header nav a:hover{color:var(--y)}
+.phone{font:500 15px var(--m);color:var(--y)}
+@media(max-width:900px){header nav{display:none}}
+/* hero */
+.hero{position:relative;overflow:hidden}
+.hero .w{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,60px);align-items:center;padding-top:clamp(40px,6vw,90px);padding-bottom:clamp(60px,8vw,110px)}
+.badge{display:inline-flex;align-items:center;gap:10px;font:500 13px var(--m);color:var(--y);border:1px solid var(--y);padding:6px 12px}
+.badge::before{content:"";width:8px;height:8px;background:var(--y);border-radius:50%;animation:bl 1.4s infinite}
+@keyframes bl{50%{opacity:.2}}
+.hero h1{font-size:clamp(46px,7.4vw,110px);line-height:.9;margin-top:20px}
+.hero h1 span{color:var(--y)}
+.hero p{color:#c6cbd1;max-width:44ch;margin-top:22px;font-size:clamp(17px,1.5vw,19px)}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.shot{position:relative;margin-left:auto;width:100%;max-width:560px}
+.shot .frame{position:relative;aspect-ratio:4/5;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 88%,86% 100%,0 100%)}
+.shot img{width:100%;height:100%;object-fit:cover;filter:grayscale(.35) contrast(1.08);transform:scale(1.06);transition:transform 6s ease}
+.shot:hover img{transform:scale(1)}
+.shot .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(23,25,28,.85))}
+.shot .corner{position:absolute;width:46px;height:46px;border:4px solid var(--y)}
+.shot .c1{left:-12px;top:-12px;border-right:0;border-bottom:0}.shot .c2{right:-12px;bottom:40px;border-left:0;border-top:0}
+.shot .lbl{position:absolute;left:18px;bottom:18px;right:18px;z-index:2;display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.shot .lbl b{font:700 clamp(22px,2.4vw,30px)/1 var(--d);text-transform:uppercase;color:var(--y)}
+.shot .lbl span{font:500 12px var(--m);color:#c6cbd1;text-transform:uppercase}
+.shot .tape{position:absolute;right:-10px;top:26px;background:var(--y);color:#111;font:600 14px var(--d);text-transform:uppercase;letter-spacing:.04em;padding:8px 14px;transform:rotate(4deg);box-shadow:0 10px 20px -8px rgba(0,0,0,.5);z-index:3}
+@media(max-width:860px){.hero .w{grid-template-columns:1fr}.shot{margin:0 auto;max-width:420px}}
+section{padding:clamp(60px,8vw,110px) 0}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+.sh h2{font-size:clamp(34px,5vw,68px);line-height:.95}
+.sh h2 span{color:var(--y)}
+.sh .code{font:500 13px var(--m);color:var(--g)}
+/* diagnostics */
+.diag{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+.checks{background:var(--bg2);border-left:4px solid var(--y);padding:24px}
+.checks label{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px dashed var(--steel);cursor:pointer;font-size:16px}
+.checks input{appearance:none;width:24px;height:24px;border:2px solid var(--g);flex:none;display:grid;place-items:center;margin-top:1px;cursor:pointer}
+.checks input:checked{background:var(--red);border-color:var(--red)}
+.checks input:checked::after{content:"!";font:700 15px var(--d);color:#fff}
+.result{background:var(--bg2);padding:28px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.result .st{font:700 clamp(28px,3vw,42px)/1 var(--d);text-transform:uppercase}
+.result .bar{height:14px;background:var(--steel);position:relative}
+.result .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--y);transition:width .6s,background .4s}
+.result ul{list-style:none;font-size:15.5px;color:#c6cbd1}
+.result li{padding:6px 0 6px 22px;position:relative}
+.result li::before{content:"🔧";position:absolute;left:0;font-size:13px}
+@media(max-width:860px){.diag{grid-template-columns:1fr}}
+/* work order */
+.order{background:#f1f2ee;color:#1b1d20;padding:clamp(20px,4vw,40px);position:relative;font-size:15.5px}
+.order::before{content:"ЗАКАЗ-НАРЯД № 2026";position:absolute;right:clamp(20px,4vw,40px);top:clamp(20px,4vw,40px);font:500 13px var(--m);color:#7a7f86}
+.order h3{font-size:26px;margin-bottom:18px}
+.order table{width:100%;border-collapse:collapse}
+.order th{text-align:left;font:500 12px var(--m);color:#7a7f86;text-transform:uppercase;padding:8px;border-bottom:2px solid #1b1d20}
+.order td{padding:12px 8px;border-bottom:1px solid #d4d6d0;vertical-align:top}
+.order td:first-child{font:500 13px var(--m);color:#7a7f86;width:80px}
+.order td:last-child{text-align:right;font:600 18px var(--d);white-space:nowrap}
+.order td small{display:block;color:#6a6f76;font-size:13.5px}
+.order .stamp{position:absolute;right:8%;bottom:16%;width:130px;height:130px;border:4px solid var(--red);border-radius:50%;color:var(--red);display:grid;place-items:center;text-align:center;font:700 15px/1.1 var(--d);text-transform:uppercase;transform:rotate(-14deg);opacity:.75}
+@media(max-width:700px){.order td:first-child{display:none}.order th:first-child{display:none}.order .stamp{display:none}}
+/* project */
+.proj{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0;background:var(--bg2)}
+.proj img{width:100%;height:100%;min-height:300px;object-fit:cover;object-position:top}
+.proj .tx{padding:clamp(24px,4vw,44px)}
+.proj h3{font-size:clamp(26px,3vw,40px);line-height:1}
+.proj p{color:#c6cbd1;margin-top:14px}
+.specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--steel);margin-top:22px}
+.specs div{background:var(--bg2);padding:14px}
+.specs b{display:block;font:700 30px/1 var(--d);color:var(--y)}
+.specs span{font-size:13px;color:var(--g)}
+@media(max-width:860px){.proj{grid-template-columns:1fr}}
+.works{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.wk{background:var(--bg2);border-bottom:3px solid transparent;transition:border-color .3s,transform .3s}
+.wk:hover{border-color:var(--y);transform:translateY(-4px)}
+.wk img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;filter:grayscale(.6);transition:filter .4s}
+.wk:hover img{filter:none}
+.wk div{padding:14px 16px 18px}
+.wk b{display:block;font:500 19px var(--d);text-transform:uppercase}
+.wk span{font-size:14px;color:var(--g)}
+@media(max-width:900px){.works{grid-template-columns:1fr 1fr}}@media(max-width:560px){.works{grid-template-columns:1fr}}
+.rev{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.rev article{background:var(--bg2);padding:24px;border-top:3px solid var(--y)}
+.rev footer{margin-top:16px;font:500 13px var(--m);color:var(--g)}
+.rev footer b{color:var(--ink);display:block}
+@media(max-width:900px){.rev{grid-template-columns:1fr}}
+.final{background:var(--y);color:#111;padding:clamp(40px,6vw,80px) 0}
+.final .w{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.final h2{font-size:clamp(36px,5.6vw,80px);line-height:.92;max-width:13ch}
+.final p{max-width:40ch;margin-top:14px;font-weight:500}
+.final .btn{background:#111;color:var(--y)}
+.final .btn.o{background:none;color:#111;box-shadow:inset 0 0 0 2px #111}
+footer.f{padding:26px 0;font-size:14px;color:var(--g)}
+footer.f .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer.f a{margin-left:16px}
+[data-rv]{opacity:0;transform:translateX(-30px);transition:.7s cubic-bezier(.2,.8,.2,1)}[data-rv].in{opacity:1;transform:none}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:var(--y);color:#111;padding:10px 16px;font:600 14px var(--d);text-transform:uppercase;letter-spacing:.04em}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-rv]{opacity:1;transform:none}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<div class="zebra"></div>
+<header><div class="w"><a class="logo" href="#"><span class="pk-logo pk-logo--auto"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин<small>сайты для СТО</small></span></span></a><nav><a href="#diag">Диагностика</a><a href="#order">Работы и цены</a><a data-page="cases">Кейсы</a><a data-page="reviews">Отзывы</a></nav><a class="phone" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">@PavelTexSpec</a></div></header>
+
+<main>
+<div class="hero"><div class="w">
+  <div data-rv>
+    <span class="badge">Беру в работу без очереди</span>
+    <h1>Сайт, который <span>загружает боксы</span> заявками</h1>
+    <p>Делаю сайты и чат-ботов для автосервисов и мастерских: понятные цены, запись на диагностику, ответы клиентам ночью. Без «перезвоните завтра».</p>
+    <div class="acts"><a class="btn" href="#contact">Записаться на расчёт</a><a class="btn o" href="#diag">Проверить свой сайт</a></div>
+  </div>
+  <figure class="shot" data-rv>
+    <div class="frame"><img src="https://images.unsplash.com/photo-1711386689622-1cda23e10217?w=1400&q=80&auto=format&fit=crop" alt="Механик ремонтирует автомобиль в мастерской"></div>
+    <span class="corner c1"></span><span class="corner c2"></span>
+    <span class="tape">Запись онлайн · 24/7</span>
+    <figcaption class="lbl"><b>Пока вы в боксе —<br>сайт принимает заявки</b><span>фото: Unsplash</span></figcaption>
+  </figure>
+  </div>
+</div></div>
+<div class="zebra"></div>
+
+<section id="diag"><div class="w">
+  <div class="sh"><h2>Диагностика <span>вашего сайта</span></h2><span class="code">// отметьте, что про вас</span></div>
+  <div class="diag" data-rv>
+    <div class="checks" id="checks"></div>
+    <div class="result"><span class="code" style="font:500 13px var(--m);color:var(--g)">РЕЗУЛЬТАТ ПРОВЕРКИ</span><div class="st" id="st">Всё исправно</div><div class="bar"><i id="bar" style="width:4%"></i></div><ul id="fix"><li>Отметьте пункты слева — покажу, что чинить.</li></ul><a class="btn" style="margin-top:auto;align-self:flex-start" href="#contact">Заказать ремонт</a></div>
+  </div>
+</div></section>
+
+<section id="order" style="padding-top:0"><div class="w">
+  <div class="sh"><h2>Работы <span>и цены</span></h2><a class="btn o" data-page="price">Весь прайс</a></div>
+  <div class="order" data-rv>
+    <h3>Перечень работ</h3>
+    <table><thead><tr><th>Код</th><th>Наименование работ</th><th>Стоимость</th></tr></thead><tbody id="ot"></tbody></table>
+    <span class="stamp">Гарантия<br>поддержки<br>после сдачи</span>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+  <div class="sh"><h2>Проект <span>для мастерской</span></h2><span class="code">// собственный проект-концепт</span></div>
+  <a class="proj" data-page="cases" data-rv>
+    <img id="mechImg" alt="Сайт «Механик 102»">
+    <div class="tx"><h3>Механик 102 — ремонт полуприцепов-цистерн</h3>
+      <p>Сложная B2B-услуга объяснена через личную историю мастера, конкретные цифры и разбор реальных поломок — доверие вместо громких обещаний. Клиент понимает, что будет происходить, и спокойно оставляет заявку на осмотр.</p>
+      <div class="specs"><div><b>8</b><span>шагов прозрачного процесса работы</span></div><div><b>3</b><span>канала связи: форма, WhatsApp, Telegram</span></div></div>
+    </div>
+  </a>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+  <div class="sh"><h2>Другие <span>работы</span></h2><a class="btn o" data-page="cases">Все 25</a></div>
+  <div class="works" id="works"></div>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+  <div class="sh"><h2>Отзывы <span>заказчиков</span></h2><a class="btn o" data-page="reviews">Все отзывы</a></div>
+  <div class="rev" id="rev"></div>
+</div></section>
+</main>
+
+<div class="zebra"></div>
+<section class="final" id="contact"><div class="w">
+  <div><h2>Заезжайте на расчёт</h2><p>Опишите мастерскую в паре строк — посчитаю работы и сроки. Отвечаю в течение рабочего дня.</p></div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" data-page="form">Оставить заявку</a><a class="btn o" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a></div>
+</div></section>
+<footer class="f"><div class="w"><span>© 2026 Павел Корчагин, Троицк (Москва)</span><span><a data-page="about">Обо мне</a><a data-page="faq">Вопросы</a></span></div></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id),by=id=>D.all.find(c=>c.id===id);
+const CH=[['Клиенты звонят спросить цену — на сайте её нет','Цены и калькулятор прямо на первом экране'],['Записаться можно только по телефону','Онлайн-запись на диагностику и чат-бот 24/7'],['Сайт неудобно открывать с телефона','Мобильная версия в первую очередь'],['Заявки теряются в мессенджерах','Все заявки — в одну таблицу и в Telegram'],['Сайта нет в поиске по городу','SEO и подключение Яндекс Метрики с целями']];
+$('checks').innerHTML=CH.map(([q],i)=>`<label><input type="checkbox" data-i="${i}">${q}</label>`).join('');
+$('checks').addEventListener('change',()=>{const on=[...document.querySelectorAll('#checks input:checked')].map(i=>+i.dataset.i);const n=on.length;
+  $('st').textContent=n===0?'Всё исправно':n<3?'Нужно ТО':'Требуется ремонт';$('st').style.color=n===0?'var(--ink)':n<3?'var(--y)':'var(--red)';
+  $('bar').style.width=Math.max(4,n/CH.length*100)+'%';$('bar').style.background=n<3?'var(--y)':'var(--red)';
+  $('fix').innerHTML=n?on.map(i=>`<li>${CH[i][1]}</li>`).join(''):'<li>Отметьте пункты слева — покажу, что чинить.</li>'});
+const OT=[['WEB-01','Лендинг автосервиса','услуги, цены, запись, адрес на карте','от 2 000 ₽'],['WEB-02','Многостраничный сайт','отдельная страница под каждую услугу — для поиска','от 10 000 ₽'],['BOT-01','Чат-бот записи','принимает заявку, напоминает о визите','от 5 000 ₽'],['BOT-02','ИИ-администратор','отвечает на вопросы клиентов круглосуточно','от 8 000 ₽'],['INT-01','Заявки в CRM и Telegram','ни одна заявка не теряется','от 1 500 ₽'],['SEO-01','SEO и Яндекс Метрика','заголовки, карта сайта, цели на заявки','от 2 000 ₽'],['SRV-01','Поддержка после запуска','правки, обновления, консультации','3–7 тыс ₽/мес']];
+$('ot').innerHTML=OT.map(([c,n,s,p])=>`<tr><td>${c}</td><td>${n}<small>${s}</small></td><td>${p}</td></tr>`).join('');
+$('mechImg').src=by('mechanic').img;
+$('works').innerHTML=['kromka','sb-jador','yurdirect','diva-n','wave-sup','sb-portfolio-ai'].map(by).map(c=>`<a class="wk" data-rv ${c.url?`href="${c.url}" target="_blank" rel="noopener"`:'data-page="cases"'}><img src="${c.img}" alt="${c.t}" loading="lazy"><div><b>${c.t}</b><span>${c.f[0]} — ${c.f[1]}</span></div></a>`).join('');
+$('rev').innerHTML=D.reviews.filter(r=>!/кафе/i.test(r.role)).map(r=>`<article data-rv><p>«${r.text}»</p><footer><b>${r.who}</b>${r.role}</footer></article>`).join('');
+reveal();styleSwitch('Сменить стиль');
+</script>
+</body>
+</html>

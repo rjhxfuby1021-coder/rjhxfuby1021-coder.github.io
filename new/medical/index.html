@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Сайты для клиник — Павел Корчагин</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: сайты клиник и медсервисов (One Medical, СберЗдоровье) — белый, бирюза, виджет записи, спокойное доверие */
+:root{--bg:#f3f8fb;--white:#fff;--ink:#16323f;--g:#5f7884;--teal:#0f9d9a;--teal2:#e0f4f3;--blue:#2f7bf5;--l:#dce8ee;--f:"Mulish",system-ui,sans-serif;--gut:clamp(16px,4vw,44px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:500 17px/1.6 var(--f);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.w{max-width:1200px;margin:0 auto;padding:0 var(--gut)}
+.top{background:var(--ink);color:#c9dbe2;font-size:13.5px}
+.top .w{display:flex;justify-content:space-between;gap:16px;height:38px;align-items:center}
+.top b{color:#fff;font-weight:600}
+header{background:#fff;border-bottom:1px solid var(--l);position:sticky;top:0;z-index:20}
+header .w{display:flex;justify-content:space-between;align-items:center;height:72px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+.logo i{width:36px;height:36px;border-radius:10px;background:var(--teal);position:relative}
+.logo i::before,.logo i::after{content:"";position:absolute;background:#fff;border-radius:2px;left:50%;top:50%;transform:translate(-50%,-50%)}
+.logo i::before{width:18px;height:6px}.logo i::after{width:6px;height:18px}
+header nav{display:flex;gap:26px;font-weight:600;font-size:15px;color:var(--g)}
+header nav a:hover{color:var(--teal)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 24px;border-radius:14px;background:var(--teal);color:#fff;font-weight:700;transition:background .2s,transform .2s}
+.btn:hover{background:#0b8582}
+.btn.o{background:#fff;color:var(--teal);box-shadow:inset 0 0 0 2px var(--teal)}
+.btn.o:hover{background:var(--teal2)}
+@media(max-width:900px){header nav{display:none}.top .w span:last-child{display:none}}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:clamp(24px,5vw,70px);align-items:center;padding:clamp(40px,6vw,90px) 0}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--teal2);color:var(--teal);font-weight:700;font-size:14px;padding:7px 14px;border-radius:999px}
+.hero h1{font-weight:800;font-size:clamp(38px,5.2vw,68px);line-height:1.06;letter-spacing:-.03em;margin-top:18px}
+.hero h1 span{color:var(--teal)}
+.hero p{color:var(--g);font-size:clamp(17px,1.5vw,19px);max-width:46ch;margin-top:18px}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.trust{display:flex;gap:26px;flex-wrap:wrap;margin-top:34px;font-size:14px;color:var(--g)}
+.trust b{display:block;font-size:24px;font-weight:800;color:var(--ink)}
+/* booking widget */
+.book{background:#fff;border-radius:24px;padding:24px;box-shadow:0 30px 70px -30px rgba(22,50,63,.3);border:1px solid var(--l)}
+.book .hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.book .hd b{font-weight:800}
+.book .hd small{font-size:12px;color:var(--g);background:var(--bg);padding:4px 10px;border-radius:999px}
+.steps{display:flex;gap:6px;margin-bottom:16px}
+.steps i{flex:1;height:4px;border-radius:2px;background:var(--l);transition:background .3s}
+.steps i.on{background:var(--teal)}
+.lbl{font-size:13px;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.06em;margin:10px 0 8px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{padding:12px;border-radius:12px;border:1.5px solid var(--l);text-align:left;font-weight:600;font-size:15px;transition:.2s}
+.opt small{display:block;font-weight:500;font-size:12.5px;color:var(--g)}
+.opt:hover{border-color:var(--teal)}
+.opt.on{border-color:var(--teal);background:var(--teal2)}
+.times{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.times button{padding:10px 0;border-radius:10px;border:1.5px solid var(--l);font-weight:700;font-size:14px}
+.times button:disabled{color:#b8c6cd;text-decoration:line-through;cursor:not-allowed;background:var(--bg)}
+.times button.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.done{text-align:center;padding:20px 0}
+.done .ok{width:64px;height:64px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;margin:0 auto 14px;font-size:30px;animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{from{transform:scale(0)}}
+.done p{color:var(--g);font-size:15px}
+.note{font-size:12.5px;color:var(--g);margin-top:14px;text-align:center}
+@media(max-width:900px){.hero{grid-template-columns:1fr}}
+section{padding:clamp(60px,8vw,100px) 0}
+.sh{max-width:720px;margin-bottom:36px}
+.sh h2{font-weight:800;font-size:clamp(30px,4vw,50px);line-height:1.1;letter-spacing:-.03em}
+.sh h2 span{color:var(--teal)}
+.sh p{color:var(--g);margin-top:12px}
+.needs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.need{background:#fff;border-radius:20px;padding:24px;border:1px solid var(--l)}
+.need i{display:grid;place-items:center;width:52px;height:52px;border-radius:14px;background:var(--teal2);color:var(--teal);font-style:normal;font-size:24px;margin-bottom:14px}
+.need b{display:block;font-weight:800;font-size:18.5px}
+.need span{display:block;color:var(--g);font-size:15px;margin-top:6px}
+@media(max-width:900px){.needs{grid-template-columns:1fr 1fr}}@media(max-width:560px){.needs{grid-template-columns:1fr}}
+.honest{background:#fff;border-radius:24px;padding:clamp(22px,4vw,40px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,50px);align-items:center;border:1px solid var(--l)}
+.honest img{border-radius:16px;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top}
+.honest h3{font-weight:800;font-size:clamp(24px,2.6vw,32px);line-height:1.15}
+.honest p{color:var(--g);margin-top:12px}
+.honest ul{list-style:none;margin-top:16px}
+.honest li{padding:6px 0 6px 30px;position:relative}
+.honest li::before{content:"✓";position:absolute;left:0;top:6px;width:20px;height:20px;border-radius:50%;background:var(--teal);color:#fff;font-size:12px;display:grid;place-items:center;font-weight:800}
+@media(max-width:860px){.honest{grid-template-columns:1fr}}
+.works{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.wk{background:#fff;border-radius:20px;overflow:hidden;border:1px solid var(--l);transition:box-shadow .3s,transform .3s}
+.wk:hover{box-shadow:0 20px 40px -20px rgba(22,50,63,.25);transform:translateY(-4px)}
+.wk img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.wk div{padding:16px 18px 18px}
+.wk b{display:block;font-weight:800}
+.wk span{font-size:14px;color:var(--g)}
+@media(max-width:900px){.works{grid-template-columns:1fr 1fr}}@media(max-width:560px){.works{grid-template-columns:1fr}}
+.prices{background:#fff;border-radius:20px;border:1px solid var(--l);overflow:hidden}
+.prices div{display:flex;justify-content:space-between;gap:16px;padding:16px 22px;border-bottom:1px solid var(--l)}
+.prices div:nth-child(even){background:#fafcfd}
+.prices b{color:var(--teal);font-weight:800;white-space:nowrap}
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rev{background:#fff;border-radius:20px;padding:24px;border:1px solid var(--l)}
+.rev .st{color:#f5b301;letter-spacing:2px}
+.rev p{margin-top:10px;font-size:15.5px}
+.rev footer{margin-top:14px;font-size:14px;color:var(--g)}
+.rev footer b{color:var(--ink);display:block}
+@media(max-width:900px){.revs{grid-template-columns:1fr}}
+details{background:#fff;border-radius:16px;border:1px solid var(--l);margin-bottom:10px}
+summary{list-style:none;cursor:pointer;padding:18px 22px;font-weight:700;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--teal);font-size:22px;line-height:1}
+details[open] summary::after{content:"−"}
+details p{padding:0 22px 18px;color:var(--g)}
+.final{background:linear-gradient(135deg,var(--teal),#1785b8);color:#fff;border-radius:28px;padding:clamp(40px,6vw,70px);display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+.final h2{font-weight:800;font-size:clamp(30px,4vw,48px);line-height:1.1;max-width:18ch}
+.final p{color:#d9f3f1;margin-top:10px;max-width:44ch}
+.final .btn{background:#fff;color:var(--teal)}
+.final .btn.o{background:none;color:#fff;box-shadow:inset 0 0 0 2px #fff}
+footer.f{padding:28px 0 40px;color:var(--g);font-size:14px}
+footer.f .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer.f a{margin-left:16px;font-weight:700}
+[data-rv]{opacity:0;transform:translateY(18px);transition:.8s ease}[data-rv].in{opacity:1;transform:none}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:#fff;border:1px solid var(--l);border-radius:12px;padding:9px 14px;font-weight:700;font-size:14px;color:var(--teal);box-shadow:0 10px 24px -12px rgba(22,50,63,.3)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-rv]{opacity:1;transform:none}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<div class="top"><div class="w"><span>Сайты, онлайн-запись и чат-боты для клиник и частных практик</span><span>Ответ — в течение рабочего дня · <b>@PavelTexSpec</b></span></div></div>
+<header><div class="w"><a class="logo" href="#"><span class="pk-logo pk-logo--medical"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span></a><nav><a href="#needs">Что даю клинике</a><a data-page="cases">Кейсы</a><a data-page="price">Цены</a><a data-page="faq">Вопросы</a></nav><a class="btn" href="#contact">Записаться на консультацию</a></div></header>
+
+<main class="w">
+  <div class="hero">
+    <div data-rv>
+      <span class="pill">✚ Для клиник, стоматологий и частных врачей</span>
+      <h1>Онлайн-запись, которая <span>работает круглосуточно</span></h1>
+      <p>Сайт с понятными услугами и ценами, запись к врачу по живому расписанию и напоминания пациентам о приёме. Администратор отвечает меньше — пациенты приходят чаще.</p>
+      <div class="acts"><a class="btn" href="#contact">Обсудить проект</a><a class="btn o" href="#needs">Что входит</a></div>
+      <div class="trust"><div><b>24/7</b>запись и ответы</div><div><b>×2</b>напоминания о визите</div><div><b>0</b>отрицательных отзывов</div></div>
+    </div>
+    <div class="book" data-rv>
+      <div class="hd"><b>Запись на приём</b><small>демо-виджет</small></div>
+      <div class="steps"><i class="on"></i><i id="s2"></i><i id="s3"></i></div>
+      <div id="bw"></div>
+    </div>
+  </div>
+
+  <section id="needs" style="padding-top:0">
+    <div class="sh"><h2>Что важно <span>пациенту и клинике</span></h2><p>Собираю всё сам — от дизайна до связки с расписанием и уведомлениями.</p></div>
+    <div class="needs" data-rv>
+      <div class="need"><i>🗓</i><b>Онлайн-запись</b><span>Пациент выбирает врача и свободное время без звонка.</span></div>
+      <div class="need"><i>🔔</i><b>Напоминания</b><span>За день и за час до приёма — меньше неявок.</span></div>
+      <div class="need"><i>💬</i><b>Ответы 24/7</b><span>ИИ-ассистент отвечает на типовые вопросы ночью и в выходные.</span></div>
+      <div class="need"><i>₽</i><b>Понятные цены</b><span>Прайс по услугам без «уточняйте у администратора».</span></div>
+      <div class="need"><i>👩‍⚕️</i><b>Страницы врачей</b><span>Опыт и специализация — чтобы пациенту было кому доверять.</span></div>
+      <div class="need"><i>📱</i><b>Удобно с телефона</b><span>Большинство пациентов приходит с мобильного.</span></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="honest" data-rv>
+      <img id="jImg" alt="ИИ-администратор салона «Жадор»">
+      <div>
+        <span class="pill">Честно о кейсах</span>
+        <h3 style="margin-top:12px">Клиник в портфолио пока нет — но запись по расписанию я уже делал</h3>
+        <p>ИИ-администратор для салона «Жадор» работает по той же логике, что нужна клинике: консультирует, помогает выбрать услугу и записывает на свободное время прямо из расписания CRM.</p>
+        <ul><li>Запись только в реально свободные окна</li><li>Напоминания клиенту за день и за час</li><li>Типовые вопросы ушли от администратора к ассистенту</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><h2>Другие <span>работы</span></h2></div>
+    <div class="works" id="works"></div>
+    <div style="margin-top:26px"><a class="btn o" data-page="cases">Все 25 проектов</a></div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><h2>Стоимость</h2><p>Ориентиры «от» — точную смету назову после короткого созвона. Готовое ТЗ не нужно.</p></div>
+    <div class="prices" id="prices" data-rv></div>
+    <div style="margin-top:20px"><a class="btn o" data-page="price">Полный прайс</a></div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><h2>Отзывы <span>заказчиков</span></h2></div>
+    <div class="revs" id="revs"></div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><h2>Частые вопросы</h2></div>
+    <div id="faq" data-rv></div>
+  </section>
+
+  <section id="contact" style="padding-top:0"><div class="final" data-rv>
+    <div><h2>Запишитесь на бесплатную консультацию</h2><p>Расскажите о клинике в паре строк — предложу решение и сроки. Отвечаю в течение рабочего дня.</p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn" data-page="form">Оставить заявку</a><a class="btn o" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a></div>
+  </div></section>
+</main>
+<footer class="f"><div class="w"><span>© 2026 Павел Корчагин</span><span><a data-page="about">Обо мне</a><a data-page="reviews">Отзывы</a></span></div></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id),by=id=>D.all.find(c=>c.id===id);
+/* демо-виджет записи */
+const DOC=[['Терапевт','ближайшее: завтра'],['Стоматолог','ближайшее: сегодня'],['Педиатр','ближайшее: завтра'],['Невролог','ближайшее: пятница']];
+const TIMES=['09:00','09:30','10:30','11:00','13:00','14:30','16:00','17:30'];
+let st={};
+function render(){
+  $('s2').classList.toggle('on',!!st.doc);$('s3').classList.toggle('on',!!st.time);
+  if(st.done){$('bw').innerHTML=`<div class="done"><div class="ok">✓</div><b>Вы записаны: ${st.doc}, ${st.day}, ${st.time}</b><p>Напомним за день и за час до приёма.</p><button class="btn o" style="margin-top:16px;height:44px" id="again">Записаться ещё</button></div><p class="note">Так может работать запись в вашей клинике</p>`;$('again').onclick=()=>{st={};render()};return}
+  const days=['Сегодня','Завтра','Пт, 4 окт'];
+  $('bw').innerHTML=`<div class="lbl">1. Специалист</div><div class="opts">${DOC.map(([d,s])=>`<button class="opt ${st.doc===d?'on':''}" data-doc="${d}">${d}<small>${s}</small></button>`).join('')}</div>
+  ${st.doc?`<div class="lbl">2. День</div><div class="opts" style="grid-template-columns:repeat(3,1fr)">${days.map(d=>`<button class="opt ${st.day===d?'on':''}" data-day="${d}" style="text-align:center">${d}</button>`).join('')}</div>`:''}
+  ${st.day?`<div class="lbl">3. Время</div><div class="times">${TIMES.map((t,i)=>`<button ${((i*7+st.day.length+st.doc.length)%3===0)?'disabled':''} class="${st.time===t?'on':''}" data-time="${t}">${t}</button>`).join('')}</div>`:''}
+  ${st.time?`<button class="btn" style="width:100%;margin-top:16px" id="conf">Записаться</button>`:''}
+  <p class="note">Зачёркнутое время уже занято — расписание «живое»</p>`;
+  const c=$('conf');if(c)c.onclick=()=>{st.done=true;render()};
+}
+$('bw').addEventListener('click',e=>{const b=e.target.closest('button');if(!b||b.disabled)return;if(b.dataset.doc){st={doc:b.dataset.doc}}else if(b.dataset.day){st.day=b.dataset.day;delete st.time}else if(b.dataset.time){st.time=b.dataset.time}else return;render()});
+render();
+$('jImg').src=by('sb-jador').img;
+$('works').innerHTML=['maxfit','tochka-opory','yurdirect','pro-technik','cafe-shop','sb-portfolio-ai'].map(by).map(c=>`<a class="wk" data-rv ${c.url?`href="${c.url}" target="_blank" rel="noopener"`:'data-page="cases"'}><img src="${c.img}" alt="${c.t}" loading="lazy"><div><b>${c.t}</b><span>${c.f[0]} — ${c.f[1]}</span></div></a>`).join('');
+const MP=[['Сайт клиники (несколько страниц)','от 10 000 ₽'],['Лендинг частного врача','от 2 000 ₽'],['Дизайн в Figma','от 10 000 ₽'],['Запись по расписанию CRM + напоминания','от 6 000 ₽'],['ИИ-ассистент для ответов пациентам','от 8 000 ₽'],['Заявки в CRM и Telegram','от 1 500 ₽'],['Поддержка после запуска','3–7 тыс ₽/мес']];
+$('prices').innerHTML=MP.map(([a,b])=>`<div><span>${a}</span><b>${b}</b></div>`).join('');
+$('revs').innerHTML=D.reviews.map(r=>`<article class="rev" data-rv><span class="st">★★★★★</span><p>«${r.text}»</p><footer><b>${r.who}</b>${r.role}</footer></article>`).join('');
+$('faq').innerHTML=D.faq.map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('');
+reveal();styleSwitch('Сменить стиль');
+</script>
+</body>
+</html>

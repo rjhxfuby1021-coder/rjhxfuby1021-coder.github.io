@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Письмо получено — Павел Корчагин</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261001231639">
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<header id="mast"></header>
+<main>
+  <div class="w page-hd two" style="align-items:center;min-height:60vh">
+    <div>
+      <div class="crumbs">письмо → доставлено ✓</div>
+      <h1>Письмо у меня. <i>Спасибо!</i></h1>
+      <p class="lead">Прочитаю внимательно и отвечу в течение рабочего дня — с вопросами, первыми идеями или сразу с предложением. Если задача горит, напишите в Telegram, что отправили письмо.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="pill" href="cases.html">Пока полистать альбом</a><a class="pill o" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a></div>
+    </div>
+    <div class="ph" style="position:relative;transform:rotate(4deg);max-width:420px;justify-self:center"><img src="https://static.tildacdn.com/tild3366-6336-4861-a230-666439386134/noroot.png" alt="Павел Корчагин" style="aspect-ratio:4/5"><span>уже читаю ваше письмо</span></div>
+  </div>
+  <section class="sec tight"><div class="w">
+    <div class="kick">Пока ждёте — почитайте журнал</div>
+    <div class="pager" id="more"></div>
+  </div></section>
+</main>
+<footer id="foot"></footer>
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/content.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>document.getElementById('more').innerHTML=CONTENT.blog.slice(0,2).map(b=>`<a href="post.html?slug=${b.slug}"><small>${CR.esc(b.tag.toLowerCase())}</small><b>${CR.esc(b.title)}</b></a>`).join('');CR.done();</script>
+</body>
+</html>

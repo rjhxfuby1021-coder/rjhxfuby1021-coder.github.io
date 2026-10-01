@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ПавелOS 98</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: Windows 98 / Poolsuite — рабочий стол с окнами, которые можно таскать */
+:root{--desk:#008080;--face:#c0c0c0;--dark:#808080;--navy:#000080;--px:"Pixelify Sans",monospace;--ui:Tahoma,Verdana,"Segoe UI",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip}
+body{background:var(--desk);font:13px/1.45 var(--ui);color:#000;min-height:100svh;overflow:hidden;user-select:none}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;cursor:pointer}
+.out{box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #fff,inset -2px -2px var(--dark),inset 2px 2px #dfdfdf;background:var(--face)}
+.in{box-shadow:inset -1px -1px #fff,inset 1px 1px var(--dark),inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a;background:#fff}
+.b98{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:80px;padding:6px 14px;border:0;font:13px var(--ui)}
+.b98:active{box-shadow:inset -1px -1px #fff,inset 1px 1px #0a0a0a,inset -2px -2px #dfdfdf,inset 2px 2px var(--dark)}
+.b98.def{outline:1px solid #000;outline-offset:-4px}
+/* desktop icons */
+.icons{position:absolute;left:10px;top:10px;display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,86px);gap:6px 10px;z-index:1}
+.ic{width:84px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px;background:none;border:0;color:#fff;text-align:center;font:12px var(--ui)}
+.ic .g{width:40px;height:40px;display:grid;place-items:center;font:700 22px var(--px)}
+.ic span{padding:1px 3px;line-height:1.2}
+.ic:focus span,.ic:hover span{background:var(--navy);outline:1px dotted #fff}
+/* windows */
+.win{position:absolute;display:flex;flex-direction:column;padding:3px;min-width:260px;z-index:5}
+.win.hidden{display:none}
+.tb{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:3px 3px 3px 6px;background:linear-gradient(90deg,var(--navy),#1084d0);color:#fff;font-weight:700;cursor:move;touch-action:none}
+.win:not(.act) .tb{background:linear-gradient(90deg,var(--dark),#b5b5b5);color:#d6d6d6}
+.tb .ctl{display:flex;gap:2px}
+.tb .ctl button{width:18px;height:16px;border:0;font:700 11px/1 var(--ui);display:grid;place-items:center;padding:0}
+.menu{display:flex;gap:14px;padding:3px 6px}
+.menu span:first-letter{text-decoration:underline}
+.body{padding:12px;overflow:auto;flex:1}
+.status{display:flex;gap:3px;padding-top:3px}.status div{flex:1;padding:2px 6px}
+/* welcome */
+.welcome h1{font:700 clamp(28px,3.4vw,46px)/1 var(--px);color:var(--navy);letter-spacing:-.01em}
+.welcome h1 s{color:#a00}
+.welcome p{font-size:14px;margin-top:12px;max-width:48ch}
+.inst{margin-top:14px}
+.inst li{list-style:none;display:flex;justify-content:space-between;font-size:12.5px;padding:1px 0}
+.inst li b{color:#008000}
+.bar{height:22px;padding:3px;margin-top:8px}
+.bar i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,var(--navy) 0 10px,transparent 10px 12px);animation:fill 3.2s steps(26) .4s forwards}
+@keyframes fill{to{width:100%}}
+.acts{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+/* explorer */
+.files{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:10px;background:#fff}
+.file{display:flex;flex-direction:column;gap:5px;font-size:12px;text-align:center;padding:4px;border:1px solid transparent}
+.file:hover{border:1px dotted var(--navy);background:#e8eefc}
+.file img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border:1px solid #000}
+.file b{font-weight:400;line-height:1.25}
+/* case doc */
+.doc{background:#fff;padding:16px;font-family:"Times New Roman",serif;font-size:15px}
+.doc h2{font:700 22px "Times New Roman",serif;margin-bottom:8px}
+.doc table{border-collapse:collapse;width:100%;margin:12px 0;font:13px var(--ui)}
+.doc td{border:1px solid #000;padding:5px 8px}
+.doc td:first-child{font-weight:700;width:34%}
+.doc blockquote{font-style:italic;border-left:3px solid var(--navy);padding-left:10px;margin-top:10px}
+/* notepad */
+.np{background:#fff;padding:10px;font:13px/1.6 "Courier New",monospace;white-space:pre-wrap;user-select:text}
+/* chat (bot) */
+.chatw{display:flex;flex-direction:column;height:100%}
+#chat{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:6px;min-height:240px;background:#fff}
+.msg{font-size:13px;max-width:90%;padding:4px 8px}
+.msg.in{align-self:flex-start;background:#ffffe1;border:1px solid #000}
+.msg.in::before{content:"Салон «Жадор»: ";font-weight:700;color:#a00}
+.msg.out{align-self:flex-end;background:#dfe8ff;border:1px solid #000}
+.msg.out::before{content:"Вы: ";font-weight:700;color:var(--navy)}
+.msg.sys{align-self:center;color:var(--dark);font-size:11px}
+.msg.typing::before{content:"Салон «Жадор» печатает…";font-weight:400;color:var(--dark)}
+.msg.typing i{display:none}
+#replies{display:flex;flex-wrap:wrap;gap:6px;padding:8px 0 0;min-height:36px}
+/* reviews (mail) */
+.mail{background:#fff}
+.mail .row{display:grid;grid-template-columns:120px 1fr;gap:8px;padding:4px 8px;border-bottom:1px solid #eee;cursor:pointer}
+.mail .row.on{background:var(--navy);color:#fff}
+.mail .txt{padding:12px;font-size:13.5px;border-top:2px solid var(--face);min-height:110px;user-select:text}
+/* sysprops */
+.sys{display:grid;grid-template-columns:90px 1fr;gap:14px;align-items:start}
+.sys .logo{width:90px;height:90px;display:grid;place-items:center;font:700 40px var(--px);color:#fff;background:linear-gradient(135deg,#f00 0 50%,#0a0 50%) top left/50% 50% no-repeat,linear-gradient(135deg,#00f 0 50%,#fc0 50%) bottom right/50% 50% no-repeat,linear-gradient(#00a,#00a)}
+.sys p{margin-bottom:6px}
+/* taskbar */
+.task{position:fixed;left:0;right:0;bottom:0;height:34px;display:flex;align-items:center;gap:4px;padding:3px;z-index:100}
+.start{font-weight:700;height:100%;padding:0 8px;display:flex;align-items:center;gap:6px;border:0}
+.start i{width:18px;height:16px;font-style:normal;background:conic-gradient(#f00 0 25%,#0a0 0 50%,#fc0 0 75%,#00f 0);transform:skew(-8deg)}
+.tasks{display:flex;gap:3px;flex:1;overflow:hidden}
+.tasks button{height:26px;max-width:170px;padding:0 8px;border:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;text-align:left;font-size:12px}
+.tasks button.act{box-shadow:inset -1px -1px #fff,inset 1px 1px #0a0a0a,inset -2px -2px #dfdfdf,inset 2px 2px var(--dark);background:#e0e0e0;font-weight:700}
+.tray{height:26px;padding:0 10px;display:flex;align-items:center;gap:8px;font-size:12px}
+.smenu{position:fixed;left:3px;bottom:34px;width:250px;z-index:101;display:none;padding:3px}
+.smenu.open{display:flex}
+.smenu .side{width:26px;background:linear-gradient(0deg,var(--navy),#1084d0);color:#c0c0c0;writing-mode:vertical-rl;transform:rotate(180deg);font:700 16px var(--px);padding:8px 3px}
+.smenu .side b{color:#fff}
+.smenu ul{list-style:none;flex:1}
+.smenu a{display:flex;align-items:center;gap:10px;padding:8px 10px}
+.smenu a:hover{background:var(--navy);color:#fff}
+.smenu hr{border:0;border-top:1px solid var(--dark);border-bottom:1px solid #fff;margin:3px 2px}
+/* mobile: окна идут колонкой */
+@media(max-width:900px){
+  body{overflow:auto;padding:10px 10px 50px}
+  .icons{position:static;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:none;grid-auto-flow:row;margin-bottom:10px}
+  .ic{width:auto}
+  .win{position:static!important;width:auto!important;height:auto!important;margin-bottom:12px}
+  .tb{cursor:default}
+  .files{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce){.bar i{animation:none;width:100%}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<div class="icons" id="icons"></div>
+
+<!-- Добро пожаловать -->
+<section class="win out act" id="w-welcome" style="left:120px;top:24px;width:min(560px,46vw)" data-title="Добро пожаловать.exe" data-ico="★">
+  <div class="tb"><span>★ Добро пожаловать в ПавелOS 98</span><div class="ctl"><button class="out" data-min>_</button><button class="out" data-close>✕</button></div></div>
+  <div class="body welcome">
+    <h1>Один специалист вместо <s>пяти</s> подрядчиков</h1>
+    <p>Мастер установки соберёт для вашего бизнеса полную систему продаж. Дизайн в Figma, сайт на Tilda, чат-бот в Salebot, школу на GetCourse и рассылки — всё ставит один человек.</p>
+    <ul class="inst"><li>Дизайн в Figma <b>✓ установлено</b></li><li>Сайт на Tilda · Zero Block <b>✓ установлено</b></li><li>Чат-бот Salebot + ИИ <b>✓ установлено</b></li><li>Школа GetCourse и вебинары <b>✓ установлено</b></li><li>Пропадать после сдачи <b style="color:#a00">✕ не найдено</b></li></ul>
+    <div class="bar in"><i></i></div>
+    <div class="acts"><a class="b98 out def" href="#" data-open="w-contact">Обсудить проект</a><button class="b98 out" data-open="w-files">Мои проекты</button><button class="b98 out" data-open="w-bot">Запустить демо-бота</button></div>
+  </div>
+</section>
+
+<!-- Проекты -->
+<section class="win out" id="w-files" style="left:calc(46vw + 150px);top:40px;width:min(520px,40vw)" data-title="Мои проекты" data-ico="📁">
+  <div class="tb"><span>📁 C:\Мои проекты</span><div class="ctl"><button class="out" data-min>_</button><button class="out" data-close>✕</button></div></div>
+  <div class="menu"><span>Файл</span><span>Правка</span><span>Вид</span><span>Справка</span></div>
+  <div class="body" style="padding:3px"><div class="in" style="padding:2px;max-height:min(420px,52vh);overflow:auto"><div class="files" id="files"></div></div></div>
+  <div class="status"><div class="in" style="background:var(--face)">Показано 9 из 25 объектов</div><div class="in" style="background:var(--face)"><a data-page="cases" style="text-decoration:underline;color:var(--navy)">Открыть папку целиком »</a></div></div>
+</section>
+
+<!-- Кейс кафе -->
+<section class="win out hidden" id="w-case" style="left:200px;top:90px;width:min(560px,50vw)" data-title="Кейс_кафе.doc" data-ico="📄">
+  <div class="tb"><span>📄 Кейс_кафе.doc — WordPad</span><div class="ctl"><button class="out" data-min>_</button><button class="out" data-close>✕</button></div></div>
+  <div class="body" style="padding:3px"><div class="in" style="padding:2px;max-height:60vh;overflow:auto"><div class="doc" id="doc"></div></div></div>
+</section>
+
+<!-- Бот -->
+<section class="win out hidden" id="w-bot" style="left:52vw;top:120px;width:380px;height:460px" data-title="ИИ-администратор" data-ico="💬">
+  <div class="tb"><span>💬 ИИ-администратор — демо</span><div class="ctl"><button class="out" data-min>_</button><button class="out" data-close>✕</button></div></div>
+  <div class="body chatw"><div class="in" style="padding:2px;flex:1;display:flex"><div id="chat" style="flex:1"></div></div><div id="replies"></div><p style="font-size:11px;color:var(--dark);margin-top:6px">Сценарий по мотивам кейса салона «Жадор»</p></div>
+</section>
+
+<!-- Цены -->
+<section class="win out hidden" id="w-price" style="left:300px;top:70px;width:440px" data-title="Цены.txt" data-ico="📝">
+  <div class="tb"><span>📝 Цены.txt — Блокнот</span><div class="ctl"><button class="out" data-min>_</button><button class="out" data-close>✕</button></div></div>
+  <div class="menu"><span>Файл</span><span>Правка</span><span>Поиск</span><span>Справка</span></div>
+  <div class="body" style="padding:3px"><div class="in np" id="np"></div></div>
+</section>
+
+<!-- Отзывы -->
+<section class="win out hidden" id="w-mail" style="left:380px;top:150px;width:min(520px,44vw)" data-title="Входящие" data-ico="✉">
+  <div class="tb"><span>✉ Outlook Express — Входящие (3)</span><div class="ctl"><button class="out" data-min>_</button><button class="out" data-close>✕</button></div></div>
+  <div class="body" style="padding:3px"><div class="in mail"><div id="mrows"></div><div class="txt" id="mtxt"></div></div>
+  <div style="margin-top:6px"><a data-page="reviews" style="text-decoration:underline;color:var(--navy)">Все письма »</a></div></div>
+</section>
+
+<!-- О системе -->
+<section class="win out hidden" id="w-about" style="left:260px;top:60px;width:420px" data-title="Свойства системы" data-ico="🖥">
+  <div class="tb"><span>🖥 Свойства системы</span><div class="ctl"><button class="out" data-min>_</button><button class="out" data-close>✕</button></div></div>
+  <div class="body"><div class="sys"><div class="logo">П</div><div>
+    <p><b>Система:</b><br>Павел Корчагин 98<br>Версия 31 · сборка: Брянск, установлена: Троицк</p>
+    <p><b>Установлено:</b><br>Figma, Tilda, Salebot, GetCourse, Bizon365, HTML/CSS/JS</p>
+    <p><b>Драйверы характера:</b><br>ответственный, пунктуальный, спокойный, добросовестный</p>
+    <p><b>Обнаружено ошибок:</b> 0 отрицательных отзывов</p>
+  </div></div>
+  <div class="acts" style="justify-content:flex-end"><a class="b98 out" data-page="about">Резюме…</a><button class="b98 out def" data-close>OK</button></div></div>
+</section>
+
+<!-- Связаться -->
+<section class="win out hidden" id="w-contact" style="left:34vw;top:26vh;width:400px" data-title="Новый проект" data-ico="✉">
+  <div class="tb"><span>Новый проект</span><div class="ctl"><button class="out" data-close>✕</button></div></div>
+  <div class="body"><div style="display:flex;gap:12px"><span style="font:700 34px var(--px);color:var(--navy)">?</span><p>Создать новый проект? Заявка придёт мне в Telegram — отвечу в течение рабочего дня. Готовое ТЗ не нужно.</p></div>
+  <div class="acts" style="justify-content:flex-end"><a class="b98 out def" data-page="form">Оставить заявку</a><a class="b98 out" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a><button class="b98 out" data-close>Позже</button></div></div>
+</section>
+
+<div class="smenu out" id="smenu"><div class="side"><b>ПавелOS</b> 98</div><ul>
+  <li><a data-page="cases">📁 Все кейсы</a></li><li><a data-page="price">💰 Услуги и цены</a></li><li><a data-page="reviews">✉ Отзывы</a></li><li><a data-page="faq">❓ Вопросы</a></li><li><a data-page="blog">📰 Блог</a></li><li><a data-page="about">🖥 Резюме</a></li>
+  <hr><li><a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">✈ Написать в Telegram</a></li><li><a href="../index.html">↺ Сменить стиль…</a></li></ul></div>
+<div class="task out"><button class="start out" id="startBtn"><i></i>Пуск</button><span class="tb-logo" style="display:flex;align-items:center;padding:0 8px"><span class="pk-logo pk-logo--retro"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span></span><div class="tasks" id="tasks"></div><div class="tray in" style="background:var(--face)"><span>🔊</span><span id="clock"></span></div></div>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id);
+const ICONS=[['w-welcome','★','Привет.exe'],['w-files','📁','Мои проекты'],['w-case','📄','Кейс_кафе.doc'],['w-bot','💬','ИИ-бот.exe'],['w-price','📝','Цены.txt'],['w-mail','✉','Отзывы'],['w-about','🖥','О системе']];
+$('icons').innerHTML=ICONS.map(([id,g,l])=>`<button class="ic" data-open="${id}"><span class="g">${g}</span><span>${l}</span></button>`).join('');
+$('files').innerHTML=D.all.slice(0,9).map(c=>`<a class="file" ${c.url?`href="${c.url}" target="_blank" rel="noopener"`:'href="#" data-open="w-contact"'} title="${c.p}"><img src="${c.img}" alt="" loading="lazy"><b>${c.t}</b></a>`).join('');
+const F=D.feature;
+$('doc').innerHTML=`<h2>Кафе «Приятного аппетита»</h2><p>${F.task}</p><p style="margin-top:8px">${F.solution}</p><table>${F.nums.map(([b,s])=>`<tr><td>${b}</td><td>${s}</td></tr>`).join('')}</table><blockquote>«${F.review.text}» — ${F.review.who}, ${F.review.role}</blockquote><p style="margin-top:10px"><a href="https://priyatnogoappetita.tilda.ws/" target="_blank" rel="noopener" style="color:#00e;text-decoration:underline">Открыть сайт кафе</a></p>`;
+$('np').textContent='ЦЕНЫ (ориентиры «от»)\n=====================\n'+D.prices.map(([a,b])=>(a+' ').padEnd(30,'.')+' '+b).join('\n')+'\n\nСроки: визитка — от 5–7 раб. дней,\nZero Block с анимацией — от 2–3 недель.\nРекомендация друга = 10% вам.\n\nПолный прайс: меню Пуск → Услуги и цены';
+$('mrows').innerHTML=D.reviews.map((r,i)=>`<div class="row${i?'':' on'}" data-i="${i}"><b>${r.who}</b><span>Отзыв: ${r.role}</span></div>`).join('');
+const showMail=i=>{$('mtxt').textContent=D.reviews[i].text;document.querySelectorAll('.mail .row').forEach((r,j)=>r.classList.toggle('on',j===i))};showMail(0);
+$('mrows').onclick=e=>{const r=e.target.closest('.row');if(r)showMail(+r.dataset.i)};
+/* оконный менеджер */
+let z=10;const mobile=()=>matchMedia('(max-width:900px)').matches;
+function focusWin(w){document.querySelectorAll('.win').forEach(x=>x.classList.toggle('act',x===w));w.style.zIndex=++z;renderTasks()}
+function openWin(id){const w=$(id);w.classList.remove('hidden');w.dataset.min='';focusWin(w);if(mobile())w.scrollIntoView({behavior:'smooth',block:'start'});if(id==='w-bot'&&!bot)bot=mountBot({chat:$('chat'),replies:$('replies'),onEnd:r=>r.innerHTML='<button class="b98 out def" data-open="w-contact">Хочу такого бота</button>'})}
+function renderTasks(){$('tasks').innerHTML=[...document.querySelectorAll('.win:not(.hidden)')].map(w=>`<button class="out ${w.classList.contains('act')?'act':''}" data-task="${w.id}">${w.dataset.ico} ${w.dataset.title}</button>`).join('')}
+let bot=null;
+document.addEventListener('click',e=>{
+  const o=e.target.closest('[data-open]');if(o){e.preventDefault();openWin(o.dataset.open);return}
+  const c=e.target.closest('[data-close]');if(c){c.closest('.win').classList.add('hidden');renderTasks();return}
+  const m=e.target.closest('[data-min]');if(m){m.closest('.win').classList.add('hidden');m.closest('.win').dataset.min='1';renderTasks();return}
+  const t=e.target.closest('[data-task]');if(t){openWin(t.dataset.task);return}
+  const w=e.target.closest('.win');if(w)focusWin(w);
+  if(!e.target.closest('#smenu,#startBtn'))$('smenu').classList.remove('open');
+});
+$('startBtn').onclick=()=>$('smenu').classList.toggle('open');
+document.querySelectorAll('.tb').forEach(tb=>{let d=null;const w=tb.parentElement;
+  tb.addEventListener('pointerdown',e=>{if(mobile()||e.target.closest('button'))return;focusWin(w);d={x:e.clientX-w.offsetLeft,y:e.clientY-w.offsetTop};tb.setPointerCapture(e.pointerId)});
+  tb.addEventListener('pointermove',e=>{if(!d)return;w.style.left=Math.max(-w.offsetWidth+80,Math.min(innerWidth-80,e.clientX-d.x))+'px';w.style.top=Math.max(0,Math.min(innerHeight-70,e.clientY-d.y))+'px'});
+  tb.addEventListener('pointerup',()=>d=null)});
+document.querySelectorAll('.icons .ic').forEach(i=>i.addEventListener('dblclick',()=>openWin(i.dataset.open)));
+const tick=()=>{const d=new Date();$('clock').textContent=d.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})};tick();setInterval(tick,20000);
+renderTasks();linkPages();
+</script>
+</body>
+</html>

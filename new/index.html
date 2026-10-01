@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Павел Корчагин — выберите стиль</title>
+<meta name="description" content="Сайты, чат-боты и онлайн-школы. Выберите, в каком стиле посмотреть сайт.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter+Tight:wght@600&family=Playfair+Display:ital@1&family=Caveat:wght@700&family=Dela+Gothic+One&family=Cormorant+Garamond:ital,wght@0,300;1,300&family=Onest:wght@700&family=Pixelify+Sans:wght@700&family=Geologica:wght@600&family=JetBrains+Mono:wght@700&family=Nunito:wght@900&family=Unbounded:wght@900&family=Yeseva+One&family=Oswald:wght@600&family=Mulish:wght@800&family=Lora:ital@1&family=PT+Serif:wght@700&family=Ubuntu+Mono:wght@700&family=Fira+Code:wght@500&family=Unbounded:wght@700&family=Archivo+Black&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip}
+body{background:#fbfaf7;color:#141414;font:400 16px/1.5 "Manrope",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.w{max-width:1380px;margin:0 auto;padding:0 clamp(16px,3.5vw,44px)}
+.intro{padding:clamp(30px,5vw,64px) 0 clamp(24px,3vw,40px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.hi{font:500 13px "Manrope";color:#77746c;display:flex;align-items:center;gap:10px}
+.hi::before{content:"";width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.18)}
+.intro h1{font:800 clamp(32px,4.6vw,66px)/1 "Manrope";letter-spacing:-.05em;margin-top:16px;max-width:17ch}
+.intro h1 span{color:#a19d93}
+.intro p{max-width:36ch;color:#55524b;font-size:15.5px}
+.intro p b{color:#141414;font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;padding-bottom:30px}
+.c{position:relative;aspect-ratio:3/4;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:20px;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;isolation:isolate}
+.c:hover,.c:focus-visible{transform:translateY(-6px);box-shadow:0 30px 60px -28px rgba(0,0,0,.4);outline:none}
+.c .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;font:500 12px "Manrope";position:relative;z-index:2}
+.c .top i{font-style:normal;opacity:.6}
+.c .top em{font-style:normal;opacity:.55;text-align:right;max-width:14ch;line-height:1.3}
+.c .nm{position:relative;z-index:2}
+.c .nm b{display:block;line-height:1}
+.c .nm span{display:block;font:500 13px/1.35 "Manrope";margin-top:10px;opacity:.75;max-width:24ch}
+.c .go{position:absolute;right:16px;bottom:16px;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font:500 16px "Manrope";transform:scale(.6);opacity:0;transition:.35s cubic-bezier(.3,1.5,.5,1);z-index:3}
+.c:hover .go,.c:focus-visible .go{transform:none;opacity:1}
+.s1{background:#fff;border:1px solid #e4e4e4;background-image:linear-gradient(#f2f2f2 1px,transparent 1px),linear-gradient(90deg,#f2f2f2 1px,transparent 1px);background-size:32px 32px}
+.s1 b{font:600 clamp(26px,2.3vw,36px) "Inter Tight";letter-spacing:-.05em}
+.s1 .bar{position:absolute;left:0;right:0;bottom:0;height:7px;background:#1d33f2}
+.s1 .go{background:#1d33f2;color:#fff}
+.s2{background:#f4efe6;color:#1e1b18}
+.s2 b{font:italic 400 clamp(28px,2.5vw,40px) "Playfair Display";color:#e8452c}
+.s2 .hand{font:700 22px "Caveat";color:#2f4bd8;transform:rotate(-5deg);display:inline-block;margin-bottom:4px}
+.s2 .ph{position:absolute;right:-14px;top:56px;width:62%;background:#fff;padding:6px 6px 20px;transform:rotate(7deg);box-shadow:0 12px 26px -10px rgba(0,0,0,.35);transition:transform .6s cubic-bezier(.3,1.4,.5,1)}
+.s2:hover .ph{transform:rotate(2deg) translateX(-14px)}
+.s2 .ph img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top}
+.s2 .go{background:#1e1b18;color:#f4efe6}
+.s3{background:#ff90e8;border:3px solid #000;box-shadow:5px 5px 0 #000}
+.s3:hover{box-shadow:10px 10px 0 #000}
+.s3 b{font:400 clamp(22px,2vw,32px) "Dela Gothic One";text-transform:uppercase}
+.s3 .st{position:absolute;right:14px;top:48px;width:78px;height:78px;border-radius:50%;border:3px solid #000;background:#ffc900;display:grid;place-items:center;text-align:center;font:400 12px/1.05 "Dela Gothic One";transform:rotate(14deg);transition:transform .4s cubic-bezier(.3,1.8,.5,1)}
+.s3:hover .st{transform:rotate(-10deg) scale(1.1)}
+.s3 .go{background:#ffc900;border:3px solid #000;color:#000}
+.s4{background:#0e0d0b;color:#ece5d6}
+.s4 .wall{position:absolute;inset:0;font:300 46px/1 "Cormorant Garamond";color:transparent;-webkit-text-stroke:1px rgba(236,229,214,.12);display:flex;flex-direction:column;justify-content:center;white-space:nowrap;padding-left:10px;transition:color .6s}
+.s4:hover .wall{color:rgba(200,164,106,.22)}
+.s4 b{font:italic 300 clamp(30px,2.6vw,42px) "Cormorant Garamond";color:#c8a46a}
+.s4 .go{border:1px solid #c8a46a;color:#c8a46a}
+.s5{background:#f5f5f7;color:#1d1d1f}
+.s5 .tiles{position:absolute;inset:44px 14px 110px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px}
+.s5 .tiles i{background:#fff;border-radius:14px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.s5 .tiles i:first-child{grid-column:span 2;background:#000}
+.s5 .tiles i:nth-child(2){background:#0071e3}
+.s5:hover .tiles i:nth-child(3){transform:translateY(-6px)}
+.s5:hover .tiles i:nth-child(2){transform:translateY(4px)}
+.s5 b{font:700 clamp(24px,2.1vw,34px) "Onest";letter-spacing:-.04em}
+.s5 .go{background:#0071e3;color:#fff}
+.s6{background:#008080;color:#fff}
+.s6 .win{position:absolute;left:14px;right:14px;top:44px;background:#c0c0c0;padding:3px;box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #fff,inset -2px -2px #808080,inset 2px 2px #dfdfdf;color:#000;font:11px Tahoma,sans-serif}
+.s6 .win div{background:linear-gradient(90deg,#000080,#1084d0);color:#fff;font-weight:700;padding:2px 5px}
+.s6 .win p{padding:10px 8px;font:700 15px "Pixelify Sans"}
+.s6 b{font:700 clamp(22px,2vw,32px) "Pixelify Sans"}
+.s6 .go{background:#c0c0c0;color:#000;border-radius:0;box-shadow:inset -1px -1px #0a0a0a,inset 1px 1px #fff}
+.s7{background:#eef0fb;color:#14162b}
+.s7::before,.s7::after{content:"";position:absolute;border-radius:50%;filter:blur(30px);z-index:-1;transition:transform 1.2s}
+.s7::before{width:80%;height:60%;left:-20%;top:-10%;background:#a5b4ff}
+.s7::after{width:70%;height:55%;right:-20%;bottom:10%;background:#ffc6e0}
+.s7:hover::before{transform:translate(20%,15%)}
+.s7 .glass{position:absolute;left:18px;right:18px;top:60px;height:34%;border-radius:22px;background:rgba(255,255,255,.4);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.8)}
+.s7 b{font:600 clamp(24px,2.2vw,34px) "Geologica";letter-spacing:-.04em;background:linear-gradient(100deg,#5b5bf7,#c04cf2 50%,#ff6f91);-webkit-background-clip:text;background-clip:text;color:transparent}
+.s7 .go{background:#14162b;color:#fff}
+.s8{background:#0b0d0c;color:#d7e0da}
+.s8 pre{position:absolute;left:18px;right:18px;top:54px;font:12px/1.7 "JetBrains Mono",monospace;color:#6f7d75;white-space:pre-wrap}
+.s8 pre em{font-style:normal;color:#3fe17a}
+.s8 b{font:700 clamp(22px,2vw,30px) "JetBrains Mono";letter-spacing:-.04em;color:#3fe17a}
+.s8 b::after{content:"";display:inline-block;width:.5em;height:.85em;background:#3fe17a;margin-left:4px;vertical-align:-.08em;animation:cb 1s steps(1) infinite}
+@keyframes cb{50%{opacity:0}}
+.s8 .go{border:1px solid #3fe17a;color:#3fe17a;border-radius:6px}
+.s9{background:#f4f0ff;color:#2a2350}
+.s9 .bl{position:absolute;border-radius:50%;box-shadow:inset -8px -10px 16px rgba(0,0,0,.16),inset 6px 6px 12px rgba(255,255,255,.45);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.s9 .bl.a{width:46%;aspect-ratio:1;left:27%;top:52px;background:#9b7bff}
+.s9 .bl.b{width:24%;aspect-ratio:1;left:10%;top:40px;background:#ff8a3d}
+.s9 .bl.c{width:22%;aspect-ratio:1;right:10%;top:110px;background:#3ccf8e;border-radius:30%}
+.s9:hover .bl.a{transform:translateY(-8px) rotate(-6deg)}
+.s9:hover .bl.b{transform:translateY(6px)}
+.s9 .bl.a::before,.s9 .bl.a::after{content:"";position:absolute;top:36%;width:16%;aspect-ratio:1;background:#fff;border-radius:50%;box-shadow:inset 3px 3px 0 4px #2a2350}
+.s9 .bl.a::before{left:30%}.s9 .bl.a::after{right:30%}
+.s9 b{font:900 clamp(24px,2.2vw,34px) "Nunito"}
+.s9 .go{background:#ff8a3d;color:#fff}
+.s10{background:#e8e8e3;color:#0d0d0d}
+.s10 .kin{position:absolute;left:0;right:0;top:46px;display:flex;flex-direction:column;font:900 54px/.86 "Unbounded";letter-spacing:-.06em;white-space:nowrap}
+.s10 .kin span{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.s10 .kin span:nth-child(2){color:#ff4f00;transform:translateX(30px)}
+.s10 .kin span:nth-child(3){color:transparent;-webkit-text-stroke:1.5px #0d0d0d;transform:translateX(-20px)}
+.s10:hover .kin span:nth-child(1){transform:translateX(-40px)}.s10:hover .kin span:nth-child(2){transform:translateX(70px)}.s10:hover .kin span:nth-child(3){transform:translateX(10px)}
+.s10 b{font:900 clamp(18px,1.7vw,24px) "Unbounded";letter-spacing:-.04em}
+.s10 .go{background:#ff4f00;color:#fff}
+.sec2{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin:40px 0 18px;padding-top:30px;border-top:1px solid #e6e3dc}
+.sec2 h2{font:800 clamp(26px,3vw,42px)/1.05 "Manrope";letter-spacing:-.04em}
+.sec2 h2 span{color:#a19d93}
+.sec2 p{max-width:40ch;color:#55524b;font-size:15px}
+.grid2{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding-bottom:30px}
+.i{position:relative;border-radius:20px;overflow:hidden;min-height:190px;padding:20px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s;isolation:isolate}
+.i:hover,.i:focus-visible{transform:translateY(-5px);box-shadow:0 26px 50px -26px rgba(0,0,0,.4);outline:none}
+.i .top{display:flex;justify-content:space-between;gap:10px;font:500 12px "Manrope";opacity:.7;position:relative;z-index:2}
+.i b{display:block;line-height:1.02;position:relative;z-index:2}
+.i small{display:block;font:500 13px/1.35 "Manrope";opacity:.75;margin-top:8px;position:relative;z-index:2;max-width:30ch}
+.i .deco{position:absolute;z-index:0;pointer-events:none}
+.i1{background:#fff4e2;color:#2b1a12}.i1 b{font:400 clamp(26px,2.4vw,36px) "Yeseva One";color:#d63a2f}
+.i1 .deco{left:0;right:0;top:0;height:22px;background:repeating-linear-gradient(90deg,#d63a2f 0 30px,#fff 30px 60px)}
+.i2{background:#17191c;color:#eef0f2}.i2 b{font:600 clamp(28px,2.6vw,40px) "Oswald";text-transform:uppercase;color:#ffcc00}
+.i2 .deco{left:0;right:0;bottom:0;height:12px;background:repeating-linear-gradient(-45deg,#ffcc00 0 14px,#111 14px 28px)}
+.i3{background:#f3f8fb;color:#16323f;border:1px solid #dce8ee}.i3 b{font:800 clamp(24px,2.2vw,34px) "Mulish";color:#0f9d9a}
+.i3 .deco{right:18px;top:18px;width:44px;height:44px;border-radius:12px;background:#0f9d9a}.i3 .deco::before,.i3 .deco::after{content:"";position:absolute;background:#fff;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:2px}.i3 .deco::before{width:22px;height:7px}.i3 .deco::after{width:7px;height:22px}
+.i4{background:#f7f0e8;color:#3a2a22}.i4 b{font:italic 400 clamp(26px,2.4vw,36px) "Lora";color:#c0623f}
+.i4 .deco{right:-20px;top:-20px;width:110px;height:110px;border-radius:0 100% 0 100%;background:#7d8b6a;opacity:.5;transition:transform .8s}.i4:hover .deco{transform:rotate(20deg)}
+.i5{background:#fffdf8;color:#1a2236;border:1px solid #d9d2c3}.i5 b{font:700 clamp(24px,2.2vw,34px) "PT Serif";color:#1b2a4a}
+.i5 .deco{right:18px;bottom:18px;width:76px;height:76px;border-radius:50%;border:3px double #7b1e2b;transform:rotate(-12deg)}
+.i6{background:#fff;color:#1f1f1f;border:1px solid #e1e1e1;background-image:linear-gradient(#ececec 1px,transparent 1px),linear-gradient(90deg,#ececec 1px,transparent 1px);background-size:60px 26px}.i6 b{font:700 clamp(24px,2.2vw,34px) "Ubuntu Mono";color:#217346}
+.i6 .deco{left:0;right:0;top:0;height:26px;background:#217346}
+.i7{background:#f7f8fa;color:#1a1f36;border:1px solid #e6e8ef}.i7 b{font:500 clamp(22px,2vw,30px) "Fira Code";color:#6e56cf}
+.i7 .deco{right:16px;top:16px;font:500 12px "Fira Code";background:#fff1dc;color:#b86e00;padding:2px 8px;border-radius:5px}
+@media(max-width:1100px){.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.grid2{grid-template-columns:1fr}}
+
+/* ИИшный — нынешний сайт texspeckps.ru */
+.c-ai{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:24px;align-items:center;border-radius:22px;padding:clamp(22px,3vw,36px);margin-bottom:14px;background:#0a0a0d;color:#f2f2f2;position:relative;overflow:hidden;isolation:isolate;transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.c-ai:hover,.c-ai:focus-visible{transform:translateY(-4px);box-shadow:0 30px 60px -28px rgba(0,0,0,.5);outline:none}
+.c-ai::before,.c-ai::after{content:"";position:absolute;border-radius:50%;filter:blur(60px);z-index:-1;transition:transform 1.4s}
+.c-ai::before{width:420px;height:420px;left:-120px;top:-220px;background:rgba(213,255,69,.28)}
+.c-ai::after{width:360px;height:360px;right:-80px;bottom:-200px;background:rgba(255,79,139,.22)}
+.c-ai:hover::before{transform:translate(60px,40px)}
+.c-ai .top{display:flex;gap:10px;align-items:center;font:500 12px Manrope;opacity:.7}
+.c-ai b{display:block;font:700 clamp(30px,3.4vw,52px)/1 Unbounded,Manrope,sans-serif;letter-spacing:-.03em;margin-top:14px}
+.c-ai b i{font-style:normal;color:#d5ff45}
+.c-ai p{margin-top:12px;font:500 15px/1.45 Manrope;opacity:.75;max-width:46ch}
+.c-ai .chat{display:flex;flex-direction:column;gap:8px;font:500 14px/1.4 Manrope}
+.c-ai .chat span{max-width:88%;padding:10px 14px;border-radius:16px;background:#1a1a20;border:1px solid #26262e}
+.c-ai .chat span:nth-child(2){align-self:flex-end;background:#d5ff45;color:#0a0a0d;border-color:#d5ff45}
+.c-ai .go{display:inline-flex;align-items:center;gap:8px;margin-top:18px;padding:10px 18px;border-radius:999px;background:#d5ff45;color:#0a0a0d;font:700 14px Manrope}
+@media(max-width:760px){.c-ai{grid-template-columns:1fr}.c-ai .chat{display:none}}
+.foot{padding:10px 0 30px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:#8a867c}
+.foot a{border-bottom:1px solid}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.c{padding:16px}.c .go{opacity:1;transform:none;width:34px;height:34px}.c .top em{display:none}}
+@media(max-width:420px){.c .nm span{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+<link rel="stylesheet" href="assets/logo.css?v=20261001231639">
+</head>
+<body>
+<div class="w">
+  <div class="intro">
+    <div>
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap"><span class="pk-logo pk-logo--chooser"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span><div class="hi">техспециалист · беру новые проекты</div></div>
+      <h1>Здравствуйте! <span>В каком стиле показать вам мой сайт?</span></h1>
+    </div>
+    <p>Я делаю сайты, чат-ботов и онлайн-школы — и собрал свой сайт в 18 подачах: от строгой до дерзкой и под разные сферы. <b>Кейсы, цены и отзывы везде настоящие</b>, стиль можно сменить в любой момент.</p>
+  </div>
+
+  <a class="c-ai" href="/ai/">
+    <div><div class="top"><span>00</span><span>нынешний сайт texspeckps.ru</span></div>
+      <b>ИИшный <i>стиль</i></b>
+      <p>Тёмный экран, салатовое свечение и ИИ-ассистент, который отвечает на вопросы круглосуточно. Тот самый сайт, с которого всё началось.</p>
+      <span class="go">Открыть →</span></div>
+    <div class="chat" aria-hidden="true"><span>Здравствуйте! Я ИИ-ассистент Павла. Подсказать по ценам или срокам?</span><span>Сколько стоит чат-бот?</span><span>Воронка продаж — от 5 000 ₽, бот для заявок — от 3 000 ₽. Собрать предложение?</span></div>
+  </a>
+  <nav class="grid" aria-label="Выбор стиля сайта">
+    <a class="c s1" href="business/"><div class="top"><i>01</i><em>в духе Pentagram</em></div><div class="nm"><b>Деловой</b><span>Сетка, цифры и факты — для тех, кто ценит время</span></div><span class="bar"></span><span class="go">→</span></a>
+    <a class="c s2" href="creative/"><div class="top"><i>02</i><em>журнальные портфолио</em></div><div class="ph"><img src="https://texspeckps.ru/img/ekskurpiter-cover.webp" alt=""></div><div class="nm"><span class="hand">с характером</span><b>Творческий</b><span>Коллаж и истории проектов — для тех, кто выбирает сердцем</span></div><span class="go">→</span></a>
+    <a class="c s3" href="bold/"><div class="top"><i>03</i><em>в духе Gumroad</em></div><span class="st">БЕЗ<br>ВОДЫ</span><div class="nm"><b>Дерзкий</b><span>Яркие цвета и прямой разговор</span></div><span class="go">→</span></a>
+    <a class="c s4" href="premium/"><div class="wall" aria-hidden="true"><span>Figma Tilda</span><span><i>Salebot</i> GetCourse</span><span>Сайты Боты</span><span><i>Школы</i> ИИ</span></div><div class="top"><i>04</i><em>агентства Locomotive и Obys</em></div><div class="nm"><b>Премиальный</b><span>Тёмная сцена и золото — для статусных проектов</span></div><span class="go">→</span></a>
+    <a class="c s5" href="bento/"><div class="tiles"><i></i><i></i><i></i></div><div class="top"><i>05</i><em>Apple и Linear</em></div><div class="nm"><b>Технологичный</b><span>Бенто-сетка и продуктовая подача</span></div><span class="go">→</span></a>
+    <a class="c s6" href="retro/"><div class="top"><i>06</i><em>Windows 98, Poolsuite</em></div><div class="win"><div>Привет.exe</div><p>Найден специалист: 1</p></div><div class="nm"><b>Ностальгия</b><span>Рабочий стол с окнами, которые можно таскать</span></div><span class="go">→</span></a>
+    <a class="c s7" href="glass/"><span class="glass"></span><div class="top"><i>07</i><em>Apple Liquid Glass</em></div><div class="nm"><b>Современный</b><span>Живой градиент и стекло</span></div><span class="go">→</span></a>
+    <a class="c s8" href="terminal/"><div class="top"><i>08</i><em>Warp, Vercel</em></div><pre><em>$</em> whoami
+Павел Корчагин
+<em>$</em> help
+cases price bot</pre><div class="nm"><b>Технарь</b><span>Терминал, в котором можно вводить команды</span></div><span class="go">→</span></a>
+    <a class="c s9" href="friendly/"><span class="bl b"></span><span class="bl a"></span><span class="bl c"></span><div class="top"><i>09</i><em>Headspace, Duolingo</em></div><div class="nm"><b>Дружелюбный</b><span>Пластилиновые герои и простые слова</span></div><span class="go">→</span></a>
+    <a class="c s10" href="kinetic/"><div class="top"><i>10</i><em>кинетика Awwwards</em></div><div class="kin" aria-hidden="true"><span>САЙТЫ</span><span>БОТЫ</span><span>ШКОЛЫ</span></div><div class="nm"><b>Экспери&shy;ментальный</b><span>Огромные слова, которые двигаются</span></div><span class="go">→</span></a>
+  </nav>
+
+  <div class="sec2"><h2>Под вашу сферу <span>— кейсы и язык вашей отрасли</span></h2><p>Тот же специалист, но подача, примеры и цены собраны под конкретный бизнес.</p></div>
+  <nav class="grid2" aria-label="Стили под отрасль">
+    <a class="i i1" href="cafe/"><span class="deco"></span><div class="top" style="margin-top:14px"><span>Кафе и рестораны</span><span>меню-подача</span></div><div><b>Для кафе</b><small>Онлайн-меню, доставка и бот — услуги поданы как блюда</small></div></a>
+    <a class="i i2" href="auto/"><span class="deco"></span><div class="top"><span>СТО и мастерские</span><span>заказ-наряд</span></div><div><b>Для автосервисов</b><small>Диагностика вашего сайта и запись на ремонт</small></div></a>
+    <a class="i i3" href="medical/"><span class="deco"></span><div class="top"><span>Клиники и врачи</span></div><div><b>Для медицины</b><small>Живой виджет онлайн-записи к врачу</small></div></a>
+    <a class="i i4" href="expert/"><span class="deco"></span><div class="top"><span>Психологи, коучи, эксперты</span></div><div><b>Для экспертов</b><small>Путь клиента: от бесплатного материала до курса</small></div></a>
+    <a class="i i5" href="lawyer/"><span class="deco"></span><div class="top"><span>Юристы и адвокаты</span><span>§</span></div><div><b>Для юристов</b><small>Условия работы в форме договора с подписью</small></div></a>
+    <a class="i i6" href="accountant/"><span class="deco"></span><div class="top" style="margin-top:20px"><span>Бухгалтеры</span><span>=СУММ()</span></div><div><b>Для бухгалтеров</b><small>Сайт-таблица и калькулятор потерянных заявок</small></div></a>
+    <a class="i i7" href="it/"><span class="deco">POST /projects</span><div class="top"><span>IT-команды и продукты</span></div><div><b>Для айтишников</b><small>Документация в духе Stripe с примерами кода</small></div></a>
+  </nav>
+
+  <div class="foot"><span>© 2026 Павел Корчагин · texspeckps.ru</span><span>Нет времени выбирать? <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Напишите в Telegram</a></span></div>
+</div>
+</body>
+</html>

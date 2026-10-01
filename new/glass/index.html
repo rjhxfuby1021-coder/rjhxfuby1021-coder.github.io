@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Павел Корчагин — современный</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Ориентир: Apple Liquid Glass (iOS 26) и «аврора»-градиенты — светлое стекло поверх живого цвета */
+:root{--ink:#14162b;--g:#5d6180;--glass:rgba(255,255,255,.42);--edge:rgba(255,255,255,.75);--acc:#5b5bf7;--f:"Geologica",system-ui,sans-serif;--gut:clamp(14px,3.4vw,40px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{overflow-x:clip;scroll-behavior:smooth}
+body{color:var(--ink);font:400 17px/1.55 var(--f);background:#eef0fb;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.aurora{position:fixed;inset:0;z-index:-1;overflow:hidden;background:#eef0fb}
+.aurora i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.75;animation:drift 22s ease-in-out infinite alternate}
+.aurora i:nth-child(1){width:55vw;height:55vw;left:-12vw;top:-14vw;background:#a5b4ff}
+.aurora i:nth-child(2){width:45vw;height:45vw;right:-10vw;top:10vh;background:#ffc6e0;animation-duration:26s}
+.aurora i:nth-child(3){width:50vw;height:50vw;left:20vw;bottom:-20vw;background:#b9f3e4;animation-duration:30s}
+.aurora i:nth-child(4){width:30vw;height:30vw;right:20vw;bottom:10vh;background:#ffe3a8;animation-duration:24s}
+@keyframes drift{to{transform:translate(8vw,6vh) scale(1.15)}}
+.w{max-width:1200px;margin:0 auto;padding:0 var(--gut)}
+.gl{background:var(--glass);backdrop-filter:blur(26px) saturate(170%);-webkit-backdrop-filter:blur(26px) saturate(170%);border:1px solid var(--edge);border-radius:28px;box-shadow:0 1px 0 rgba(255,255,255,.9) inset,0 -1px 0 rgba(255,255,255,.3) inset,0 24px 60px -30px rgba(40,40,120,.35);position:relative}
+.gl::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.55),transparent 40%);pointer-events:none}
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;font-weight:500;transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+.btn:hover{transform:scale(1.04)}
+.btn.dk{background:var(--ink);color:#fff;box-shadow:0 12px 30px -12px rgba(20,22,43,.6)}
+.btn.gl{border-radius:999px}
+/* nav */
+.nav{position:sticky;top:14px;z-index:30;margin:14px auto 0;max-width:1200px;padding:0 var(--gut)}
+.nav .gl{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px;padding:0 10px 0 22px;border-radius:999px}
+.nav b{font-weight:600;position:relative}
+.nav nav{display:flex;gap:4px;position:relative}
+.nav nav a{padding:8px 14px;border-radius:999px;font-size:15px;color:var(--g);transition:.3s}
+.nav nav a:hover{background:rgba(255,255,255,.7);color:var(--ink)}
+.nav .btn{height:42px;font-size:15px;position:relative}
+@media(max-width:860px){.nav nav{display:none}}
+/* hero */
+.hero{padding:clamp(60px,9vw,120px) 0 clamp(40px,6vw,80px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(24px,4vw,60px);align-items:center}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;font-size:14px;font-weight:500}
+.chip i{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 4px rgba(34,197,94,.2)}
+.hero h1{font-weight:600;font-size:clamp(42px,6vw,84px);line-height:1.02;letter-spacing:-.045em;margin-top:22px}
+.hero h1 span{background:linear-gradient(100deg,#5b5bf7,#c04cf2 50%,#ff6f91);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:clamp(17px,1.5vw,20px);color:var(--g);max-width:42ch;margin-top:22px}
+.hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+/* orbit */
+.orbit{position:relative;aspect-ratio:1}
+.core{position:absolute;inset:32%;border-radius:50%;display:grid;place-items:center;text-align:center;padding:10px}
+.core b{display:block;font-weight:600;font-size:clamp(18px,2vw,24px);letter-spacing:-.02em}
+.core span{font-size:13px;color:var(--g)}
+.ring{position:absolute;inset:6%;border-radius:50%;border:1px dashed rgba(91,91,247,.3);animation:rot 40s linear infinite}
+.node{position:absolute;left:50%;top:50%;width:0;height:0}
+.node em{position:absolute;transform:translate(-50%,-50%) rotate(var(--back));white-space:nowrap;font-style:normal;font-size:14px;font-weight:500;padding:9px 14px;border-radius:16px}
+@keyframes rot{to{transform:rotate(360deg)}}
+.ring .node em{animation:counter 40s linear infinite}
+@keyframes counter{from{transform:translate(-50%,-50%) rotate(var(--back))}to{transform:translate(-50%,-50%) rotate(calc(var(--back) - 360deg))}}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.orbit{max-width:440px;width:100%;margin:0 auto}}
+section{padding:clamp(60px,8vw,110px) 0}
+.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.sh h2{font-weight:600;font-size:clamp(32px,4.4vw,58px);line-height:1.05;letter-spacing:-.04em;max-width:15ch}
+.sh h2 span{color:var(--acc)}
+.more{font-weight:500;color:var(--acc)}
+.more:hover{text-decoration:underline}
+/* services */
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.svc .gl{padding:26px;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.svc .gl:hover{transform:translateY(-6px)}
+.svc .ico{width:48px;height:48px;border-radius:16px;display:grid;place-items:center;font-weight:600;color:#fff;margin-bottom:18px;position:relative}
+.svc h3{font-weight:600;font-size:21px;letter-spacing:-.02em;position:relative}
+.svc p{color:var(--g);font-size:15.5px;margin-top:8px;position:relative}
+.svc small{display:block;margin-top:14px;font-weight:600;position:relative}
+.svc .gl:nth-child(4),.svc .gl:nth-child(5){grid-column:span 1}
+@media(max-width:900px){.svc{grid-template-columns:1fr 1fr}}@media(max-width:600px){.svc{grid-template-columns:1fr}}
+/* case */
+.case{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:0;overflow:hidden}
+.case .im{padding:14px}
+.case .im img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:18px;min-height:300px}
+.case .tx{padding:32px;position:relative}
+.case h3{font-weight:600;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;line-height:1.12}
+.case p{color:var(--g);margin-top:12px}
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+.nums div{background:rgba(255,255,255,.6);border-radius:18px;padding:14px}
+.nums b{display:block;font-weight:600;font-size:28px;letter-spacing:-.04em;color:var(--acc)}
+.nums span{font-size:13px;color:var(--g)}
+.case blockquote{margin-top:18px;font-size:15px;color:#3a3d5c}
+@media(max-width:860px){.case{grid-template-columns:1fr}}
+/* works */
+.works{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.wk{padding:10px;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.wk:hover{transform:translateY(-6px) rotate(-.4deg)}
+.wk img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:20px}
+.wk .bd{padding:14px 10px 8px;position:relative}
+.wk small{font-size:12.5px;color:var(--g)}
+.wk h4{font-weight:600;font-size:18px;letter-spacing:-.02em;margin-top:4px}
+.wk .fc{margin-top:8px;font-size:14px;color:var(--g)}
+.wk .fc b{color:var(--acc);font-weight:600}
+@media(max-width:960px){.works{grid-template-columns:1fr 1fr}}@media(max-width:600px){.works{grid-template-columns:1fr}}
+/* bot */
+.botg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,400px);gap:clamp(24px,5vw,80px);align-items:center}
+.phone{border-radius:44px;padding:12px;height:600px;display:flex;flex-direction:column}
+.phone .hd{text-align:center;padding:16px 0 12px;font-weight:600;position:relative}
+.phone .hd small{display:block;font-weight:400;font-size:12px;color:var(--g)}
+#chat{flex:1;overflow-y:auto;padding:8px 12px;display:flex;flex-direction:column;gap:8px;scrollbar-width:none;position:relative}
+.msg{max-width:84%;padding:10px 14px;border-radius:20px;font-size:15px;line-height:1.4;animation:pop .4s cubic-bezier(.2,.9,.3,1.3)}
+@keyframes pop{from{opacity:0;transform:scale(.9) translateY(6px)}}
+.msg.in{background:rgba(255,255,255,.85);align-self:flex-start;border-bottom-left-radius:6px}
+.msg.out{background:linear-gradient(135deg,#5b5bf7,#9b5cf6);color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
+.msg.sys{align-self:center;font-size:11.5px;color:var(--g);background:none}
+.msg.typing{display:flex;gap:4px;padding:14px}
+.msg.typing i{width:7px;height:7px;border-radius:50%;background:var(--g);animation:bl 1.2s infinite}
+.msg.typing i:nth-child(2){animation-delay:.15s}.msg.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bl{30%{opacity:.3}}
+#replies{display:flex;flex-wrap:wrap;gap:6px;padding:10px 12px 14px;min-height:60px;position:relative}
+#replies button{padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid #fff;font-size:14px;font-weight:500;color:var(--acc)}
+@media(max-width:860px){.botg{grid-template-columns:1fr}.phone{max-width:400px;width:100%;margin:0 auto;height:540px}}
+/* price + reviews */
+.pr{display:flex;flex-wrap:wrap;gap:10px}
+.pr span{padding:12px 18px;border-radius:999px;font-size:15px}
+.pr b{font-weight:600;margin-left:6px;color:var(--acc)}
+.revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.rev{padding:26px;display:flex;flex-direction:column;gap:16px}
+.rev p{position:relative}
+.rev footer{display:flex;gap:12px;align-items:center;margin-top:auto;font-size:14px;position:relative}
+.rev .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#a5b4ff,#ffc6e0);display:grid;place-items:center;font-weight:600;font-size:13px}
+.rev small{color:var(--g)}
+@media(max-width:900px){.revs{grid-template-columns:1fr}}
+.final{text-align:center;padding:clamp(48px,7vw,90px) clamp(20px,4vw,60px)}
+.final h2{font-weight:600;font-size:clamp(36px,5.6vw,72px);line-height:1.04;letter-spacing:-.045em;max-width:15ch;margin:0 auto;position:relative}
+.final p{color:var(--g);max-width:42ch;margin:18px auto 0;position:relative}
+.final .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px;position:relative}
+footer.f{padding:30px 0 40px;font-size:14px;color:var(--g)}
+footer.f .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer.f a{margin-left:16px}
+[data-rv]{opacity:0;transform:translateY(24px) scale(.98);filter:blur(6px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1),filter 1s}[data-rv].in{opacity:1;transform:none;filter:none}
+.style-switch{position:fixed;right:16px;bottom:16px;z-index:50;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.55);backdrop-filter:blur(20px);border:1px solid #fff;font-size:14px;font-weight:500;box-shadow:0 10px 30px -14px rgba(40,40,120,.4)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-rv]{opacity:1;transform:none;filter:none}}
+</style>
+<link rel="stylesheet" href="../assets/logo.css?v=20261001231639">
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+<div class="nav"><div class="gl"><a href="#" style="position:relative"><span class="pk-logo pk-logo--glass"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span></a><nav><a data-page="cases">Кейсы</a><a data-page="price">Цены</a><a data-page="reviews">Отзывы</a><a data-page="faq">Вопросы</a><a data-page="blog">Блог</a></nav><a class="btn dk" href="#contact">Обсудить</a></div></div>
+
+<main class="w">
+  <div class="hero">
+    <div data-rv>
+      <span class="chip gl"><i></i>Свободен для новых проектов</span>
+      <h1>Ваш бизнес — <span>на автопилоте</span></h1>
+      <p>Сайт, чат-бот с ИИ, онлайн-школа и рассылки складываются в одну систему. Клиент приходит, получает ответ, платит — без вашего участия.</p>
+      <div class="acts"><a class="btn dk" href="#contact">Обсудить проект</a><a class="btn gl" data-page="cases">Смотреть кейсы</a></div>
+    </div>
+    <div class="orbit" data-rv>
+      <div class="ring" id="ring"></div>
+      <div class="core gl"><div style="position:relative"><b>Один исполнитель</b><span>вместо пяти подрядчиков</span></div></div>
+    </div>
+  </div>
+
+  <section style="padding-top:0">
+    <div class="sh"><h2>Что входит в <span>систему</span></h2><a class="more" data-page="price">Услуги и цены →</a></div>
+    <div class="svc" id="svc"></div>
+  </section>
+
+  <section style="padding-top:0">
+    <a class="gl case" href="https://priyatnogoappetita.tilda.ws/" target="_blank" rel="noopener" data-rv>
+      <div class="im"><img id="cImg" alt="Сайт кафе"></div>
+      <div class="tx"><small style="color:var(--g)">Кейс · Tilda · клиент</small>
+        <h3 style="margin-top:8px">Кафе начало принимать заказы онлайн — и вышло на №1 в поиске</h3>
+        <p>Онлайн-меню, корзина и доставка. До сайта онлайн-заказов не было совсем.</p>
+        <div class="nums" id="cNums"></div>
+        <blockquote id="cQ"></blockquote>
+      </div>
+    </a>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><h2>Свежие <span>проекты</span></h2><a class="more" data-page="cases">Все 25 проектов →</a></div>
+    <div class="works" id="works"></div>
+  </section>
+
+  <section style="padding-top:0"><div class="botg">
+    <div data-rv><div class="sh" style="display:block"><h2>Поговорите с <span>ИИ-администратором</span></h2></div>
+      <p style="color:var(--g);max-width:42ch">Такого ассистента я собрал для салона «Жадор»: консультирует, подбирает услугу, записывает в расписание CRM и напоминает о визите. Это демо-сценарий — попробуйте записаться.</p></div>
+    <div class="gl phone" data-rv><div class="hd">Салон «Жадор»<small id="st">онлайн</small></div><div id="chat"></div><div id="replies"></div></div>
+  </div></section>
+
+  <section style="padding-top:0">
+    <div class="sh"><h2>Ориентиры по <span>цене</span></h2><a class="more" data-page="price">Калькулятор →</a></div>
+    <div class="pr" id="pr" data-rv></div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="sh"><h2>Что говорят <span>клиенты</span></h2><a class="more" data-page="reviews">Все отзывы →</a></div>
+    <div class="revs" id="revs"></div>
+  </section>
+
+  <section id="contact" style="padding-top:0"><div class="gl final" data-rv>
+    <h2>Запустим ваш автопилот?</h2>
+    <p>Ваша заявка придёт мне в Telegram. Отвечу в течение рабочего дня — с предложением под вашу задачу.</p>
+    <div class="acts"><a class="btn dk" data-page="form">Оставить заявку</a><a class="btn gl" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a></div>
+  </div></section>
+</main>
+<footer class="f"><div class="w"><span>© 2026 Павел Корчагин</span><span><a data-page="about">Обо мне</a><a data-page="bonus">10% за рекомендацию</a><a data-page="blog">Блог</a></span></div></footer>
+
+<script src="../assets/data.js?v=20261001231639"></script>
+<script src="../assets/engine.js?v=20261001231639"></script>
+<script src="site.js?v=20261001231639"></script>
+<script>
+const D=DATA,$=id=>document.getElementById(id);
+const N=['Figma','Tilda','Salebot + ИИ','Bizon365','Рассылки','GetCourse'];
+$('ring').innerHTML=N.map((n,i)=>{const a=i/N.length*360-90,r=50;return `<div class="node" style="left:${50+r*Math.cos(a*Math.PI/180)}%;top:${50+r*Math.sin(a*Math.PI/180)}%"><em class="gl" style="--back:0deg">${n}</em></div>`}).join('');
+const IC=[['F','#a259ff'],['T','#5b5bf7'],['AI','#ff6f91'],['GC','#22b8a0'],['@','#f59e0b']];
+$('svc').innerHTML=D.services.map(([h,p,b],i)=>`<div class="gl" data-rv><div class="ico" style="background:${IC[i][1]}">${IC[i][0]}</div><h3>${h}</h3><p>${p}</p><small>${b}</small></div>`).join('')+`<a class="gl" data-page="price" data-rv style="display:flex;flex-direction:column;justify-content:center;align-items:flex-start"><h3 style="position:relative">Всё вместе — под ключ</h3><p style="position:relative">Или любой этап отдельно. Подробнее о каждой услуге →</p></a>`;
+$('cImg').src=D.cases[0].img;
+$('cNums').innerHTML=D.feature.nums.slice(0,4).map(([b,s])=>`<div><b>${b}</b><span>${s}</span></div>`).join('');
+$('cQ').textContent='«'+D.feature.review.text+'» — '+D.feature.review.who;
+$('works').innerHTML=D.all.slice(1,7).map(c=>`<a class="gl wk" data-rv ${c.url?`href="${c.url}" target="_blank" rel="noopener"`:'href="#contact"'}><img src="${c.img}" alt="${c.t}" loading="lazy"><div class="bd"><small>${c.type} · ${c.client?'клиент':'свой проект'}</small><h4>${c.t}</h4><div class="fc"><b>${c.f[0]}</b> ${c.f[1]}</div></div></a>`).join('');
+$('pr').innerHTML=D.prices.map(([a,b])=>`<span class="gl">${a}<b>${b}</b></span>`).join('');
+$('revs').innerHTML=D.reviews.map(r=>`<article class="gl rev" data-rv><p>«${r.text}»</p><footer><span class="av">${r.ini}</span><div><b>${r.who}</b><br><small>${r.role}</small></div></footer></article>`).join('');
+mountBot({chat:$('chat'),replies:$('replies'),status:$('st'),onEnd:r=>r.innerHTML='<a class="btn dk" style="height:44px" href="#contact">Хочу такого ассистента</a>'});
+reveal();styleSwitch('Сменить стиль');
+</script>
+</body>
+</html>
