@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261001233939");
+@import url("../assets/inner-base.css?v=20261001235917");
 /* Для медицины: белый, светло-голубой фон, бирюза, Mulish, скругления */
 :root{--bg:#f3f8fb;--ink:#16323f;--muted:#5f7884;--acc:#0f9d9a;--acc-ink:#fff;--teal2:#e0f4f3;--line:#dce8ee;--card:#fff;--fd:"Mulish",system-ui,sans-serif;--fb:"Mulish",system-ui,sans-serif;--maxw:1200px}
 body{font-weight:500}

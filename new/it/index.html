@@ -35,7 +35,7 @@ aside a:hover{background:#eceef3;text-decoration:none}
 aside a.on{background:var(--acc2);color:var(--acc);font-weight:600}
 aside .m{font:500 11px var(--m);padding:1px 5px;border-radius:4px;margin-right:6px}
 .get{background:#e3f6ef;color:var(--ok)}.post{background:#fff1dc;color:#b86e00}
-@media(max-width:900px){.layout{grid-template-columns:1fr}aside{display:none}}
+@media(max-width:900px){.layout{grid-template-columns:minmax(0,1fr)}aside{display:none}}
 .doc{padding:clamp(24px,4vw,56px) clamp(16px,4vw,60px) 80px;min-width:0}
 .crumb{font-size:13.5px;color:var(--g)}
 h1{font:700 clamp(32px,4.2vw,52px)/1.1 var(--f);letter-spacing:-.025em;margin-top:10px}
@@ -50,7 +50,7 @@ h2:hover a.h{opacity:1}
 .sub{color:var(--g);max-width:64ch}
 /* endpoint */
 .ep{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;margin-top:22px;align-items:start}
-.sig{font:500 15px var(--m);display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--l);border-radius:10px;background:var(--side)}
+.sig{font:500 15px var(--m);display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--l);border-radius:10px;background:var(--side);overflow-wrap:anywhere;min-width:0;flex-wrap:wrap}
 .params{margin-top:16px;border-top:1px solid var(--l)}
 .params div{padding:12px 0;border-bottom:1px solid var(--l)}
 .params b{font:500 14.5px var(--m)}
@@ -65,7 +65,7 @@ h2:hover a.h{opacity:1}
 .k{color:#c792ea}.s{color:#ecc48d}.n{color:#f78c6c}.c{color:#637777}.p{color:#82aaff}
 .resp{border-top:1px solid #222a44}
 .resp .st{padding:8px 16px;font:500 12.5px var(--m);color:#7fdbb6;background:#121a2e}
-@media(max-width:1100px){.ep{grid-template-columns:1fr}}
+@media(max-width:1100px){.ep{grid-template-columns:minmax(0,1fr)}}
 /* changelog */
 .cl{margin-top:22px}
 .ce{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding:22px 0;border-bottom:1px solid var(--l)}
@@ -77,18 +77,19 @@ h2:hover a.h{opacity:1}
 .ce .tags span{font:12px var(--m);background:var(--acc2);color:var(--acc);padding:2px 8px;border-radius:5px}
 .ce .row{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:20px;align-items:start}
 .ce img{border:1px solid var(--l);border-radius:8px;aspect-ratio:16/10;object-fit:cover;object-position:top;width:100%}
-@media(max-width:760px){.ce{grid-template-columns:1fr;gap:6px}.ce .row{grid-template-columns:1fr}}
+@media(max-width:760px){.ce{grid-template-columns:minmax(0,1fr);gap:6px}.ce .row{grid-template-columns:minmax(0,1fr)}}
 .callout{display:flex;gap:12px;padding:14px 16px;border-radius:10px;background:var(--acc2);border:1px solid #ddd5fb;margin-top:22px;font-size:15px}
 .callout b{color:var(--acc)}
 table.t{width:100%;border-collapse:collapse;margin-top:18px;font-size:15px}
 table.t th{text-align:left;font:600 12.5px var(--f);text-transform:uppercase;letter-spacing:.06em;color:var(--g);padding:10px;border-bottom:1px solid var(--l)}
 table.t td{padding:12px 10px;border-bottom:1px solid var(--l)}
 table.t td:last-child{font:500 14px var(--m);white-space:nowrap}
+@media(max-width:560px){table.t{font-size:14px}table.t th,table.t td{padding:10px 6px}table.t td:last-child{white-space:normal}}
 .revs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:20px}
 .revs article{border:1px solid var(--l);border-radius:12px;padding:18px;font-size:15px}
 .revs footer{margin-top:12px;font-size:13.5px;color:var(--g)}
 .revs footer b{color:var(--ink);display:block}
-@media(max-width:1000px){.revs{grid-template-columns:1fr}}
+@media(max-width:1000px){.revs{grid-template-columns:minmax(0,1fr)}}
 .next{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
 .next a{border:1px solid var(--l);border-radius:12px;padding:18px;color:var(--ink)}
 .next a:hover{border-color:var(--acc);text-decoration:none}
@@ -96,7 +97,7 @@ table.t td:last-child{font:500 14px var(--m);white-space:nowrap}
 .next b{color:var(--acc)}
 .style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:#fff;border:1px solid var(--l);border-radius:8px;padding:8px 12px;font:500 13px var(--m);color:var(--acc);box-shadow:0 8px 20px -10px rgba(26,31,54,.25)}
 </style>
-<link rel="stylesheet" href="../assets/logo.css?v=20261001233939">
+<link rel="stylesheet" href="../assets/logo.css?v=20261001235917">
 </head>
 <body>
 <header class="top"><a class="brand" href="#"><span class="pk-logo pk-logo--it"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span><small> / docs</small></a><span class="search">🔍 Поиск по документации <kbd>Ctrl K</kbd></span><nav><a data-page="cases">Кейсы</a><a data-page="price">Прайс</a><a data-page="blog">Блог</a></nav><a class="cta" href="#start">Начать проект</a></header>
@@ -167,9 +168,9 @@ table.t td:last-child{font:500 14px var(--m);white-space:nowrap}
 </main>
 </div>
 
-<script src="../assets/data.js?v=20261001233939"></script>
-<script src="../assets/engine.js?v=20261001233939"></script>
-<script src="site.js?v=20261001233939"></script>
+<script src="../assets/data.js?v=20261001235917"></script>
+<script src="../assets/engine.js?v=20261001235917"></script>
+<script src="site.js?v=20261001235917"></script>
 <script>
 const D=DATA,$=id=>document.getElementById(id),by=id=>D.all.find(c=>c.id===id);
 const REQ={

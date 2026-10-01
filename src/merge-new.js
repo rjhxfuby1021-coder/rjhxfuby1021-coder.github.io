@@ -62,9 +62,16 @@ module.exports = function mergeNew(root) {
       if (f === 'tools' && from === NEW) continue;
       const a = path.join(from, f), b = path.join(to, f);
       if (fs.statSync(a).isDirectory()) { fs.mkdirSync(b, { recursive: true }); copy(a, b); continue; }
-      if (f.endsWith('.html') && metrika) {
+      if (f.endsWith('.html')) {
         let html = fs.readFileSync(a, 'utf8');
-        if (!html.includes('mc.yandex.ru')) html = html.replace('</head>', metrika + '\n</head>');
+        if (metrika && !html.includes('mc.yandex.ru')) html = html.replace('</head>', metrika + '\n</head>');
+        // SEO: в поиске — экран выбора и нынешний сайт (/ai/). Страницы стилей — витрина для людей:
+        // не индексируются (иначе 17 похожих версий одних кейсов и цен конкурируют между собой), но ссылки по ним учитываются.
+        const isChooser = from === NEW && f === 'index.html';
+        if (isChooser) html = html.replace(/<title>[^<]*<\/title>/, '<title>Павел Корчагин — сайты на Tilda, чат-боты Salebot, онлайн-школы GetCourse</title>')
+          .replace(/<meta name="description"[^>]*>/, '<meta name="description" content="Технический специалист: дизайн в Figma, сайты на Tilda и Zero Block, чат-боты Salebot с ИИ, онлайн-школы GetCourse, вебинары и рассылки — в одной системе. Выберите удобный стиль сайта: кейсы, цены и отзывы везде настоящие.">')
+          .replace('</head>', `<link rel="canonical" href="${DOMAIN}/">\n<meta property="og:type" content="website"><meta property="og:url" content="${DOMAIN}/"><meta property="og:title" content="Павел Корчагин — сайты, чат-боты и онлайн-школы"><meta property="og:description" content="Один специалист вместо пяти подрядчиков: Figma, Tilda, Salebot, GetCourse. Выберите стиль сайта."><meta property="og:image" content="${DOMAIN}/icon-512.png">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png">\n</head>`);
+        else if (!/name="robots"/.test(html)) html = html.replace('</head>', '<meta name="robots" content="noindex, follow">\n</head>');
         fs.writeFileSync(b, html);
       } else fs.copyFileSync(a, b);
       copied++;
@@ -72,9 +79,9 @@ module.exports = function mergeNew(root) {
   })(NEW, SITE);
 
   // ---------- 4. карта сайта ----------
+  // в карте сайта — только то, что индексируется: экран выбора и нынешний сайт в /ai/
   const STYLES = fs.readdirSync(NEW).filter((d) => fs.existsSync(path.join(NEW, d, 'index.html')) && d !== 'tools');
-  const INNER = ['cases', 'services', 'reviews', 'faq', 'about', 'blog', 'bonus', 'contact'];
-  const urls = ['/', ...STYLES.flatMap((st) => ['/' + st + '/', ...INNER.map((p) => '/' + st + '/' + p)])];
+  const urls = ['/'];
   const oldMap = fs.existsSync(path.join(SITE, 'sitemap.xml')) ? fs.readFileSync(path.join(SITE, 'sitemap.xml'), 'utf8') : '';
   const oldLocs = [...oldMap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(/^https?:\/\/[^/]+/, ''))
     .filter((u) => u !== '/spasibo').map((u) => u === '/' ? '/ai/' : '/ai' + u);

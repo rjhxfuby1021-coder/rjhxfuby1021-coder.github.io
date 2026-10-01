@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261001233939");
+@import url("../assets/inner-base.css?v=20261001235917");
 /* Технологичный: светло-серый фон, белые плитки 28px, Onest, градиентный акцент */
 :root{--bg:#f5f5f7;--ink:#1d1d1f;--muted:#6e6e73;--acc:#0071e3;--acc-ink:#fff;--line:#e3e3e8;--card:#fff;--fd:"Onest",system-ui,sans-serif;--fb:"Onest",system-ui,sans-serif;--maxw:1200px}
 .grad{background:linear-gradient(90deg,#0071e3,#7a5cff 55%,#ff5a8a);-webkit-background-clip:text;background-clip:text;color:transparent}

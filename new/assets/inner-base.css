@@ -101,7 +101,7 @@ a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{fon
 .pack p{font-size:14px;color:var(--muted);margin-top:4px}
 .pack-price s{opacity:.6}
 .pack-price strong{color:var(--acc);font-size:18px}
-@media(max-width:860px){.pgroup>.w{grid-template-columns:1fr}.pgroup .packs-h,.pgroup .packs{grid-column:1}.packs{grid-template-columns:1fr}.prow{flex-direction:column;gap:4px}}
+@media(max-width:860px){.pgroup>.w{grid-template-columns:minmax(0,1fr)}.pgroup .packs-h,.pgroup .packs{grid-column:1}.packs{grid-template-columns:minmax(0,1fr)}.prow{flex-direction:column;gap:4px}}
 /* шаги, кому подходит */
 .steps{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;counter-reset:s}
 .steps li{counter-increment:s;background:var(--card);padding:20px;display:flex;flex-direction:column;gap:6px}
