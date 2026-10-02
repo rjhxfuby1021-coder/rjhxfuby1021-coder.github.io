@@ -72,6 +72,7 @@ module.exports = function mergeNew(root) {
           .replace(/<meta name="description"[^>]*>/, '<meta name="description" content="Технический специалист: дизайн в Figma, сайты на Tilda и Zero Block, чат-боты Salebot с ИИ, онлайн-школы GetCourse, вебинары и рассылки — в одной системе. Выберите удобный стиль сайта: кейсы, цены и отзывы везде настоящие.">')
           .replace('</head>', `<link rel="canonical" href="${DOMAIN}/">\n<meta property="og:type" content="website"><meta property="og:url" content="${DOMAIN}/"><meta property="og:title" content="Павел Корчагин — сайты, чат-боты и онлайн-школы"><meta property="og:description" content="Один специалист вместо пяти подрядчиков: Figma, Tilda, Salebot, GetCourse. Выберите стиль сайта."><meta property="og:image" content="${DOMAIN}/icon-512.png">\n<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32"><link rel="apple-touch-icon" href="/apple-touch-icon.png">\n</head>`);
         else if (!/name="robots"/.test(html)) html = html.replace('</head>', '<meta name="robots" content="noindex, follow">\n</head>');
+        if (!/name="description"/.test(html)) html = html.replace('</head>', '<meta name="description" content="Павел Корчагин — технический специалист: дизайн в Figma, сайты на Tilda, чат-боты Salebot с ИИ, онлайн-школы GetCourse.">\n</head>');
         fs.writeFileSync(b, html);
       } else fs.copyFileSync(a, b);
       copied++;
