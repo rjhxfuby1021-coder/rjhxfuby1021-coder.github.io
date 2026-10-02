@@ -13,7 +13,7 @@ module.exports = function mergeNew(root) {
 
   // ---------- 1. нынешний сайт -> /ai/ ----------
   const ROUTES = 'keys|form|price|otzivi|iambonus|faq|rezume|blog|politica|spasibo|tilda|salebot|getcourse|figma|uslugi|404';
-  const isOldPage = (rel) => rel.endsWith('.html') && !/^yandex_/.test(path.basename(rel));
+  const isOldPage = (rel) => rel.endsWith('.html') && !/^(yandex_|google)/.test(path.basename(rel));
   const oldPages = [];
   (function walk(dir, rel) {
     for (const f of fs.readdirSync(dir)) {
