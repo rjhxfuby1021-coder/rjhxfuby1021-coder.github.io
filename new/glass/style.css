@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261003205854");
+@import url("../assets/inner-base.css?v=20261003210228");
 /* Современный: стекло поверх живого пастельного градиента, Geologica */
 :root{--bg:#eef0fb;--ink:#14162b;--muted:#5d6180;--acc:#5b5bf7;--acc-ink:#fff;--line:rgba(255,255,255,.75);--card:rgba(255,255,255,.42);--fd:"Geologica",system-ui,sans-serif;--fb:"Geologica",system-ui,sans-serif;--maxw:1200px}
 body{background:#eef0fb}

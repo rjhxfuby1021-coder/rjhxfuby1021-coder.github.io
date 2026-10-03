@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261003205854");
+@import url("../assets/inner-base.css?v=20261003210228");
 /* Деловой: белый, чёрный, синий Кляйна, Inter Tight, линейки и сетка */
 :root{--bg:#fff;--ink:#0a0a0a;--muted:#6b6b6b;--acc:#1d33f2;--acc-ink:#fff;--line:#e4e4e4;--card:#f5f5f3;--fd:"Inter Tight",system-ui,sans-serif;--fb:"Inter Tight",system-ui,sans-serif;--r:0;--maxw:1360px}
 .kicker{font:500 13px var(--fb);letter-spacing:.01em;text-transform:none;color:var(--muted);padding-top:10px;border-top:1px solid var(--ink);display:block;max-width:260px}

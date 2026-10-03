@@ -45,17 +45,18 @@ a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{fon
 .hero p{font-size:clamp(17px,1.5vw,20px);color:var(--g);max-width:42ch;margin-top:22px}
 .hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
 /* orbit */
-.orbit{position:relative;aspect-ratio:1}
+.orbit{position:relative;aspect-ratio:1;container-type:inline-size}
 .core{position:absolute;inset:32%;border-radius:50%;display:grid;place-items:center;text-align:center;padding:10px}
-.core b{display:block;font-weight:600;font-size:clamp(18px,2vw,24px);letter-spacing:-.02em}
-.core span{font-size:13px;color:var(--g)}
+.core b{display:block;font-weight:600;font-size:clamp(13px,5cqw,24px);line-height:1.15;letter-spacing:-.02em}
+.core span{display:block;margin-top:4px;line-height:1.25;font-size:clamp(10.5px,3.4cqw,13px);color:var(--g)}
 .ring{position:absolute;inset:6%;border-radius:50%;border:1px dashed rgba(91,91,247,.3);animation:rot 40s linear infinite}
 .node{position:absolute;left:50%;top:50%;width:0;height:0}
 .node em{position:absolute;transform:translate(-50%,-50%) rotate(var(--back));white-space:nowrap;font-style:normal;font-size:14px;font-weight:500;padding:9px 14px;border-radius:16px}
 @keyframes rot{to{transform:rotate(360deg)}}
 .ring .node em{animation:counter 40s linear infinite}
 @keyframes counter{from{transform:translate(-50%,-50%) rotate(var(--back))}to{transform:translate(-50%,-50%) rotate(calc(var(--back) - 360deg))}}
-@media(max-width:860px){.hero{grid-template-columns:1fr}.orbit{max-width:440px;width:100%;margin:0 auto}}
+@media(max-width:860px){.hero{grid-template-columns:1fr}.orbit{max-width:440px;width:100%;margin:0 auto}.core{inset:27%}}
+@media(max-width:520px){.orbit{width:calc(100% - 84px);margin:30px auto}.core{inset:21%;padding:8px}}
 section{padding:clamp(60px,8vw,110px) 0}
 .sh{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
 .sh h2{font-weight:600;font-size:clamp(32px,4.4vw,58px);line-height:1.05;letter-spacing:-.04em;max-width:15ch}
@@ -136,7 +137,7 @@ footer.f a{margin-left:16px}
 .style-switch{position:fixed;right:16px;bottom:16px;z-index:50;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.55);backdrop-filter:blur(20px);border:1px solid #fff;font-size:14px;font-weight:500;box-shadow:0 10px 30px -14px rgba(40,40,120,.4)}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-rv]{opacity:1;transform:none;filter:none}}
 </style>
-<link rel="stylesheet" href="../assets/logo.css?v=20261003205854">
+<link rel="stylesheet" href="../assets/logo.css?v=20261003210228">
 </head>
 <body>
 <div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
@@ -202,9 +203,9 @@ footer.f a{margin-left:16px}
 </main>
 <footer class="f"><div class="w"><span>© 2026 Павел Корчагин</span><span><a data-page="about">Обо мне</a><a data-page="bonus">10% за рекомендацию</a><a data-page="blog">Блог</a></span></div></footer>
 
-<script src="../assets/data.js?v=20261003205854"></script>
-<script src="../assets/engine.js?v=20261003205854"></script>
-<script src="site.js?v=20261003205854"></script>
+<script src="../assets/data.js?v=20261003210228"></script>
+<script src="../assets/engine.js?v=20261003210228"></script>
+<script src="site.js?v=20261003210228"></script>
 <script>
 const D=DATA,$=id=>document.getElementById(id);
 const N=['Figma','Tilda','Salebot + ИИ','Bizon365','Рассылки','GetCourse'];
