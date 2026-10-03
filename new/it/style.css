@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261003201141");
+@import url("../assets/inner-base.css?v=20261003205854");
 /* Для айтишников: документация — белый, фиолетовый Stripe, боковое оглавление, Fira Sans + Fira Code */
 :root{--bg:#fff;--ink:#1a1f36;--muted:#5e6578;--acc:#6e56cf;--acc-ink:#fff;--acc2:#f1eefe;--side:#f7f8fa;--ok:#1aa179;--line:#e6e8ef;--card:#f7f8fa;--fd:"Fira Sans",system-ui,sans-serif;--fb:"Fira Sans",system-ui,sans-serif;--m:"Fira Code",ui-monospace,monospace;--maxw:1000px}
 html{scroll-padding-top:70px}

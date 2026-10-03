@@ -57,7 +57,7 @@ h2::before{content:"## ";color:var(--g)}
 .ls{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;gap:6px 22px;font-size:14px}
 .ls>*{padding:4px 0;border-bottom:1px dashed var(--line)}
 .ls .d{color:var(--g)}
-@media(max-width:700px){.ls{grid-template-columns:auto minmax(0,1fr)}.ls .d:nth-child(4n+1),.ls .d:nth-child(4n+2){display:none}}
+@media(max-width:700px){.ls{grid-template-columns:minmax(0,1fr);row-gap:2px}.ls .amb{margin-bottom:12px;text-align:left}.ls .d:nth-child(4n+1),.ls .d:nth-child(4n+2){display:none}}
 /* table of cases */
 .tbl{width:100%;border-collapse:collapse;font-size:14px}
 .tbl th{text-align:left;color:var(--g);font-weight:400;padding:8px 10px;border-bottom:1px solid var(--line)}
@@ -98,7 +98,7 @@ footer .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .style-switch:hover{background:var(--grn);color:var(--bg);text-decoration:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}[data-rv]{opacity:1}}
 </style>
-<link rel="stylesheet" href="../assets/logo.css?v=20261003201141">
+<link rel="stylesheet" href="../assets/logo.css?v=20261003205854">
 </head>
 <body>
 <header><div class="w"><a href="#"><span class="pk-logo pk-logo--terminal"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span></a><nav><a data-page="cases">cases</a><a data-page="price">price</a><a data-page="reviews">reviews</a><a data-page="faq">faq</a><a data-page="blog">blog</a></nav></div></header>
@@ -158,9 +158,9 @@ footer .w{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </main>
 <footer><div class="w"><span>© 2026 Павел Корчагин · 31 y.o. · Троицк, Москва</span><span>exit code 0</span></div></footer>
 
-<script src="../assets/data.js?v=20261003201141"></script>
-<script src="../assets/engine.js?v=20261003201141"></script>
-<script src="site.js?v=20261003201141"></script>
+<script src="../assets/data.js?v=20261003205854"></script>
+<script src="../assets/engine.js?v=20261003205854"></script>
+<script src="site.js?v=20261003205854"></script>
 <script>
 const D=DATA,$=id=>document.getElementById(id),out=$('out');
 const esc=s=>s.replace(/</g,'&lt;');
