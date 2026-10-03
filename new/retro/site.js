@@ -18,6 +18,8 @@ ENGINE({
     <li><a href="${H.P.cases}">📁 Мои проекты</a></li><li><a href="${H.P.services}">📝 Цены</a></li><li><a href="${H.P.reviews}">✉ Отзывы</a></li><li><a href="${H.P.faq}">❓ Справка</a></li><li><a href="${H.P.blog}">📰 Журнал</a></li><li><a href="${H.P.about}">🖥 О системе</a></li><li><a href="${H.P.bonus}">🎁 10% за друга</a></li>
     <li class="hr"></li><li><a href="${H.P.contact}">✉ Написать Павлу</a></li><li><a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">✈ Telegram</a></li><li><a href="${H.P.privacy}">🔒 Соглашение</a></li><li><a href="../index.html">↺ Сменить стиль…</a></li></ul></nav></footer>`,
   after: () => {
+    // на главной у «Пуска» свой обработчик — второй открывал и сразу закрывал меню
+    if (!document.body.dataset.page) return;
     const b = document.getElementById('startBtn'), m = document.getElementById('smenu');
     b.addEventListener('click', (e) => { e.stopPropagation(); const o = m.classList.toggle('open'); b.setAttribute('aria-expanded', o); });
     document.addEventListener('click', (e) => { if (!e.target.closest('#smenu')) { m.classList.remove('open'); b.setAttribute('aria-expanded', false); } });

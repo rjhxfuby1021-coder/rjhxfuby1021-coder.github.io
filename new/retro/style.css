@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261001235917");
+@import url("../assets/inner-base.css?v=20261003201141");
 /* Ностальгия: Windows 98 — бирюзовый стол, серое окно с фаской, синяя шапка, Pixelify Sans + Tahoma */
 :root{--bg:#c0c0c0;--ink:#000;--muted:#404040;--acc:#000080;--acc-ink:#fff;--line:#808080;--card:#fff;--fd:"Pixelify Sans",monospace;--fb:Tahoma,Verdana,"Segoe UI",sans-serif;--maxw:1100px;--gut:16px;
   --out:inset -1px -1px #0a0a0a,inset 1px 1px #fff,inset -2px -2px #808080,inset 2px 2px #dfdfdf;--in:inset -1px -1px #fff,inset 1px 1px #808080,inset -2px -2px #dfdfdf,inset 2px 2px #0a0a0a}

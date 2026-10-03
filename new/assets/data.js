@@ -187,3 +187,49 @@ window.linkPages = function () {
     if (/^https?:/.test(a.href) && !a.href.includes(location.host)) { a.target = '_blank'; a.rel = 'noopener'; }
   });
 };
+
+// Длинные слова в крупном тексте (особенно на телефоне): если слово шире своей колонки (или экрана),
+// уменьшаем шрифт этого элемента ровно настолько, чтобы слово влезло. Никаких вылезаний и прокрутки вбок.
+(function () {
+  const SKIP = '[aria-hidden="true"],.mega,.row,.mq,.tick,.marquee,.ticker,.wall,.rows,.reel,svg,script,style,select,option,#parent_frame';
+  const blockOf = (el) => { for (let x = el; x; x = x.parentElement) { const d = getComputedStyle(x).display; if (d !== 'inline' && d !== 'contents') return x; } return document.body; };
+  function fit() {
+    const els = document.querySelectorAll('[data-fit]');
+    els.forEach(e => { e.style.fontSize = e.dataset.fit; e.removeAttribute('data-fit'); });
+    const VW = document.documentElement.clientWidth;
+    for (let pass = 0; pass < 3; pass++) {
+      for (const el of document.body.querySelectorAll('*')) {
+        if (!el.firstChild || el.closest(SKIP)) continue;
+        if (![...el.childNodes].some(n => n.nodeType === 3 && /\S{5,}/.test(n.nodeValue))) continue;
+        const cs = getComputedStyle(el), fs = parseFloat(cs.fontSize);
+        if (fs < 17 || cs.position === 'fixed') continue;
+        let box = blockOf(el);
+        // ширина, заданная в символах (max-width: 20ch), сжимается вместе со шрифтом — меряем по внешней колонке
+        while (box.parentElement && box !== document.body && getComputedStyle(box).maxWidth !== 'none') box = box.parentElement;
+        const bcs = getComputedStyle(box), br = box.getBoundingClientRect();
+        if (!br.width) continue;
+        const limL = Math.max(br.left + parseFloat(bcs.paddingLeft), 2), limR = Math.min(br.right - parseFloat(bcs.paddingRight), VW - Math.max(8, Math.min(limL, 24)));
+        const rg = document.createRange(); rg.selectNodeContents(el);
+        let minL = 1e9, maxR = -1e9;
+        for (const r of rg.getClientRects()) if (r.width > 1) { minL = Math.min(minL, r.left); maxR = Math.max(maxR, r.right); }
+        if (maxR < 0) continue;
+        const need = maxR - minL, have = limR - limL, over = Math.max(maxR - limR, limL - minL);
+        if (over <= 1 || have <= 40) continue;
+        const k = Math.max(0.5, Math.min(0.98, have / need));
+        if (!el.hasAttribute('data-fit')) el.dataset.fit = el.style.fontSize || '';
+        el.style.fontSize = (fs * k).toFixed(2) + 'px';
+      }
+    }
+  }
+  let t; const later = (ms) => { clearTimeout(t); t = setTimeout(fit, ms || 120); };
+  window.fitText = fit;
+  document.addEventListener('DOMContentLoaded', () => later(30));
+  addEventListener('load', () => later(30));
+  addEventListener('resize', () => later(150));
+  document.addEventListener('toggle', () => later(30), true);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => later(30));
+  setTimeout(() => later(1), 1500);
+  const mo = new MutationObserver(() => later(200));
+  const start = () => mo.observe(document.body, { childList: true, subtree: true, characterData: true });
+  document.body ? start() : document.addEventListener('DOMContentLoaded', start);
+})();

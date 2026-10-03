@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261001235917");
+@import url("../assets/inner-base.css?v=20261003201141");
 /* Для кафе: крафтовая бумага меню, томатный, оливковый, Yeseva One + Raleway */
 :root{--bg:#fff4e2;--ink:#2b1a12;--muted:#7d6656;--acc:#d63a2f;--acc-ink:#fff;--olive:#5d6b2f;--paper:#fbe9cc;--line:rgba(43,26,18,.22);--card:#fff;--fd:"Yeseva One",Georgia,serif;--fb:"Raleway",system-ui,sans-serif;--maxw:1200px}
 body{font-weight:500}
@@ -32,7 +32,7 @@ body{font-weight:500}
 .pgroup>.w::before{content:"";position:absolute;inset:12px;border:1.5px solid var(--line);pointer-events:none}
 .pgroup-hd .sec-title{color:var(--acc)}
 .prow{border-bottom:1px dashed var(--line);flex-direction:row}
-@media(max-width:560px){.prow{flex-wrap:wrap;gap:4px 12px}.prow-main{flex-basis:100%}.prow-name{overflow-wrap:anywhere}}
+@media(max-width:560px){.prow{flex-wrap:wrap;gap:4px 12px}.prow .prow-main{flex:1 1 100%}.prow-name{overflow-wrap:break-word}}
 .prow-main{flex:1;min-width:0}
 .prow-name{font-size:19px}
 .prow-name::after{content:"";display:inline-block}

@@ -28,7 +28,7 @@ a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{fon
 .sec-lead{color:var(--muted);margin-top:12px}
 /* фильтр и карточки */
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
-.filters button{padding:9px 16px;border:1.5px solid var(--line);font-weight:500;transition:.2s}
+.filters button{padding:9px 16px;border:1.5px solid var(--line);font-weight:500;transition:.2s;white-space:nowrap}
 .filters button sup{font-size:11px;margin-left:4px;opacity:.7}
 .filters button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px)}

@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261001235917");
+@import url("../assets/inner-base.css?v=20261003201141");
 /* Экспериментальный: светло-серый, чёрный, оранжевый, Unbounded 900 капсом, жирные линейки */
 :root{--bg:#e8e8e3;--ink:#0d0d0d;--muted:#6b6b66;--acc:#ff4f00;--acc-ink:#fff;--line:#0d0d0d;--card:#deded8;--fd:"Unbounded",system-ui,sans-serif;--fb:"Manrope",system-ui,sans-serif;--maxw:100%;--gut:clamp(14px,3vw,40px)}
 body{font-weight:500}
@@ -76,3 +76,6 @@ main{padding-top:70px}
 .style-switch{position:fixed;right:16px;bottom:16px;z-index:60;background:var(--acc);color:#fff;padding:10px 16px;border-radius:999px;font:800 12px var(--fd);text-transform:uppercase}
 @media(max-width:700px){.pg-title{white-space:normal;font-size:clamp(46px,15vw,90px)}}
 .site-hd nav a.on{color:#fff;text-decoration:underline;text-underline-offset:6px}
+
+/* на телефоне «инвертирующая» шапка накладывалась на текст — делаем сплошную */
+@media(max-width:760px){.site-hd{mix-blend-mode:normal;background:var(--bg);color:var(--ink);border-bottom:2px solid var(--ink)}}

@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261001235917");
+@import url("../assets/inner-base.css?v=20261003201141");
 /* Дерзкий: необрутализм Gumroad — розовый, жёлтый, чёрные рамки 3px, сдвинутые тени */
 :root{--bg:#f4f4f0;--ink:#000;--muted:#2b2b2b;--acc:#ff90e8;--acc-ink:#000;--yel:#ffc900;--blue:#90a8ed;--line:#000;--card:#fff;--fd:"Dela Gothic One",Impact,sans-serif;--fb:"Rubik",system-ui,sans-serif;--b:3px solid #000;--sh:6px 6px 0 #000}
 body{font-size:18px;font-weight:400}
@@ -94,3 +94,6 @@ body{font-size:18px;font-weight:400}
 .pg-title,.sec-title,.cta-title{line-height:1.18}
 .hl{margin:.1em 0 .02em}
 .big-num{margin-top:clamp(30px,5vw,60px)}
+
+/* у Dela Gothic узкий пробел — слова в заголовках слипались */
+h1,h2,h3,h4,.pg-title,.sec-title,.cta-title,.card-title,.post-title,summary{word-spacing:.14em}

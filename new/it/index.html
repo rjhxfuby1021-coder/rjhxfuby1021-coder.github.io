@@ -26,6 +26,7 @@ code{font:14px var(--m);background:var(--side);border:1px solid var(--l);border-
 .top .cta{background:var(--acc);color:#fff;padding:7px 14px;border-radius:8px;font-weight:600;font-size:14px}
 .top .cta:hover{text-decoration:none;background:#5b45b8}
 @media(max-width:900px){.search,.top nav{display:none}.top .cta{margin-left:auto}}
+.top .cta,.top .brand small{white-space:nowrap}@media(max-width:420px){.top{gap:10px;padding:0 14px}.top .brand small{display:none}}
 .layout{display:grid;grid-template-columns:250px minmax(0,1fr);max-width:1400px;margin:0 auto}
 aside{position:sticky;top:58px;height:calc(100vh - 58px);overflow-y:auto;border-right:1px solid var(--l);padding:24px 16px;background:var(--side);font-size:14.5px}
 aside h5{font:600 11.5px var(--f);text-transform:uppercase;letter-spacing:.08em;color:var(--g);margin:18px 10px 6px}
@@ -97,7 +98,7 @@ table.t td:last-child{font:500 14px var(--m);white-space:nowrap}
 .next b{color:var(--acc)}
 .style-switch{position:fixed;right:16px;bottom:16px;z-index:50;background:#fff;border:1px solid var(--l);border-radius:8px;padding:8px 12px;font:500 13px var(--m);color:var(--acc);box-shadow:0 8px 20px -10px rgba(26,31,54,.25)}
 </style>
-<link rel="stylesheet" href="../assets/logo.css?v=20261001235917">
+<link rel="stylesheet" href="../assets/logo.css?v=20261003201141">
 </head>
 <body>
 <header class="top"><a class="brand" href="#"><span class="pk-logo pk-logo--it"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span><small> / docs</small></a><span class="search">🔍 Поиск по документации <kbd>Ctrl K</kbd></span><nav><a data-page="cases">Кейсы</a><a data-page="price">Прайс</a><a data-page="blog">Блог</a></nav><a class="cta" href="#start">Начать проект</a></header>
@@ -168,9 +169,9 @@ table.t td:last-child{font:500 14px var(--m);white-space:nowrap}
 </main>
 </div>
 
-<script src="../assets/data.js?v=20261001235917"></script>
-<script src="../assets/engine.js?v=20261001235917"></script>
-<script src="site.js?v=20261001235917"></script>
+<script src="../assets/data.js?v=20261003201141"></script>
+<script src="../assets/engine.js?v=20261003201141"></script>
+<script src="site.js?v=20261003201141"></script>
 <script>
 const D=DATA,$=id=>document.getElementById(id),by=id=>D.all.find(c=>c.id===id);
 const REQ={

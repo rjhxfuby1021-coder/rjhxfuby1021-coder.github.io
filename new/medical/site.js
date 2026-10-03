@@ -2,7 +2,7 @@
 ENGINE({
   name: 'для медицины',
   featured: ['sb-jador', 'sb-portfolio-ai', 'maxfit', 'tochka-opory', 'yurdirect', 'pro-technik'],
-  hdLogo: LOGO('medical'), hdCta: 'Записаться на консультацию', hdMenu: 'Меню',
+  hdLogo: LOGO('medical'), hdCta: 'Записаться<span class="cta-long"> на консультацию</span>', hdMenu: 'Меню',
   switchLabel: 'Сменить стиль',
   ft: { about: 'Сайты, онлайн-запись и чат-боты для клиник, стоматологий и частных врачей.', h1: 'Проекты', h2: 'Информация', h3: 'Запись', bonus: 'Рекомендации' },
   voice: {

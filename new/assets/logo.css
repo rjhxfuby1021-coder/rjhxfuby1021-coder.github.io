@@ -10,7 +10,7 @@ span.pk-logo.pk-logo--business{font-family:"Inter Tight",system-ui,sans-serif;fo
 .pk-logo.pk-logo--business .pk-mark.pk-mark{background:#1d33f2;border-radius:0}
 span.pk-logo.pk-logo--creative{font-family:"Playfair Display",Georgia,serif;font-weight:800;font-size:clamp(20px,2.4vw,28px)}
 .pk-logo.pk-logo--creative .pk-mark.pk-mark{background:#e8452c;border-radius:50%;transform:rotate(-8deg);font-family:"Caveat",cursive;font-size:.75em;font-weight:700}
-span.pk-logo.pk-logo--bold{font-family:"Dela Gothic One",Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:18px}
+span.pk-logo.pk-logo--bold{font-family:"Dela Gothic One",Impact,sans-serif;font-weight:400;text-transform:uppercase;font-size:18px;word-spacing:.3em}
 .pk-logo.pk-logo--bold .pk-mark.pk-mark{background:#ff90e8;color:#000;border:3px solid #000;border-radius:50%;box-shadow:3px 3px 0 #000;font-weight:400}
 span.pk-logo.pk-logo--premium{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;font-size:22px;letter-spacing:.04em}
 .pk-logo.pk-logo--premium .pk-mark.pk-mark{background:none;color:#c8a46a;border:1px solid #c8a46a;border-radius:0;font-weight:400;font-size:.7em;letter-spacing:.08em}
@@ -50,3 +50,9 @@ span.pk-logo.pk-logo--it{font-family:"Fira Sans",system-ui,sans-serif;font-weigh
 .site-ft .pk-logo.pk-logo--accountant .pk-mark.pk-mark{background:#217346;color:#fff}
 /* телефон: логотип компактнее, чтобы помещался рядом с кнопкой меню */
 @media(max-width:480px){span.pk-logo.pk-logo{font-size:14px;gap:.5em}span.pk-logo.pk-logo--bold,span.pk-logo.pk-logo--auto,span.pk-logo.pk-logo--kinetic{font-size:12.5px}span.pk-logo.pk-logo--premium,span.pk-logo.pk-logo--cafe,span.pk-logo.pk-logo--creative{font-size:17px}}
+
+/* страховка для телефона: декоративные полосы и наклонённые блоки не дают прокрутки вбок */
+html,body{overflow-x:clip}
+
+@media(max-width:560px){.cta-long{display:none}}
+.site-hd .hd-cta{white-space:nowrap}
