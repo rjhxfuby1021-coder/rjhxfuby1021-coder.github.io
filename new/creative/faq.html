@@ -7,7 +7,7 @@
 <meta name="description" content="Ответы на частые вопросы о сроках, ценах и работе — и ИИ-ассистент, который отвечает круглосуточно.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261007202712">
+<link rel="stylesheet" href="style.css?v=20261007205552">
 <style>
 .ai{background:var(--ink);color:var(--paper);padding:clamp(28px,4vw,48px);transform:rotate(-1deg);box-shadow:0 30px 60px -30px rgba(30,27,24,.6);position:relative}
 .ai::before{content:"";position:absolute;top:-12px;left:40px;width:100px;height:26px;background:rgba(246,210,74,.85);transform:rotate(-4deg)}
@@ -22,7 +22,7 @@
 .qa summary{font-size:clamp(20px,1.8vw,24px)}
 .qa details p{font-size:17px}
 </style>
-<link rel="stylesheet" href="../assets/logo.css?v=20261007202712">
+<link rel="stylesheet" href="../assets/logo.css?v=20261007205552">
 </head>
 <body>
 <header id="mast"></header>
@@ -55,9 +55,9 @@
 </main>
 <footer id="foot"></footer>
 
-<script src="../assets/data.js?v=20261007202712"></script>
-<script src="../assets/content.js?v=20261007202712"></script>
-<script src="site.js?v=20261007202712"></script>
+<script src="../assets/data.js?v=20261007205552"></script>
+<script src="../assets/content.js?v=20261007205552"></script>
+<script src="site.js?v=20261007205552"></script>
 <script>
 document.getElementById('qa').innerHTML=CONTENT.faq.map(([q,a],i)=>`<details ${i?'':'open'}><summary>${CR.esc(q)}</summary><p>${CR.fixLinks(a)}</p></details>`).join('');
 // ИИ-ассистент Salebot — чатом прямо в странице (assets/data.js → dockAssistant)

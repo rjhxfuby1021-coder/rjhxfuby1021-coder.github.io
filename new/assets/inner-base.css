@@ -271,7 +271,7 @@ a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{fon
 /* ИИ-ассистент чатом в странице вопросов */
 .faq-grid:has(.ai-dock){grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
 .assistant:has(.ai-dock){position:static}
-.ai-dock{height:640px;margin-top:20px;border-radius:16px;background:#f2f3f6;display:grid;place-items:center;text-align:center;padding:20px}
+.ai-dock{height:640px;max-width:440px;margin-top:20px;border-radius:16px;background:#f2f3f6;display:grid;place-items:center;text-align:center;padding:20px}
 .ai-dock.ai-dock-on{background:transparent}
 .ai-dock-wait{color:var(--muted);font-size:14px;margin:0!important}
 .ai-dock-on .ai-dock-wait{visibility:hidden}
