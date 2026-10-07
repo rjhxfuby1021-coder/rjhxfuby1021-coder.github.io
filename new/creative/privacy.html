@@ -6,9 +6,9 @@
 <title>Политика конфиденциальности — Павел Корчагин</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261007194444">
+<link rel="stylesheet" href="style.css?v=20261007194746">
 <style>.prose > p:first-of-type::first-letter{float:none;font:inherit;color:inherit;margin:0}.prose h2{font-size:clamp(24px,2.4vw,32px)}.prose{font-size:17px}</style>
-<link rel="stylesheet" href="../assets/logo.css?v=20261007194444">
+<link rel="stylesheet" href="../assets/logo.css?v=20261007194746">
 </head>
 <body>
 <header id="mast"></header>
@@ -21,9 +21,9 @@
   <section class="sec tight"><div class="w"><article class="prose" id="doc"></article></div></section>
 </main>
 <footer id="foot"></footer>
-<script src="../assets/data.js?v=20261007194444"></script>
-<script src="../assets/content.js?v=20261007194444"></script>
-<script src="site.js?v=20261007194444"></script>
+<script src="../assets/data.js?v=20261007194746"></script>
+<script src="../assets/content.js?v=20261007194746"></script>
+<script src="site.js?v=20261007194746"></script>
 <script>
 document.getElementById('doc').innerHTML=CONTENT.policy.map(([h,ps],i)=>`<h2>${i+1}. ${CR.esc(h)}</h2>${[].concat(ps).map(p=>Array.isArray(p)?`<ul>${p.map(li=>`<li>${CR.fixLinks(li)}</li>`).join('')}</ul>`:`<p>${CR.fixLinks(p)}</p>`).join('')}`).join('');
 CR.done();

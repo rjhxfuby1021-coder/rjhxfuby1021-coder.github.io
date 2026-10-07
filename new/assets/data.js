@@ -199,6 +199,20 @@ window.DATA.pages = {
   bonus: 'https://texspeckps.ru/iambonus',
   form: 'https://texspeckps.ru/form'
 };
+/* Ссылка вида service.html?s=salebot#demo: блок рисуется скриптом, а шрифты и картинки догружаются позже,
+   поэтому докручиваем к якорю несколько раз — пока человек сам не тронул страницу */
+window.scrollToHash = function () {
+  const id = decodeURIComponent(location.hash.slice(1));
+  if (!id) return;
+  let touched = false;
+  const stop = () => { touched = true; };
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach((e) => addEventListener(e, stop, { once: true, passive: true }));
+  const go = () => { const el = document.getElementById(id); if (el && !touched) el.scrollIntoView({ behavior: 'instant' }); };
+  [60, 400, 1200, 2500].forEach((t) => setTimeout(go, t));
+  if (document.fonts) document.fonts.ready.then(go);
+  addEventListener('load', () => { go(); setTimeout(go, 300); });
+};
+
 /* Подставляет адреса во все ссылки вида <a data-page="price"> */
 window.linkPages = function () {
   document.querySelectorAll('a[data-page]').forEach(a => {

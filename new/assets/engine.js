@@ -249,10 +249,8 @@ window.ENGINE = function (T) {
     if (titles[page]) document.title = String(v(titles[page], document.title)).replace(/<[^>]+>/g, '') + ' — ' + v('titleSfx', 'Павел Корчагин');
     main.innerHTML = R[page](H);
     // ссылка вида service.html?s=salebot#demo: страница рисуется скриптом, поэтому докручиваем сами, когда встанут шрифты
-    if (location.hash.length > 1) {
-      const go = () => { const el = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (el) el.scrollIntoView({ behavior: 'instant' }); };
-      (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(go, 60));
-    }
+    // (повторяем, пока догружаются шрифты и картинки — и пока человек сам не начал листать)
+    if (location.hash.length > 1) window.scrollToHash();
   }
 
   /* ---------- поведение ---------- */
