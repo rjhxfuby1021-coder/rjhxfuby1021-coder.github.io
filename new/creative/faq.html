@@ -7,7 +7,7 @@
 <meta name="description" content="Ответы на частые вопросы о сроках, ценах и работе — и ИИ-ассистент, который отвечает круглосуточно.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261007201319">
+<link rel="stylesheet" href="style.css?v=20261007202712">
 <style>
 .ai{background:var(--ink);color:var(--paper);padding:clamp(28px,4vw,48px);transform:rotate(-1deg);box-shadow:0 30px 60px -30px rgba(30,27,24,.6);position:relative}
 .ai::before{content:"";position:absolute;top:-12px;left:40px;width:100px;height:26px;background:rgba(246,210,74,.85);transform:rotate(-4deg)}
@@ -22,7 +22,7 @@
 .qa summary{font-size:clamp(20px,1.8vw,24px)}
 .qa details p{font-size:17px}
 </style>
-<link rel="stylesheet" href="../assets/logo.css?v=20261007201319">
+<link rel="stylesheet" href="../assets/logo.css?v=20261007202712">
 </head>
 <body>
 <header id="mast"></header>
@@ -39,7 +39,7 @@
       <span class="on">ассистент на связи 24/7</span>
       <h2 style="margin-top:12px">Не нашли ответ? <i>Спросите</i> ассистента</h2>
       <p>Он знает всё об услугах, сроках, ценах и проектах. Если вопрос нестандартный — передаст его мне вместе с темой разговора.</p>
-      <button class="pill" data-open-chat>Задать вопрос ассистенту</button>
+      <div class="ai-dock" id="ai-dock"><p class="ai-dock-wait hand">ассистент уже идёт…</p></div>
       <p style="font-size:14px;margin-top:16px">Или по-старинке: <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener" style="color:var(--yel);border-bottom:1px solid">написать мне в Telegram</a></p>
     </aside>
   </div></section>
@@ -55,19 +55,13 @@
 </main>
 <footer id="foot"></footer>
 
-<script src="../assets/data.js?v=20261007201319"></script>
-<script src="../assets/content.js?v=20261007201319"></script>
-<script src="site.js?v=20261007201319"></script>
+<script src="../assets/data.js?v=20261007202712"></script>
+<script src="../assets/content.js?v=20261007202712"></script>
+<script src="site.js?v=20261007202712"></script>
 <script>
 document.getElementById('qa').innerHTML=CONTENT.faq.map(([q,a],i)=>`<details ${i?'':'open'}><summary>${CR.esc(q)}</summary><p>${CR.fixLinks(a)}</p></details>`).join('');
-// ИИ-ассистент Salebot (тот же, что на texspeckps.ru); если виджет не загрузился — ведём в Telegram
-(function(){var ready=false,want=false;
-  function open(){try{window.ChatBotPro.open()}catch(e){}setTimeout(function(){if(!document.getElementById('parent_frame')){window.open('https://t.me/PavelTexSpec','_blank','noopener');var a=document.querySelector('.ai p:last-of-type');if(a)a.textContent='Ассистент работает на texspeckps.ru — здесь открыл Telegram.'}},1200)}
-  var s=document.createElement('script');s.src='https://salebot.pro/js/chatbot.js?v=1';s.async=true;
-  s.onload=function(){if(!window.ChatBotPro)return;window.ChatBotPro.init({guid:'deff08aa10e87edf46d7e68751d94d'});ready=true;if(want)open()};
-  document.head.appendChild(s);
-  document.querySelectorAll('[data-open-chat]').forEach(function(b){b.addEventListener('click',function(){if(ready){open();return}want=true;setTimeout(function(){if(!ready)window.open('https://t.me/PavelTexSpec','_blank','noopener')},4000)})});
-})();
+// ИИ-ассистент Salebot — чатом прямо в странице (assets/data.js → dockAssistant)
+window.dockAssistant(document.getElementById('ai-dock'));
 CR.done();
 </script>
 </body>

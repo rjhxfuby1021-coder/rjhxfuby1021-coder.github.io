@@ -191,7 +191,7 @@ window.ENGINE = function (T) {
     },
     faq() {
       return U.hd({ crumbs: U.crumbs([[v('nav.faq', 'Вопросы')]]), kicker: v('faq.kicker'), h1: v('faq.h1', 'Вопросы и ответы'), lead: v('faq.lead') })
-        + U.sec({ cls: 'sec-faq', body: `<div class="faq-grid"><div class="qa-list">${keep(C.faq).map(U.qa).join('')}</div><aside class="assistant"><p class="kicker">${v('faq.aiK', 'ИИ-ассистент 24/7')}</p><h2 class="sec-title">${v('faq.aiH', 'Не нашли ответ?')}</h2><p>${v('faq.aiP', 'Ассистент знает всё об услугах, сроках и ценах.')}</p><button class="btn btn-1" data-open-chat>${v('faq.aiBtn', 'Задать вопрос')}</button><p class="assistant-alt">${v('faq.aiAlt', 'Или напишите мне в')} <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a></p></aside></div>` })
+        + U.sec({ cls: 'sec-faq', body: `<div class="faq-grid"><div class="qa-list">${keep(C.faq).map(U.qa).join('')}</div><aside class="assistant"><p class="kicker">${v('faq.aiK', 'ИИ-ассистент 24/7')}</p><h2 class="sec-title">${v('faq.aiH', 'Не нашли ответ?')}</h2><p>${v('faq.aiP', 'Ассистент знает всё об услугах, сроках и ценах.')}</p><div class="ai-dock" id="ai-dock"><p class="ai-dock-wait">${v('faq.aiWait', 'Загружаю ассистента…')}</p></div><p class="assistant-alt">${v('faq.aiAlt', 'Или напишите мне в')} <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Telegram</a></p></aside></div>` })
         + U.cta({ h: v('faq.endH', 'Остались вопросы?'), p: v('faq.endP') });
     },
     about() {
@@ -286,15 +286,8 @@ window.ENGINE = function (T) {
     lb.addEventListener('click', () => lb.classList.remove('open'));
     addEventListener('keydown', (e) => { if (e.key === 'Escape') lb.classList.remove('open'); });
   }
-  // ИИ-ассистент Salebot
-  if (document.querySelector('[data-open-chat]')) {
-    let ready = false, want = false;
-    const open = () => { try { window.ChatBotPro.open(); } catch (e) {} setTimeout(() => { if (!document.getElementById('parent_frame')) { window.open('https://t.me/PavelTexSpec', '_blank', 'noopener'); document.querySelectorAll('.assistant-alt').forEach((p) => { p.textContent = 'Ассистент работает на texspeckps.ru — здесь открыл Telegram.'; }); } }, 1200); };
-    const s = document.createElement('script'); s.src = 'https://salebot.pro/js/chatbot.js?v=1'; s.async = true;
-    s.onload = () => { if (!window.ChatBotPro) return; window.ChatBotPro.init({ guid: 'deff08aa10e87edf46d7e68751d94d' }); ready = true; if (want) open(); };
-    document.head.appendChild(s);
-    document.querySelectorAll('[data-open-chat]').forEach((b) => b.addEventListener('click', () => { if (ready) { open(); return; } want = true; setTimeout(() => { if (!ready) window.open('https://t.me/PavelTexSpec', '_blank', 'noopener'); }, 4000); }));
-  }
+  // ИИ-ассистент Salebot — чатом прямо в странице вопросов (assets/data.js → dockAssistant)
+  if (document.getElementById('ai-dock') && window.dockAssistant) window.dockAssistant(document.getElementById('ai-dock'));
   // форма заявки
   const f = document.getElementById('lead-form');
   if (f) {

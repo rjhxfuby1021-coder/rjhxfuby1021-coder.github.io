@@ -310,3 +310,12 @@ h2.t,.page-hd h1{line-height:1.02}
 .bot-cr__notes .letter p{font-size:16px;line-height:26px}
 .bot-cr__notes .letter footer{font-size:22px}
 @media(max-width:900px){.bot-cr{grid-template-columns:minmax(0,1fr)}.bot-cr__chat{position:relative;top:auto;height:72vh;min-height:460px}}
+/* ИИ-ассистент чатом в странице вопросов */
+.ai-dock{height:620px;margin-top:22px;border-radius:16px;background:rgba(255,255,255,.08);display:grid;place-items:center;text-align:center;padding:20px}
+.ai-dock.ai-dock-on{background:transparent}
+.ai-dock-wait{font-size:24px;margin:0!important}
+.ai-dock-on .ai-dock-wait{visibility:hidden}
+.ai-dock-fail{display:grid;gap:10px}
+.ai-dock-fail a{color:var(--yel);border-bottom:1px solid}
+@media(max-width:860px){.ai-dock{height:72vh;min-height:480px}}
+.ai:has(.ai-dock){transform:none}

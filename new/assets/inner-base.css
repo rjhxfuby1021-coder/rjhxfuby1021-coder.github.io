@@ -268,3 +268,13 @@ a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{fon
 .bot-tg p{font-size:14px;color:var(--muted)}
 .bot-tg .btn{justify-self:start;min-height:42px;padding:0 18px}
 @media(max-width:900px){.bot-grid{grid-template-columns:minmax(0,1fr)}.bot-chat{position:relative;top:auto;height:72vh;min-height:460px}.bot-tg{grid-template-columns:minmax(0,1fr)}.bot-tg img{display:none}}
+/* ИИ-ассистент чатом в странице вопросов */
+.faq-grid:has(.ai-dock){grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+.assistant:has(.ai-dock){position:static}
+.ai-dock{height:640px;margin-top:20px;border-radius:16px;background:#f2f3f6;display:grid;place-items:center;text-align:center;padding:20px}
+.ai-dock.ai-dock-on{background:transparent}
+.ai-dock-wait{color:var(--muted);font-size:14px;margin:0!important}
+.ai-dock-on .ai-dock-wait{visibility:hidden}
+.ai-dock-fail{display:grid;gap:10px;font-size:15px;color:#333}
+.ai-dock-fail a{color:var(--acc);font-weight:600;text-decoration:underline}
+@media(max-width:860px){.faq-grid:has(.ai-dock){grid-template-columns:1fr}.ai-dock{height:72vh;min-height:480px}}

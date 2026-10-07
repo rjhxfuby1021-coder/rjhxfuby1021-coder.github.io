@@ -36,17 +36,11 @@ module.exports = function render() {
     '</div></section>' +
     '<section class="pk-section" style="padding-top:0"><div class="pk-wrap">' +
       '<div class="pk-aibox pk-reveal">' +
-        '<div class="pk-aibox__chat" aria-hidden="true">' +
-          d.tag('p', 'fq.demo1', { ru: 'Сколько стоит бот для сбора заявок?', en: 'How much is a lead capture bot?' }, 'class="pk-bubble pk-bubble--me"') +
-          d.tag('p', 'fq.demo2', { ru: 'От 3 000 до 6 000 ₽, запуск за 1–2 дня. Бот квалифицирует лида, собирает контакты и сразу уведомляет менеджера. Рассказать, как это будет работать у вас?', en: 'From 3 000 to 6 000 ₽, live in 1–2 days. The bot qualifies the lead, collects contacts and alerts the manager instantly. Want me to explain how it would work for you?' }, 'class="pk-bubble"') +
-          '<p class="pk-bubble pk-bubble--typing"><i></i><i></i><i></i></p>' +
-        '</div>' +
+        '<div class="pk-aidock" id="ai-dock">' + d.tag('p', 'fq.wait', { ru: 'Загружаю ассистента…', en: 'Loading the assistant…' }, 'class="pk-aidock__wait"') + '</div>' +
         '<div class="pk-aibox__cta">' +
           '<span class="pk-ai__badge"><span class="pk-dot" aria-hidden="true"></span>' + d.tag('span', 'fq.online', { ru: 'Ассистент онлайн 24/7', en: 'Assistant online 24/7' }) + '</span>' +
           d.tag('h2', 'fq.cta.h', { ru: 'Задайте вопрос ассистенту', en: 'Ask the assistant' }, 'class="pk-h2"') +
-          d.tag('p', 'fq.cta.p', { ru: 'Чат откроется в правом нижнем углу. Можно писать как человеку — коротко и своими словами.', en: 'The chat opens in the bottom-right corner. Write as you would to a person — briefly and in your own words.' }, 'class="pk-muted"') +
-          '<button type="button" class="pk-btn pk-magnet" data-open-chat>' + d.tag('span', 'fq.open', { ru: 'Открыть чат', en: 'Open the chat' }) +
-            '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></button>' +
+          d.tag('p', 'fq.cta.p', { ru: 'Пишите прямо в окне чата — как человеку, коротко и своими словами. Если вопрос нестандартный, ассистент передаст его мне.', en: 'Type right in the chat window — as you would to a person, briefly and in your own words. If the question is unusual, the assistant passes it to me.' }, 'class="pk-muted"') +
           '<a class="pk-link" href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">' + d.tag('span', 'fq.human', { ru: 'Хочу поговорить с Павлом', en: 'I’d rather talk to Pavel' }) + '</a>' +
         '</div>' +
       '</div>' +
