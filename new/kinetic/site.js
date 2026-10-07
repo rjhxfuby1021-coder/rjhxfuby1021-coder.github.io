@@ -15,9 +15,10 @@ ENGINE({
     const t = document.querySelector('.pg-title'); if (t && !matchMedia('(prefers-reduced-motion: reduce)').matches) addEventListener('scroll', () => { t.style.transform = `translateX(${-scrollY * .25}px)`; }, { passive: true });
   },
   voice: {
-    demo: { k: 'Демо', h: 'Жми.<br><span class="o">Бот.</span>', p: '8 сценариев. 1 клик — бот в Telegram. Часы → секунды.', btn: 'Открыть ↗', try: 'Демо ↗', go: '↗', qr: 'Камера → код', note: 'Оплата — фейк. Выход — «Главное меню».', webH: 'Вебинар.<br><span class="o">Сам.</span>', webP: 'Регистрация. Напоминание. Эфир. Оффер. Дожим. За минуту.' },
+    bot: { title: 'Демо-бот', h1: 'Бот.<br><span class="o">Тут.</span>', lead: 'Чат ниже. Сценарии справа. Жми.', listH: 'Сценарии', tgP: 'Или в Telegram.' },
+    demo: { k: 'Демо', h: 'Жми.<br><span class="o">Бот.</span>', p: '8 сценариев. 1 клик — бот прямо тут. Часы → секунды.', btn: 'Запуск ↗', try: 'Демо ↗', go: '↗', qr: 'Камера → код', note: 'Оплата — фейк. Выход — «Главное меню».', webH: 'Вебинар.<br><span class="o">Сам.</span>', webP: 'Регистрация. Напоминание. Эфир. Оффер. Дожим. За минуту.' },
     titleSfx: 'Павел К.', home: 'Главная', sep: '✳',
-    nav: { cases: 'Кейсы', services: 'Цены', reviews: 'Отзывы', blog: 'Блог', about: 'Кто', faq: 'Вопросы' },
+    nav: { bot: 'Бот', cases: 'Кейсы', services: 'Цены', reviews: 'Отзывы', blog: 'Блог', about: 'Кто', faq: 'Вопросы' },
     cta: { btn: 'Заявка ↗', btn2: 'Telegram ↗' },
     cases: { title: 'Кейсы', kicker: 'Проекты · наведите', h1: 'Проекты<br><span class="o">25 штук</span>', lead: 'Сайты. Боты. Школы. Дизайн. Наведите на строку — увидите работу.', note: '',
       all: 'Всё', cats: { Tilda: 'Сайты', Salebot: 'Боты', GetCourse: 'Школы', Figma: 'Дизайн' }, client: 'клиент', own: 'своё', more: '↗',

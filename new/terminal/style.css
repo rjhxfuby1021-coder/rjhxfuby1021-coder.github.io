@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261007194746");
+@import url("../assets/inner-base.css?v=20261007201319");
 /* Технарь: терминал — почти чёрный, фосфорный зелёный, янтарь, JetBrains Mono */
 :root{--bg:#0b0d0c;--ink:#d7e0da;--muted:#6f7d75;--acc:#3fe17a;--acc-ink:#0b0d0c;--amb:#ffb547;--cy:#5ad1e6;--line:#1f2522;--card:#121514;--fd:"JetBrains Mono",ui-monospace,monospace;--fb:"JetBrains Mono",ui-monospace,monospace;--maxw:1100px}
 body{font-size:15px;line-height:1.65}

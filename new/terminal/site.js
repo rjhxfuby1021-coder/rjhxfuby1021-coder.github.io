@@ -3,7 +3,7 @@ ENGINE({
   name: 'технарь',
   switchLabel: '$ cd ../styles',
   header: (nav, H) => `<header class="site-hd"><div class="w"><a class="logo" href="${H.P.home}">${LOGO('terminal')}</a>
-    <nav aria-label="Разделы">${nav.map((n) => `<a href="${n.h}" class="${n.on ? 'on' : ''}">./${({ cases: 'cases', services: 'price', reviews: 'reviews', blog: 'blog', about: 'whoami', faq: 'faq' })[n.k]}</a>`).join('')}</nav>
+    <nav aria-label="Разделы">${nav.map((n) => `<a href="${n.h}" class="${n.on ? 'on' : ''}">./${({ cases: 'cases', services: 'price', bot: 'bot', reviews: 'reviews', blog: 'blog', about: 'whoami', faq: 'faq' })[n.k]}</a>`).join('')}</nav>
     <a class="btn btn-1 hd-cta" href="${H.P.contact}">$ brief</a><button class="burger" data-burger aria-expanded="false" aria-controls="mnav">menu</button></div>
     <div class="mnav" id="mnav">${nav.map((n) => `<a href="${n.h}">./${n.k}</a>`).join('')}<a href="${H.P.contact}">./brief</a></div></header>`,
   footer: (H) => `<footer class="site-ft"><div class="w"><pre class="ft-pre"><span class="c"># sitemap</span>
@@ -12,9 +12,10 @@ ENGINE({
 <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">telegram</a>     <a href="${H.P.privacy}">./privacy</a></pre>
     <div class="ft-base"><span>© 2026 Павел Корчагин · Троицк, Москва</span><span>exit code 0</span></div></div></footer>`,
   voice: {
-    demo: { k: '# demo', h: '$ open t.me/Bot_PortfolioRabot', p: '# 8 сценариев, у каждого своя ссылка: ?start=&lt;сценарий&gt;. задержки hours/days → seconds.', btn: '$ open bot', try: '$ demo --bot', go: '↵', qr: '# scan с телефона', note: '# payments: mock. exit: «Главное меню» — снимает все таймеры цепочки.', webH: '$ run webinar --demo', webP: '# register → remind → live → offer → follow-up. таймеры ускорены до секунд.' },
+    bot: { title: 'Демо-бот', h1: '$ ./bot --web', lead: '# бот запущен в окне ниже. выберите сценарий справа или пишите в stdin.', listH: '# scenarios', tgP: '# тот же бот, транспорт — Telegram.' },
+    demo: { k: '# demo', h: '$ open t.me/Bot_PortfolioRabot', p: '# 8 сценариев, запускаются прямо на сайте: bot.html?start=&lt;сценарий&gt;. задержки hours/days → seconds.', btn: '$ run --web', try: '$ demo --bot', go: '↵', qr: '# scan с телефона', note: '# payments: mock. exit: «Главное меню» — снимает все таймеры цепочки.', webH: '$ run webinar --demo', webP: '# register → remind → live → offer → follow-up. таймеры ускорены до секунд.' },
     titleSfx: 'pavel@texspeckps', home: '~', sep: '/',
-    nav: { cases: 'cases', services: 'price', reviews: 'reviews', blog: 'blog', about: 'whoami', faq: 'faq' },
+    nav: { bot: 'bot', cases: 'cases', services: 'price', reviews: 'reviews', blog: 'blog', about: 'whoami', faq: 'faq' },
     cta: { btn: '$ brief --send', btn2: '$ open telegram' },
     cases: { title: 'cases', kicker: '// 25 проектов', h1: '$ ls ./cases --all', lead: '# сайты, боты, школы и дизайн. у каждого — задача, решение, метрика.', note: '',
       all: '--all', cats: { Tilda: '--sites', Salebot: '--bots', GetCourse: '--schools', Figma: '--design' }, client: 'client', own: 'own', more: 'cat README →',

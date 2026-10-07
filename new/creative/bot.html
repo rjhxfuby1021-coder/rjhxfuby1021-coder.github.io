@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Демо-бот — мастерская Павла Корчагина</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=20261007201319">
+<link rel="stylesheet" href="../assets/logo.css?v=20261007201319">
+</head>
+<body>
+<header id="mast"></header>
+<main id="page"></main>
+<footer id="foot"></footer>
+
+<script src="../assets/data.js?v=20261007201319"></script>
+<script src="../assets/content.js?v=20261007201319"></script>
+<script src="site.js?v=20261007201319"></script>
+<script src="../assets/botchat.js?v=20261007201319"></script>
+<script>
+// Демо-бот: чат встроен в страницу (assets/botchat.js), записки справа запускают сценарии
+const B=DATA.bot,E=CR.esc;
+document.getElementById('page').innerHTML=`
+  <div class="w page-hd">
+    <div class="crumbs"><a href="index.html">мастерская</a> → демо-бот</div>
+    <h1>Бот, с которым <i>можно поболтать</i> прямо здесь</h1>
+    <p class="lead">Никуда не нужно переходить: окно ниже — живой бот. Возьмите любую записку справа — и он сразу разыграет сценарий с вами, как с настоящим клиентом.</p>
+    <span class="hand aside-note">он не кусается ✳</span>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="pill o" href="${B.url}" target="_blank" rel="noopener">Открыть в Telegram</a></div>
+  </div>
+  <section class="sec tight"><div class="w bot-cr">
+    <div class="bot-cr__chat" id="botchat-mount"><noscript>Для чата нужен JavaScript — или откройте бота в Telegram: <a href="${B.url}">@${B.user}</a></noscript></div>
+    <aside class="bot-cr__side">
+      <div class="kick">Записки со сценариями</div>
+      <div class="bot-cr__notes">${B.scenarios.map(([c,ico,n,d])=>`<a class="letter demo-cr__note" style="--r:${CR.rr(1.2)}" href="bot.html?start=${c}" data-botchat="${c}"><footer style="margin:0 0 4px">${ico} ${E(n)}</footer><p>${E(d)}</p></a>`).join('')}</div>
+      <figure class="demo-cr__qr" style="--r:${CR.rr()};margin-top:26px"><img src="${B.qr}" alt="QR-код бота @${B.user}" width="130" height="130" loading="lazy"><figcaption class="hand">тот же бот — в Telegram ↑</figcaption></figure>
+      <p class="hand demo-cr__ps">P.S. Часы ожидания я сжал до секунд, а деньги бот не берёт — играйте смело.</p>
+    </aside>
+  </div></section>`;
+CR.done();
+</script>
+</body>
+</html>

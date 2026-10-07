@@ -197,7 +197,8 @@ window.DATA.pages = {
   about: 'https://texspeckps.ru/rezume',
   blog: 'https://texspeckps.ru/blog',
   bonus: 'https://texspeckps.ru/iambonus',
-  form: 'https://texspeckps.ru/form'
+  form: 'https://texspeckps.ru/form',
+  bot: 'bot.html'
 };
 /* Ссылка вида service.html?s=salebot#demo: блок рисуется скриптом, а шрифты и картинки догружаются позже,
    поэтому докручиваем к якорю несколько раз — пока человек сам не тронул страницу */

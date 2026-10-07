@@ -14,7 +14,7 @@ window.ROOT = '../';
   D.all.forEach((c) => { if (c.url === 'https://texspeckps.ru/faq') c.url = 'faq.html'; });
   if (C) C.cases.forEach((c) => { if (c.url === 'https://texspeckps.ru/faq') c.url = 'faq.html'; });
   const here = location.pathname.split('/').pop() || 'index.html';
-  const NAV = [['cases.html', 'Работы'], ['services.html', 'Услуги'], ['reviews.html', 'Отзывы'], ['blog.html', 'Журнал'], ['about.html', 'Обо мне']];
+  const NAV = [['cases.html', 'Работы'], ['services.html', 'Услуги'], ['bot.html', 'Демо-бот'], ['reviews.html', 'Отзывы'], ['blog.html', 'Журнал'], ['about.html', 'Обо мне']];
   const isOn = (f) => here === f || (f === 'cases.html' && here === 'case.html') || (f === 'blog.html' && here === 'post.html') || (f === 'services.html' && here === 'service.html');
 
   const mast = document.getElementById('mast');

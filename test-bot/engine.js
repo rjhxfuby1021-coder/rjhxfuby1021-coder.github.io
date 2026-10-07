@@ -113,7 +113,12 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
       await api.deleteMessage(chatId, tmp.message_id).catch(() => {});
     }
 
-    const text = typeof b.text === 'function' ? b.text(v, ctx) : b.text;
+    let text = typeof b.text === 'function' ? b.text(v, ctx) : b.text;
+    // предупреждаем, что следующее сообщение придёт само — чтобы человек не жал всё подряд
+    for (const n of b.next || []) {
+      if (n.hint) text += `\n\n⏳ <i>${n.hint}</i>`;
+      else if (n.real) text += `\n\n⏳ <i>Следующее сообщение придёт само через ${n.after} сек (в рабочем боте — ${n.real}). Можно ничего не нажимать.</i>`;
+    }
     await api.sendMessage(chatId, fill(text, v), { reply_markup: markup(id, b) });
 
     const next = b.next || [];

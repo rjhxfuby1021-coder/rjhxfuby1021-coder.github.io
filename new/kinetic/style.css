@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261007194746");
+@import url("../assets/inner-base.css?v=20261007201319");
 /* Экспериментальный: светло-серый, чёрный, оранжевый, Unbounded 900 капсом, жирные линейки */
 :root{--bg:#e8e8e3;--ink:#0d0d0d;--muted:#6b6b66;--acc:#ff4f00;--acc-ink:#fff;--line:#0d0d0d;--card:#deded8;--fd:"Unbounded",system-ui,sans-serif;--fb:"Manrope",system-ui,sans-serif;--maxw:100%;--gut:clamp(14px,3vw,40px)}
 body{font-weight:500}

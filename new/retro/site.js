@@ -9,13 +9,13 @@ ENGINE({
   noSwitch: true,
   header: (nav, H) => {
     const [ico, title] = WIN[pg] || ['🖥', 'ПавелOS 98'];
-    return `<header class="desk-top"><a class="desk-ic" href="${H.P.home}"><span>🖥</span>Рабочий стол</a>${nav.map((n) => `<a class="desk-ic${n.on ? ' on' : ''}" href="${n.h}"><span>${({ cases: '📁', services: '📝', reviews: '✉', blog: '📰', about: '🖥', faq: '❓' })[n.k]}</span>${n.t}</a>`).join('')}<a class="desk-ic" href="${H.P.contact}"><span>✉</span>Написать</a></header>
+    return `<header class="desk-top"><a class="desk-ic" href="${H.P.home}"><span>🖥</span>Рабочий стол</a>${nav.map((n) => `<a class="desk-ic${n.on ? ' on' : ''}" href="${n.h}"><span>${({ cases: '📁', services: '📝', bot: '🤖', reviews: '✉', blog: '📰', about: '🖥', faq: '❓' })[n.k]}</span>${n.t}</a>`).join('')}<a class="desk-ic" href="${H.P.contact}"><span>✉</span>Написать</a></header>
     <div class="win-bar"><span>${ico} ${title}</span><span class="ctl"><a href="${H.P.home}" title="Свернуть">_</a><a href="${H.P.home}" title="Закрыть">✕</a></span></div>
     <div class="win-menu"><span>Файл</span><span>Правка</span><span>Вид</span><span>Справка</span><span class="addr">Адрес: C:\\ПавелOS\\${location.pathname.split('/').pop()}</span></div>`;
   },
   footer: (H) => `<footer class="taskbar"><button class="start" id="startBtn" aria-expanded="false" aria-controls="smenu"><i></i>Пуск</button><a class="tb-logo" href="${H.P.home}">${LOGO('retro')}</a><span class="task act">${(WIN[pg] || ['🖥', 'ПавелOS'])[0]} ${(WIN[pg] || ['', 'ПавелOS 98'])[1]}</span><span class="tray"><span>🔊</span><span id="clock"></span></span>
     <nav class="smenu" id="smenu"><div class="side"><b>ПавелOS</b> 98</div><ul>
-    <li><a href="${H.P.cases}">📁 Мои проекты</a></li><li><a href="${H.P.services}">📝 Цены</a></li><li><a href="${H.P.reviews}">✉ Отзывы</a></li><li><a href="${H.P.faq}">❓ Справка</a></li><li><a href="${H.P.blog}">📰 Журнал</a></li><li><a href="${H.P.about}">🖥 О системе</a></li><li><a href="${H.P.bonus}">🎁 10% за друга</a></li>
+    <li><a href="${H.P.cases}">📁 Мои проекты</a></li><li><a href="${H.P.services}">📝 Цены</a></li><li><a href="${H.P.bot}">🤖 Демо-бот</a></li><li><a href="${H.P.reviews}">✉ Отзывы</a></li><li><a href="${H.P.faq}">❓ Справка</a></li><li><a href="${H.P.blog}">📰 Журнал</a></li><li><a href="${H.P.about}">🖥 О системе</a></li><li><a href="${H.P.bonus}">🎁 10% за друга</a></li>
     <li class="hr"></li><li><a href="${H.P.contact}">✉ Написать Павлу</a></li><li><a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">✈ Telegram</a></li><li><a href="${H.P.privacy}">🔒 Соглашение</a></li><li><a href="../index.html">↺ Сменить стиль…</a></li></ul></nav></footer>`,
   after: () => {
     // на главной у «Пуска» свой обработчик — второй открывал и сразу закрывал меню
@@ -26,9 +26,10 @@ ENGINE({
     const t = () => { document.getElementById('clock').textContent = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }); }; t(); setInterval(t, 20000);
   },
   voice: {
-    demo: { k: 'demo.exe', h: 'Запустить демо-бота', p: 'В комплекте 8 программ-сценариев. Двойной щелчок по любой — и бот откроется в Telegram прямо на ней. Ожидание в часы сокращено до секунд.', btn: 'Запуск…', try: 'Демо-бот.exe', go: '▶', qr: 'Сканировать.lnk', note: 'Оплата не производится. Для выхода нажмите «Главное меню» — перезагрузка не потребуется.', webH: 'Автовебинар.exe', webP: 'Регистрация, напоминания, эфир, продажа и дожим — запускается в Telegram, паузы ускорены.' },
+    bot: { title: 'Демо-бот', h1: 'Демо-бот.exe', lead: 'Программа запущена. Выберите сценарий в списке справа или введите команду в окне чата.', listH: 'Программы', tgP: 'Версия для Telegram — тот же бот, другая оболочка.' },
+    demo: { k: 'demo.exe', h: 'Запустить демо-бота', p: 'В комплекте 8 программ-сценариев. Двойной щелчок по любой — и бот запустится прямо в этом окне. Ожидание в часы сокращено до секунд.', btn: 'Запуск…', try: 'Демо-бот.exe', go: '▶', qr: 'Сканировать.lnk', note: 'Оплата не производится. Для выхода нажмите «Главное меню» — перезагрузка не потребуется.', webH: 'Автовебинар.exe', webP: 'Регистрация, напоминания, эфир, продажа и дожим — запускается в Telegram, паузы ускорены.' },
     titleSfx: 'ПавелOS 98', home: 'Рабочий стол', sep: '›',
-    nav: { cases: 'Мои проекты', services: 'Цены.txt', reviews: 'Входящие', blog: 'Журнал', about: 'О системе', faq: 'Справка' },
+    nav: { bot: 'Демо-бот', cases: 'Мои проекты', services: 'Цены.txt', reviews: 'Входящие', blog: 'Журнал', about: 'О системе', faq: 'Справка' },
     cta: { btn: 'Создать заявку…', btn2: 'Открыть Telegram' },
     cases: { title: 'Мои проекты', kicker: 'Объектов: 25 · Свободно: много идей', h1: 'C:\\Мои проекты', lead: 'Здесь хранятся все проекты: сайты, боты, школы и дизайн. Двойной клик не нужен — хватит одного.', note: '',
       all: 'Все файлы', cats: { Tilda: 'Сайты', Salebot: 'Боты', GetCourse: 'Школы', Figma: 'Дизайн' }, client: 'клиент', own: 'свой', more: 'Открыть…',

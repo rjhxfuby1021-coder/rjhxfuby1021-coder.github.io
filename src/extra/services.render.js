@@ -147,7 +147,7 @@ function renderDemo(d, dir) {
   const list = only ? BOT_SCENARIOS.filter((x) => only.includes(x[0])) : BOT_SCENARIOS;
   const one = list.length === 1;
   const items = list.map(([code, ico, name, desc], i) =>
-    '<li class="pk-reveal" style="--d:' + (i % 4) + '"><a class="pk-demo__item" href="' + BOT + '?start=' + code + '" target="_blank" rel="noopener">' +
+    '<li class="pk-reveal" style="--d:' + (i % 4) + '"><a class="pk-demo__item" href="' + BOT + '?start=' + code + '" target="_blank" rel="noopener" data-botchat="' + code + '">' +
       '<span class="pk-demo__ico" aria-hidden="true">' + ico + '</span>' +
       '<span class="pk-demo__txt">' + d.tag('b', 'dm.n.' + code, name) + d.tag('span', 'dm.d.' + code, desc) + '</span>' + ARROW + '</a></li>').join('');
   return '<section class="pk-section" id="demo" aria-labelledby="sv-demo"><div class="pk-wrap">' +
@@ -158,8 +158,9 @@ function renderDemo(d, dir) {
           ? d.tag('h2', 'dm.h1', L('Пройдите автовебинар в боте', 'Go through the webinar in the bot'), 'class="pk-h2 pk-reveal" id="sv-demo"') +
             d.tag('p', 'dm.p1', L('Регистрация, напоминания, эфир, продажа и дожим — та же цепочка, что получат ваши зрители, только паузы сокращены до секунд.', 'Sign-up, reminders, live stream, offer and follow-up — the same chain your viewers get, with pauses cut to seconds.'), 'class="pk-muted pk-reveal"')
           : d.tag('h2', 'dm.h', L('Протестируйте бота сами', 'Test the bot yourself'), 'class="pk-h2 pk-reveal" id="sv-demo"') +
-            d.tag('p', 'dm.p', L('Восемь сценариев, которые я собираю для клиентов. Выберите любой — бот откроется в Telegram сразу на нём и разыграет его с вами, как с настоящим клиентом.', 'Eight flows I build for clients. Pick any — the bot opens in Telegram right on it and plays it out with you as a real customer.'), 'class="pk-muted pk-reveal"')) +
-        '<div class="pk-hero__btns pk-reveal"><a class="pk-btn pk-magnet" href="' + BOT + '" target="_blank" rel="noopener">' + TG + d.tag('span', 'dm.btn', L('Открыть бота в Telegram', 'Open the bot in Telegram')) + '</a></div>' +
+            d.tag('p', 'dm.p', L('Восемь сценариев, которые я собираю для клиентов. Выберите любой — бот запустится прямо здесь, на сайте, и разыграет его с вами, как с настоящим клиентом.', 'Eight flows I build for clients. Pick any — the bot runs right here on the site and plays it out with you as a real customer.'), 'class="pk-muted pk-reveal"')) +
+        '<div class="pk-hero__btns pk-reveal"><a class="pk-btn pk-magnet" href="' + BOT + '" target="_blank" rel="noopener" data-botchat="' + (one ? list[0][0] : '') + '">' + d.tag('span', 'dm.run', L('Запустить бота на сайте', 'Run the bot on the site')) + ARROW + '</a>' +
+        '<a class="pk-btn pk-btn--ghost pk-btn--tg" href="' + BOT + '" target="_blank" rel="noopener">' + TG + d.tag('span', 'dm.btn', L('Открыть в Telegram', 'Open in Telegram')) + '</a></div>' +
       '</div>' +
       '<figure class="pk-demo__qr pk-reveal">' + BOT_QR + d.tag('figcaption', 'dm.qr', L('Наведите камеру телефона', 'Point your phone camera')) + '</figure>' +
     '</div>' +
@@ -167,7 +168,8 @@ function renderDemo(d, dir) {
     d.tag('p', one ? 'dm.note1' : 'dm.note', one
       ? L('В меню бота — ещё семь сценариев: закрытый канал, лид-магнит, тест, колесо фортуны, запись, заявки и рефералка.', 'The bot menu has seven more flows: private channel, lead magnet, quiz, wheel of fortune, booking, leads and referrals.')
       : L('Бот настоящий: долгие паузы сокращены до секунд, оплата — демонстрационная. Выйти из сценария — кнопка «Главное меню».', 'The bot is real: long pauses are cut to seconds and payments are demo only. Leave a flow with the “Main menu” button.'), 'class="pk-muted pk-demo__note"') +
-  '</div></section>';
+  '</div></section>' +
+  '<script src="/assets/botchat.js" defer></script>';
 }
 
 const STEPS = [

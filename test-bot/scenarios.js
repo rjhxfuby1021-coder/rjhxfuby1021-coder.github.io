@@ -7,7 +7,9 @@
 //   reply    — обычная клавиатура вместо кнопок под сообщением ({ text, contact: true } — «отправить номер»)
 //   set      — что сделать с переменными при входе в блок
 //   route    — блок без текста: сразу ведёт дальше, (v, ctx) => id следующего блока
-//   next     — отложенные сообщения: [{ after: секунды, go, unless: (v) => true — не отправлять }]
+//   next     — отложенные сообщения: [{ after: секунды, go, unless: (v) => true — не отправлять,
+//              real: когда оно пришло бы в рабочем боте, hint: своя подпись вместо стандартной }]
+//              (подпись «⏳ Следующее сообщение придёт само…» движок добавляет в конец сообщения)
 //   cancel   — при входе в блок остановить все отложенные сообщения (как «удалять при смене состояния»)
 //   wait     — бот ждёт от человека текст: 'phone'
 
@@ -72,7 +74,7 @@ module.exports = function scenarios(cfg) {
         'Вебинар «Как запустить продажи через чат-бота» — завтра в 19:00 МСК.\n\n' +
         'Не удаляйте этот чат: сюда придут напоминания и ссылка на эфир.',
       buttons: [[MENU]],
-      next: [{ after: 10, go: 'web_morning' }],
+      next: [{ after: 10, go: 'web_morning', real: 'утром в день эфира' }],
     },
     web_morning: {
       text:
@@ -84,12 +86,12 @@ module.exports = function scenarios(cfg) {
         '• сколько стоит запуск и когда он окупается\n\n' +
         'До встречи вечером!',
       buttons: [[MENU]],
-      next: [{ after: 10, go: 'web_hour' }],
+      next: [{ after: 10, go: 'web_hour', real: 'за час до начала' }],
     },
     web_hour: {
       text: later('за 1 час до старта', 10) + '⏰ Через час начинаем! Ссылка на эфир — по кнопке ниже.',
       buttons: [[{ text: '🔴 Войти в эфир', go: 'web_live' }], [MENU]],
-      next: [{ after: 15, go: 'web_missed', unless: (v) => v.web_live }],
+      next: [{ after: 15, go: 'web_missed', unless: (v) => v.web_live, hint: 'Если не нажмёте «Войти в эфир», через 15 сек бот позовёт ещё раз (в рабочем боте — через 15 минут после старта).' }],
     },
     web_missed: {
       text:
@@ -104,7 +106,7 @@ module.exports = function scenarios(cfg) {
         '<i>В рабочем боте кнопка открывает комнату вебинара — Bizon365, GetCourse или YouTube.</i>\n\n' +
         'Смотрите — ближе к концу эфира будет специальное предложение для участников.',
       buttons: [[MENU]],
-      next: [{ after: 10, go: 'web_sale', unless: (v) => v.web_sale }],
+      next: [{ after: 10, go: 'web_sale', unless: (v) => v.web_sale, real: 'через 40 минут эфира' }],
     },
     web_sale: {
       set: (v) => { v.web_sale = 1; },
@@ -113,7 +115,7 @@ module.exports = function scenarios(cfg) {
         '💥 <b>Предложение только для участников эфира</b>\n\n' +
         'Запуск чат-бота под ключ со скидкой 20% — до конца трансляции.',
       buttons: [[{ text: '💳 Оплатить (демо)', go: 'web_paid' }], [MENU]],
-      next: [{ after: 15, go: 'web_followup' }],
+      next: [{ after: 15, go: 'web_followup', real: 'на следующий день после эфира' }],
     },
     web_followup: {
       text:
@@ -125,7 +127,7 @@ module.exports = function scenarios(cfg) {
         [{ text: '💳 Оплатить (демо)', go: 'web_paid' }],
         [MENU],
       ],
-      next: [{ after: 15, go: 'web_last' }],
+      next: [{ after: 15, go: 'web_last', real: 'за 3 часа до конца скидки' }],
     },
     web_last: {
       text:
@@ -184,21 +186,21 @@ module.exports = function scenarios(cfg) {
         'Вот ваша ссылка в канал 👇\n' +
         '<i>В рабочем боте ссылка одноразовая и создаётся автоматически. В демо она ведёт в Telegram-канал Павла с кейсами.</i>',
       buttons: [[{ text: '🚪 Вступить в канал', url: cfg.CHANNEL_LINK }], [MENU]],
-      next: [{ after: 15, go: 'ch_3days' }],
+      next: [{ after: 15, go: 'ch_3days', real: 'за 3 дня до конца подписки' }],
     },
     ch_3days: {
       text:
         later('за 3 дня до окончания подписки', 15) +
         '🔔 Подписка заканчивается через 3 дня. Продлите заранее, чтобы не потерять доступ.',
       buttons: [[{ text: '🔄 Продлить', go: 'ch_tariffs' }], [MENU]],
-      next: [{ after: 15, go: 'ch_lastday' }],
+      next: [{ after: 15, go: 'ch_lastday', real: 'в последний день подписки' }],
     },
     ch_lastday: {
       text:
         later('в последний день подписки', 15) +
         '⚠️ Сегодня последний день подписки. В 23:59 доступ к каналу закроется.',
       buttons: [[{ text: '🔄 Продлить', go: 'ch_tariffs' }], [MENU]],
-      next: [{ after: 15, go: 'ch_ended' }],
+      next: [{ after: 15, go: 'ch_ended', real: 'когда подписка закончится' }],
     },
     ch_ended: {
       text:
@@ -248,7 +250,7 @@ module.exports = function scenarios(cfg) {
       cancel: true,
       text: '🎉 Держите гайд!\n\n📘 <b>«Лендинг на Tilda: 8 блоков, без которых он не приводит заявки»</b>',
       buttons: [[{ text: '📖 Открыть гайд', url: cfg.SITE + '/blog/lending-na-tilda-bloki' }], [MENU]],
-      next: [{ after: 15, go: 'lm_warm1' }],
+      next: [{ after: 15, go: 'lm_warm1', real: 'через день' }],
     },
     lm_warm1: {
       text:
@@ -256,7 +258,7 @@ module.exports = function scenarios(cfg) {
         '👋 Удалось посмотреть гайд?\n\n' +
         'Вот ещё полезный разбор: сколько стоит чат-бот и за что вы на самом деле платите.',
       buttons: [[{ text: '📖 Читать разбор', url: cfg.SITE + '/blog/skolko-stoit-chat-bot' }], [MENU]],
-      next: [{ after: 15, go: 'lm_warm2' }],
+      next: [{ after: 15, go: 'lm_warm2', real: 'через 3 дня' }],
     },
     lm_warm2: {
       text:
@@ -408,7 +410,7 @@ module.exports = function scenarios(cfg) {
         '📍 Адрес: ул. Примерная, 1 <i>(демо)</i>\n\n' +
         'Я напомню о визите заранее.',
       buttons: [[{ text: '❌ Отменить запись', go: 'bk_cancel' }], [MENU]],
-      next: [{ after: 15, go: 'bk_rem1' }],
+      next: [{ after: 15, go: 'bk_rem1', real: 'за день до визита' }],
     },
     bk_rem1: {
       text: later('за 1 день до визита', 15) + '🔔 Напоминаю: #{day} в #{time} — #{service}.\n\nВсё в силе?',
@@ -417,7 +419,7 @@ module.exports = function scenarios(cfg) {
         [{ text: '❌ Отменить запись', go: 'bk_cancel' }],
         [MENU],
       ],
-      next: [{ after: 15, go: 'bk_rem2' }],
+      next: [{ after: 15, go: 'bk_rem2', real: 'за 2 часа до визита' }],
     },
     bk_confirm: {
       text: '👍 Отлично, ждём вас!',
@@ -492,11 +494,14 @@ module.exports = function scenarios(cfg) {
       ],
     },
     rf_link: {
-      text: (v, ctx) =>
-        '🔗 <b>Ваша персональная ссылка:</b>\n' +
-        ctx.refLink + '\n\n' +
-        '<i>Ссылка настоящая: перешлите её другу — когда он запустит бота, вам придёт уведомление и начислится бонус.</i>\n\n' +
-        'За каждого друга — 500 ₽ бонусами.',
+      text: (v, ctx) => (cfg.WEB
+        ? '🔗 <b>Ваша персональная ссылка</b>\n\n' +
+          '<i>В Telegram-версии этого бота здесь появляется личная ссылка: друг запускает бота по ней — и вам сразу приходит уведомление и бонус. На сайте приход друга можно симулировать кнопкой ниже.</i>\n\n' +
+          'За каждого друга — 500 ₽ бонусами.'
+        : '🔗 <b>Ваша персональная ссылка:</b>\n' +
+          ctx.refLink + '\n\n' +
+          '<i>Ссылка настоящая: перешлите её другу — когда он запустит бота, вам придёт уведомление и начислится бонус.</i>\n\n' +
+          'За каждого друга — 500 ₽ бонусами.'),
       buttons: [
         [{ text: '➕ Симулировать приход друга', go: 'rf_friend' }],
         [{ text: '📊 Моя статистика', go: 'rf_stats' }],
@@ -536,6 +541,20 @@ module.exports = function scenarios(cfg) {
       ],
     },
   };
+
+  // «Хочу такого бота» ведёт на страницу заявки сайта: направление «чат-боты» и сценарий уже вписаны в форму
+  const NAMES = { web: 'Автовебинар', ch: 'Закрытый канал', lm: 'Лид-магнит', quiz: 'Тест с баллами', wh: 'Колесо фортуны', bk: 'Онлайн-запись', ld: 'Сбор заявок', rf: 'Реферальная программа' };
+  const FORM = cfg.FORM_URL || 'https://texspeckps.ru/ai/form';
+  for (const [id, b] of Object.entries(blocks)) {
+    const name = NAMES[id.split('_')[0]];
+    for (const row of b.buttons || []) {
+      for (let i = 0; i < row.length; i++) {
+        if (row[i] !== WANT) continue;
+        const task = 'Бот как в демо' + (name ? ': ' + name : '');
+        row[i] = { text: WANT.text, url: FORM + (FORM.includes('?') ? '&' : '?') + 'service=salebot&task=' + encodeURIComponent(task) };
+      }
+    }
+  }
 
   // Что можно написать боту текстом (без учёта регистра) → блок
   const triggers = {

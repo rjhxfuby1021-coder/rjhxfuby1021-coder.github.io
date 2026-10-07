@@ -6,7 +6,7 @@ const fs = require('fs'), path = require('path');
 const R = path.join(__dirname, '..');
 const STYLES = ['business', 'bold', 'premium', 'bento', 'retro', 'glass', 'terminal', 'friendly', 'kinetic',
   'cafe', 'auto', 'medical', 'expert', 'lawyer', 'accountant', 'it'];
-const PAGES = { cases: 'cases', case: 'case', services: 'services', service: 'service', reviews: 'reviews', faq: 'faq', about: 'about',
+const PAGES = { cases: 'cases', case: 'case', services: 'services', service: 'service', bot: 'bot', reviews: 'reviews', faq: 'faq', about: 'about',
   blog: 'blog', post: 'post', bonus: 'bonus', contact: 'contact', thanks: 'thanks', privacy: 'privacy', '404': 'nf' };
 const only = process.argv.slice(2);
 
@@ -44,7 +44,7 @@ ${fonts}
 <script src="../assets/data.js"></script>
 <script src="../assets/content.js"></script>
 <script src="../assets/engine.js"></script>
-<script src="site.js"></script>
+<script src="site.js"></script>${id === 'bot' ? '\n<script src="../assets/botchat.js"></script>' : ''}
 </body>
 </html>
 `;

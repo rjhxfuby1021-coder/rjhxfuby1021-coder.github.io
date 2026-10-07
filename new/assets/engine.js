@@ -10,11 +10,11 @@ window.ENGINE = function (T) {
   const P = {
     home: 'index.html', cases: 'cases.html', case: 'case.html', services: 'services.html', service: 'service.html',
     reviews: 'reviews.html', faq: 'faq.html', about: 'about.html', blog: 'blog.html', post: 'post.html',
-    bonus: 'bonus.html', contact: 'contact.html', thanks: 'thanks.html', privacy: 'privacy.html', ...F
+    bonus: 'bonus.html', contact: 'contact.html', thanks: 'thanks.html', privacy: 'privacy.html', bot: 'bot.html', ...F
   };
   Object.assign(D.pages, {
     cases: P.cases, tilda: P.cases + '?f=Tilda', salebot: P.cases + '?f=Salebot', getcourse: P.cases + '?f=GetCourse', figma: P.cases + '?f=Figma',
-    price: P.services, services: P.services, reviews: P.reviews, faq: P.faq, about: P.about, blog: P.blog, bonus: P.bonus, form: P.contact, privacy: P.privacy
+    price: P.services, services: P.services, bot: P.bot, reviews: P.reviews, faq: P.faq, about: P.about, blog: P.blog, bonus: P.bonus, form: P.contact, privacy: P.privacy
   });
 
   // кейс «ИИ-ассистент для сайта-портфолио» живёт в разделе вопросов — ведём в раздел этого стиля
@@ -66,12 +66,12 @@ window.ENGINE = function (T) {
       const B = D.bot; if (!B) return '';
       const list = only ? B.scenarios.filter((x) => only.includes(x[0])) : B.scenarios;
       const one = list.length === 1;
-      const item = ([code, ico, name, desc]) => `<a class="demo-item" href="${B.link(code)}" target="_blank" rel="noopener"><span class="demo-ico" aria-hidden="true">${ico}</span><span class="demo-txt"><b>${esc(name)}</b><span>${esc(desc)}</span></span><span class="demo-go" aria-hidden="true">${v('demo.go', '→')}</span></a>`;
+      const item = ([code, ico, name, desc]) => `<a class="demo-item" href="${P.bot}?start=${code}"><span class="demo-ico" aria-hidden="true">${ico}</span><span class="demo-txt"><b>${esc(name)}</b><span>${esc(desc)}</span></span><span class="demo-go" aria-hidden="true">${v('demo.go', '→')}</span></a>`;
       return `<section class="sec sec-demo" id="demo"><div class="w"><div class="demo">
         <div class="demo-hd"><p class="kicker">${v('demo.k', 'Демо · Telegram')}</p>
           <h2 class="sec-title">${one ? v('demo.webH', 'Пройдите автовебинар в боте') : v('demo.h', 'Протестируйте бота сами')}</h2>
           <p class="sec-lead">${one ? v('demo.webP', 'Регистрация, напоминания, эфир, продажа и дожим — паузы сокращены до секунд.') : v('demo.p', 'Восемь сценариев, которые я собираю для клиентов. Выберите любой — бот откроется в Telegram сразу на нём.')}</p>
-          <div class="acts">${U.btn(v('demo.btn', 'Открыть бота в Telegram'), B.url, 1, true)}</div></div>
+          <div class="acts">${U.btn(v('demo.btn', 'Запустить бота на сайте'), P.bot + (one ? '?start=' + list[0][0] : ''), 1)}${U.btn(v('bot.tg', 'Открыть в Telegram'), B.url, 2, true)}</div></div>
         <figure class="demo-qr"><img src="${B.qr}" alt="QR-код бота @${B.user}" width="150" height="150" loading="lazy"><figcaption>${v('demo.qr', 'Наведите камеру телефона')}</figcaption></figure>
       </div>
       <div class="demo-list${one ? ' demo-list--one' : ''}">${list.map(item).join('')}</div>
@@ -99,7 +99,7 @@ window.ENGINE = function (T) {
   if (!T.header) T.header = stdHeader;
   if (!T.footer) T.footer = stdFooter;
   const here = location.pathname.split('/').pop() || 'index.html';
-  const NAV = [['cases', P.cases], ['services', P.services], ['reviews', P.reviews], ['blog', P.blog], ['about', P.about], ['faq', P.faq]];
+  const NAV = [['cases', P.cases], ['services', P.services], ['bot', P.bot], ['reviews', P.reviews], ['blog', P.blog], ['about', P.about], ['faq', P.faq]];
   const navItems = NAV.map(([k, h]) => ({ k, h, t: v('nav.' + k, k), on: here === h || (k === 'cases' && here === P.case) || (k === 'blog' && here === P.post) || (k === 'services' && here === P.service) }));
   const hd = document.getElementById('hd'), ft = document.getElementById('ft');
   // шапку и подвал подставляем только на внутренних страницах (у главных стилей они свои)
@@ -146,6 +146,19 @@ window.ENGINE = function (T) {
         ${U.sec({ cls: 'sec-pager', body: `${rel ? `<p class="kicker">${v('case.relatedH', 'Продолжение')}</p><div class="cards cards-one">${U.card(rel, 0)}</div>` : ''}<p class="kicker">${v('case.pagerH', 'Другие кейсы')}</p><div class="pager"><a href="${caseUrl(prev.id)}"><small>${v('case.prev', '← Предыдущий')}</small><b>${esc(prev.t)}</b></a><a href="${caseUrl(next.id)}"><small>${v('case.next', 'Следующий →')}</small><b>${esc(next.t)}</b></a></div>` })}
         ${U.cta({ h: v('case.ctaH', 'Хотите так же?'), p: v('case.ctaP') })}
         <div class="lb" id="lb" role="dialog" aria-label="Изображение"><img alt=""></div>`;
+    },
+    // Демо-бот: чат встроен в страницу (assets/botchat.js), рядом — сценарии и кнопка «Открыть в Telegram»
+    bot() {
+      const B = D.bot;
+      return U.hd({ cls: 'pg-hd-bot', crumbs: U.crumbs([[v('nav.bot', 'Демо-бот')]]), kicker: v('demo.k', 'Демо'), h1: v('bot.h1', 'Демо-бот прямо на сайте'), lead: v('bot.lead', 'Восемь сценариев, которые я собираю для клиентов. Бот работает в окне ниже — переходить в Telegram не нужно.'),
+        acts: U.btn(v('bot.tg', 'Открыть в Telegram'), B.url, 2, true) })
+        + `<section class="sec sec-bot"><div class="w bot-grid">
+          <div class="bot-chat" id="botchat-mount"><noscript>Для чата нужен JavaScript — или откройте бота в Telegram: <a href="${B.url}">@${B.user}</a></noscript></div>
+          <aside class="bot-side"><p class="kicker">${v('bot.listH', 'Сценарии')}</p>
+            <div class="bot-list">${B.scenarios.map(([code, ico, name, desc]) => `<a class="demo-item" href="${P.bot}?start=${code}" data-botchat="${code}"><span class="demo-ico" aria-hidden="true">${ico}</span><span class="demo-txt"><b>${esc(name)}</b><span>${esc(desc)}</span></span><span class="demo-go" aria-hidden="true">${v('demo.go', '→')}</span></a>`).join('')}</div>
+            <div class="bot-tg"><img src="${B.qr}" alt="QR-код бота @${B.user}" width="110" height="110" loading="lazy"><p>${v('bot.tgP', 'Тот же бот в Telegram — с настоящими уведомлениями и паузами.')}</p>${U.btn(v('bot.tg', 'Открыть в Telegram'), B.url, 1, true)}</div>
+            <p class="demo-note">${v('demo.note', 'Долгие паузы сокращены до секунд, оплата — демонстрационная.')}</p>
+          </aside></div></section>`;
     },
     services() {
       const G = C.price;
@@ -243,7 +256,7 @@ window.ENGINE = function (T) {
   };
   Object.assign(R, T.render || {});
 
-  const titles = { cases: 'cases.title', services: 'services.title', reviews: 'reviews.title', faq: 'faq.title', about: 'about.title', blog: 'blog.title', bonus: 'bonus.title', contact: 'contact.title', thanks: 'thanks.title', privacy: 'privacy.h1', nf: 'nf.h1' };
+  const titles = { cases: 'cases.title', services: 'services.title', reviews: 'reviews.title', faq: 'faq.title', about: 'about.title', blog: 'blog.title', bonus: 'bonus.title', bot: 'bot.title', contact: 'contact.title', thanks: 'thanks.title', privacy: 'privacy.h1', nf: 'nf.h1' };
   const main = document.getElementById('main');
   if (main && R[page]) {
     if (titles[page]) document.title = String(v(titles[page], document.title)).replace(/<[^>]+>/g, '') + ' — ' + v('titleSfx', 'Павел Корчагин');

@@ -302,3 +302,11 @@ h2.t,.page-hd h1{line-height:1.02}
 .demo-cr__note:hover{transform:rotate(0deg) scale(1.03)}
 .demo-cr__ps{font-size:24px;margin-top:30px}
 @media(max-width:760px){.demo-cr__top{grid-template-columns:minmax(0,1fr)}.demo-cr__qr{display:none}}
+/* страница «Демо-бот» */
+.bot-cr{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:start}
+.bot-cr__chat{height:min(680px,calc(100vh - 140px));min-height:520px;border-radius:18px;overflow:hidden;background:#eef0f4;box-shadow:0 24px 50px -24px rgba(30,27,24,.5);position:sticky;top:90px}
+.bot-cr__notes{display:grid;gap:14px}
+.bot-cr__notes .letter{padding:16px 20px}
+.bot-cr__notes .letter p{font-size:16px;line-height:26px}
+.bot-cr__notes .letter footer{font-size:22px}
+@media(max-width:900px){.bot-cr{grid-template-columns:minmax(0,1fr)}.bot-cr__chat{position:relative;top:auto;height:72vh;min-height:460px}}
