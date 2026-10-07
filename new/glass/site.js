@@ -9,6 +9,7 @@ ENGINE({
     <a class="btn btn-1 hd-cta" href="${H.P.contact}">Обсудить</a><button class="burger" data-burger aria-expanded="false" aria-controls="mnav">Меню</button></div></div>
     <div class="mnav" id="mnav">${nav.map((n) => `<a href="${n.h}">${n.t}</a>`).join('')}<a href="${H.P.contact}">Обсудить проект</a></div></header>`,
   voice: {
+    demo: { k: 'Демо в Telegram', h: 'Попробуйте бота <span class="grad">в деле</span>', p: 'Восемь готовых сценариев. Нажмите на любой — бот откроется в Telegram и покажет, как всё работает на автопилоте.', btn: 'Открыть бота', try: 'Попробовать бота', qr: 'Наведите камеру телефона', note: 'Долгие паузы сокращены до секунд, оплата не настоящая. Выйти можно кнопкой «Главное меню».', webH: 'Автовебинар <span class="grad">на автопилоте</span>', webP: 'Зарегистрируйтесь — и бот сам напомнит, позовёт в эфир, сделает предложение и вернётся с записью.' },
     titleSfx: 'Павел Корчагин', home: 'Главная', sep: '·',
     nav: { cases: 'Кейсы', services: 'Цены', reviews: 'Отзывы', blog: 'Блог', about: 'Обо мне', faq: 'Вопросы' },
     cta: { btn: 'Оставить заявку', btn2: 'Telegram' },

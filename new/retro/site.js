@@ -26,6 +26,7 @@ ENGINE({
     const t = () => { document.getElementById('clock').textContent = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }); }; t(); setInterval(t, 20000);
   },
   voice: {
+    demo: { k: 'demo.exe', h: 'Запустить демо-бота', p: 'В комплекте 8 программ-сценариев. Двойной щелчок по любой — и бот откроется в Telegram прямо на ней. Ожидание в часы сокращено до секунд.', btn: 'Запуск…', try: 'Демо-бот.exe', go: '▶', qr: 'Сканировать.lnk', note: 'Оплата не производится. Для выхода нажмите «Главное меню» — перезагрузка не потребуется.', webH: 'Автовебинар.exe', webP: 'Регистрация, напоминания, эфир, продажа и дожим — запускается в Telegram, паузы ускорены.' },
     titleSfx: 'ПавелOS 98', home: 'Рабочий стол', sep: '›',
     nav: { cases: 'Мои проекты', services: 'Цены.txt', reviews: 'Входящие', blog: 'Журнал', about: 'О системе', faq: 'Справка' },
     cta: { btn: 'Создать заявку…', btn2: 'Открыть Telegram' },

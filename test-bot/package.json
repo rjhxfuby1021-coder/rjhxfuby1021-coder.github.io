@@ -1,0 +1,12 @@
+{
+  "name": "texspeckps-test-bot",
+  "private": true,
+  "description": "Демо-бот Telegram: копия проекта Salebot «Реклама» — 8 сценариев",
+  "scripts": {
+    "start": "node bot.js",
+    "test": "node test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

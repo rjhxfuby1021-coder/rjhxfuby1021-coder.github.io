@@ -126,6 +126,50 @@ const SERVICES = [
   }
 ];
 
+// Демо-бот в Telegram (папка test-bot): ссылка ?start=<код> открывает сценарий сразу
+const BOT = 'https://t.me/Bot_PortfolioRabot';
+const BOT_QR = require('fs').readFileSync(require('path').join(__dirname, '../../new/assets/bot-qr.svg'), 'utf8')
+  .replace('<svg ', '<svg width="150" height="150" role="img" aria-label="QR-код бота" ');
+const BOT_SCENARIOS = [
+  ['webinar', '🎥', L('Автовебинар', 'Automated webinar'), L('Регистрация, напоминания, эфир, продажа и дожим', 'Sign-up, reminders, live stream, offer and follow-up')],
+  ['channel', '🔐', L('Закрытый канал', 'Private channel'), L('Оплата подписки, доступ и продление', 'Subscription payment, access and renewal')],
+  ['leadmagnet', '🎁', L('Лид-магнит', 'Lead magnet'), L('Гайд за подписку и прогрев', 'A guide for subscribing, then nurturing')],
+  ['quiz', '🧮', L('Тест с баллами', 'Scored quiz'), L('Опрос, подсчёт и результат по баллам', 'Questions, scoring and a result by points')],
+  ['wheel', '🎡', L('Колесо фортуны', 'Wheel of fortune'), L('Игра со случайным призом', 'A game with a random prize')],
+  ['booking', '📅', L('Онлайн-запись', 'Online booking'), L('Услуга, день и время, напоминания о визите', 'Service, day and time, visit reminders')],
+  ['leads', '📝', L('Сбор заявок', 'Lead capture'), L('Квалификация и контакт для менеджера', 'Qualification and a contact for the manager')],
+  ['referral', '🤝', L('Реферальная программа', 'Referral program'), L('Личная ссылка, друзья и бонусы', 'Personal link, friends and bonuses')]
+];
+const DEMO = { salebot: null, webinar: ['webinar'] }; // где показывать: null — все сценарии
+
+function renderDemo(d, dir) {
+  const only = DEMO[dir];
+  const list = only ? BOT_SCENARIOS.filter((x) => only.includes(x[0])) : BOT_SCENARIOS;
+  const one = list.length === 1;
+  const items = list.map(([code, ico, name, desc], i) =>
+    '<li class="pk-reveal" style="--d:' + (i % 4) + '"><a class="pk-demo__item" href="' + BOT + '?start=' + code + '" target="_blank" rel="noopener">' +
+      '<span class="pk-demo__ico" aria-hidden="true">' + ico + '</span>' +
+      '<span class="pk-demo__txt">' + d.tag('b', 'dm.n.' + code, name) + d.tag('span', 'dm.d.' + code, desc) + '</span>' + ARROW + '</a></li>').join('');
+  return '<section class="pk-section" id="demo" aria-labelledby="sv-demo"><div class="pk-wrap">' +
+    '<div class="pk-demo__top">' +
+      '<div class="pk-demo__hd">' +
+        d.tag('p', 'dm.eye', L('Демо · Telegram', 'Demo · Telegram'), 'class="pk-eyebrow pk-reveal"') +
+        (one
+          ? d.tag('h2', 'dm.h1', L('Пройдите автовебинар в боте', 'Go through the webinar in the bot'), 'class="pk-h2 pk-reveal" id="sv-demo"') +
+            d.tag('p', 'dm.p1', L('Регистрация, напоминания, эфир, продажа и дожим — та же цепочка, что получат ваши зрители, только паузы сокращены до секунд.', 'Sign-up, reminders, live stream, offer and follow-up — the same chain your viewers get, with pauses cut to seconds.'), 'class="pk-muted pk-reveal"')
+          : d.tag('h2', 'dm.h', L('Протестируйте бота сами', 'Test the bot yourself'), 'class="pk-h2 pk-reveal" id="sv-demo"') +
+            d.tag('p', 'dm.p', L('Восемь сценариев, которые я собираю для клиентов. Выберите любой — бот откроется в Telegram сразу на нём и разыграет его с вами, как с настоящим клиентом.', 'Eight flows I build for clients. Pick any — the bot opens in Telegram right on it and plays it out with you as a real customer.'), 'class="pk-muted pk-reveal"')) +
+        '<div class="pk-hero__btns pk-reveal"><a class="pk-btn pk-magnet" href="' + BOT + '" target="_blank" rel="noopener">' + TG + d.tag('span', 'dm.btn', L('Открыть бота в Telegram', 'Open the bot in Telegram')) + '</a></div>' +
+      '</div>' +
+      '<figure class="pk-demo__qr pk-reveal">' + BOT_QR + d.tag('figcaption', 'dm.qr', L('Наведите камеру телефона', 'Point your phone camera')) + '</figure>' +
+    '</div>' +
+    '<ul class="pk-demo__list' + (one ? ' pk-demo__list--one' : '') + '">' + items + '</ul>' +
+    d.tag('p', one ? 'dm.note1' : 'dm.note', one
+      ? L('В меню бота — ещё семь сценариев: закрытый канал, лид-магнит, тест, колесо фортуны, запись, заявки и рефералка.', 'The bot menu has seven more flows: private channel, lead magnet, quiz, wheel of fortune, booking, leads and referrals.')
+      : L('Бот настоящий: долгие паузы сокращены до секунд, оплата — демонстрационная. Выйти из сценария — кнопка «Главное меню».', 'The bot is real: long pauses are cut to seconds and payments are demo only. Leave a flow with the “Main menu” button.'), 'class="pk-muted pk-demo__note"') +
+  '</div></section>';
+}
+
 const STEPS = [
   [L('Бриф', 'Brief'), L('Обсуждаем задачу, аудиторию и бюджет. Готовое ТЗ не нужно.', 'We discuss the task, audience and budget. No spec needed.')],
   [L('План и цена', 'Plan and price'), L('Фиксирую объём, сроки и стоимость до начала работы.', 'I fix scope, timeline and price before starting.')],
@@ -181,8 +225,11 @@ function renderService(s, cases) {
       '<div class="pk-hero__btns pk-reveal" style="--d:3">' +
         '<a class="pk-btn pk-magnet" href="' + form + '">' + d.tag('span', 'sv.cta', L('Обсудить задачу', 'Discuss your task')) + ARROW + '</a>' +
         '<a class="pk-btn pk-btn--ghost pk-btn--tg" href="' + esc(tg) + '" target="_blank" rel="noopener">' + TG + d.tag('span', 'sv.tg', L('Написать в Telegram', 'Message on Telegram')) + '</a>' +
+        (s.dir in DEMO ? '<a class="pk-btn pk-btn--ghost" href="#demo">' + d.tag('span', 'dm.try', L('Протестировать бота', 'Try the bot')) + '</a>' : '') +
       '</div>' +
     '</div></section>' +
+
+    (s.dir in DEMO ? renderDemo(d, s.dir) : '') +
 
     '<section class="pk-section" aria-labelledby="sv-who"><div class="pk-wrap">' +
       d.tag('h2', 'sv.who.h', L('Кому подойдёт', 'Who it is for'), 'class="pk-h2 pk-reveal" id="sv-who"') +
@@ -254,6 +301,24 @@ const SERVICES_CSS = `
 .pk-svc__cbody small { font-size: .8rem; color: var(--acc-text); font-weight: 700; }
 .pk-svc__cbody b { font: 600 1rem/1.3 var(--display); }
 .pk-svc__others { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 16px; }
+.pk-demo__top { display: grid; gap: 28px; align-items: end; }
+@media (min-width: 760px) { .pk-demo__top { grid-template-columns: minmax(0, 1fr) auto; gap: 56px; } }
+.pk-demo__hd { display: grid; gap: 14px; max-width: 720px; }
+.pk-demo__qr { display: none; justify-items: center; gap: 8px; font-size: .85rem; color: var(--muted); text-align: center; }
+@media (min-width: 760px) { .pk-demo__qr { display: grid; } }
+.pk-demo__qr svg { padding: 10px; background: #fff; border-radius: 14px; }
+.pk-demo__list { display: grid; gap: 12px; margin-top: 28px; }
+@media (min-width: 560px) { .pk-demo__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1080px) { .pk-demo__list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 560px) { .pk-demo__list--one { grid-template-columns: minmax(0, 520px); } }
+.pk-demo__item { display: flex; align-items: flex-start; gap: 12px; height: 100%; padding: 18px; border-radius: 18px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); transition: transform .4s var(--ease), box-shadow .3s; }
+.pk-demo__item:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1px var(--line2), var(--shadow); }
+.pk-demo__item svg { flex: none; margin-top: 4px; color: var(--acc-text); }
+.pk-demo__ico { font-size: 1.6rem; line-height: 1; flex: none; }
+.pk-demo__txt { display: grid; gap: 4px; flex: 1; min-width: 0; }
+.pk-demo__txt b { font: 600 1rem/1.3 var(--display); }
+.pk-demo__txt span { font-size: .9rem; color: var(--muted); }
+.pk-demo__note { margin-top: 18px; font-size: .9rem; }
 `;
 
 module.exports = function renderServices(cases) { return SERVICES.map((s) => renderService(s, cases)); };

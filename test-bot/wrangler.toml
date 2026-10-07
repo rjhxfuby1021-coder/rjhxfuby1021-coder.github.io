@@ -1,0 +1,23 @@
+name = "texspeckps-demo-bot"
+main = "worker.js"
+compatibility_date = "2026-09-01"
+
+# Токен бота хранится секретом Cloudflare (вводится один раз: npx.cmd wrangler secret put BOT_TOKEN)
+[vars]
+BOT_USERNAME = "Bot_PortfolioRabot"
+ADMIN_CHAT_ID = "7706477564"
+CHANNEL_ID = ""
+CHANNEL_LINK = "https://t.me/+aq7mXP_tCQ8yNzVi"
+CONTACT_LINK = "https://t.me/PavelTexSpec"
+SITE = "https://texspeckps.ru"
+
+[[durable_objects.bindings]]
+name = "CHAT"
+class_name = "ChatDO"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["ChatDO"]
+
+[observability]
+enabled = true

@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261003210228");
+@import url("../assets/inner-base.css?v=20261007194444");
 /* Дружелюбный: «пластилин» — круглые формы, яркие пастели, Nunito 900 */
 :root{--bg:#f4f0ff;--ink:#2a2350;--muted:#6d6890;--acc:#ff8a3d;--acc-ink:#fff;--li:#9b7bff;--gr:#3ccf8e;--bl:#4f8cff;--pk:#ff7eb6;--yl:#ffd23f;--line:#e4dcff;--card:#fff;--fd:"Nunito",system-ui,sans-serif;--fb:"Nunito",system-ui,sans-serif;--maxw:1180px;--clay:inset -6px -8px 16px rgba(42,35,80,.08),inset 6px 6px 14px rgba(255,255,255,.9),0 18px 40px -18px rgba(42,35,80,.28)}
 body{font-weight:600}

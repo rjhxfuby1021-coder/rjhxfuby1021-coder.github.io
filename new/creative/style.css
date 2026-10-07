@@ -292,3 +292,13 @@ h2.t,.page-hd h1{line-height:1.02}
 
 /* боковой отступ колонки: правила разделов (padding: X 0) не должны его затирать */
 .w.w{padding-left:var(--gut);padding-right:var(--gut)}
+/* демо-бот в Telegram */
+.demo-cr__top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,4vw,60px);align-items:end}
+.demo-cr__qr{background:#fffdf7;padding:14px 14px 10px;box-shadow:0 12px 30px -14px rgba(30,27,24,.4);transform:rotate(var(--r));text-align:center}
+.demo-cr__qr img{width:150px;height:150px}
+.demo-cr__qr figcaption{font-size:22px;margin-top:6px}
+.demo-cr__notes{margin-top:40px}
+.demo-cr__note{display:block;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.demo-cr__note:hover{transform:rotate(0deg) scale(1.03)}
+.demo-cr__ps{font-size:24px;margin-top:30px}
+@media(max-width:760px){.demo-cr__top{grid-template-columns:minmax(0,1fr)}.demo-cr__qr{display:none}}

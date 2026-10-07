@@ -12,6 +12,7 @@ ENGINE({
 <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">telegram</a>     <a href="${H.P.privacy}">./privacy</a></pre>
     <div class="ft-base"><span>© 2026 Павел Корчагин · Троицк, Москва</span><span>exit code 0</span></div></div></footer>`,
   voice: {
+    demo: { k: '# demo', h: '$ open t.me/Bot_PortfolioRabot', p: '# 8 сценариев, у каждого своя ссылка: ?start=&lt;сценарий&gt;. задержки hours/days → seconds.', btn: '$ open bot', try: '$ demo --bot', go: '↵', qr: '# scan с телефона', note: '# payments: mock. exit: «Главное меню» — снимает все таймеры цепочки.', webH: '$ run webinar --demo', webP: '# register → remind → live → offer → follow-up. таймеры ускорены до секунд.' },
     titleSfx: 'pavel@texspeckps', home: '~', sep: '/',
     nav: { cases: 'cases', services: 'price', reviews: 'reviews', blog: 'blog', about: 'whoami', faq: 'faq' },
     cta: { btn: '$ brief --send', btn2: '$ open telegram' },

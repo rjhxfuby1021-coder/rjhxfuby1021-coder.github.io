@@ -7,8 +7,8 @@
 <meta name="description" content="Чат-боты в Salebot, сайты на Tilda, дизайн в Figma, онлайн-школы на GetCourse, вебинары и рассылки — цены и сроки по каждой услуге.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261003210228">
-<link rel="stylesheet" href="../assets/logo.css?v=20261003210228">
+<link rel="stylesheet" href="style.css?v=20261007194444">
+<link rel="stylesheet" href="../assets/logo.css?v=20261007194444">
 </head>
 <body>
 <header id="mast"></header>
@@ -43,9 +43,9 @@
 </main>
 <footer id="foot"></footer>
 
-<script src="../assets/data.js?v=20261003210228"></script>
-<script src="../assets/content.js?v=20261003210228"></script>
-<script src="site.js?v=20261003210228"></script>
+<script src="../assets/data.js?v=20261007194444"></script>
+<script src="../assets/content.js?v=20261007194444"></script>
+<script src="site.js?v=20261007194444"></script>
 <script>
 const G=CONTENT.price,E=CR.esc,$=x=>document.getElementById(x);
 // своя подводка к каждому разделу — голос мастерской
@@ -60,7 +60,7 @@ $('mtabs').innerHTML=G.map(g=>`<a href="#${g.id}" style="--r:${CR.rr()}">${E(g.t
 $('groups').innerHTML=G.map(g=>{const [no,h,lead]=INTRO[g.id]||[g.num,g.title,g.lead];
   return `<section class="group" id="${g.id}">
     <div data-rv><h2><small>${no}</small>${E(h)}</h2><p class="gl">${E(lead)}</p>
-      <a class="pill o" style="margin-top:22px" href="service.html?s=${g.id}">Подробнее о направлении</a></div>
+      <a class="pill o" style="margin-top:22px" href="service.html?s=${g.id}">Подробнее о направлении</a>${g.id==='salebot'?`<a class="pill o" style="margin-top:12px" href="service.html?s=salebot#demo">Поговорить с ботом</a>`:''}</div>
     <div data-rv>${g.items.map(([n,d,p,t])=>`<div class="dish"><div class="row"><b>${E(n)}</b><span class="dots"></span><span class="pr">${E(p)}</span></div><p>${E(d)}${t?` <span class="tm">· ${E(t)}</span>`:''}</p></div>`).join('')}
       ${(g.packs||[]).length?`<p class="hand" style="font-size:28px;margin-top:30px">Готовые наборы — выгоднее, чем по отдельности:</p><div class="packs">${g.packs.map(([n,d,o,p])=>`<div class="pack" style="--r:${CR.rr()}"><b>${E(n)}</b><p>${E(d)}</p><p style="margin-top:10px"><s>${E(o)}</s><strong>${E(p)}</strong></p></div>`).join('')}</div>`:''}
     </div></section>`}).join('');

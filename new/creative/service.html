@@ -6,17 +6,17 @@
 <title>Направление — мастерская Павла Корчагина</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,800;1,400;1,600&family=Caveat:wght@500;700&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20261003210228">
-<link rel="stylesheet" href="../assets/logo.css?v=20261003210228">
+<link rel="stylesheet" href="style.css?v=20261007194444">
+<link rel="stylesheet" href="../assets/logo.css?v=20261007194444">
 </head>
 <body>
 <header id="mast"></header>
 <main id="page"></main>
 <footer id="foot"></footer>
 
-<script src="../assets/data.js?v=20261003210228"></script>
-<script src="../assets/content.js?v=20261003210228"></script>
-<script src="site.js?v=20261003210228"></script>
+<script src="../assets/data.js?v=20261007194444"></script>
+<script src="../assets/content.js?v=20261007194444"></script>
+<script src="site.js?v=20261007194444"></script>
 <script>
 const s=CR.param('s'),S=CONTENT.services.find(x=>x.dir===s),G=CONTENT.price.find(g=>g.id===s),E=CR.esc,page=document.getElementById('page');
 // творческие вступления — своя подача для каждого направления
@@ -28,6 +28,17 @@ const VOICE={
   webinar:{h:'Эфир, на который <i>приходят</i>, и письма, которые читают',p:'Вебинар продаёт, только если люди до него дошли. Настраиваю комнату в Bizon365, бота-напоминалку и цепочки писем, которые мягко возвращают тех, кто отвлёкся.',note:'автовебинары тоже'}
 };
 const STEPS=[['Знакомимся','Созвон без ТЗ — вопросы задам я.'],['Считаем','Объём, сроки и цена фиксируются заранее.'],['Делаю и показываю','Вы видите промежуточный результат, а не только финал.'],['Запускаем','Проверка на всех устройствах — и я остаюсь на связи.']];
+// демо-бот в Telegram: на странице ботов — все восемь записок, на странице вебинаров — одна
+const DEMO={salebot:'all',webinar:['webinar']},B=DATA.bot;
+const demo=(only)=>{const list=only==='all'?B.scenarios:B.scenarios.filter(x=>only.includes(x[0])),one=list.length===1;
+  return `<section class="sec tight demo-cr" id="demo"><div class="w">
+    <div class="demo-cr__top"><div data-rv><div class="kick">Не верьте на слово</div><h2 class="t">${one?'Сходите на эфир <i>к боту</i>':'Поговорите с ботом <i>сами</i>'}</h2>
+      <p class="lead" style="margin-top:18px">${one?'Зарегистрируйтесь — и бот напомнит, позовёт в эфир, сделает предложение и вернётся с записью. Всё, что заняло бы сутки, уложится в пару минут.':'Я оставил на столе восемь записок — за каждой живой сценарий. Возьмите любую: бот откроется в Telegram и сразу начнёт разыгрывать её с вами, как с настоящим клиентом.'}</p>
+      <a class="pill" style="margin-top:24px" href="${B.url}" target="_blank" rel="noopener">Открыть бота в Telegram</a></div>
+      <figure class="demo-cr__qr" style="--r:${CR.rr()}"><img src="${B.qr}" alt="QR-код бота @${B.user}" width="150" height="150" loading="lazy"><figcaption class="hand">или наведите камеру ↑</figcaption></figure></div>
+    <div class="notes n4 demo-cr__notes">${list.map(([c,ico,n,d])=>`<a class="letter demo-cr__note" style="--r:${CR.rr()}" href="${B.link(c)}" target="_blank" rel="noopener" data-rv><footer style="margin:0 0 8px">${ico} ${E(n)}</footer><p>${E(d)}</p></a>`).join('')}</div>
+    <p class="hand demo-cr__ps">${one?'P.S. В меню бота ещё семь записок — загляните.':'P.S. Часы ожидания я сжал до секунд, а деньги бот не берёт — играйте смело.'}</p>
+  </div></section>`};
 if(!S){page.innerHTML=`<div class="w page-hd"><h1>Такого раздела <i>нет в меню</i></h1><a class="pill" style="margin-top:26px" href="services.html">Открыть меню мастерской</a></div>`}
 else{
   const V=VOICE[s];document.title=S.name+' — мастерская Павла Корчагина';
@@ -36,8 +47,9 @@ else{
   <div class="w page-hd">
     <div class="crumbs"><a href="services.html">меню</a> → ${E(S.name.toLowerCase())}</div>
     <h1>${V.h}</h1><p class="lead">${E(V.p)}</p><span class="hand aside-note">${V.note}</span>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="pill" href="brief.html?service=${s}">Обсудить задачу</a><a class="pill o" href="#menu">Цены направления</a></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px"><a class="pill" href="brief.html?service=${s}">Обсудить задачу</a>${DEMO[s]?`<a class="pill o" href="#demo">Поговорить с ботом</a>`:`<a class="pill o" href="#menu">Цены направления</a>`}</div>
   </div>
+  ${DEMO[s]?demo(DEMO[s]):''}
   <section class="sec tight"><div class="w">
     <div class="kick">Кому это особенно пригодится</div>
     <div class="notes n4" style="margin-top:20px">${S.who.map(([w,t])=>`<article class="letter" style="--r:${CR.rr()}" data-rv><footer style="margin:0 0 8px">${E(w)}</footer><p>${E(t)}</p></article>`).join('')}</div>
@@ -60,6 +72,7 @@ else{
     <div class="acts"><a class="pill" href="brief.html?service=${s}">Рассказать о задаче</a><a class="pill o" href="services.html">Всё меню</a></div></div></section>`;
 }
 CR.done();
+if(location.hash==='#demo')(document.fonts?document.fonts.ready:Promise.resolve()).then(()=>setTimeout(()=>{const el=document.getElementById('demo');if(el)el.scrollIntoView({behavior:'instant'})},60));
 </script>
 </body>
 </html>

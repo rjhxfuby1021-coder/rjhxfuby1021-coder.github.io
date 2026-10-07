@@ -61,6 +61,23 @@ window.ENGINE = function (T) {
     prow: ([n, d, p, t]) => `<div class="prow"><div class="prow-main"><b class="prow-name">${esc(n)}</b><p class="prow-desc">${esc(d)}${t ? ` <span class="prow-time">${v('services.time', '·')} ${esc(t)}</span>` : ''}</p></div><span class="prow-price">${esc(p)}</span></div>`,
     pack: ([n, d, o, p]) => `<div class="pack"><b>${esc(n)}</b><p>${esc(d)}</p><p class="pack-price"><s>${esc(o)}</s> <strong>${esc(p)}</strong></p></div>`,
     review: (r, c) => `<article class="review"><blockquote><p>${esc(r.text)}</p></blockquote><footer><span class="rev-ava">${esc(r.ini)}</span><span><b class="rev-name">${esc(r.name)}</b><span class="rev-role">${esc(r.role)} · ${esc(r.project)}</span></span></footer>${c ? `<a class="rev-proj" href="${caseUrl(c.id)}"><img src="${c.img}" alt="${esc(c.t)}" loading="lazy"><span>${v('reviews.proj', 'Проект')} →</span></a>` : ''}</article>`,
+    // Демо-бот в Telegram (DATA.bot): only — коды сценариев, которые показать; без него — все восемь
+    demo: (only) => {
+      const B = D.bot; if (!B) return '';
+      const list = only ? B.scenarios.filter((x) => only.includes(x[0])) : B.scenarios;
+      const one = list.length === 1;
+      const item = ([code, ico, name, desc]) => `<a class="demo-item" href="${B.link(code)}" target="_blank" rel="noopener"><span class="demo-ico" aria-hidden="true">${ico}</span><span class="demo-txt"><b>${esc(name)}</b><span>${esc(desc)}</span></span><span class="demo-go" aria-hidden="true">${v('demo.go', '→')}</span></a>`;
+      return `<section class="sec sec-demo" id="demo"><div class="w"><div class="demo">
+        <div class="demo-hd"><p class="kicker">${v('demo.k', 'Демо · Telegram')}</p>
+          <h2 class="sec-title">${one ? v('demo.webH', 'Пройдите автовебинар в боте') : v('demo.h', 'Протестируйте бота сами')}</h2>
+          <p class="sec-lead">${one ? v('demo.webP', 'Регистрация, напоминания, эфир, продажа и дожим — паузы сокращены до секунд.') : v('demo.p', 'Восемь сценариев, которые я собираю для клиентов. Выберите любой — бот откроется в Telegram сразу на нём.')}</p>
+          <div class="acts">${U.btn(v('demo.btn', 'Открыть бота в Telegram'), B.url, 1, true)}</div></div>
+        <figure class="demo-qr"><img src="${B.qr}" alt="QR-код бота @${B.user}" width="150" height="150" loading="lazy"><figcaption>${v('demo.qr', 'Наведите камеру телефона')}</figcaption></figure>
+      </div>
+      <div class="demo-list${one ? ' demo-list--one' : ''}">${list.map(item).join('')}</div>
+      <p class="demo-note">${one ? v('demo.webMore', 'В меню бота — ещё семь сценариев: закрытый канал, лид-магнит, тест, колесо фортуны, запись, заявки и рефералка.') : v('demo.note', 'Бот настоящий: долгие паузы сокращены до секунд, оплата — демонстрационная. Выйти из сценария — кнопка «Главное меню».')}</p>
+      </div></section>`;
+    },
     qa: ([q, a], i) => `<details class="qa"${i ? '' : ' open'}><summary>${esc(q)}</summary><div class="qa-a">${fixLinks(a)}</div></details>`
   }, T.ui || {});
   H.U = U;
@@ -134,17 +151,19 @@ window.ENGINE = function (T) {
       const G = C.price;
       return U.hd({ crumbs: U.crumbs([[v('nav.services', 'Услуги')]]), kicker: v('services.kicker'), h1: v('services.h1', 'Услуги и цены'), lead: v('services.lead'), note: v('services.note'), extra: `<nav class="price-nav">${G.map((g) => `<a href="#${g.id}">${esc(g.tab)}</a>`).join('')}</nav>` })
         + G.map((g) => { const [no, h, lead] = v('services.intro.' + g.id, [g.num, g.title, g.lead]);
-          return `<section class="pgroup" id="${g.id}"><div class="w"><div class="pgroup-hd"><p class="kicker">${no}</p><h2 class="sec-title">${h}</h2><p class="sec-lead">${lead}</p>${U.btn(v('services.groupBtn', 'Подробнее о направлении'), P.service + '?s=' + g.id, 2)}</div>
+          return `<section class="pgroup" id="${g.id}"><div class="w"><div class="pgroup-hd"><p class="kicker">${no}</p><h2 class="sec-title">${h}</h2><p class="sec-lead">${lead}</p>${U.btn(v('services.groupBtn', 'Подробнее о направлении'), P.service + '?s=' + g.id, 2)}${g.id === 'salebot' && D.bot ? U.btn(v('demo.try', 'Протестировать бота'), P.service + '?s=salebot#demo', 2) : ''}</div>
             <div class="prows">${g.items.map(U.prow).join('')}</div>${(g.packs || []).length ? `<p class="kicker packs-h">${v('services.packsH', 'Готовые пакеты')}</p><div class="packs">${g.packs.map(U.pack).join('')}</div>` : ''}</div></section>`; }).join('')
         + U.sec({ cls: 'sec-how', kicker: v('services.howK'), title: v('services.howH', 'Как формируется цена'), body: `<ol class="steps">${v('services.how', []).map(([b, t]) => `<li><b>${b}</b><span>${t}</span></li>`).join('')}</ol>` })
         + U.cta({ h: v('services.endH', 'Не нашли нужное?'), p: v('services.endP'), btn: v('services.endBtn') });
     },
     service() {
+      const DEMO = { salebot: 'all', webinar: ['webinar'] }; // где показывать демо-бота
       const s = param('s'), S = C.services.find((x) => x.dir === s), G = C.price.find((g) => g.id === s);
       if (!S) return U.hd({ h1: v('service.nf', 'Направление не найдено'), acts: U.btn(v('nav.services', 'Услуги'), P.services) });
       const I = v('service.intro.' + s, { h: esc(S.h1), p: esc(S.lead) }); document.title = S.name + ' — ' + v('titleSfx', 'Павел Корчагин');
       const cases = (S.cases || []).filter((id) => !EX.includes(id)).map(short).filter(Boolean);
-      return U.hd({ crumbs: U.crumbs([[v('nav.services', 'Услуги'), P.services], [esc(S.name)]]), kicker: esc(S.eye), h1: I.h, lead: I.p, note: I.note, acts: U.btn(v('service.ctaBtn', 'Обсудить задачу'), P.contact + '?service=' + s) + U.btn(v('service.priceBtn', 'Цены'), '#menu', 2) })
+      return U.hd({ crumbs: U.crumbs([[v('nav.services', 'Услуги'), P.services], [esc(S.name)]]), kicker: esc(S.eye), h1: I.h, lead: I.p, note: I.note, acts: U.btn(v('service.ctaBtn', 'Обсудить задачу'), P.contact + '?service=' + s) + (DEMO[s] ? U.btn(v('demo.try', 'Протестировать бота'), '#demo', 2) : U.btn(v('service.priceBtn', 'Цены'), '#menu', 2)) })
+        + (DEMO[s] ? U.demo(DEMO[s] === 'all' ? null : DEMO[s]) : '')
         + U.sec({ cls: 'sec-who', kicker: v('service.whoK'), title: v('service.whoH', 'Кому подойдёт'), body: `<div class="who">${keep(S.who).map(([w, t]) => `<div class="who-item"><b>${esc(w)}</b><span>${esc(t)}</span></div>`).join('')}</div>` })
         + U.sec({ id: 'menu', cls: 'sec-menu', kicker: v('service.menuK'), title: v('service.menuH', 'Что можно заказать'), body: `<div class="prows">${G.items.map(U.prow).join('')}</div>${(G.packs || []).length ? `<div class="packs">${G.packs.map(U.pack).join('')}</div>` : ''}` })
         + (cases.length ? U.sec({ cls: 'sec-scases', kicker: v('service.casesK'), title: v('service.casesH', 'Кейсы направления'), body: U.cards(cases) }) : '')
@@ -229,6 +248,11 @@ window.ENGINE = function (T) {
   if (main && R[page]) {
     if (titles[page]) document.title = String(v(titles[page], document.title)).replace(/<[^>]+>/g, '') + ' — ' + v('titleSfx', 'Павел Корчагин');
     main.innerHTML = R[page](H);
+    // ссылка вида service.html?s=salebot#demo: страница рисуется скриптом, поэтому докручиваем сами, когда встанут шрифты
+    if (location.hash.length > 1) {
+      const go = () => { const el = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (el) el.scrollIntoView({ behavior: 'instant' }); };
+      (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(go, 60));
+    }
   }
 
   /* ---------- поведение ---------- */
