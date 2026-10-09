@@ -490,7 +490,7 @@ module.exports = function scenarios(cfg) {
       buttons: [['10:00', '12:30', '15:00', '18:00'].map((t) => go(t, 'lm_9p', (v) => { v.ctime = t; }))],
     },
     lm_9p: {
-      text: 'Оставьте номер телефона — пришлю ссылку на встречу и напомню за час.',
+      text: 'Оставьте номер телефона — пришлю ссылку на встречу и напомню за час.\n\n' + note('В демо можно не вводить свой — нажмите «🎲 Подставить демо-номер».'),
       reply: [[{ text: '📱 Отправить номер', contact: true }]],
       wait: { kind: 'phone', key: 'phone', go: 'lm_9ok' },
     },
@@ -576,7 +576,7 @@ module.exports = function scenarios(cfg) {
     },
     wh_go: { route: (v) => (v.wphone ? 'wh_spin' : 'wh_3') },
     wh_3: {
-      text: 'Одно условие: поделитесь номером телефона — на него запишем приз, чтобы оператор увидел его при заказе.',
+      text: 'Одно условие: поделитесь номером телефона — на него запишем приз, чтобы оператор увидел его при заказе.\n\n' + note('В демо можно не вводить свой — нажмите «🎲 Подставить демо-номер».'),
       reply: [[{ text: '📱 Отправить номер', contact: true }], [{ text: 'Пропустить (только в демо)' }]],
       wait: { kind: 'phone', key: 'wphone', go: 'wh_spin', skip: 'Пропустить (только в демо)' },
     },
@@ -776,7 +776,7 @@ module.exports = function scenarios(cfg) {
       },
     },
     bk_10: {
-      text: 'Оставьте номер телефона — пришлём напоминание и свяжемся, если что-то изменится.',
+      text: 'Оставьте номер телефона — пришлём напоминание и свяжемся, если что-то изменится.\n\n' + note('В демо можно не вводить свой — нажмите «🎲 Подставить демо-номер».'),
       reply: [[{ text: '📱 Отправить номер', contact: true }]],
       wait: { kind: 'phone', key: 'phone', go: 'bk_10w' },
     },
@@ -885,7 +885,7 @@ module.exports = function scenarios(cfg) {
       wait: { kind: 'photo', key: 'photos', go: 'ld_phone' },
     },
     ld_phone: {
-      text: 'Куда отправить расчёт? Оставьте номер телефона — менеджер пришлёт цифры и ответит на вопросы.',
+      text: 'Куда отправить расчёт? Оставьте номер телефона — менеджер пришлёт цифры и ответит на вопросы.\n\n' + note('В демо можно не вводить свой — нажмите «🎲 Подставить демо-номер».'),
       reply: [[{ text: '📱 Отправить номер', contact: true }]],
       wait: { kind: 'phone', key: 'phone', go: 'ld_way' },
     },
@@ -975,7 +975,7 @@ module.exports = function scenarios(cfg) {
     ld_back: { cancel: true, route: (v) => 'k' + (v.qn || 1) },
     ld_callme: {
       cancel: true,
-      text: 'Оставьте номер — менеджер позвонит и закончит расчёт по телефону.',
+      text: 'Оставьте номер — менеджер позвонит и закончит расчёт по телефону.\n\n' + note('В демо можно не вводить свой — нажмите «🎲 Подставить демо-номер».'),
       reply: [[{ text: '📱 Отправить номер', contact: true }]],
       wait: { kind: 'phone', key: 'phone', go: 'ld_callme_ok' },
     },
@@ -1245,6 +1245,10 @@ const SCENARIO_LINKS = {
   wheel: 'wh_intro', booking: 'bk_intro', leads: 'ld_intro', referral: 'rf_intro', menu: 'menu', want: 'want',
 };
 
+// Кнопка «подставить случайный номер» — чтобы в демо не вводить и не показывать свой
+const DEMO_PHONE = '🎲 Подставить демо-номер';
+const randomPhone = () => '+79' + Array.from({ length: 9 }, () => Math.floor(Math.random() * 10)).join('');
+
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 // Паузы в памяти — для запуска на компьютере, на сайте и для проверки
@@ -1320,10 +1324,9 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
 
   function markup(id, b, v, ctx) {
     if (b.reply) {
-      return {
-        keyboard: b.reply.map((row) => row.map((x) => (x.contact ? { text: x.text, request_contact: true } : { text: fill(x.text, v) }))),
-        resize_keyboard: true,
-      };
+      const rows = b.reply.map((row) => row.map((x) => (x.contact ? { text: x.text, request_contact: true } : { text: fill(x.text, v) })));
+      if (b.reply.flat().some((x) => x.contact)) rows.splice(1, 0, [{ text: DEMO_PHONE }]);
+      return { keyboard: rows, resize_keyboard: true };
     }
     const rows = getButtons(b, v, ctx);
     if (!rows) return undefined;
@@ -1447,6 +1450,7 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const w = user.wait;
     const v = user.vars;
     if (w.skip && text === w.skip) return go(chatId, w.go);
+    if (text === DEMO_PHONE) text = randomPhone();
     if (w.kind === 'phone') {
       let digits = String(text).replace(/\D/g, '');
       if (digits.length === 10 && digits[0] === '9') digits = '7' + digits;
@@ -1554,7 +1558,7 @@ function chatOf(u) {
   return null;
 }
 
-module.exports = { createEngine, chatOf, SCENARIO_LINKS };
+module.exports = { createEngine, chatOf, SCENARIO_LINKS, DEMO_PHONE };
 
 };
 defs["widget"] = function (module, exports, require) {
@@ -1691,9 +1695,8 @@ function renderMe(text) {
   logEl.appendChild(div);
 }
 function renderQuick(rows) {
-  quickEl.innerHTML = (rows || []).flat().map((b) => b.request_contact
-    ? '<button class="btn" type="button" data-phone>📱 Ввести номер</button>'
-    : `<button class="btn" type="button" data-say="${esc(b.text)}">${esc(b.text)}</button>`).join('');
+  quickEl.innerHTML = (rows || []).flat().filter((b) => !b.request_contact)
+    .map((b) => `<button class="btn" type="button" data-say="${esc(b.text)}">${esc(b.text)}</button>`).join('');
 }
 
 // «Telegram API» для движка: сообщения рисуются в окне чата

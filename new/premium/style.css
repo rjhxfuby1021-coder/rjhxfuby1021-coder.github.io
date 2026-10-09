@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261009232043");
+@import url("../assets/inner-base.css?v=20261009232312");
 /* Премиальный: почти чёрный, слоновая кость, золото, Cormorant + Jost */
 :root{--bg:#0e0d0b;--ink:#ece5d6;--muted:#8f877a;--acc:#c8a46a;--acc-ink:#0e0d0b;--line:rgba(236,229,214,.13);--card:#161411;--fd:"Cormorant Garamond",Georgia,serif;--fb:"Jost",system-ui,sans-serif;--maxw:1400px}
 body{font-weight:300;font-size:16.5px;line-height:1.7}

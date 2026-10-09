@@ -13,6 +13,10 @@ const SCENARIO_LINKS = {
   wheel: 'wh_intro', booking: 'bk_intro', leads: 'ld_intro', referral: 'rf_intro', menu: 'menu', want: 'want',
 };
 
+// Кнопка «подставить случайный номер» — чтобы в демо не вводить и не показывать свой
+const DEMO_PHONE = '🎲 Подставить демо-номер';
+const randomPhone = () => '+79' + Array.from({ length: 9 }, () => Math.floor(Math.random() * 10)).join('');
+
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 // Паузы в памяти — для запуска на компьютере, на сайте и для проверки
@@ -88,10 +92,9 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
 
   function markup(id, b, v, ctx) {
     if (b.reply) {
-      return {
-        keyboard: b.reply.map((row) => row.map((x) => (x.contact ? { text: x.text, request_contact: true } : { text: fill(x.text, v) }))),
-        resize_keyboard: true,
-      };
+      const rows = b.reply.map((row) => row.map((x) => (x.contact ? { text: x.text, request_contact: true } : { text: fill(x.text, v) })));
+      if (b.reply.flat().some((x) => x.contact)) rows.splice(1, 0, [{ text: DEMO_PHONE }]);
+      return { keyboard: rows, resize_keyboard: true };
     }
     const rows = getButtons(b, v, ctx);
     if (!rows) return undefined;
@@ -215,6 +218,7 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const w = user.wait;
     const v = user.vars;
     if (w.skip && text === w.skip) return go(chatId, w.go);
+    if (text === DEMO_PHONE) text = randomPhone();
     if (w.kind === 'phone') {
       let digits = String(text).replace(/\D/g, '');
       if (digits.length === 10 && digits[0] === '9') digits = '7' + digits;
@@ -322,4 +326,4 @@ function chatOf(u) {
   return null;
 }
 
-module.exports = { createEngine, chatOf, SCENARIO_LINKS };
+module.exports = { createEngine, chatOf, SCENARIO_LINKS, DEMO_PHONE };

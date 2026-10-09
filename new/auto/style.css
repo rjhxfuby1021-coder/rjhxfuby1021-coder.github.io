@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261009232043");
+@import url("../assets/inner-base.css?v=20261009232312");
 /* Для автосервисов: графит, сигнальный жёлтый, «зебра», Oswald + Roboto, заказ-наряд */
 :root{--bg:#17191c;--ink:#eef0f2;--muted:#9aa1a9;--acc:#ffcc00;--acc-ink:#111;--red:#e8452c;--line:#2c3036;--card:#212429;--fd:"Oswald",Impact,sans-serif;--fb:"Roboto",system-ui,sans-serif;--maxw:1240px}
 .kicker{font:500 13px "Roboto Mono",monospace;letter-spacing:0;text-transform:none;color:var(--acc)}

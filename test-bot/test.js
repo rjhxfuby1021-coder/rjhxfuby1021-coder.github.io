@@ -193,6 +193,16 @@ const checks = {
     assert(!mine(C).some((x) => /В демо — через/.test(x.text)), 'приписки «В демо — через …» быть не должно');
     await engine.onText(C, '/menu', {});
   },
+  async 'Демо-номер: одно нажатие вместо ввода телефона'() {
+    await type('📨 Сбор заявок'); await press('Начать'); await press('Рассчитать кухню');
+    for (const a of ['Прямая', 'До 2 метров', 'Лофт', 'Пластик', 'Не нужна', 'До 150 000 ₽', 'Пока просто прицениваюсь']) await press(a);
+    await press('Пропустить');
+    const kb = mine().at(-1).markup.keyboard.flat().map((b) => b.text);
+    assert(kb.includes('🎲 Подставить демо-номер'), 'нужна кнопка демо-номера: ' + kb);
+    await type('🎲 Подставить демо-номер'); expect('Как вам удобнее получить ответ?');
+    await press('В WhatsApp'); await until('Новая заявка №'); assert(/\+79\d{9}/.test(recent()), recent());
+    await type('/menu');
+  },
   async 'Ссылки с сайта открывают сценарий сразу'() {
     await engine.onText('300', '/start quiz', { first_name: 'Гость' }); expect('🎬 Демо: Тест с баллами', '300');
     await engine.onText('301', '/start booking', {}); expect('🎬 Демо: Онлайн-запись', '301');

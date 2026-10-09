@@ -131,9 +131,8 @@ function renderMe(text) {
   logEl.appendChild(div);
 }
 function renderQuick(rows) {
-  quickEl.innerHTML = (rows || []).flat().map((b) => b.request_contact
-    ? '<button class="btn" type="button" data-phone>📱 Ввести номер</button>'
-    : `<button class="btn" type="button" data-say="${esc(b.text)}">${esc(b.text)}</button>`).join('');
+  quickEl.innerHTML = (rows || []).flat().filter((b) => !b.request_contact)
+    .map((b) => `<button class="btn" type="button" data-say="${esc(b.text)}">${esc(b.text)}</button>`).join('');
 }
 
 // «Telegram API» для движка: сообщения рисуются в окне чата
