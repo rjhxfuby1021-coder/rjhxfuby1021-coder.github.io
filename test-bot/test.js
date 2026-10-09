@@ -158,7 +158,9 @@ const checks = {
     await until('Рейтинг'); await until('сгорят 2500'); await until('Это был сценарий «Реферальная программа»');
   },
   async 'Хочу такого бота: заявка уходит Павлу по-настоящему'() {
-    await press('💬 Хочу такого бота'); await press('Оставить заявку здесь');
+    const exitBtn = mine().at(-1).markup.inline_keyboard[0][0];
+    assert(exitBtn.url && exitBtn.url.includes('service=salebot') && decodeURIComponent(exitBtn.url).includes('Бот как в демо: Реферальная программа'), 'кнопка выхода должна вести на форму сайта: ' + exitBtn.url);
+    await type('/start want'); await press('Оставить заявку здесь');
     await type('Онлайн-школа, нужна воронка как в автовебинаре'); await type('@client_nick');
     expect('Заявка у Павла');
     const admin = mine('999').at(-1).text;

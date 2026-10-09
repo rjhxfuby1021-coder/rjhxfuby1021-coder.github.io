@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261009213731");
+@import url("../assets/inner-base.css?v=20261009215927");
 /* Для экспертов: тёплый песок, терракота, шалфей, Lora + Montserrat, арки и мягкие формы */
 :root{--bg:#f7f0e8;--ink:#3a2a22;--muted:#8a7466;--acc:#c0623f;--acc-ink:#fff;--sage:#7d8b6a;--sand:#efe2d2;--line:#e6d6c4;--card:#fffaf4;--fd:"Lora",Georgia,serif;--fb:"Montserrat",system-ui,sans-serif;--maxw:1180px}
 body{font-size:16.5px;line-height:1.7}

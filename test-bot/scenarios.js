@@ -32,6 +32,9 @@ module.exports = function scenarios(cfg) {
   const note = (s) => `<i>${s}</i>`;
   const seen = (who) => `👀 <i>Так это видит ${who}:</i>\n\n`;
   const MENU = go('📋 В меню', 'menu');
+  // «Хочу такого бота» ведёт на страницу заявки сайта: направление «чат-боты» и сценарий уже вписаны в форму
+  const FORM = cfg.FORM_URL || 'https://texspeckps.ru/ai/form';
+  const WANT = (name) => url('💬 Хочу такого бота', FORM + (FORM.includes('?') ? '&' : '?') + 'service=salebot&task=' + encodeURIComponent('Бот как в демо' + (name ? ': ' + name : '')));
   const rub = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   const code5 = () => Array.from({ length: 5 }, () => 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random() * 32)]).join('');
   const day = (offset, withWeekday = true) => {
@@ -51,7 +54,7 @@ module.exports = function scenarios(cfg) {
   const exit = (key, name, duration) => ({
     cancel: true,
     text: `✅ Это был сценарий «${name}».\n\nВ реальном проекте он занял бы ${duration}. В вашего бота добавим ваши тексты, оплату, CRM и аналитику по каждому шагу.`,
-    buttons: [[go('💬 Хочу такого бота', 'want')], [go('🔁 Пройти ещё раз', key + '_intro')], [MENU]],
+    buttons: [[WANT(name)], [go('🔁 Пройти ещё раз', key + '_intro')], [MENU]],
   });
 
   const blocks = {
@@ -78,7 +81,7 @@ module.exports = function scenarios(cfg) {
         go('📅 Онлайн-запись', 'bk_intro'),
         go('📨 Сбор заявок', 'ld_intro'),
         go('🤝 Реферальная программа', 'rf_intro'),
-        go('💬 Хочу такого бота', 'want'),
+        WANT(),
       ),
     },
 
@@ -1105,7 +1108,7 @@ module.exports = function scenarios(cfg) {
     '/menu': 'menu', 'меню': 'menu', 'главное меню': 'menu', '🏠 главное меню': 'menu', '📋 в меню': 'menu', 'открыть меню': 'menu',
     '/subscription': 'ch_sub', '/ref': 'rf_cab',
   };
-  for (const row of blocks.menu.buttons) triggers[row[0].text.toLowerCase()] = row[0].go;
+  for (const row of blocks.menu.buttons) if (row[0].go) triggers[row[0].text.toLowerCase()] = row[0].go;
 
   return { blocks, triggers };
 };

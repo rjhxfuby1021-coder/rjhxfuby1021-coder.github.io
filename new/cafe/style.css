@@ -1,4 +1,4 @@
-@import url("../assets/inner-base.css?v=20261009213731");
+@import url("../assets/inner-base.css?v=20261009215927");
 /* Для кафе: крафтовая бумага меню, томатный, оливковый, Yeseva One + Raleway */
 :root{--bg:#fff4e2;--ink:#2b1a12;--muted:#7d6656;--acc:#d63a2f;--acc-ink:#fff;--olive:#5d6b2f;--paper:#fbe9cc;--line:rgba(43,26,18,.22);--card:#fff;--fd:"Yeseva One",Georgia,serif;--fb:"Raleway",system-ui,sans-serif;--maxw:1200px}
 body{font-weight:500}
