@@ -2,19 +2,20 @@
 // С Telegram напрямую не работает — получает готовый api. Где хранить людей и паузы, решает тот, кто запускает:
 //   bot.js (компьютер)  — файл data.json и таймеры в памяти;
 //   worker.js (Cloudflare) — хранилище Durable Object и будильники (alarm);
+//   web/widget.js (сайт) — localStorage и таймеры в памяти;
 //   test.js — всё в памяти.
 
 const scenarios = require('./scenarios');
 
-// Коды для ссылок t.me/бот?start=<код> — по ним сайт открывает бота сразу в нужном сценарии
+// Коды для ссылок t.me/бот?start=<код> и bot.html?start=<код> — открывают сценарий сразу
 const SCENARIO_LINKS = {
-  webinar: 'web_start', channel: 'ch_start', leadmagnet: 'lm_start', quiz: 'quiz_start',
-  wheel: 'wh_start', booking: 'bk_start', leads: 'ld_start', referral: 'rf_start', menu: 'menu',
+  webinar: 'web_intro', channel: 'ch_intro', leadmagnet: 'lm_intro', quiz: 'quiz_intro',
+  wheel: 'wh_intro', booking: 'bk_intro', leads: 'ld_intro', referral: 'rf_intro', menu: 'menu', want: 'want',
 };
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-// Паузы в памяти — для запуска на компьютере и для проверки
+// Паузы в памяти — для запуска на компьютере, на сайте и для проверки
 function memoryTimers(delayScale, log) {
   const all = new Map(); // chatId → Set(таймеров)
   return {
@@ -58,9 +59,10 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
   function context(chatId) {
     return {
       chatId,
+      cfg,
       refLink: `https://t.me/${botUsername}?start=ref_${chatId}`,
       isSubscribed: async () => {
-        if (!cfg.CHANNEL_ID) return true; // канал для проверки не задан — пропускаем, как в демо Salebot
+        if (!cfg.CHANNEL_ID) return true; // канал для проверки не задан — пропускаем с пометкой в тексте
         try {
           const m = await api.getChatMember(cfg.CHANNEL_ID, chatId);
           return ['creator', 'administrator', 'member', 'restricted'].includes(m.status);
@@ -72,57 +74,82 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     };
   }
 
-  const fill = (text, v) => text.replace(/#\{(\w+)\}/g, (_, k) => esc(v[k]));
+  const fill = (text, v) => String(text).replace(/#\{(\w+)\}/g, (_, k) => esc(v[k]));
+  const getButtons = (b, v, ctx) => (typeof b.buttons === 'function' ? b.buttons(v, ctx) : b.buttons) || null;
 
-  function markup(id, b) {
+  function markup(id, b, v, ctx) {
     if (b.reply) {
       return {
-        keyboard: b.reply.map((row) => row.map((x) => (x.contact ? { text: x.text, request_contact: true } : { text: x.text }))),
+        keyboard: b.reply.map((row) => row.map((x) => (x.contact ? { text: x.text, request_contact: true } : { text: fill(x.text, v) }))),
         resize_keyboard: true,
       };
     }
-    if (!b.buttons) return undefined;
+    const rows = getButtons(b, v, ctx);
+    if (!rows) return undefined;
     return {
-      inline_keyboard: b.buttons.map((row, r) =>
-        row.map((x, c) => (x.url ? { text: x.text, url: x.url } : { text: x.text, callback_data: `${id}:${r}:${c}` }))),
+      inline_keyboard: rows.map((row, r) =>
+        row.map((x, c) => (x.url
+          ? { text: fill(x.text, v), url: typeof x.url === 'function' ? x.url(v, ctx) : x.url }
+          : { text: fill(x.text, v), callback_data: `${id}:${r}:${c}` }))),
     };
   }
 
-  async function go(chatId, id, hops = 0) {
+  // opts.editId — заменить сообщение с кнопкой, а не присылать новое (пошаговые меню в одном сообщении)
+  async function go(chatId, id, hops = 0, opts = {}) {
     const b = blocks[id];
     if (!b) throw new Error(`Нет блока «${id}»`);
-    if (hops > 10) throw new Error(`Блоки зациклились на «${id}»`);
+    if (hops > 12) throw new Error(`Блоки зациклились на «${id}»`);
     const user = await users.load(chatId);
     const v = user.vars;
     const ctx = context(chatId);
 
+    if (v.name == null) v.name = 'друг';
     if (b.cancel) await timers.cancel(chatId);
     if (b.set) b.set(v, ctx);
     user.state = id;
-    user.wait = b.wait || null;
+    user.wait = b.wait ? { ...b.wait } : null;
     // Обычную клавиатуру («Отправить номер») убираем, когда она больше не нужна
     const removeKb = !b.route && user.replyKb && !b.reply;
     if (removeKb) user.replyKb = false;
     if (b.reply) user.replyKb = true;
     await users.save(chatId, user);
 
-    if (b.route) return go(chatId, await b.route(v, ctx), hops + 1);
+    if (b.route) return go(chatId, await b.route(v, ctx), hops + 1, opts);
 
     if (removeKb) {
       const tmp = await api.sendMessage(chatId, '…', { reply_markup: { remove_keyboard: true } });
       await api.deleteMessage(chatId, tmp.message_id).catch(() => {});
     }
 
-    let text = typeof b.text === 'function' ? b.text(v, ctx) : b.text;
-    // предупреждаем, что следующее сообщение придёт само — чтобы человек не жал всё подряд
-    for (const n of b.next || []) {
-      if (n.hint) text += `\n\n⏳ <i>${n.hint}</i>`;
-      else if (n.real) text += `\n\n⏳ <i>Следующее сообщение придёт само через ${n.after} сек (в рабочем боте — ${n.real}). Можно ничего не нажимать.</i>`;
+    const text = fill(typeof b.text === 'function' ? b.text(v, ctx) : b.text, v);
+    const mk = markup(id, b, v, ctx);
+    if (opts.editId && b.inplace && !b.reply && api.editMessageText) {
+      await api.editMessageText(chatId, opts.editId, text, { reply_markup: mk }).catch(async () => {
+        await api.sendMessage(chatId, text, { reply_markup: mk });
+      });
+    } else {
+      await api.sendMessage(chatId, text, { reply_markup: mk });
     }
-    await api.sendMessage(chatId, fill(text, v), { reply_markup: markup(id, b) });
 
+    // уведомление владельцу бота (по-настоящему — только заявка из «Хочу такого бота»)
+    if (b.notify && cfg.ADMIN_CHAT_ID) {
+      await api.sendMessage(cfg.ADMIN_CHAT_ID, fill(b.notify(v, ctx), v))
+        .catch((e) => log.error('Уведомление не дошло (проверьте ADMIN_CHAT_ID):', e.message));
+    }
+
+    // сразу следом — ещё одно сообщение (например, «так это видит менеджер»)
+    if (b.then) await go(chatId, b.then, hops + 1);
+
+    // отложенные сообщения: сразу — серая сноска «в реальном боте придёт …», через паузу — само сообщение
     const next = b.next || [];
-    for (let i = 0; i < next.length; i++) await timers.add(chatId, next[i].after * 1000, { block: id, idx: i });
+    for (let i = 0; i < next.length; i++) {
+      const n = next[i];
+      if (n.real) {
+        await api.sendMessage(chatId, `<i>⏳ В реальном боте это сообщение придёт ${n.real}. В демо — через ${n.after} секунд.</i>`);
+      }
+      await timers.add(chatId, n.after * 1000, { block: id, idx: i });
+    }
+
   }
 
   // Сработала пауза: job = { block, idx } — какое отложенное сообщение какого блока
@@ -139,6 +166,8 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const user = await users.load(chatId);
     user.name = [from.first_name, from.last_name].filter(Boolean).join(' ');
     user.username = from.username || '';
+    user.vars.name = from.first_name || user.vars.name || 'друг';
+    user.vars.username = from.username || '';
     await users.save(chatId, user);
 
     // Реферальная ссылка: t.me/бот?start=ref_<id пригласившего>
@@ -152,6 +181,29 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     return go(chatId, 'start');
   }
 
+  // Ввод текстом: телефон, произвольный ответ, контакт
+  async function onInput(chatId, user, text, from) {
+    const w = user.wait;
+    const v = user.vars;
+    if (w.skip && text === w.skip) return go(chatId, w.go);
+    if (w.kind === 'phone') {
+      let digits = String(text).replace(/\D/g, '');
+      if (digits.length === 10 && digits[0] === '9') digits = '7' + digits;
+      if (digits.length === 11 && digits[0] === '8') digits = '7' + digits.slice(1);
+      if (!(digits.length === 11 && digits[0] === '7')) {
+        if (w.bad) return go(chatId, w.bad);
+        return api.sendMessage(chatId, 'Кажется, это не номер телефона 🤔 Напишите 11 цифр, например 79001234567, или нажмите кнопку «Отправить номер».');
+      }
+      v[w.key] = '+' + digits;
+    } else if (w.kind === 'photo') {
+      return api.sendMessage(chatId, 'Пришлите фото помещения или нажмите кнопку под сообщением выше 👆');
+    } else {
+      v[w.key] = String(text).slice(0, 1000);
+    }
+    await users.save(chatId, user);
+    return go(chatId, w.go);
+  }
+
   async function onText(chatId, text, from = {}) {
     const t = text.trim();
     if (/^\/start(\s|$)/.test(t)) return onStart(chatId, t.split(/\s+/)[1], from);
@@ -160,50 +212,47 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const target = triggers[t.toLowerCase()];
     if (target) return go(chatId, target);
 
-    if ((await users.load(chatId)).wait === 'phone') return onPhone(chatId, t, from);
-
-    return api.sendMessage(chatId, 'Я отвечаю на кнопки 🙂 Нажмите любую кнопку выше или напишите «меню».');
-  }
-
-  async function onPhone(chatId, raw, from = {}) {
-    let digits = String(raw).replace(/\D/g, '');
-    if (digits.length === 10 && digits[0] === '9') digits = '7' + digits;
-    if (digits.length === 11 && digits[0] === '8') digits = '7' + digits.slice(1);
-    if (!(digits.length === 11 && digits[0] === '7')) return go(chatId, 'ld_bad');
-
     const user = await users.load(chatId);
-    user.vars.phone = '+' + digits;
-    await users.save(chatId, user);
+    if (user.wait) return onInput(chatId, user, t, from);
 
-    if (cfg.ADMIN_CHAT_ID) {
-      const v = user.vars;
-      const who = [esc(user.name || from.first_name || ''), from.username ? '@' + esc(from.username) : ''].filter(Boolean).join(' ');
-      await api.sendMessage(cfg.ADMIN_CHAT_ID,
-        '📝 <b>Новая заявка из демо-бота</b>\n\n' +
-        `👤 ${who || 'без имени'}\n` +
-        `📌 Интересует: ${esc(v.need)}\n` +
-        `💰 Бюджет: ${esc(v.budget)}\n` +
-        `📱 Телефон: ${esc(v.phone)}`,
-      ).catch((e) => log.error('Заявка не дошла до менеджера (проверьте ADMIN_CHAT_ID):', e.message));
-    }
-    return go(chatId, 'ld_done');
+    return api.sendMessage(chatId, 'Я отвечаю на кнопки 🙂 Нажмите любую кнопку выше или напишите /menu.');
   }
 
   async function onContact(chatId, contact, from = {}) {
-    if ((await users.load(chatId)).wait !== 'phone') return;
-    return onPhone(chatId, contact.phone_number, from);
+    const user = await users.load(chatId);
+    if (!user.wait || !['phone', 'text'].includes(user.wait.kind)) return;
+    return onInput(chatId, user, contact.phone_number, from);
   }
 
-  async function onButton(chatId, data) {
+  async function onPhoto(chatId) {
+    const user = await users.load(chatId);
+    if (!user.wait || user.wait.kind !== 'photo') return api.sendMessage(chatId, 'Фото сейчас не нужно 🙂 Нажмите кнопку выше или напишите /menu.');
+    user.vars[user.wait.key] = (Number(user.vars[user.wait.key]) || 0) + 1;
+    await users.save(chatId, user);
+    return api.sendMessage(chatId, `📷 Фото получено (${user.vars[user.wait.key]}). Можно прислать ещё или нажать «Готово, фото отправлены».`);
+  }
+
+  async function onButton(chatId, data, msgId) {
     const [id, r, c] = String(data).split(':');
-    const btn = blocks[id]?.buttons?.[r]?.[c];
-    if (!btn || !btn.go) return;
-    if (btn.set) {
-      const user = await users.load(chatId);
-      btn.set(user.vars);
-      await users.save(chatId, user);
+    const src = blocks[id];
+    if (!src) return;
+    const user = await users.load(chatId);
+    const v = user.vars;
+    const ctx = context(chatId);
+    const btn = getButtons(src, v, ctx)?.[r]?.[c];
+    if (!btn) return;
+
+    v.answer = btn.text;
+    if (btn.set) btn.set(v, ctx);
+    await users.save(chatId, user);
+
+    // ответ на вопрос: вопрос превращается в «Вопрос N: ваш ответ — …», чтобы чат не разрастался
+    if (src.answered && !btn.keep && msgId && api.editMessageText) {
+      await api.editMessageText(chatId, msgId, fill(src.answered, v), {}).catch(() => {});
     }
-    return go(chatId, btn.go);
+    // кнопка-подсказка: короткий ответ без перехода
+    if (btn.say) await api.sendMessage(chatId, fill(typeof btn.say === 'function' ? btn.say(v, ctx) : btn.say, v));
+    if (btn.go) return go(chatId, btn.go, 0, { editId: src.inplace && !btn.fresh ? msgId : null });
   }
 
   // Одно обновление от Telegram (getUpdates или вебхук)
@@ -211,16 +260,17 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     if (u.callback_query) {
       const q = u.callback_query;
       if (api.answerCallbackQuery) await api.answerCallbackQuery(q.id).catch(() => {});
-      if (q.message) await onButton(q.message.chat.id, q.data);
+      if (q.message) await onButton(q.message.chat.id, q.data, q.message.message_id);
     } else if (u.message && u.message.chat.type === 'private') {
       const m = u.message;
       if (m.contact) await onContact(m.chat.id, m.contact, m.from);
+      else if (m.photo) await onPhoto(m.chat.id);
       else if (m.text) await onText(m.chat.id, m.text, m.from);
     }
   }
 
   return {
-    go, fire, onText, onContact, onButton, onUpdate, blocks,
+    go, fire, onText, onContact, onPhoto, onButton, onUpdate, blocks,
     stop: () => timers.stopAll && timers.stopAll(),
   };
 }

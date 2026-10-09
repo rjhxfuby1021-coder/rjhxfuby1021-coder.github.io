@@ -5,10 +5,12 @@ const assert = require('assert');
 const { createEngine } = require('./engine');
 const { createStore } = require('./store');
 
-const sent = []; // { chat, text, markup }
+const sent = []; // { id, chat, text, markup }
 let msgId = 0;
+let edits = 0;
 const api = {
-  async sendMessage(chat, text, extra = {}) { sent.push({ chat: String(chat), text, markup: extra.reply_markup }); return { message_id: ++msgId }; },
+  async sendMessage(chat, text, extra = {}) { const m = { id: ++msgId, chat: String(chat), text, markup: extra.reply_markup }; sent.push(m); return { message_id: m.id }; },
+  async editMessageText(chat, id, text, extra = {}) { const m = sent.find((x) => x.id === id); if (m) { m.text = text; m.markup = extra.reply_markup; } edits++; },
   async deleteMessage() {},
   async getChatMember() { return { status: 'member' }; },
 };
@@ -18,125 +20,154 @@ const engine = createEngine({ api, store, cfg, botUsername: 'demo_bot', delaySca
 
 const ME = '100';
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
-const last = (chat = ME) => [...sent].reverse().find((m) => m.chat === chat);
-const lastText = (chat) => last(chat).text;
+const mine = (chat = ME) => sent.filter((m) => m.chat === chat);
+const plain = (s) => String(s).replace(/<[^>]+>/g, '');
+const lastText = (chat = ME) => plain(mine(chat).at(-1).text);
+const recent = (chat = ME, n = 3) => mine(chat).slice(-n).map((m) => plain(m.text)).join('\n---\n');
+const has = (s, chat = ME) => mine(chat).some((m) => plain(m.text).includes(s));
 
 async function press(label, chat = ME) {
   for (let i = sent.length - 1; i >= 0; i--) {
     const m = sent[i];
     if (m.chat !== chat || !m.markup?.inline_keyboard) continue;
     const btn = m.markup.inline_keyboard.flat().find((b) => b.text === label);
-    if (btn) { assert(btn.callback_data, `«${label}» — ссылка, а не кнопка`); return engine.onButton(chat, btn.callback_data); }
+    if (btn) { assert(btn.callback_data, `«${label}» — ссылка, а не кнопка`); return engine.onButton(chat, btn.callback_data, m.id); }
   }
   throw new Error(`Не нашёл кнопку «${label}». Последнее сообщение: ${lastText(chat)}`);
 }
-
-async function until(fragment, chat) {
-  for (let i = 0; i < 100 && !lastText(chat).includes(fragment); i++) await wait(5);
-  expect(fragment, chat);
+const type = (t, chat = ME) => engine.onText(chat, t, { first_name: 'Павел' });
+async function until(fragment, chat = ME) {
+  for (let i = 0; i < 200 && !has(fragment, chat); i++) await wait(5);
+  assert(has(fragment, chat), `Ждал «${fragment}», а бот последним написал:\n${lastText(chat)}`);
 }
-
-function expect(fragment, chat) {
-  assert(lastText(chat).includes(fragment), `Ждал «${fragment}», а бот написал:\n${lastText(chat)}`);
-}
+const expect = (fragment, chat = ME) => assert(recent(chat).includes(fragment), `Ждал «${fragment}», а бот написал:\n${recent(chat)}`);
+async function quiet(ms = 60) { const n = sent.length; await wait(ms); assert.strictEqual(sent.length, n, 'после этого бот должен молчать, а написал: ' + lastText()); }
 
 const checks = {
   async 'Приветствие и меню'() {
-    await engine.onText(ME, '/start', { first_name: 'Павел' });
-    expect('Привет! Я — ассистент');
-    assert.strictEqual(last().markup.inline_keyboard.flat().length, 8);
-    await engine.onText(ME, 'Меню');
-    expect('Главное меню');
+    await type('/start');
+    expect('Здравствуйте, Павел!');
+    await press('Открыть меню');
+    expect('Выберите сценарий');
+    assert.strictEqual(mine().at(-1).markup.inline_keyboard.length, 9);
   },
-  async 'Автовебинар: напоминания, эфир, продажа, оплата'() {
-    await press('🎥 Автовебинар'); await press('✅ Зарегистрироваться'); expect('Вы зарегистрированы');
-    await until('Доброе утро');
-    await until('Через час начинаем');
-    await press('🔴 Войти в эфир'); expect('Вы в эфире');
-    await until('Предложение только для участников');
-    assert(!sent.some((m) => m.text.includes('Мы уже начали')), 'не должно быть «не пришёл» — человек зашёл');
-    await until('уже в записи');
-    await press('💳 Оплатить (демо)'); expect('Оплата прошла');
-    const n = sent.length; await wait(40);
-    assert.strictEqual(sent.length, n, 'после оплаты дожим должен остановиться');
+  async 'Автовебинар: напоминания со сносками, эфир, оффер, оплата'() {
+    await press('🎥 Автовебинар'); expect('🎬 Демо: Автовебинар');
+    await press('Начать'); await press('Завтра в 19:00'); expect('завтра, 19:00 по Москве');
+    await press('Товары'); await until('Записал: Товары');
+    expect('В реальном боте это сообщение придёт через 30 минут после регистрации. В демо — через 5 секунд');
+    await until('мини-урок на 2 минуты'); await until('Доброе утро, Павел! Сегодня в 19:00');
+    await until('Через час начинаем'); await until('Комната открыта'); await until('Мы в эфире');
+    await press('Смотреть сейчас'); await until('с какого смартфона'); await until('упор на тему «товары»');
+    await press('Занять место за 9 900 ₽'); await press('Оплатить (демо)'); expect('добро пожаловать на курс');
+    await until('✅ Это был сценарий «Автовебинар»');
+    await quiet();
   },
-  async 'Автовебинар: не пришёл на эфир'() {
-    await engine.onText(ME, '🎥 Автовебинар'); await press('✅ Зарегистрироваться');
-    await until('Мы уже начали');
-    await engine.onText(ME, '🏠 Главное меню');
-    const n = sent.length; await wait(40);
-    assert.strictEqual(sent.length, n, 'главное меню должно остановить цепочку');
+  async 'Автовебинар: «если промолчать» и /menu останавливает цепочку'() {
+    await press('🔁 Пройти ещё раз'); await press('Начать'); await press('Сегодня в 19:00'); await press('Еду');
+    await until('Мы в эфире');
+    await press('Показать, что будет, если промолчать'); expect('не увидели вас на эфире');
+    await press('Сегодня в 21:00'); await until('Записал на повтор: сегодня в 21:00');
+    await until('Это был сценарий «Автовебинар»');
+    await press('🔁 Пройти ещё раз'); await press('Начать'); await press('Сегодня в 19:00'); await press('Еду');
+    await type('/menu'); expect('Выберите сценарий');
+    await quiet();
   },
-  async 'Закрытый канал'() {
-    await engine.onText(ME, '🔐 Закрытый канал'); await press('💳 Оформить подписку');
-    await press('3 месяца — 2 490 ₽'); await press('✅ Оплатить (демо)'); expect('Тариф: 3 месяца');
-    await until('через 3 дня');
-    await until('последний день');
-    await until('Подписка закончилась');
+  async 'Закрытый канал: тариф, оплата, продление, исключение, /subscription'() {
+    await type('🔐 Закрытый канал по подписке'); await press('Начать');
+    await press('Вопросы и ответы'); await press('Подойдёт ли новичку?'); expect('облегчённый вариант');
+    await press('Тарифы'); await press('3 месяца — 2 490 ₽'); expect('3 месяца — 2 490 ₽');
+    await press('Показать, что будет, если промолчать'); expect('Счёт ещё действует');
+    await press('Оплатить 2 490 ₽'); expect('Добро пожаловать в клуб');
+    await until('Первая тренировка уже в канале'); await until('заканчивается'); await until('банк отклонил');
+    await until('Через 3 часа доступ'); await until('доступ в канал закрыт'); await until('«Сильная спина»');
+    await type('/subscription'); expect('Тариф: 3 месяца');
+    await until('Это был сценарий «Закрытый канал по подписке»');
   },
-  async 'Лид-магнит'() {
-    await engine.onText(ME, '🎁 Лид-магнит'); await press('📥 Получить гайд'); await press('✅ Я подписался');
-    expect('Держите гайд');
-    await until('Удалось посмотреть');
-    await until('Павел соберёт');
+  async 'Лид-магнит: чек-лист, вопрос эксперту, прогрев, запись'() {
+    await type('🎁 Лид-магнит'); await press('Начать');
+    await press('Я подписался(ась) ✅'); expect('Держите чек-лист'); expect('проверил бы подписку автоматически');
+    await until('успели заглянуть'); await press('Есть вопрос'); await type('Нужна ли касса?');
+    await until('Так это видит эксперт'); await until('Нужна ли касса?');
+    await until('История из практики'); await until('Обещанная схема');
+    await press('Никак 😅'); await until('наведём порядок с нуля');
+    await press('Записаться на консультацию'); await press('Пятница'); await press('15:00');
+    assert(mine().at(-1).markup.keyboard, 'нужна кнопка «Отправить номер»');
+    await type('8 900 111-22-33'); expect('Записала: пятница, 15:00');
+    await until('Это был сценарий «Лид-магнит»');
   },
-  async 'Тест с баллами: 0, 4 и 8 баллов'() {
-    for (const [answers, score, verdict] of [
-      [['До 5', 'Сам, вручную', 'Не знаю', 'Пока изучаю'], 0, 'Старт.'],
-      [['5–20', 'Есть менеджер', 'Долго отвечаем', 'В этом месяце'], 4, 'Пора автоматизировать'],
-      [['Больше 20', 'Уже есть бот', 'Не доходят до оплаты', 'Нужно вчера 🙂'], 8, 'теряете деньги'],
-    ]) {
-      await engine.onText(ME, '🧮 Тест с баллами'); await press('▶️ Начать тест');
-      for (const a of answers) await press(a);
-      expect('Считаю баллы');
-      await until(`${score} из 8`); expect(verdict);
-    }
+  async 'Тест с баллами: 21 балл, ответы сворачиваются, «если промолчать»'() {
+    await type('📝 Тест с баллами'); await press('Начать'); await press('Начать тест');
+    const e0 = edits;
+    await press('Как получится');
+    assert(has('Вопрос 1: ваш ответ — Как получится'), 'вопрос должен свернуться в ответ');
+    await press('Показать, что будет, если промолчать'); expect('остановились на вопросе 2 из 7');
+    await press('Продолжить'); expect('Вопрос 2 из 7');
+    for (const a of ['Честно — часть теряется', 'В голове и в блокноте', 'Ждём, что вернётся сам', 'Нет', 'Нет', 'Не считал(а), много']) await press(a);
+    assert.strictEqual(edits - e0, 7);
+    await until('21 из 21 — «Решето»'); expect('скорость первого ответа');
+    await until('отправляю разбор'); await until('бесплатный разбор, 30 минут');
+    await until('Это был сценарий «Тест с баллами»');
   },
-  async 'Колесо фортуны'() {
-    await engine.onText(ME, '🎡 Колесо фортуны'); await press('🎡 Крутить колесо'); expect('крутится');
-    for (let i = 0; i < 30 && !lastText().includes('Попытки закончились'); i++) {
-      for (let k = 0; k < 100 && lastText().includes('крутится'); k++) await wait(5);
-      assert(/Вы выиграли|ещё одна попытка/.test(lastText()), lastText());
-      await press('🎡 Крутить ещё');
-    }
-    expect('Попытки закончились');
+  async 'Колесо фортуны: номер, приз, промокод, суперприз'() {
+    await type('🎡 Колесо фортуны'); await press('Начать'); await press('🎡 Крутить колесо');
+    assert(mine().at(-1).markup.keyboard, 'нужна клавиатура с номером');
+    await type('Пропустить (только в демо)'); await until('Колесо крутится');
+    await until('Ваш промокод'); assert(/[A-Z0-9]+-[A-Z0-9]{5}/.test(recent()), recent());
+    const rnd = Math.random; Math.random = () => 0.999; // суперприз
+    try {
+      await press('Крутить ещё раз (только в демо)'); await until('Пицца каждый месяц целый год'); await until('Так это видит менеджер');
+    } finally { Math.random = rnd; }
+    await until('ваш приз ждёт'); await until('сгорит'); await until('Промокод сгорел'); await until('колесо снова ваше');
+    await until('Оцените заказ'); await press('⭐️⭐️'); await type('Остыла'); await until('Оценка ⭐️⭐️');
+    await until('Это был сценарий «Колесо фортуны»');
   },
-  async 'Онлайн-запись: перенос и отмена'() {
-    await engine.onText(ME, '📅 Онлайн-запись'); await press('✍️ Записаться');
-    await press('✂️ Стрижка'); await press('Завтра'); await press('14:00');
-    expect('Услуга: ✂️ Стрижка'); expect('Время: 14:00');
-    await until('Напоминаю: Завтра в 14:00');
-    await press('🔁 Перенести'); await press('Послезавтра'); await press('18:00'); expect('День: Послезавтра');
-    await until('Напоминаю: Послезавтра'); await press('✅ Приду'); expect('ждём вас');
-    await until('Через 2 часа');
-    await engine.onText(ME, '📅 Онлайн-запись'); await press('✍️ Записаться');
-    await press('💅 Маникюр'); await press('Завтра'); await press('10:00'); await press('❌ Отменить запись');
-    const n = sent.length; await wait(40);
-    assert.strictEqual(sent.length, n, 'после отмены напоминаний быть не должно');
+  async 'Онлайн-запись: всё в одном сообщении, «Назад», запись, напоминания'() {
+    await type('📅 Онлайн-запись'); await press('Начать');
+    const e0 = edits;
+    await press('📅 Записаться'); await press('Центр — ул. Садовая, 14 · 10:00–22:00');
+    await press('🎨 Окрашивание'); await press('← Назад'); await press('🎨 Окрашивание');
+    await press('Окрашивание в один тон · 120 мин · от 4 500 ₽'); await press('До плеч');
+    await press('Анна · топ-мастер · ⭐️ 4,9 · +20% к цене'); await press('Другая дата →'); await press('← Ближе');
+    await press('Завтра'); await press('☀️ День, 12:00–17:00'); await press('14:00');
+    await press('+ Уход для волос · 900 ₽');
+    assert(edits - e0 >= 12, 'шаги записи должны менять одно сообщение, правок: ' + (edits - e0));
+    await type('89001234567'); await type('Без разговоров, пожалуйста');
+    expect('Проверьте запись'); expect('Окрашивание в один тон + уход для волос'); expect('7 400 ₽');
+    await press('✅ Подтвердить'); await until('Так это видит администратор');
+    await until('напоминаю: завтра в 14:00'); await until('Через 2 часа ждём вас'); await until('как вам визит? Мастер — Анна');
+    await press('😕 Есть замечания'); await type('Долго ждала'); await until('Замечание по визиту');
+    await until('прошло 3 недели'); await until('Это был сценарий «Онлайн-запись»');
   },
-  async 'Сбор заявок: неверный и верный номер, заявка менеджеру'() {
-    await engine.onText(ME, '📝 Сбор заявок'); await press('🚀 Оставить заявку');
-    await press('Чат-бот'); await press('от 50 000 ₽');
-    assert(last().markup.keyboard, 'нужна кнопка «Отправить номер»');
-    await engine.onText(ME, 'позвоните мне'); expect('не номер телефона');
-    await engine.onText(ME, '8 (900) 123-45-67'); expect('Заявка принята'); expect('Бюджет: от 50 000 ₽');
-    const admin = last('999').text;
-    assert(admin.includes('+79001234567') && admin.includes('Чат-бот'), admin);
-    await engine.onText(ME, '79001234567'); expect('Я отвечаю на кнопки');
+  async 'Сбор заявок: квиз кухни, фото, звонок, карточка менеджера, замер'() {
+    await type('📨 Сбор заявок'); await press('Начать'); await press('Рассчитать кухню');
+    for (const a of ['Угловая', '3–4 метра', 'Современный', 'Эмаль', 'Не нужна', '150 000–300 000 ₽', 'Как можно скорее']) await press(a);
+    expect('Пришлите фото'); await engine.onPhoto(ME); expect('Фото получено (1)');
+    await press('Готово, фото отправлены'); await type('79001234567');
+    await press('Звонком'); await press('Вечером, 17–20');
+    await until('Новая заявка №'); expect('Приоритет: горячая 🔥'); expect('Фото: 1 шт.');
+    await until('Вашу заявку взяла в работу Елена'); await until('расчёт готов'); expect('от 240 000 ₽');
+    await press('Записаться на замер'); await press(mine().at(-1).markup.inline_keyboard[0][0].text); await press('13:00');
+    await until('Замер назначен'); await until('Это был сценарий «Сбор заявок»');
   },
-  async 'Ссылка с сайта открывает сценарий сразу'() {
-    await engine.onText('300', '/start quiz', { first_name: 'Гость' }); expect('Тест с подсчётом баллов', '300');
-    await engine.onText('301', '/start webinar', {}); expect('Сценарий «Автовебинар»', '301');
-    await engine.onText('302', '/start nonsense', {}); expect('Привет! Я — ассистент', '302');
+  async 'Реферальная программа: ссылка, друг, бонусы, уровень, кабинет'() {
+    await type('🤝 Реферальная программа'); await press('Начать'); await press('Получить мою ссылку');
+    await until('Так бота увидит ваш друг'); await until('пришёл Илья'); await until('Илья оплатил'); expect('Баланс: 500 ₽');
+    await until('Маша заглянула'); await until('вы достигли уровня «Свой»'); expect('Баланс: 2500 ₽');
+    await type('/ref'); expect('Уровень: Свой'); expect('Оплатили заказ: 3');
+    await until('Рейтинг'); await until('сгорят 2500'); await until('Это был сценарий «Реферальная программа»');
   },
-  async 'Реферальная программа: симуляция и настоящий друг'() {
-    await engine.onText(ME, '🤝 Реферальная программа'); await press('🔗 Моя ссылка');
-    expect('https://t.me/demo_bot?start=ref_100');
-    await press('➕ Симулировать приход друга'); expect('Всего друзей: 1');
-    await engine.onText('200', '/start ref_100', { first_name: 'Друг' });
-    expect('Всего друзей: 2'); expect('Привет!', '200');
-    await engine.onText('200', '/start ref_100', { first_name: 'Друг' });
-    expect('Всего друзей: 2');
+  async 'Хочу такого бота: заявка уходит Павлу по-настоящему'() {
+    await press('💬 Хочу такого бота'); await press('Оставить заявку здесь');
+    await type('Онлайн-школа, нужна воронка как в автовебинаре'); await type('@client_nick');
+    expect('Заявка у Павла');
+    const admin = mine('999').at(-1).text;
+    assert(admin.includes('@client_nick') && admin.includes('Онлайн-школа') && admin.includes('Реферальная программа'), admin);
+  },
+  async 'Ссылки с сайта открывают сценарий сразу'() {
+    await engine.onText('300', '/start quiz', { first_name: 'Гость' }); expect('🎬 Демо: Тест с баллами', '300');
+    await engine.onText('301', '/start booking', {}); expect('🎬 Демо: Онлайн-запись', '301');
+    await engine.onText('302', '/start nonsense', {}); expect('Здравствуйте, Павел!'.replace('Павел', 'друг'), '302');
   },
 };
 

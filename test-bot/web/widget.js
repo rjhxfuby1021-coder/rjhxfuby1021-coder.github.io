@@ -10,8 +10,8 @@ const CHAT = 'web';
 const ADMIN = 'admin';
 const LEAD_URL = 'https://texspeckps-form.texspeckps.workers.dev';
 const TG = 'https://t.me/Bot_PortfolioRabot';
-const KEY_USER = 'pk-botchat-user';
-const KEY_LOG = 'pk-botchat-log';
+const KEY_USER = 'pk-botchat-user-v2';
+const KEY_LOG = 'pk-botchat-log-v2';
 
 const cfg = {
   WEB: true,
@@ -57,6 +57,7 @@ const CSS = `
   box-shadow:inset 0 0 0 1.5px var(--acc-soft);text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:4px;transition:background .15s}
 .btn:hover{background:var(--acc-soft)}
 .btn[disabled]{opacity:.45;cursor:default}
+.btn.picked{background:var(--acc-soft)}
 .ext::after{content:"↗";font-size:12px;opacity:.7}
 .typing{align-self:flex-start;background:#fff;border-radius:16px;padding:12px 14px;display:flex;gap:4px}
 .typing i{width:7px;height:7px;border-radius:50%;background:#a3a8b5;animation:dot 1s infinite}
@@ -93,6 +94,7 @@ function colors() {
 
 let root, logEl, quickEl, input, engine, opened = false;
 let history = [];
+let msgSeq = 0; // номер последнего сообщения бота
 let queue = Promise.resolve(); // вывод сообщений по одному, с «печатает…»
 let act = Promise.resolve();   // действия человека по очереди
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -100,20 +102,23 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 function save() { try { sessionStorage.setItem(KEY_LOG, JSON.stringify(history.slice(-80))); } catch (e) { /* ничего */ } }
 function scroll() { logEl.scrollTop = logEl.scrollHeight; }
 
-function renderBot(m) {
+// у каждого сообщения бота свой номер — чтобы его можно было заменить на месте (пошаговая запись, ответы теста)
+function renderBot(m, before) {
   const div = document.createElement('div');
   div.className = 'msg bot';
+  div.dataset.mid = m.id || '';
   div.innerHTML = m.text.replace(/\n/g, '<br>');
-  logEl.appendChild(div);
+  logEl.insertBefore(div, before || null);
   if (m.kb) {
     const kb = document.createElement('div');
     kb.className = 'kb';
+    kb.dataset.kbfor = m.id || '';
     kb.innerHTML = m.kb.map((row) => '<div class="row">' + row.map((b) => b.url
       ? (/^https?:/.test(b.url) && !b.url.includes(location.host)
         ? `<a class="btn ext" href="${esc(b.url)}" target="_blank" rel="noopener">${esc(b.text)}</a>`
         : `<a class="btn" href="${esc(b.url)}">${esc(b.text)}</a>`)
-      : `<button class="btn" type="button" data-cb="${esc(b.callback_data)}">${esc(b.text)}</button>`).join('') + '</div>').join('');
-    logEl.appendChild(kb);
+      : `<button class="btn" type="button" data-cb="${esc(b.callback_data)}" data-mid="${m.id || ''}">${esc(b.text)}</button>`).join('') + '</div>').join('');
+    logEl.insertBefore(kb, before || null);
   }
 }
 function renderMe(text) {
@@ -139,13 +144,32 @@ const api = {
       logEl.appendChild(t); scroll();
       await sleep(Math.min(900, 250 + text.length * 2));
       t.remove();
-      const m = { from: 'bot', text, kb: mk.inline_keyboard || null };
+      const m = { from: 'bot', id: ++msgSeq, text, kb: mk.inline_keyboard || null };
       history.push(m); renderBot(m);
       if (mk.keyboard) { renderQuick(mk.keyboard); history.push({ from: 'quick', rows: mk.keyboard }); }
       if (mk.remove_keyboard) { renderQuick(null); history.push({ from: 'quick', rows: null }); }
       save(); scroll();
     });
-    return queue.then(() => ({ message_id: history.length }));
+    return queue.then(() => ({ message_id: msgSeq }));
+  },
+  // заменить сообщение на месте — как editMessageText в Telegram
+  editMessageText(chatId, id, text, extra = {}) {
+    queue = queue.then(() => {
+      const m = history.find((x) => x.from === 'bot' && x.id === id);
+      if (!m) return;
+      m.text = text;
+      m.kb = (extra.reply_markup && extra.reply_markup.inline_keyboard) || null;
+      const div = logEl.querySelector(`.msg.bot[data-mid="${id}"]`);
+      const oldKb = logEl.querySelector(`.kb[data-kbfor="${id}"]`);
+      if (div) {
+        const after = (oldKb || div).nextSibling;
+        if (oldKb) oldKb.remove();
+        div.remove();
+        renderBot(m, after);
+      }
+      save();
+    });
+    return queue;
   },
   async deleteMessage() {},
   async getChatMember() { return { status: 'member' }; },
@@ -206,6 +230,7 @@ function build(into) {
 
   // история переписки — чтобы при переходе по страницам сайта чат не начинался заново
   try { history = JSON.parse(sessionStorage.getItem(KEY_LOG) || '[]'); } catch (e) { history = []; }
+  msgSeq = history.reduce((n, m) => Math.max(n, m.id || 0), 0);
   for (const m of history) {
     if (m.from === 'bot') renderBot(m);
     else if (m.from === 'me') renderMe(m.text);
@@ -220,8 +245,8 @@ function build(into) {
     if (t.hasAttribute('data-phone')) { input.placeholder = 'Номер, например 79001234567'; input.inputMode = 'tel'; input.focus(); return; }
     if (t.dataset.say) return say(t.dataset.say);
     if (t.dataset.cb) {
-      me(t.textContent);
-      act = act.then(() => engine.onButton(CHAT, t.dataset.cb)).catch(() => {});
+      t.classList.add("picked"); // как в Telegram: нажатие кнопки не превращается в сообщение, кнопка просто подсвечивается
+      act = act.then(() => engine.onButton(CHAT, t.dataset.cb, Number(t.dataset.mid) || null)).catch(() => {});
     }
   });
   root.querySelector('form').addEventListener('submit', (e) => {
@@ -235,11 +260,11 @@ function build(into) {
 }
 
 function me(text) { history.push({ from: 'me', text }); renderMe(text); save(); scroll(); }
-function run(cmd) { act = act.then(() => engine.onText(CHAT, cmd, { first_name: 'Гость сайта' })).catch(() => {}); }
+function run(cmd) { act = act.then(() => engine.onText(CHAT, cmd, {})).catch(() => {}); }
 function say(text) {
   me(text);
   input.placeholder = 'Напишите сообщение…'; input.inputMode = 'text';
-  act = act.then(() => engine.onText(CHAT, text, { first_name: 'Гость сайта' })).catch(() => {});
+  act = act.then(() => engine.onText(CHAT, text, {})).catch(() => {});
 }
 
 // Встроить чат в блок страницы (страница «Демо-бот»): сразу запускается, ?start=<код> — сразу сценарий

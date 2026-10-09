@@ -131,14 +131,14 @@ const BOT = 'https://t.me/Bot_PortfolioRabot';
 const BOT_QR = require('fs').readFileSync(require('path').join(__dirname, '../../new/assets/bot-qr.svg'), 'utf8')
   .replace('<svg ', '<svg width="150" height="150" role="img" aria-label="QR-код бота" ');
 const BOT_SCENARIOS = [
-  ['webinar', '🎥', L('Автовебинар', 'Automated webinar'), L('Регистрация, напоминания, эфир, продажа и дожим', 'Sign-up, reminders, live stream, offer and follow-up')],
-  ['channel', '🔐', L('Закрытый канал', 'Private channel'), L('Оплата подписки, доступ и продление', 'Subscription payment, access and renewal')],
-  ['leadmagnet', '🎁', L('Лид-магнит', 'Lead magnet'), L('Гайд за подписку и прогрев', 'A guide for subscribing, then nurturing')],
-  ['quiz', '🧮', L('Тест с баллами', 'Scored quiz'), L('Опрос, подсчёт и результат по баллам', 'Questions, scoring and a result by points')],
-  ['wheel', '🎡', L('Колесо фортуны', 'Wheel of fortune'), L('Игра со случайным призом', 'A game with a random prize')],
-  ['booking', '📅', L('Онлайн-запись', 'Online booking'), L('Услуга, день и время, напоминания о визите', 'Service, day and time, visit reminders')],
-  ['leads', '📝', L('Сбор заявок', 'Lead capture'), L('Квалификация и контакт для менеджера', 'Qualification and a contact for the manager')],
-  ['referral', '🤝', L('Реферальная программа', 'Referral program'), L('Личная ссылка, друзья и бонусы', 'Personal link, friends and bonuses')]
+  ['webinar', '🎥', L('Автовебинар', 'Automated webinar'), L('Школа съёмки: регистрация, напоминания, эфир, оффер и дожим', 'Photo school: sign-up, reminders, stream, offer and follow-up')],
+  ['channel', '🔐', L('Закрытый канал по подписке', 'Paid private channel'), L('Фитнес-клуб: оплата, доступ, продление и возврат ушедших', 'Fitness club: payment, access, renewal and win-back')],
+  ['leadmagnet', '🎁', L('Лид-магнит', 'Lead magnet'), L('Бухгалтер для ИП: чек-лист за подписку, прогрев, консультация', 'Accountant: checklist for a subscription, nurturing, consultation')],
+  ['quiz', '📝', L('Тест с баллами', 'Scored quiz'), L('Агентство: 7 вопросов, результат по баллам и свой оффер', 'Agency: 7 questions, scored result and a matching offer')],
+  ['wheel', '🎡', L('Колесо фортуны', 'Wheel of fortune'), L('Пиццерия: приз с вероятностью, промокод и напоминания', 'Pizzeria: weighted prize, promo code and reminders')],
+  ['booking', '📅', L('Онлайн-запись', 'Online booking'), L('Студия красоты: филиал, услуга, мастер, время, напоминания', 'Beauty studio: branch, service, master, time, reminders')],
+  ['leads', '📨', L('Сбор заявок', 'Lead capture'), L('Кухни на заказ: квиз, фото, карточка менеджеру, замер', 'Custom kitchens: quiz, photos, manager card, measuring')],
+  ['referral', '🤝', L('Реферальная программа', 'Referral program'), L('Доставка еды: личная ссылка, бонусы друзьям и уровни', 'Meal delivery: personal link, friend bonuses and levels')]
 ];
 const DEMO = { salebot: null, webinar: ['webinar'] }; // где показывать: null — все сценарии
 
