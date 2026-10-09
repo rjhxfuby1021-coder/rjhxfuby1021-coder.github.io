@@ -11,6 +11,7 @@ let edits = 0;
 const api = {
   async sendMessage(chat, text, extra = {}) { const m = { id: ++msgId, chat: String(chat), text, markup: extra.reply_markup }; sent.push(m); return { message_id: m.id }; },
   async editMessageText(chat, id, text, extra = {}) { const m = sent.find((x) => x.id === id); if (m) { m.text = text; m.markup = extra.reply_markup; } edits++; },
+  async sendAnimation(chat, src, extra = {}) { const m = { id: ++msgId, chat: String(chat), text: extra.caption || '', gif: src, markup: extra.reply_markup }; sent.push(m); return { message_id: m.id }; },
   async deleteMessage() {},
   async getChatMember() { return { status: 'member' }; },
 };
@@ -36,8 +37,14 @@ async function press(label, chat = ME) {
   throw new Error(`Не нашёл кнопку «${label}». Последнее сообщение: ${lastText(chat)}`);
 }
 const type = (t, chat = ME) => engine.onText(chat, t, { first_name: 'Павел' });
+// ждём сообщение; если бот ждёт нажатия «⏩ Показать следующее сообщение» — нажимаем, как человек
 async function until(fragment, chat = ME) {
-  for (let i = 0; i < 200 && !has(fragment, chat); i++) await wait(5);
+  for (let i = 0; i < 200 && !has(fragment, chat); i++) {
+    const m = [...mine(chat)].reverse().find((x) => x.markup?.inline_keyboard?.flat().some((b) => b.text === '⏩ Показать следующее сообщение'));
+    const btn = m && m.markup.inline_keyboard.flat().find((b) => b.text === '⏩ Показать следующее сообщение');
+    if (btn) await engine.onButton(chat, btn.callback_data, m.id);
+    else await wait(5);
+  }
   assert(has(fragment, chat), `Ждал «${fragment}», а бот последним написал:\n${lastText(chat)}`);
 }
 const expect = (fragment, chat = ME) => assert(recent(chat).includes(fragment), `Ждал «${fragment}», а бот написал:\n${recent(chat)}`);
@@ -55,7 +62,7 @@ const checks = {
     await press('🎥 Автовебинар'); expect('🎬 Демо: Автовебинар');
     await press('Начать'); await press('Завтра в 19:00'); expect('завтра, 19:00 по Москве');
     await press('Товары'); await until('Записал: Товары');
-    expect('В реальном боте это сообщение придёт через 30 минут после регистрации. В демо — через 5 секунд');
+    expect('В реальном боте следующее сообщение придёт через 30 минут после регистрации.');
     await until('мини-урок на 2 минуты'); await until('Доброе утро, Павел! Сегодня в 19:00');
     await until('Через час начинаем'); await until('Комната открыта'); await until('Мы в эфире');
     await press('Смотреть сейчас'); await until('с какого смартфона'); await until('упор на тему «товары»');
@@ -113,6 +120,7 @@ const checks = {
     await type('🎡 Колесо фортуны'); await press('Начать'); await press('🎡 Крутить колесо');
     assert(mine().at(-1).markup.keyboard, 'нужна клавиатура с номером');
     await type('Пропустить (только в демо)'); await until('Колесо крутится');
+    assert(/\/assets\/wheel\/wheel-[1-8]\.gif$/.test(mine().find((m) => m.gif).gif), 'вращение — гифкой');
     await until('Ваш промокод'); assert(/[A-Z0-9]+-[A-Z0-9]{5}/.test(recent()), recent());
     const rnd = Math.random; Math.random = () => 0.999; // суперприз
     try {
@@ -158,7 +166,7 @@ const checks = {
     await until('Рейтинг'); await until('сгорят 2500'); await until('Это был сценарий «Реферальная программа»');
   },
   async 'Хочу такого бота: заявка уходит Павлу по-настоящему'() {
-    const exitBtn = mine().at(-1).markup.inline_keyboard[0][0];
+    const exitBtn = [...mine()].reverse().find((m) => m.text.includes('Это был сценарий')).markup.inline_keyboard[0][0];
     assert(exitBtn.url && exitBtn.url.includes('service=salebot') && decodeURIComponent(exitBtn.url).includes('Бот как в демо: Реферальная программа'), 'кнопка выхода должна вести на форму сайта: ' + exitBtn.url);
     await type('/start want'); await press('Оставить заявку здесь');
     await type('Онлайн-школа, нужна воронка как в автовебинаре'); await type('@client_nick');
@@ -166,10 +174,29 @@ const checks = {
     const admin = mine('999').at(-1).text;
     assert(admin.includes('@client_nick') && admin.includes('Онлайн-школа') && admin.includes('Реферальная программа'), admin);
   },
+  async 'Паузы: с кнопками — ждём нажатия, без кнопок — само; без имени нет «друг»'() {
+    const C = '400';
+    await engine.onText(C, '/start webinar', {}); await press('Начать', C); await press('Сегодня в 19:00', C); await press('Еду', C);
+    assert(has('Привет! Это школа мобильной съёмки', C), 'без имени — без обращения');
+    assert(!mine(C).some((m) => /друг|Гость,/.test(plain(m.text))), 'не должно быть «друг»');
+    // «Записал: …» без кнопок → следующее пришло само
+    for (let i = 0; i < 100 && !has('мини-урок на 2 минуты', C); i++) await wait(5);
+    assert(has('мини-урок на 2 минуты', C), 'сообщение без кнопок должно продолжиться само');
+    // у мини-урока есть кнопка → бот ждёт «⏩»
+    await wait(80);
+    assert(!has('Доброе утро', C), 'после сообщения с кнопками бот должен ждать нажатия');
+    const m = [...mine(C)].reverse().find((x) => x.markup?.inline_keyboard?.flat().some((b) => b.text === '⏩ Показать следующее сообщение'));
+    assert(m, 'нужна кнопка «⏩ Показать следующее сообщение»');
+    await engine.onButton(C, m.markup.inline_keyboard[0][0].callback_data, m.id);
+    expect('Доброе утро! Сегодня в 19:00', C);
+    assert(!m.markup?.inline_keyboard, 'после нажатия кнопка «⏩» исчезает');
+    assert(!mine(C).some((x) => /В демо — через/.test(x.text)), 'приписки «В демо — через …» быть не должно');
+    await engine.onText(C, '/menu', {});
+  },
   async 'Ссылки с сайта открывают сценарий сразу'() {
     await engine.onText('300', '/start quiz', { first_name: 'Гость' }); expect('🎬 Демо: Тест с баллами', '300');
     await engine.onText('301', '/start booking', {}); expect('🎬 Демо: Онлайн-запись', '301');
-    await engine.onText('302', '/start nonsense', {}); expect('Здравствуйте, Павел!'.replace('Павел', 'друг'), '302');
+    await engine.onText('302', '/start nonsense', {}); expect('Здравствуйте! 👋', '302');
   },
 };
 

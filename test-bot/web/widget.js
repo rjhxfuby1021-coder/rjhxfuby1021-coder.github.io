@@ -58,6 +58,7 @@ const CSS = `
 .btn:hover{background:var(--acc-soft)}
 .btn[disabled]{opacity:.45;cursor:default}
 .btn.picked{background:var(--acc-soft)}
+.msg img.gif{display:block;width:100%;max-width:260px;border-radius:12px;margin:0 0 8px}
 .ext::after{content:"↗";font-size:12px;opacity:.7}
 .typing{align-self:flex-start;background:#fff;border-radius:16px;padding:12px 14px;display:flex;gap:4px}
 .typing i{width:7px;height:7px;border-radius:50%;background:#a3a8b5;animation:dot 1s infinite}
@@ -107,8 +108,10 @@ function renderBot(m, before) {
   const div = document.createElement('div');
   div.className = 'msg bot';
   div.dataset.mid = m.id || '';
-  div.innerHTML = m.text.replace(/\n/g, '<br>');
+  div.innerHTML = (m.img ? `<img class="gif" src="${esc(m.img)}" alt="" loading="lazy">` : '') + m.text.replace(/\n/g, '<br>');
   logEl.insertBefore(div, before || null);
+  const gif = div.querySelector('img.gif');
+  if (gif && !before) gif.addEventListener('load', scroll, { once: true });
   if (m.kb) {
     const kb = document.createElement('div');
     kb.className = 'kb';
@@ -144,7 +147,7 @@ const api = {
       logEl.appendChild(t); scroll();
       await sleep(Math.min(900, 250 + text.length * 2));
       t.remove();
-      const m = { from: 'bot', id: ++msgSeq, text, kb: mk.inline_keyboard || null };
+      const m = { from: 'bot', id: ++msgSeq, text, kb: mk.inline_keyboard || null, img: extra.img || null };
       history.push(m); renderBot(m);
       if (mk.keyboard) { renderQuick(mk.keyboard); history.push({ from: 'quick', rows: mk.keyboard }); }
       if (mk.remove_keyboard) { renderQuick(null); history.push({ from: 'quick', rows: null }); }
@@ -171,7 +174,19 @@ const api = {
     });
     return queue;
   },
-  async deleteMessage() {},
+  // гифка (колесо фортуны) — сообщение с картинкой и подписью
+  sendAnimation(chatId, src, extra = {}) {
+    return api.sendMessage(chatId, extra.caption || '', { reply_markup: extra.reply_markup, img: src });
+  },
+  deleteMessage(chatId, id) {
+    queue = queue.then(() => {
+      history = history.filter((x) => !(x.from === 'bot' && x.id === id));
+      const div = logEl.querySelector(`.msg.bot[data-mid="${id}"]`);
+      if (div) div.remove();
+      save();
+    });
+    return queue;
+  },
   async getChatMember() { return { status: 'member' }; },
 };
 

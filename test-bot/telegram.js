@@ -21,6 +21,7 @@ function createApi(token) {
     sendMessage: (chat_id, text, extra = {}) =>
       call('sendMessage', { chat_id, text, parse_mode: 'HTML', link_preview_options: { is_disabled: true }, ...extra }),
     deleteMessage: (chat_id, message_id) => call('deleteMessage', { chat_id, message_id }),
+    sendAnimation: (chat_id, animation, extra = {}) => call('sendAnimation', { chat_id, animation, parse_mode: 'HTML', ...extra }),
     editMessageText: (chat_id, message_id, text, extra = {}) =>
       call('editMessageText', { chat_id, message_id, text, parse_mode: 'HTML', link_preview_options: { is_disabled: true }, ...extra })
         .catch((e) => { if (!/not modified/.test(e.message)) throw e; }),

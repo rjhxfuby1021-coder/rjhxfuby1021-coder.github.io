@@ -83,15 +83,17 @@ const checks = {
     await msg(100, '/start'); expect(100, 'Здравствуйте, Тест!');
     await msg(100, '/menu'); expect(100, 'Выберите сценарий');
   },
-  async 'Автовебинар: сноска сразу, сообщение — по будильнику через 5 сек, /menu останавливает'() {
+  async 'Автовебинар: без кнопок — по будильнику через 10 сек, с кнопками — по «⏩», /menu останавливает'() {
     await press(100, '🎥 Автовебинар'); await press(100, 'Начать'); await press(100, 'Сегодня в 19:00'); await press(100, 'Товары');
-    expect(100, 'В реальном боте это сообщение придёт через 30 минут после регистрации');
-    await passSeconds(100, 3); expect(100, 'Записал: Товары');
-    await passSeconds(100, 3); expect(100, 'мини-урок на 2 минуты');
-    await passSeconds(100, 6); expect(100, 'Доброе утро, Тест!');
+    expect(100, 'В реальном боте следующее сообщение придёт через 30 минут после регистрации.');
+    await passSeconds(100, 5); assert(!recent(100).includes('мини-урок'), 'раньше 10 секунд — рано');
+    await passSeconds(100, 6); expect(100, 'мини-урок на 2 минуты');
+    for (let i = 0; i < 4; i++) await passSeconds(100, 11);
+    assert(!recent(100).includes('Доброе утро'), 'у мини-урока есть кнопка — бот должен ждать нажатия');
+    await press(100, '⏩ Показать следующее сообщение'); expect(100, 'Доброе утро, Тест!');
     await msg(100, '/menu');
     const n = sent.length;
-    for (let i = 0; i < 6; i++) await passSeconds(100, 6);
+    for (let i = 0; i < 6; i++) await passSeconds(100, 11);
     assert.strictEqual(sent.length, n, 'после меню цепочка должна остановиться');
   },
   async 'Тест: вопрос сворачивается в ответ (правка сообщения)'() {

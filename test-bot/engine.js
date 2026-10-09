@@ -74,7 +74,16 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     };
   }
 
-  const fill = (text, v) => String(text).replace(/#\{(\w+)\}/g, (_, k) => esc(v[k]));
+  // #{переменная} → значение. Если имени нет (чат на сайте), обращение выпадает:
+  // «Здравствуйте, #{name}!» → «Здравствуйте!», «#{name}, привет!» → «Привет!», в карточках — «Гость»
+  const fill = (text, v) => {
+    let s = String(text);
+    if (!v.name) {
+      s = s.replace(/,\s*#\{name\}(?=[!?.])/g, '')
+        .replace(/(^|\n)#\{name\},\s*(\S)/g, (m, start, c) => start + c.toUpperCase());
+    }
+    return s.replace(/#\{(\w+)\}/g, (_, k) => esc(k === 'name' && !v.name ? 'Гость' : v[k]));
+  };
   const getButtons = (b, v, ctx) => (typeof b.buttons === 'function' ? b.buttons(v, ctx) : b.buttons) || null;
 
   function markup(id, b, v, ctx) {
@@ -103,8 +112,7 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const v = user.vars;
     const ctx = context(chatId);
 
-    if (v.name == null) v.name = 'друг';
-    if (b.cancel) await timers.cancel(chatId);
+    if (b.cancel) { await timers.cancel(chatId); user.pending = {}; }
     if (b.set) b.set(v, ctx);
     user.state = id;
     user.wait = b.wait ? { ...b.wait } : null;
@@ -127,6 +135,12 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
       await api.editMessageText(chatId, opts.editId, text, { reply_markup: mk }).catch(async () => {
         await api.sendMessage(chatId, text, { reply_markup: mk });
       });
+    } else if (b.animation && api.sendAnimation) {
+      const src = typeof b.animation === 'function' ? b.animation(v, ctx) : b.animation;
+      await api.sendAnimation(chatId, src, { caption: text, reply_markup: mk }).catch(async (e) => {
+        log.error('Гифка не отправилась:', e.message);
+        await api.sendMessage(chatId, text, { reply_markup: mk });
+      });
     } else {
       await api.sendMessage(chatId, text, { reply_markup: mk });
     }
@@ -144,10 +158,18 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const next = b.next || [];
     for (let i = 0; i < next.length; i++) {
       const n = next[i];
-      if (n.real) {
-        await api.sendMessage(chatId, `<i>⏳ В реальном боте это сообщение придёт ${n.real}. В демо — через ${n.after} секунд.</i>`);
-      }
-      await timers.add(chatId, n.after * 1000, { block: id, idx: i });
+      if (!n.real) { await timers.add(chatId, n.after * 1000, { block: id, idx: i }); continue; }
+      // у сообщения есть свои кнопки — ждём человека, иначе следующее придёт само
+      const tap = n.tap ?? Boolean(mk && mk.inline_keyboard);
+      const key = `${id}:${i}:${Math.random().toString(36).slice(2, 6)}`;
+      const note = `<i>⏳ В реальном боте следующее сообщение придёт ${n.real}.</i>`;
+      const sentNote = await api.sendMessage(chatId, note, {
+        reply_markup: { inline_keyboard: [[{ text: tap ? '⏩ Показать следующее сообщение' : '⏩ Не ждать', callback_data: '__n:' + key }]] },
+      });
+      user.pending = user.pending || {};
+      user.pending[key] = { mid: sentNote && sentNote.message_id, text: note };
+      await users.save(chatId, user);
+      if (!tap) await timers.add(chatId, n.after * 1000, { block: id, idx: i, key });
     }
 
   }
@@ -157,6 +179,13 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const n = blocks[job.block]?.next?.[job.idx];
     if (!n) return;
     const user = await users.load(chatId);
+    if (job.key) {
+      const p = user.pending && user.pending[job.key];
+      if (!p) return; // уже показали по кнопке или цепочку остановили
+      delete user.pending[job.key];
+      await users.save(chatId, user);
+      if (p.mid && api.editMessageText) await api.editMessageText(chatId, p.mid, p.text, {}).catch(() => {});
+    }
     if (n.unless && n.unless(user.vars)) return;
     await go(chatId, n.go);
   }
@@ -166,7 +195,7 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const user = await users.load(chatId);
     user.name = [from.first_name, from.last_name].filter(Boolean).join(' ');
     user.username = from.username || '';
-    user.vars.name = from.first_name || user.vars.name || 'друг';
+    user.vars.name = from.first_name || user.vars.name || '';
     user.vars.username = from.username || '';
     await users.save(chatId, user);
 
@@ -233,6 +262,17 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
   }
 
   async function onButton(chatId, data, msgId) {
+    // «⏩ Показать следующее сообщение» / «⏩ Не ждать»
+    if (String(data).startsWith('__n:')) {
+      const key = String(data).slice(4);
+      const [block, idx] = key.split(':');
+      const user = await users.load(chatId);
+      if (!user.pending || !user.pending[key]) {
+        if (msgId && api.editMessageText) await api.editMessageText(chatId, msgId, '<i>⏳ Эта цепочка уже завершена.</i>', {}).catch(() => {});
+        return;
+      }
+      return fire(chatId, { block, idx: Number(idx), key });
+    }
     const [id, r, c] = String(data).split(':');
     const src = blocks[id];
     if (!src) return;

@@ -13,7 +13,7 @@ function require(name) {
 }
 defs["scenarios"] = function (module, exports, require) {
 // Схема демо-бота: «Сценарий демо-бота: 8 типовых воронок» (10.10.2026).
-// Каждая ветка — бот вымышленного бизнеса; все паузы сжаты до 5 секунд, перед отложенным сообщением — сноска.
+// Каждая ветка — бот вымышленного бизнеса; следующее сообщение — через 10 секунд или по кнопке «⏩», перед ним — сноска со временем в реальном боте.
 //
 // Блок — это одно сообщение бота:
 //   text     — текст (HTML-разметка Telegram, #{переменная} подставляется), или функция (v, ctx) => текст
@@ -28,12 +28,13 @@ defs["scenarios"] = function (module, exports, require) {
 //              (с real движок сразу присылает сноску «⏳ В реальном боте это сообщение придёт …»)
 //   then     — сразу следом прислать ещё один блок (например, «так это видит менеджер»)
 //   cancel   — при входе остановить все отложенные сообщения (как «удалять при смене состояния»)
+//   animation — гифка вместо текста (text становится подписью), строка или (v) => адрес
 //   inplace  — пошаговое меню: переход по кнопке заменяет это сообщение, а не присылает новое
 //   answered — после ответа вопрос превращается в этот текст (#{answer} — нажатая кнопка)
 //   notify   — (v) => текст уведомления владельцу бота (ADMIN_CHAT_ID) — по-настоящему
 
 module.exports = function scenarios(cfg) {
-  const PAUSE = 5; // все паузы длиннее 5 секунд в демо — 5 секунд
+  const PAUSE = 10; // в демо: следующее сообщение — через 10 секунд или по кнопке «⏩ Показать следующее сообщение»
 
   // ───── помощники ─────
   const go = (text, to, set) => ({ text, go: to, set });
@@ -79,7 +80,7 @@ module.exports = function scenarios(cfg) {
         'Здравствуйте, #{name}! 👋\n\n' +
         'Я демо-бот PavelTexSpec. Внутри меня — 8 готовых воронок, которые чаще всего заказывают для бизнеса.\n\n' +
         'Каждую можно пройти как обычный клиент: я буду вести себя как бот школы, салона или магазина. ' +
-        'Паузы между сообщениями сокращены до 5 секунд, а рядом я подскажу, когда сообщение пришло бы в реальной жизни.\n\n' +
+        'Долгие паузы сокращены: следующее сообщение придёт через 10 секунд или по кнопке, а я подскажу, когда оно пришло бы в реальной жизни.\n\n' +
         'С чего начнём?',
       buttons: [[go('Открыть меню', 'menu')]],
     },
@@ -589,7 +590,8 @@ module.exports = function scenarios(cfg) {
         v.sector = i + 1; v.prize = p.name; v.cond = p.cond; v.promo = p.code + '-' + code5(); v.freq = p.freq || '';
         v.burn = dateLong(2) + ', ' + new Date().toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit' });
       },
-      text: '🎡 Колесо крутится…\n\n' + note('В реальном боте здесь GIF с колесом — своя анимация под каждый из 8 секторов.'),
+      text: '🎡 Колесо крутится…',
+      animation: (v) => (cfg.WEB ? '/assets/wheel/' : 'https://texspeckps.ru/assets/wheel/') + 'wheel-' + v.sector + '.gif',
       next: [soon('wh_res', 4)],
     },
     wh_res: { route: (v) => (v.sector >= 7 ? 'wh_super' : 'wh_win') },
@@ -1018,7 +1020,7 @@ module.exports = function scenarios(cfg) {
       then: 'rf_5',
     },
     rf_5: {
-      text: '👀 <i>Так бота увидит ваш друг:</i>\n\nПривет! Вас пригласил(а) #{name} 👋\n\nЭто «Ложка» — готовые рационы на день с доставкой к утру. Для вас скидка 300 ₽ на первый заказ, она уже применена.',
+      text: (v) => '👀 <i>Так бота увидит ваш друг:</i>\n\nПривет! ' + (v.name ? 'Вас пригласил(а) #{name} 👋' : 'Вас пригласил знакомый 👋') + '\n\nЭто «Ложка» — готовые рационы на день с доставкой к утру. Для вас скидка 300 ₽ на первый заказ, она уже применена.',
       buttons: [[say('Выбрать рацион', note('Это экран друга — в демо кнопки неактивны.')), say('Как это работает?', note('Это экран друга — в демо кнопки неактивны.'))]],
       next: [later('rf_6', 'в момент, когда друг запустит бота')],
     },
@@ -1035,7 +1037,7 @@ module.exports = function scenarios(cfg) {
     },
     rf_8: {
       set: (v) => { v.visits = 2; v.hist.push(['вчера', 'Маша', 0, 'ожидает оплаты']); },
-      text: 'Маша заглянула в «Ложку», но пока ничего не заказала. Напомните ей про скидку — она действует ещё 5 дней.\n\n' + note('Самой Маше бот в это же время присылает: «Ваша скидка 300 ₽ по приглашению #{name} ждёт ещё 5 дней».'),
+      text: 'Маша заглянула в «Ложку», но пока ничего не заказала. Напомните ей про скидку — она действует ещё 5 дней.\n\n' + note('Самой Маше бот в это же время присылает: «Ваша скидка 300 ₽ по приглашению ждёт ещё 5 дней».'),
       buttons: [[say('Напомнить другу', note('В реальном боте откроется чат с готовым текстом напоминания.'))]],
       next: [later('rf_9', 'в момент оплаты заказа третьим другом')],
     },
@@ -1304,7 +1306,16 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     };
   }
 
-  const fill = (text, v) => String(text).replace(/#\{(\w+)\}/g, (_, k) => esc(v[k]));
+  // #{переменная} → значение. Если имени нет (чат на сайте), обращение выпадает:
+  // «Здравствуйте, #{name}!» → «Здравствуйте!», «#{name}, привет!» → «Привет!», в карточках — «Гость»
+  const fill = (text, v) => {
+    let s = String(text);
+    if (!v.name) {
+      s = s.replace(/,\s*#\{name\}(?=[!?.])/g, '')
+        .replace(/(^|\n)#\{name\},\s*(\S)/g, (m, start, c) => start + c.toUpperCase());
+    }
+    return s.replace(/#\{(\w+)\}/g, (_, k) => esc(k === 'name' && !v.name ? 'Гость' : v[k]));
+  };
   const getButtons = (b, v, ctx) => (typeof b.buttons === 'function' ? b.buttons(v, ctx) : b.buttons) || null;
 
   function markup(id, b, v, ctx) {
@@ -1333,8 +1344,7 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const v = user.vars;
     const ctx = context(chatId);
 
-    if (v.name == null) v.name = 'друг';
-    if (b.cancel) await timers.cancel(chatId);
+    if (b.cancel) { await timers.cancel(chatId); user.pending = {}; }
     if (b.set) b.set(v, ctx);
     user.state = id;
     user.wait = b.wait ? { ...b.wait } : null;
@@ -1357,6 +1367,12 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
       await api.editMessageText(chatId, opts.editId, text, { reply_markup: mk }).catch(async () => {
         await api.sendMessage(chatId, text, { reply_markup: mk });
       });
+    } else if (b.animation && api.sendAnimation) {
+      const src = typeof b.animation === 'function' ? b.animation(v, ctx) : b.animation;
+      await api.sendAnimation(chatId, src, { caption: text, reply_markup: mk }).catch(async (e) => {
+        log.error('Гифка не отправилась:', e.message);
+        await api.sendMessage(chatId, text, { reply_markup: mk });
+      });
     } else {
       await api.sendMessage(chatId, text, { reply_markup: mk });
     }
@@ -1374,10 +1390,18 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const next = b.next || [];
     for (let i = 0; i < next.length; i++) {
       const n = next[i];
-      if (n.real) {
-        await api.sendMessage(chatId, `<i>⏳ В реальном боте это сообщение придёт ${n.real}. В демо — через ${n.after} секунд.</i>`);
-      }
-      await timers.add(chatId, n.after * 1000, { block: id, idx: i });
+      if (!n.real) { await timers.add(chatId, n.after * 1000, { block: id, idx: i }); continue; }
+      // у сообщения есть свои кнопки — ждём человека, иначе следующее придёт само
+      const tap = n.tap ?? Boolean(mk && mk.inline_keyboard);
+      const key = `${id}:${i}:${Math.random().toString(36).slice(2, 6)}`;
+      const note = `<i>⏳ В реальном боте следующее сообщение придёт ${n.real}.</i>`;
+      const sentNote = await api.sendMessage(chatId, note, {
+        reply_markup: { inline_keyboard: [[{ text: tap ? '⏩ Показать следующее сообщение' : '⏩ Не ждать', callback_data: '__n:' + key }]] },
+      });
+      user.pending = user.pending || {};
+      user.pending[key] = { mid: sentNote && sentNote.message_id, text: note };
+      await users.save(chatId, user);
+      if (!tap) await timers.add(chatId, n.after * 1000, { block: id, idx: i, key });
     }
 
   }
@@ -1387,6 +1411,13 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const n = blocks[job.block]?.next?.[job.idx];
     if (!n) return;
     const user = await users.load(chatId);
+    if (job.key) {
+      const p = user.pending && user.pending[job.key];
+      if (!p) return; // уже показали по кнопке или цепочку остановили
+      delete user.pending[job.key];
+      await users.save(chatId, user);
+      if (p.mid && api.editMessageText) await api.editMessageText(chatId, p.mid, p.text, {}).catch(() => {});
+    }
     if (n.unless && n.unless(user.vars)) return;
     await go(chatId, n.go);
   }
@@ -1396,7 +1427,7 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
     const user = await users.load(chatId);
     user.name = [from.first_name, from.last_name].filter(Boolean).join(' ');
     user.username = from.username || '';
-    user.vars.name = from.first_name || user.vars.name || 'друг';
+    user.vars.name = from.first_name || user.vars.name || '';
     user.vars.username = from.username || '';
     await users.save(chatId, user);
 
@@ -1463,6 +1494,17 @@ function createEngine({ api, cfg, botUsername, store, users, timers, referral, d
   }
 
   async function onButton(chatId, data, msgId) {
+    // «⏩ Показать следующее сообщение» / «⏩ Не ждать»
+    if (String(data).startsWith('__n:')) {
+      const key = String(data).slice(4);
+      const [block, idx] = key.split(':');
+      const user = await users.load(chatId);
+      if (!user.pending || !user.pending[key]) {
+        if (msgId && api.editMessageText) await api.editMessageText(chatId, msgId, '<i>⏳ Эта цепочка уже завершена.</i>', {}).catch(() => {});
+        return;
+      }
+      return fire(chatId, { block, idx: Number(idx), key });
+    }
     const [id, r, c] = String(data).split(':');
     const src = blocks[id];
     if (!src) return;
@@ -1576,6 +1618,7 @@ const CSS = `
 .btn:hover{background:var(--acc-soft)}
 .btn[disabled]{opacity:.45;cursor:default}
 .btn.picked{background:var(--acc-soft)}
+.msg img.gif{display:block;width:100%;max-width:260px;border-radius:12px;margin:0 0 8px}
 .ext::after{content:"↗";font-size:12px;opacity:.7}
 .typing{align-self:flex-start;background:#fff;border-radius:16px;padding:12px 14px;display:flex;gap:4px}
 .typing i{width:7px;height:7px;border-radius:50%;background:#a3a8b5;animation:dot 1s infinite}
@@ -1625,8 +1668,10 @@ function renderBot(m, before) {
   const div = document.createElement('div');
   div.className = 'msg bot';
   div.dataset.mid = m.id || '';
-  div.innerHTML = m.text.replace(/\n/g, '<br>');
+  div.innerHTML = (m.img ? `<img class="gif" src="${esc(m.img)}" alt="" loading="lazy">` : '') + m.text.replace(/\n/g, '<br>');
   logEl.insertBefore(div, before || null);
+  const gif = div.querySelector('img.gif');
+  if (gif && !before) gif.addEventListener('load', scroll, { once: true });
   if (m.kb) {
     const kb = document.createElement('div');
     kb.className = 'kb';
@@ -1662,7 +1707,7 @@ const api = {
       logEl.appendChild(t); scroll();
       await sleep(Math.min(900, 250 + text.length * 2));
       t.remove();
-      const m = { from: 'bot', id: ++msgSeq, text, kb: mk.inline_keyboard || null };
+      const m = { from: 'bot', id: ++msgSeq, text, kb: mk.inline_keyboard || null, img: extra.img || null };
       history.push(m); renderBot(m);
       if (mk.keyboard) { renderQuick(mk.keyboard); history.push({ from: 'quick', rows: mk.keyboard }); }
       if (mk.remove_keyboard) { renderQuick(null); history.push({ from: 'quick', rows: null }); }
@@ -1689,7 +1734,19 @@ const api = {
     });
     return queue;
   },
-  async deleteMessage() {},
+  // гифка (колесо фортуны) — сообщение с картинкой и подписью
+  sendAnimation(chatId, src, extra = {}) {
+    return api.sendMessage(chatId, extra.caption || '', { reply_markup: extra.reply_markup, img: src });
+  },
+  deleteMessage(chatId, id) {
+    queue = queue.then(() => {
+      history = history.filter((x) => !(x.from === 'bot' && x.id === id));
+      const div = logEl.querySelector(`.msg.bot[data-mid="${id}"]`);
+      if (div) div.remove();
+      save();
+    });
+    return queue;
+  },
   async getChatMember() { return { status: 'member' }; },
 };
 
