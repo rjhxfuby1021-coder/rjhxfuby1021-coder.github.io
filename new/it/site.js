@@ -16,7 +16,7 @@ ENGINE({
     titleSfx: 'Docs · Павел Корчагин', home: 'Docs', sep: '›',
     nav: { bot: 'Demo bot', cases: 'Changelog', services: 'Pricing', reviews: 'Отзывы', blog: 'Гайды', about: 'Об исполнителе', faq: 'FAQ' },
     cta: { btn: 'Отправить бриф', btn2: 'Telegram' },
-    cases: { title: 'Changelog', kicker: 'Ресурсы', h1: 'Changelog · <span>кейсы</span>', lead: 'Все релизы — 26 проектов. Первыми — ближе всего к IT: лендинг финансового ядра с вкладками кода, онлайн-школа для техспециалистов, ИИ-ассистент на базе знаний, автоворонки.', note: '',
+    cases: { title: 'Changelog', kicker: 'Ресурсы', h1: 'Changelog · <span>кейсы</span>', lead: 'Все релизы — 35 проектов. Первыми — ближе всего к IT: лендинг финансового ядра с вкладками кода, онлайн-школа для техспециалистов, ИИ-ассистент на базе знаний, автоворонки.', note: '',
       all: 'all', cats: { Tilda: 'sites', Salebot: 'bots', GetCourse: 'schools', Figma: 'design' }, client: 'client', own: 'own', more: 'Читать релиз →',
       endH: 'Следующий релиз — <span>ваш</span>', endP: 'Готовое ТЗ не нужно: вопросы задам на созвоне.', endBtn: 'Отправить бриф' },
     case: { titleSfx: 'релиз', client: 'client', own: 'own', live: 'Открыть ↗', similar: 'Запросить похожий', similarTask: 'Проект как',

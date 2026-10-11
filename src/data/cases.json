@@ -3568,6 +3568,1054 @@
     "related": "webinar-landing"
   },
   {
+    "id": "bukh-hero",
+    "dir": "figma",
+    "cat": "",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Первый экран сайта",
+      "en": "Website hero"
+    },
+    "title": {
+      "ru": "Бухгалтерия для бизнеса — первый экран сайта",
+      "en": "Accounting for business — website hero"
+    },
+    "lead": {
+      "ru": "Первый экран для бухгалтерской компании, которая ведёт бизнес с выручкой от 20 млн ₽: строгий тёмный стиль, доверие с первых секунд и две понятные кнопки — рассчитать стоимость или забрать полезный чек-лист.",
+      "en": "A hero screen for an accounting firm serving businesses with revenue from 20M ₽: a strict dark style, trust from the first seconds and two clear buttons — get a price or grab a useful checklist."
+    },
+    "cover": "/img/bukh-full.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "4",
+        "l": {
+          "ru": "аргумента доверия на первом экране",
+          "en": "trust points on the first screen"
+        }
+      },
+      {
+        "v": "2",
+        "l": {
+          "ru": "кнопки: расчёт и лид-магнит",
+          "en": "buttons: quote and lead magnet"
+        }
+      },
+      {
+        "v": "20 млн ₽",
+        "l": {
+          "ru": "порог выручки — сразу отсекает нецелевых",
+          "en": "revenue threshold filters out non-target leads"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Клиент работает с крупным бизнесом, и первый экран должен говорить на его языке: не «недорогая бухгалтерия», а надёжность, ответственность и экономия времени собственника. Нужно было за несколько секунд показать уровень компании и дать повод оставить контакт тем, кто ещё не готов заказывать.",
+      "en": "The client works with large companies, so the hero had to speak their language: not “cheap bookkeeping” but reliability, accountability and the owner’s time saved. It needed to show the firm’s level in seconds and give a reason to leave contacts to those not ready to buy yet."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Сформулировал оффер с порогом выручки — сайт сразу говорит, для кого он",
+        "en": "Wrote an offer with a revenue threshold, so the site says who it is for"
+      },
+      {
+        "ru": "Вынес 4 аргумента доверия: опыт с 2009 года, страховка ответственности, защита от штрафов, оптимизация налогов",
+        "en": "Added 4 trust points: since 2009, insured liability, protection from fines, tax optimization"
+      },
+      {
+        "ru": "Подобрал деловую фотографию и тёмную палитру с золотым акцентом",
+        "en": "Chose business photography and a dark palette with a gold accent"
+      },
+      {
+        "ru": "Сделал две кнопки: «Рассчитать стоимость» и чек-лист «15 признаков проверки ФНС»",
+        "en": "Made two buttons: “Get a price” and a “15 signs of a tax audit” checklist"
+      },
+      {
+        "ru": "Добавил в шапку кнопку «Заказать звонок»",
+        "en": "Put a “Request a call” button in the header"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Первый экран, который продаёт уровень",
+        "en": "A hero that sells expertise"
+      },
+      "text": {
+        "ru": "Собственник видит, что компания работает с бизнесом его масштаба, и сразу получает два пути: узнать цену или забрать чек-лист. Лид-магнит собирает контакты тех, кто пока только присматривается.",
+        "en": "Owners see the firm works with companies their size and get two paths right away: check the price or download the checklist. The lead magnet captures contacts of those who are just looking."
+      }
+    },
+    "tools": [
+      "Figma",
+      "Прототип"
+    ],
+    "gallery": [
+      {
+        "src": "/img/bukh-full.webp",
+        "cap": {
+          "ru": "Первый экран целиком",
+          "en": "Full hero"
+        }
+      },
+      {
+        "src": "/img/bukh-offer.webp",
+        "cap": {
+          "ru": "Оффер и аргументы доверия",
+          "en": "Offer and trust points"
+        }
+      },
+      {
+        "src": "/img/bukh-photo.webp",
+        "cap": {
+          "ru": "Фото и акцентная кнопка",
+          "en": "Photo and accent button"
+        }
+      }
+    ]
+  },
+  {
+    "id": "nova-symphony",
+    "dir": "figma",
+    "cat": "",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Первый экран сайта",
+      "en": "Website hero"
+    },
+    "title": {
+      "ru": "Nova Symphony — первый экран для молодёжного оркестра",
+      "en": "Nova Symphony — hero for a youth orchestra"
+    },
+    "lead": {
+      "ru": "Первый экран для современного симфонического оркестра, который играет классику, саундтреки и музыку XXI века. Задача — показать, что это не скучный концерт, а живое событие, и привести к покупке билета.",
+      "en": "A hero for a modern symphony orchestra playing classics, soundtracks and 21st-century music. The goal: show it’s a live event, not a dull concert, and lead to a ticket purchase."
+    },
+    "cover": "/img/nova-full.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "3",
+        "l": {
+          "ru": "слова позиционирования: классика, современность, молодость",
+          "en": "positioning words: classic, modern, young"
+        }
+      },
+      {
+        "v": "2",
+        "l": {
+          "ru": "действия: купить билет или посмотреть выступление",
+          "en": "actions: buy a ticket or watch a performance"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "анонс ближайшего концерта прямо на экране",
+          "en": "upcoming concert teaser right on the screen"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Молодой аудитории классическая музыка часто кажется чем-то из школьной программы. Нужно было сломать это ощущение с первого взгляда и сделать так, чтобы до билетов был один клик.",
+      "en": "Young audiences often see classical music as school homework. The goal was to break that feeling at first sight and keep tickets one click away."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Придумал заголовок «Больше, чем просто классика» с золотым акцентом",
+        "en": "Came up with the headline “More than just classical” with a gold accent"
+      },
+      {
+        "ru": "Собрал тёмную сцену с живыми музыкантами и золотым мазком — как свет софитов",
+        "en": "Built a dark stage scene with live musicians and a gold brushstroke like spotlights"
+      },
+      {
+        "ru": "Сделал главную кнопку «Купить билеты» и вторую — «Посмотреть выступление»",
+        "en": "Made a main “Buy tickets” button and a secondary “Watch a performance”"
+      },
+      {
+        "ru": "Добавил карточку ближайшего концерта с датой и ссылкой на билеты",
+        "en": "Added an upcoming concert card with a date and ticket link"
+      },
+      {
+        "ru": "Оставил в шапке только нужное: афиша, музыканты, медиа, контакты",
+        "en": "Kept only the essentials in the header: events, musicians, media, contacts"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Классика, на которую хочется пойти",
+        "en": "Classical music people want to attend"
+      },
+      "text": {
+        "ru": "Экран сразу задаёт настроение события: эмоция на фото, смелый заголовок и анонс ближайшего концерта. Посетителю не нужно искать афишу — билеты в одном клике.",
+        "en": "The screen sets the mood of an event right away: emotion in the photo, a bold headline and the next concert teaser. Visitors don’t need to hunt for the schedule — tickets are one click away."
+      }
+    },
+    "tools": [
+      "Figma",
+      "Прототип"
+    ],
+    "gallery": [
+      {
+        "src": "/img/nova-full.webp",
+        "cap": {
+          "ru": "Первый экран целиком",
+          "en": "Full hero"
+        }
+      },
+      {
+        "src": "/img/nova-title.webp",
+        "cap": {
+          "ru": "Заголовок и кнопки",
+          "en": "Headline and buttons"
+        }
+      },
+      {
+        "src": "/img/nova-event.webp",
+        "cap": {
+          "ru": "Анонс ближайшего концерта",
+          "en": "Upcoming concert teaser"
+        }
+      }
+    ]
+  },
+  {
+    "id": "habits-card",
+    "dir": "figma",
+    "cat": "",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Дизайн для соцсетей",
+      "en": "Social media design"
+    },
+    "title": {
+      "ru": "«5 привычек, которые развивают мышление» — карточка для соцсетей",
+      "en": "“5 habits that develop thinking” — social media card"
+    },
+    "lead": {
+      "ru": "Обложка для поста-карусели образовательного проекта: крупная цифра, понятный заголовок и иллюстрация, которая объясняет тему без слов. Карточка останавливает ленту и обещает пользу.",
+      "en": "A cover for an educational carousel post: a big number, a clear headline and an illustration that explains the topic without words. The card stops the scroll and promises value."
+    },
+    "cover": "/img/habits-card.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "1:1",
+        "l": {
+          "ru": "квадратный формат для ленты",
+          "en": "square format for the feed"
+        }
+      },
+      {
+        "v": "3",
+        "l": {
+          "ru": "цвета: синий, оранжевый и светлый фон",
+          "en": "colors: navy, orange and a light background"
+        }
+      },
+      {
+        "v": "6",
+        "l": {
+          "ru": "иконок-подсказок вокруг главной иллюстрации",
+          "en": "hint icons around the main illustration"
+        }
+      }
+    ],
+    "task": {
+      "ru": "В ленте у поста есть доля секунды. Нужно было сделать обложку, которая читается даже в маленьком превью и сразу говорит, какую пользу человек получит, если откроет карусель.",
+      "en": "A post gets a split second in the feed. The cover had to read even as a small preview and instantly say what value the reader gets by opening the carousel."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Вынес цифру «5» крупно — она цепляет взгляд первой",
+        "en": "Made the “5” large so it catches the eye first"
+      },
+      {
+        "ru": "Выделил ключевое слово «мышление» оранжевым",
+        "en": "Highlighted the key word “thinking” in orange"
+      },
+      {
+        "ru": "Нарисовал профиль головы с «растущим» мозгом — тема понятна без текста",
+        "en": "Drew a head profile with a “growing” brain so the topic reads without text"
+      },
+      {
+        "ru": "Добавил иконки: идея, книга, цель, рост, шестерёнка",
+        "en": "Added icons: idea, book, goal, growth, gear"
+      },
+      {
+        "ru": "Собрал всё в двух фирменных цветах, чтобы карточка узнавалась в ленте",
+        "en": "Kept it to two brand colors so the card is recognizable in the feed"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Обложка, которую хочется открыть",
+        "en": "A cover people want to open"
+      },
+      "text": {
+        "ru": "Карточка читается за секунду даже в превью: цифра, тема и польза видны сразу. Стиль легко переносится на следующие слайды карусели и другие посты проекта.",
+        "en": "The card reads in a second even as a preview: number, topic and value are instantly clear. The style carries over to the next carousel slides and other posts."
+      }
+    },
+    "tools": [
+      "Figma",
+      "Инфографика"
+    ],
+    "gallery": [
+      {
+        "src": "/img/habits-card.webp",
+        "cap": {
+          "ru": "Карточка целиком",
+          "en": "Full card"
+        }
+      },
+      {
+        "src": "/img/habits-title.webp",
+        "cap": {
+          "ru": "Заголовок крупно",
+          "en": "Headline close-up"
+        }
+      }
+    ]
+  },
+  {
+    "id": "cafe-card",
+    "dir": "figma",
+    "cat": "",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Карточка товара",
+      "en": "Product card"
+    },
+    "title": {
+      "ru": "Карточка блюда для кафе «Приятного аппетита»",
+      "en": "Dish card for the “Priyatnogo Appetita” café"
+    },
+    "lead": {
+      "ru": "Переделал фото блюд для онлайн-меню по просьбе заказчика: вместо картофеля в коробке — подача на тарелке, как в ресторане. Все блюда в меню получили единый стиль: одна тарелка, меняется только еда.",
+      "en": "Reworked dish photos for the online menu at the client’s request: instead of fries in a takeaway box — restaurant-style plating. Every menu item got one consistent style: the same plate, only the food changes."
+    },
+    "cover": "/img/cafecard-after.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "1",
+        "l": {
+          "ru": "единая тарелка для всех блюд меню",
+          "en": "single plate for every menu item"
+        }
+      },
+      {
+        "v": "2",
+        "l": {
+          "ru": "версии: «до» и «после»",
+          "en": "versions: before and after"
+        }
+      },
+      {
+        "v": "4:3",
+        "l": {
+          "ru": "формат под карточки онлайн-меню",
+          "en": "format for online menu cards"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Фото в коробках выглядели как фастфуд и не передавали уровень кафе. Заказчик хотел, чтобы меню смотрелось аппетитно и единообразно — от роллов до картофеля.",
+      "en": "Photos in takeaway boxes looked like fast food and didn’t reflect the café’s level. The client wanted the menu to look appetizing and consistent — from rolls to fries."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Перенёс блюдо из коробки на фирменную тёмную тарелку",
+        "en": "Moved the dish from a box onto a signature dark plate"
+      },
+      {
+        "ru": "Добавил подачу: соусы, зелень, имбирь и палочки",
+        "en": "Added serving details: sauces, greens, ginger and chopsticks"
+      },
+      {
+        "ru": "Сделал тёмный фон, на котором еда выглядит ярче",
+        "en": "Used a dark background that makes the food pop"
+      },
+      {
+        "ru": "Зафиксировал ракурс и свет, чтобы так же оформить остальные блюда",
+        "en": "Fixed the angle and light so other dishes can follow the same look"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Меню, в котором всё выглядит вкусно",
+        "en": "A menu where everything looks tasty"
+      },
+      "text": {
+        "ru": "Блюда в онлайн-меню выглядят как в зале ресторана, а единая тарелка собирает меню в цельную витрину. Этот же стиль используется на сайте кафе — он есть в кейсах Tilda.",
+        "en": "Dishes in the online menu look like they’re served in the restaurant, and the single plate turns the menu into one consistent showcase. The same style is used on the café website — see the Tilda cases."
+      }
+    },
+    "tools": [
+      "Обработка фото",
+      "Онлайн-заказ"
+    ],
+    "gallery": [
+      {
+        "src": "/img/cafecard-after.webp",
+        "cap": {
+          "ru": "После: подача на тарелке",
+          "en": "After: plated"
+        }
+      },
+      {
+        "src": "/img/cafecard-before.webp",
+        "cap": {
+          "ru": "До: фото в коробке",
+          "en": "Before: takeaway box"
+        }
+      }
+    ],
+    "related": "cafe-shop"
+  },
+  {
+    "id": "service-cards",
+    "dir": "figma",
+    "cat": "",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Дизайн для соцсетей",
+      "en": "Social media design"
+    },
+    "title": {
+      "ru": "Карточки услуг: GetCourse, Figma, Tilda, Salebot",
+      "en": "Service cards: GetCourse, Figma, Tilda, Salebot"
+    },
+    "lead": {
+      "ru": "Серия из 8 рекламных карточек для четырёх услуг: настройка школ на GetCourse, макеты в Figma, сайты на Tilda и чат-боты на Salebot. Каждая услуга — в двух форматах: вертикальном для сторис и горизонтальном для постов и объявлений.",
+      "en": "A set of 8 promo cards for four services: GetCourse school setup, Figma layouts, Tilda websites and Salebot chatbots. Each service comes in two formats: vertical for stories and horizontal for posts and ads."
+    },
+    "cover": "/img/svc-gc-h.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "8",
+        "l": {
+          "ru": "карточек в серии",
+          "en": "cards in the set"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "услуги — у каждой свой цвет",
+          "en": "services, each with its own color"
+        }
+      },
+      {
+        "v": "2",
+        "l": {
+          "ru": "формата: сторис и пост",
+          "en": "formats: story and post"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Нужна была серия, которую можно запускать в соцсетях и рекламе: каждая карточка должна сразу говорить, что за услуга, что входит и почему стоит обратиться. При этом все восемь — узнаваемо из одной семьи.",
+      "en": "The set had to work in social media and ads: each card should say what the service is, what’s included and why to reach out. And all eight had to look like one family."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Сделал единую сетку: заголовок, 4 пункта, кнопка-обещание и экран продукта",
+        "en": "Built one grid: headline, 4 points, a promise button and a product screen"
+      },
+      {
+        "ru": "Дал каждой услуге свой цвет: бирюзовый, оранжевый, фиолетовый и зелёный",
+        "en": "Gave each service its own color: teal, orange, purple and green"
+      },
+      {
+        "ru": "Нарисовал интерфейсы в телефоне и на ноутбуке — клиент видит результат",
+        "en": "Drew phone and laptop interfaces so clients see the result"
+      },
+      {
+        "ru": "Написал короткие обещания на кнопках: «Удобная школа — больше учеников», «Бот работает — вы зарабатываете»",
+        "en": "Wrote short promises on buttons: “A convenient school means more students”, “The bot works — you earn”"
+      },
+      {
+        "ru": "Адаптировал каждую карточку под вертикальный и горизонтальный формат",
+        "en": "Adapted each card to vertical and horizontal formats"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Серия, готовая к рекламе",
+        "en": "A set ready for ads"
+      },
+      "text": {
+        "ru": "Карточки можно сразу ставить в сторис, посты и рекламные объявления. Единый стиль делает аккаунт узнаваемым, а разные цвета помогают быстро отличить одну услугу от другой.",
+        "en": "The cards go straight into stories, posts and ads. One style makes the account recognizable, and distinct colors help tell services apart at a glance."
+      }
+    },
+    "tools": [
+      "Figma",
+      "Инфографика"
+    ],
+    "gallery": [
+      {
+        "src": "/img/svc-gc-h.webp",
+        "cap": {
+          "ru": "GetCourse — пост",
+          "en": "GetCourse — post"
+        }
+      },
+      {
+        "src": "/img/svc-gc-v.webp",
+        "cap": {
+          "ru": "GetCourse — сторис",
+          "en": "GetCourse — story"
+        }
+      },
+      {
+        "src": "/img/svc-figma-h.webp",
+        "cap": {
+          "ru": "Figma — пост",
+          "en": "Figma — post"
+        }
+      },
+      {
+        "src": "/img/svc-figma-v.webp",
+        "cap": {
+          "ru": "Figma — сторис",
+          "en": "Figma — story"
+        }
+      },
+      {
+        "src": "/img/svc-tilda-h.webp",
+        "cap": {
+          "ru": "Tilda — пост",
+          "en": "Tilda — post"
+        }
+      },
+      {
+        "src": "/img/svc-tilda-v.webp",
+        "cap": {
+          "ru": "Tilda — сторис",
+          "en": "Tilda — story"
+        }
+      },
+      {
+        "src": "/img/svc-salebot-h.webp",
+        "cap": {
+          "ru": "Salebot — пост",
+          "en": "Salebot — post"
+        }
+      },
+      {
+        "src": "/img/svc-salebot-v.webp",
+        "cap": {
+          "ru": "Salebot — сторис",
+          "en": "Salebot — story"
+        }
+      }
+    ]
+  },
+  {
+    "id": "nizhavtovykup",
+    "dir": "figma",
+    "cat": "",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Дизайн лендинга",
+      "en": "Landing page design"
+    },
+    "title": {
+      "ru": "НижАвтоВыкуп.рф — сайт выкупа автомобилей",
+      "en": "NizhAvtoVykup — car buyout website"
+    },
+    "lead": {
+      "ru": "Лендинг для выкупа автомобилей в Нижегородской области: обещание «дорого и за 30 минут» на первом экране, понятные гарантии и четыре способа связаться — от Telegram до звонка.",
+      "en": "A landing page for car buyout in the Nizhny Novgorod region: the “top price in 30 minutes” promise on the first screen, clear guarantees and four ways to get in touch — from Telegram to a phone call."
+    },
+    "cover": "/img/autobuy-hero.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "7",
+        "l": {
+          "ru": "категорий авто: от битых до кредитных",
+          "en": "car categories: from damaged to financed"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "канала связи в одном блоке",
+          "en": "contact channels in one block"
+        }
+      },
+      {
+        "v": "8",
+        "l": {
+          "ru": "частых вопросов закрыты на странице",
+          "en": "common questions answered on the page"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Человек, который продаёт машину, боится двух вещей: что занизят цену и что обманут с документами. Страница должна снять эти страхи и довести до заявки на оценку за пару минут.",
+      "en": "People selling a car fear two things: a lowball price and paperwork tricks. The page had to remove those fears and get to an appraisal request in a couple of minutes."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Сделал первый экран с оффером «Выкупим дорого и за 30 минут» и тремя гарантиями",
+        "en": "Built a hero with the “top price in 30 minutes” offer and three guarantees"
+      },
+      {
+        "ru": "Собрал блок «Почему нам доверяют» из 6 причин",
+        "en": "Made a “Why trust us” block with 6 reasons"
+      },
+      {
+        "ru": "Показал 7 категорий авто, которые выкупают, — человек находит свою ситуацию",
+        "en": "Showed 7 car categories they buy, so visitors find their case"
+      },
+      {
+        "ru": "Сделал блок оценки за 5 минут с макетом заявки в телефоне и 4 каналами связи",
+        "en": "Made a 5-minute appraisal block with a phone mockup and 4 contact channels"
+      },
+      {
+        "ru": "Добавил отзывы с городом и моделью авто, FAQ и подвал с контактами",
+        "en": "Added reviews with city and car model, FAQ and a contact footer"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Путь от сомнения до заявки",
+        "en": "From doubt to request"
+      },
+      "text": {
+        "ru": "Посетитель находит свой тип автомобиля, видит гарантии и отзывы соседей по области и оставляет заявку удобным способом — без звонков и лишних шагов.",
+        "en": "Visitors find their car type, see guarantees and reviews from people in their region, and send a request the way they prefer — no calls or extra steps."
+      }
+    },
+    "tools": [
+      "Figma",
+      "Прототип",
+      "Формы заявок"
+    ],
+    "gallery": [
+      {
+        "src": "/img/autobuy-hero.webp",
+        "cap": {
+          "ru": "Первый экран",
+          "en": "Hero"
+        }
+      },
+      {
+        "src": "/img/autobuy-trust.webp",
+        "cap": {
+          "ru": "Доверие и категории авто",
+          "en": "Trust and car categories"
+        }
+      },
+      {
+        "src": "/img/autobuy-cta.webp",
+        "cap": {
+          "ru": "Оценка за 5 минут",
+          "en": "5-minute appraisal"
+        }
+      },
+      {
+        "src": "/img/autobuy-reviews.webp",
+        "cap": {
+          "ru": "Отзывы и FAQ",
+          "en": "Reviews and FAQ"
+        }
+      },
+      {
+        "src": "/img/autobuy-full.webp",
+        "cap": {
+          "ru": "Страница целиком",
+          "en": "Full page"
+        }
+      }
+    ]
+  },
+  {
+    "id": "spectech",
+    "dir": "figma",
+    "cat": "",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Промо-страница",
+      "en": "Promo page"
+    },
+    "title": {
+      "ru": "Спецтехника для ваших задач — промо-страница",
+      "en": "Heavy machinery for your tasks — promo page"
+    },
+    "lead": {
+      "ru": "Яркая промо-страница для компании, которая сдаёт спецтехнику и выполняет демонтаж, земляные работы и вывоз мусора. Всё о услуге на одном экране — с фото работ и телефоном крупно.",
+      "en": "A bold promo page for a company renting heavy machinery and doing demolition, earthworks and waste removal. The whole service on one screen — with work photos and a big phone number."
+    },
+    "cover": "/img/spectech-hero.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "4",
+        "l": {
+          "ru": "направления работ на одном экране",
+          "en": "service lines on one screen"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "фото работ техники на объектах",
+          "en": "photos of machinery at work"
+        }
+      },
+      {
+        "v": "1",
+        "l": {
+          "ru": "день — подача техники в день обращения",
+          "en": "day — machinery on the day you call"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Клиенты спецтехники решают быстро: им важно понять, справятся ли с их задачей и как быстро приедут. Нужно было показать масштаб работ и сразу дать телефон.",
+      "en": "Machinery clients decide fast: they want to know if the job can be done and how soon. The page had to show the scale of work and give the phone number right away."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Собрал заголовок «Спецтехника для ваших задач» в жёлто-чёрной строительной стилистике",
+        "en": "Built the “Machinery for your tasks” headline in a yellow-and-black construction style"
+      },
+      {
+        "ru": "Вынес главное преимущество — подачу техники в день обращения",
+        "en": "Highlighted the key benefit — machinery on the day you call"
+      },
+      {
+        "ru": "Сделал полосу из 4 услуг с иконками техники",
+        "en": "Made a strip of 4 services with machinery icons"
+      },
+      {
+        "ru": "Оформил фото работ с подписями: демонтаж, подготовка участка, земляные работы",
+        "en": "Laid out work photos with labels: demolition, site prep, earthworks"
+      },
+      {
+        "ru": "Закончил страницу блоком доверия и крупной кнопкой «Свяжитесь с нами»",
+        "en": "Finished with a trust strip and a big “Contact us” button"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Услуга, понятная с одного взгляда",
+        "en": "A service clear at a glance"
+      },
+      "text": {
+        "ru": "Клиент видит, какие работы делает компания, как это выглядит на объектах и куда звонить. Страницу удобно использовать и как лендинг, и как рекламный макет.",
+        "en": "Clients see what the company does, what it looks like on site and where to call. The page works both as a landing page and as an ad creative."
+      }
+    },
+    "tools": [
+      "Figma",
+      "Инфографика"
+    ],
+    "gallery": [
+      {
+        "src": "/img/spectech-hero.webp",
+        "cap": {
+          "ru": "Первый экран",
+          "en": "Hero"
+        }
+      },
+      {
+        "src": "/img/spectech-services.webp",
+        "cap": {
+          "ru": "4 направления работ",
+          "en": "4 service lines"
+        }
+      },
+      {
+        "src": "/img/spectech-photos.webp",
+        "cap": {
+          "ru": "Фото работ на объектах",
+          "en": "Work site photos"
+        }
+      },
+      {
+        "src": "/img/spectech-full.webp",
+        "cap": {
+          "ru": "Страница целиком",
+          "en": "Full page"
+        }
+      }
+    ]
+  },
+  {
+    "id": "skobar-stm",
+    "dir": "figma",
+    "cat": "",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Дизайн лендинга",
+      "en": "Landing page design"
+    },
+    "title": {
+      "ru": "Скобарь — производство полуфабрикатов под вашей СТМ",
+      "en": "Skobar — private-label frozen food production"
+    },
+    "lead": {
+      "ru": "B2B-лендинг для производителя замороженных полуфабрикатов, который выпускает продукцию под брендом заказчика. Страница ведёт сетевого покупателя от «кому подходит» до заявки на расчёт запуска.",
+      "en": "A B2B landing page for a frozen food maker producing under the client’s brand. The page takes a retail buyer from “who it’s for” to a launch quote request."
+    },
+    "cover": "/img/frozen-hero.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "10",
+        "l": {
+          "ru": "шагов запуска — от заявки до поставки",
+          "en": "launch steps — from request to delivery"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "сегмента клиентов: сети, HoReCa, дистрибьюторы, бренды",
+          "en": "client segments: retail, HoReCa, distributors, brands"
+        }
+      },
+      {
+        "v": "3",
+        "l": {
+          "ru": "формата фасовки с фото упаковки",
+          "en": "packaging formats with photos"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Закупщики сетей и владельцы брендов выбирают производителя долго и придирчиво: им нужно понять условия, сроки, состав и упаковку ещё до звонка. Страница должна была ответить на все эти вопросы и подвести к заявке.",
+      "en": "Retail buyers and brand owners choose a manufacturer slowly and carefully: they want terms, timing, ingredients and packaging before calling. The page had to answer all that and lead to a request."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Сделал первый экран с упаковкой «Ваш бренд» и двумя кнопками: расчёт и образцы",
+        "en": "Built a hero with “Your brand” packaging and two buttons: quote and samples"
+      },
+      {
+        "ru": "Разбил аудиторию на 4 сегмента, чтобы каждый узнал себя",
+        "en": "Split the audience into 4 segments so everyone sees themselves"
+      },
+      {
+        "ru": "Показал, что можно адаптировать, ассортимент и форматы фасовки",
+        "en": "Showed what can be customized, the product range and packaging formats"
+      },
+      {
+        "ru": "Нарисовал путь запуска из 10 шагов и блок «Почему мы»",
+        "en": "Drew a 10-step launch path and a “Why us” block"
+      },
+      {
+        "ru": "Добавил составы, примеры упаковки, FAQ и форму расчёта с личным менеджером",
+        "en": "Added ingredients, packaging examples, FAQ and a quote form with a personal manager"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Производитель, которому доверяют до звонка",
+        "en": "A manufacturer trusted before the call"
+      },
+      "text": {
+        "ru": "Закупщик видит весь процесс — от состава до упаковки и сроков — и приходит к менеджеру уже с конкретным запросом. Отдельная кнопка «Получить образцы» снимает последний барьер.",
+        "en": "Buyers see the whole process — from ingredients to packaging and timing — and come to the manager with a specific request. A separate “Get samples” button removes the last barrier."
+      }
+    },
+    "tools": [
+      "Figma",
+      "Прототип",
+      "Формы заявок"
+    ],
+    "gallery": [
+      {
+        "src": "/img/frozen-hero.webp",
+        "cap": {
+          "ru": "Первый экран",
+          "en": "Hero"
+        }
+      },
+      {
+        "src": "/img/frozen-audience.webp",
+        "cap": {
+          "ru": "Кому подходит",
+          "en": "Who it’s for"
+        }
+      },
+      {
+        "src": "/img/frozen-adapt.webp",
+        "cap": {
+          "ru": "Что можно адаптировать",
+          "en": "What can be customized"
+        }
+      },
+      {
+        "src": "/img/frozen-formats.webp",
+        "cap": {
+          "ru": "Ассортимент и форматы",
+          "en": "Range and formats"
+        }
+      },
+      {
+        "src": "/img/frozen-steps.webp",
+        "cap": {
+          "ru": "10 шагов запуска",
+          "en": "10 launch steps"
+        }
+      },
+      {
+        "src": "/img/frozen-packs.webp",
+        "cap": {
+          "ru": "Составы и упаковка",
+          "en": "Ingredients and packaging"
+        }
+      },
+      {
+        "src": "/img/frozen-form.webp",
+        "cap": {
+          "ru": "Образцы, FAQ и заявка",
+          "en": "Samples, FAQ and request"
+        }
+      },
+      {
+        "src": "/img/frozen-full.webp",
+        "cap": {
+          "ru": "Страница целиком",
+          "en": "Full page"
+        }
+      }
+    ]
+  },
+  {
+    "id": "piercing-shop",
+    "dir": "figma",
+    "cat": "",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Дизайн страницы",
+      "en": "Page design"
+    },
+    "title": {
+      "ru": "Piercing Shop — страница «О нас» для студии пирсинга",
+      "en": "Piercing Shop — About page for a piercing studio"
+    },
+    "lead": {
+      "ru": "Страница «О нас» для магазина-студии пирсинга в двух версиях — для компьютера и телефона. Минималистичный чёрно-белый стиль, цифры доверия и акцент на безопасности: титан ASTM F-136 и стерильность.",
+      "en": "An About page for a piercing shop and studio in two versions — desktop and mobile. A minimal black-and-white style, trust numbers and a focus on safety: ASTM F-136 titanium and sterility."
+    },
+    "cover": "/img/piercing-full.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "2",
+        "l": {
+          "ru": "версии: десктоп и мобильная",
+          "en": "versions: desktop and mobile"
+        }
+      },
+      {
+        "v": "5",
+        "l": {
+          "ru": "фактов доверия в одной полосе",
+          "en": "trust facts in one strip"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "принципа работы студии",
+          "en": "studio principles"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Пирсинг — про доверие: человек отдаёт своё тело мастеру. Страница «О нас» должна была показать опыт, безопасность и эстетику студии так, чтобы захотелось записаться или выбрать украшение.",
+      "en": "Piercing is about trust: people put their body in a master’s hands. The About page had to show experience, safety and the studio’s aesthetics so visitors want to book or pick jewelry."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Сделал первый экран с фото интерьера и неоновой надписью студии",
+        "en": "Built a hero with an interior photo and the studio’s neon sign"
+      },
+      {
+        "ru": "Вынес в полосу 5 фактов: 7+ лет, 10 000+ клиентов, титан ASTM F-136, место в рейтинге, бесплатная замена",
+        "en": "Put 5 facts in a strip: 7+ years, 10,000+ clients, ASTM F-136 titanium, rating, free replacement"
+      },
+      {
+        "ru": "Собрал блок «Наш подход» с фото украшений и работы мастера",
+        "en": "Built an “Our approach” block with photos of jewelry and the master at work"
+      },
+      {
+        "ru": "Добавил в шапку преимущества: титан, гипоаллергенно, доставка по России",
+        "en": "Added header perks: titanium, hypoallergenic, delivery across Russia"
+      },
+      {
+        "ru": "Адаптировал страницу под телефон с раскрывающимся текстом",
+        "en": "Adapted the page for mobile with expandable text"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Студия, которой доверяют",
+        "en": "A studio people trust"
+      },
+      "text": {
+        "ru": "Посетитель за несколько секунд видит опыт студии, безопасные материалы и реальные работы — и переходит в каталог или к записи. Мобильная версия сохраняет всё главное на маленьком экране.",
+        "en": "In seconds visitors see the studio’s experience, safe materials and real work — then go to the catalog or book. The mobile version keeps everything important on a small screen."
+      }
+    },
+    "tools": [
+      "Figma",
+      "Адаптивный дизайн"
+    ],
+    "gallery": [
+      {
+        "src": "/img/piercing-full.webp",
+        "cap": {
+          "ru": "Десктоп и мобильная версия",
+          "en": "Desktop and mobile"
+        }
+      },
+      {
+        "src": "/img/piercing-desktop.webp",
+        "cap": {
+          "ru": "Версия для компьютера",
+          "en": "Desktop version"
+        }
+      },
+      {
+        "src": "/img/piercing-mobile.webp",
+        "cap": {
+          "ru": "Версия для телефона",
+          "en": "Mobile version"
+        }
+      }
+    ]
+  },
+  {
     "id": "pro-technik",
     "dir": "getcourse",
     "cat": "school",

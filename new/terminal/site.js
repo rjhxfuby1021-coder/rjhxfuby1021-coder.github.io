@@ -17,7 +17,7 @@ ENGINE({
     titleSfx: 'pavel@texspeckps', home: '~', sep: '/',
     nav: { bot: 'bot', cases: 'cases', services: 'price', reviews: 'reviews', blog: 'blog', about: 'whoami', faq: 'faq' },
     cta: { btn: '$ brief --send', btn2: '$ open telegram' },
-    cases: { title: 'cases', kicker: '// 26 проектов', h1: '$ ls ./cases --all', lead: '# сайты, боты, школы и дизайн. у каждого — задача, решение, метрика.', note: '',
+    cases: { title: 'cases', kicker: '// 35 проектов', h1: '$ ls ./cases --all', lead: '# сайты, боты, школы и дизайн. у каждого — задача, решение, метрика.', note: '',
       all: '--all', cats: { Tilda: '--sites', Salebot: '--bots', GetCourse: '--schools', Figma: '--design' }, client: 'client', own: 'own', more: 'cat README →',
       endH: '$ ./start-project.sh', endP: '# готовое ТЗ не нужно — вопросы задам сам', endBtn: '$ brief --send' },
     case: { titleSfx: 'case', client: 'client', own: 'own', live: '$ open site ↗', similar: '$ fork --like-this', similarTask: 'fork:',
