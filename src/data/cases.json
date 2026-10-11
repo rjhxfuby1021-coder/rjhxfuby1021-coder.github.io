@@ -2963,6 +2963,222 @@
     ]
   },
   {
+    "id": "cyberhygiene",
+    "dir": "figma",
+    "cat": "",
+    "status": "own",
+    "year": 2026,
+    "type": {
+      "ru": "Социальная инфографика",
+      "en": "Social infographics"
+    },
+    "title": {
+      "ru": "Цифровая гигиена — инфографика о защите от мошенников",
+      "en": "Digital hygiene — infographics on fraud protection"
+    },
+    "lead": {
+      "ru": "Памятка «7 правил защиты от онлайн-мошенников» по техническому заданию: лонгрид для сайта, серия из 8 карточек для соцсетей, превью и плакат A3 для печати. Все цифры — с сайта Банка России, у каждой подписан источник.",
+      "en": "A “7 rules against online fraud” guide built to a brief: a longread for the web, a set of 8 social cards, a preview image and an A3 print poster. Every figure comes from the Bank of Russia website with its source credited."
+    },
+    "cover": "/img/cyber-cover.webp",
+    "url": "",
+    "facts": [
+      {
+        "v": "8",
+        "l": {
+          "ru": "карточек для соцсетей 1080 × 1350",
+          "en": "social cards, 1080 × 1350"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "формата: лонгрид, карточки, превью, плакат A3",
+          "en": "formats: longread, cards, preview, A3 poster"
+        }
+      },
+      {
+        "v": "249",
+        "l": {
+          "ru": "слов на весь лонгрид при лимите 250",
+          "en": "words in the whole longread, limit 250"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Сделать памятку, которую поймёт любой человек, а не только тот, кто разбирается в технике: как распознать обман, как защититься и что делать, если деньги уже украли. По ТЗ — 7 блоков в строгом порядке, не больше 250 слов, только подтверждённые цифры и контраст текста не ниже 4,5:1.",
+      "en": "Make a guide anyone can understand, not just tech-savvy people: how to spot fraud, how to protect yourself and what to do if money is already gone. The brief set 7 blocks in a fixed order, at most 250 words, verified figures only and text contrast of at least 4.5:1."
+    },
+    "flow": [
+      {
+        "t": {
+          "ru": "Шапка",
+          "en": "Header"
+        },
+        "d": {
+          "ru": "Заголовок и иллюстрация «смартфон со щитом»",
+          "en": "Title and a “phone with a shield” illustration"
+        }
+      },
+      {
+        "t": {
+          "ru": "Масштаб",
+          "en": "Scale"
+        },
+        "d": {
+          "ru": "Три цифры Банка России с подписью источника",
+          "en": "Three Bank of Russia figures with sources"
+        }
+      },
+      {
+        "t": {
+          "ru": "Схемы",
+          "en": "Scams"
+        },
+        "d": {
+          "ru": "5 частых схем обмана с иконками",
+          "en": "5 common scams with icons"
+        }
+      },
+      {
+        "t": {
+          "ru": "Флажки",
+          "en": "Red flags"
+        },
+        "d": {
+          "ru": "Признаки, по которым надо прервать разговор",
+          "en": "Signs that you should hang up"
+        }
+      },
+      {
+        "t": {
+          "ru": "7 правил",
+          "en": "7 rules"
+        },
+        "d": {
+          "ru": "Пронумерованные правила защиты",
+          "en": "Numbered protection rules"
+        }
+      },
+      {
+        "t": {
+          "ru": "Если обманули",
+          "en": "If scammed"
+        },
+        "d": {
+          "ru": "4 шага: карта, пароли, полиция, близкие",
+          "en": "4 steps: card, passwords, police, family"
+        }
+      }
+    ],
+    "done": [
+      {
+        "ru": "Собрал 7 блоков в порядке из ТЗ: шапка → масштаб → схемы → флажки → правила → «если обманули» → подвал",
+        "en": "Laid out 7 blocks in the brief’s order: header → scale → scams → red flags → rules → “if scammed” → footer"
+      },
+      {
+        "ru": "Сверил цифры со страницей Банка России и подписал источник под каждой",
+        "en": "Checked every figure against the Bank of Russia page and credited the source under each"
+      },
+      {
+        "ru": "Сократил тексты правил до 249 слов, не меняя смысла",
+        "en": "Cut the rules down to 249 words without changing the meaning"
+      },
+      {
+        "ru": "Проверил контраст: основной текст 14,9:1, смысл не передаётся только цветом",
+        "en": "Checked contrast: body text 14.9:1, meaning never relies on color alone"
+      },
+      {
+        "ru": "Разбил лонгрид на 8 карточек, каждая понятна отдельно",
+        "en": "Split the longread into 8 cards, each readable on its own"
+      },
+      {
+        "ru": "Подготовил плакат A3 в векторе и редактируемые SVG для Figma",
+        "en": "Prepared a vector A3 poster and editable SVGs for Figma"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Памятка, которую хочется переслать",
+        "en": "A guide people want to forward"
+      },
+      "text": {
+        "ru": "Главная мысль считывается по шапке, а каждая карточка работает отдельно: её можно выложить в соцсети или отправить близким. Одна и та же графика собрана в четырёх форматах — для сайта, соцсетей, превью ссылки и печатного стенда.",
+        "en": "The main idea reads from the header, and each card works on its own, ready to post or send to family. The same graphics come in four formats: for the website, social media, link previews and a printed stand."
+      }
+    },
+    "tools": [
+      "Инфографика",
+      "SVG",
+      "PDF"
+    ],
+    "gallery": [
+      {
+        "src": "/img/cyber-card-01.webp",
+        "cap": {
+          "ru": "Обложка и главный факт",
+          "en": "Cover and key fact"
+        }
+      },
+      {
+        "src": "/img/cyber-card-02.webp",
+        "cap": {
+          "ru": "Масштаб проблемы",
+          "en": "Scale of the problem"
+        }
+      },
+      {
+        "src": "/img/cyber-card-03.webp",
+        "cap": {
+          "ru": "5 частых схем обмана",
+          "en": "5 common scams"
+        }
+      },
+      {
+        "src": "/img/cyber-card-04.webp",
+        "cap": {
+          "ru": "Красные флажки",
+          "en": "Red flags"
+        }
+      },
+      {
+        "src": "/img/cyber-card-05.webp",
+        "cap": {
+          "ru": "Правила защиты 1–4",
+          "en": "Protection rules 1–4"
+        }
+      },
+      {
+        "src": "/img/cyber-card-06.webp",
+        "cap": {
+          "ru": "Правила защиты 5–7",
+          "en": "Protection rules 5–7"
+        }
+      },
+      {
+        "src": "/img/cyber-card-07.webp",
+        "cap": {
+          "ru": "Если уже обманули: 4 шага",
+          "en": "If you were scammed: 4 steps"
+        }
+      },
+      {
+        "src": "/img/cyber-card-08.webp",
+        "cap": {
+          "ru": "Главное и QR-код",
+          "en": "Key points and QR code"
+        }
+      },
+      {
+        "src": "/img/cyber-longread.webp",
+        "cap": {
+          "ru": "Лонгрид для сайта целиком",
+          "en": "Full longread for the website"
+        }
+      }
+    ]
+  },
+  {
     "id": "fold8-ozon",
     "dir": "figma",
     "cat": "",

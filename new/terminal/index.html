@@ -180,7 +180,7 @@ const CMD={
 Figma · Tilda · Zero Block · Salebot · GetCourse · Bizon365 · HTML/CSS/JS
 <span class="dim">${esc(D.offer)}</span>`,
   services:()=>D.services.map(([h,p,b])=>`<span class="grn">▸</span> ${h} <span class="amb">${b}</span>\n  <span class="dim">${p}</span>`).join('\n'),
-  cases:()=>D.all.slice(0,6).map((c,i)=>`<span class="dim">${String(i+1).padStart(2,'0')}</span> ${c.t}  <span class="grn">${c.f[0]}</span> <span class="dim">${c.f[1]}</span>${c.url?`  <a href="${c.url}" target="_blank" rel="noopener">↗</a>`:''}`).join('\n')+`\n<a href="${P.cases}" target="_blank" rel="noopener">→ все 25 проектов</a>`,
+  cases:()=>D.all.slice(0,6).map((c,i)=>`<span class="dim">${String(i+1).padStart(2,'0')}</span> ${c.t}  <span class="grn">${c.f[0]}</span> <span class="dim">${c.f[1]}</span>${c.url?`  <a href="${c.url}" target="_blank" rel="noopener">↗</a>`:''}`).join('\n')+`\n<a href="${P.cases}" target="_blank" rel="noopener">→ все 26 проектов</a>`,
   price:()=>D.prices.map(([a,b])=>`${(a+' ').padEnd(30,'.')} <span class="amb">${b}</span>`).join('\n'),
   reviews:()=>D.reviews.map(r=>`<span class="cy">${r.who}</span> <span class="dim">(${r.role})</span>\n  «${r.text}»`).join('\n\n'),
   contact:()=>`<span class="grn">✓</span> Бриф: <a href="${P.form}" target="_blank" rel="noopener">${P.form}</a>\n<span class="grn">✓</span> Telegram: <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">@PavelTexSpec</a>\n<span class="dim">Отвечаю в течение рабочего дня.</span>`,
