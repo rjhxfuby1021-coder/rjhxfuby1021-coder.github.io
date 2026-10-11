@@ -1593,6 +1593,162 @@
     ]
   },
   {
+    "id": "nizhavtovykup",
+    "dir": "tilda",
+    "cat": "landing",
+    "status": "client",
+    "year": 2026,
+    "type": {
+      "ru": "Лендинг",
+      "en": "Landing page"
+    },
+    "title": {
+      "ru": "НижАвтоВыкуп.рф — сайт выкупа автомобилей",
+      "en": "NizhAvtoVykup — car buyout website"
+    },
+    "lead": {
+      "ru": "Спроектировал дизайн и собрал на Tilda сайт выкупа автомобилей в Нижегородской области: обещание «дорого и за 30 минут» на первом экране, понятные гарантии, 5 шагов сделки и четыре способа связаться — от Telegram до звонка.",
+      "en": "Designed and built on Tilda a car buyout website for the Nizhny Novgorod region: the “top price in 30 minutes” promise up front, clear guarantees, 5 deal steps and four ways to get in touch — from Telegram to a phone call."
+    },
+    "cover": "/img/autobuy-hero.webp",
+    "url": "https://нижавтовыкуп.рф/",
+    "facts": [
+      {
+        "v": "7",
+        "l": {
+          "ru": "категорий авто: от битых до мототехники",
+          "en": "car categories: from damaged to motorcycles"
+        }
+      },
+      {
+        "v": "5",
+        "l": {
+          "ru": "шагов от заявки до денег",
+          "en": "steps from request to payment"
+        }
+      },
+      {
+        "v": "4",
+        "l": {
+          "ru": "канала связи в одном блоке",
+          "en": "contact channels in one block"
+        }
+      }
+    ],
+    "task": {
+      "ru": "Человек, который продаёт машину, боится двух вещей: что занизят цену и что обманут с документами. Страница должна снять эти страхи и довести до заявки на оценку за пару минут.",
+      "en": "People selling a car fear two things: a lowball price and paperwork tricks. The page had to remove those fears and get to an appraisal request in a couple of minutes."
+    },
+    "flow": [],
+    "done": [
+      {
+        "ru": "Сделал первый экран с оффером «Выкупим дорого и за 30 минут» и тремя гарантиями",
+        "en": "Built a hero with the “top price in 30 minutes” offer and three guarantees"
+      },
+      {
+        "ru": "Собрал блок «Почему нам доверяют» из 6 причин",
+        "en": "Made a “Why trust us” block with 6 reasons"
+      },
+      {
+        "ru": "Показал 7 категорий авто, которые выкупают, — человек находит свою ситуацию",
+        "en": "Showed 7 car categories, so visitors find their case"
+      },
+      {
+        "ru": "Расписал выкуп в 5 шагов: от заявки до денег на руках",
+        "en": "Laid out the buyout in 5 steps: from request to cash"
+      },
+      {
+        "ru": "Сделал блок оценки за 5 минут с макетом заявки в телефоне и 4 каналами связи",
+        "en": "Made a 5-minute appraisal block with a phone mockup and 4 contact channels"
+      },
+      {
+        "ru": "Добавил отзывы-слайдер, FAQ, подвал с контактами и адаптировал под телефон",
+        "en": "Added a review slider, FAQ, a contact footer and mobile layout"
+      }
+    ],
+    "result": {
+      "title": {
+        "ru": "Путь от сомнения до заявки",
+        "en": "From doubt to request"
+      },
+      "text": {
+        "ru": "Посетитель находит свой тип автомобиля, видит гарантии и отзывы соседей по области и оставляет заявку удобным способом — без звонков и лишних шагов.",
+        "en": "Visitors find their car type, see guarantees and reviews from people in their region, and send a request the way they prefer — no calls or extra steps."
+      }
+    },
+    "tools": [
+      "Tilda",
+      "Figma",
+      "Формы заявок",
+      "Адаптивный дизайн"
+    ],
+    "gallery": [
+      {
+        "src": "/img/autobuy-hero.webp",
+        "cap": {
+          "ru": "Первый экран",
+          "en": "Hero"
+        }
+      },
+      {
+        "src": "/img/autobuy-trust.webp",
+        "cap": {
+          "ru": "Почему нам доверяют",
+          "en": "Why trust us"
+        }
+      },
+      {
+        "src": "/img/autobuy-cars.webp",
+        "cap": {
+          "ru": "Какие автомобили выкупаем",
+          "en": "Cars we buy"
+        }
+      },
+      {
+        "src": "/img/autobuy-steps.webp",
+        "cap": {
+          "ru": "Как проходит выкуп — 5 шагов",
+          "en": "How the buyout works — 5 steps"
+        }
+      },
+      {
+        "src": "/img/autobuy-cta.webp",
+        "cap": {
+          "ru": "Оценка за 5 минут и 4 канала связи",
+          "en": "5-minute appraisal and 4 contact channels"
+        }
+      },
+      {
+        "src": "/img/autobuy-reviews.webp",
+        "cap": {
+          "ru": "Отзывы клиентов",
+          "en": "Client reviews"
+        }
+      },
+      {
+        "src": "/img/autobuy-faq.webp",
+        "cap": {
+          "ru": "Частые вопросы",
+          "en": "FAQ"
+        }
+      },
+      {
+        "src": "/img/autobuy-m-hero.webp",
+        "cap": {
+          "ru": "Мобильная версия: первый экран",
+          "en": "Mobile: hero"
+        }
+      },
+      {
+        "src": "/img/autobuy-m-cars.webp",
+        "cap": {
+          "ru": "Мобильная версия: каталог авто",
+          "en": "Mobile: car categories"
+        }
+      }
+    ]
+  },
+  {
     "id": "ekskurpiter",
     "dir": "tilda",
     "cat": "landing",
@@ -4120,129 +4276,6 @@
         "cap": {
           "ru": "Salebot — сторис",
           "en": "Salebot — story"
-        }
-      }
-    ]
-  },
-  {
-    "id": "nizhavtovykup",
-    "dir": "figma",
-    "cat": "",
-    "status": "client",
-    "year": 2026,
-    "type": {
-      "ru": "Дизайн лендинга",
-      "en": "Landing page design"
-    },
-    "title": {
-      "ru": "НижАвтоВыкуп.рф — сайт выкупа автомобилей",
-      "en": "NizhAvtoVykup — car buyout website"
-    },
-    "lead": {
-      "ru": "Лендинг для выкупа автомобилей в Нижегородской области: обещание «дорого и за 30 минут» на первом экране, понятные гарантии и четыре способа связаться — от Telegram до звонка.",
-      "en": "A landing page for car buyout in the Nizhny Novgorod region: the “top price in 30 minutes” promise on the first screen, clear guarantees and four ways to get in touch — from Telegram to a phone call."
-    },
-    "cover": "/img/autobuy-hero.webp",
-    "url": "",
-    "facts": [
-      {
-        "v": "7",
-        "l": {
-          "ru": "категорий авто: от битых до кредитных",
-          "en": "car categories: from damaged to financed"
-        }
-      },
-      {
-        "v": "4",
-        "l": {
-          "ru": "канала связи в одном блоке",
-          "en": "contact channels in one block"
-        }
-      },
-      {
-        "v": "8",
-        "l": {
-          "ru": "частых вопросов закрыты на странице",
-          "en": "common questions answered on the page"
-        }
-      }
-    ],
-    "task": {
-      "ru": "Человек, который продаёт машину, боится двух вещей: что занизят цену и что обманут с документами. Страница должна снять эти страхи и довести до заявки на оценку за пару минут.",
-      "en": "People selling a car fear two things: a lowball price and paperwork tricks. The page had to remove those fears and get to an appraisal request in a couple of minutes."
-    },
-    "flow": [],
-    "done": [
-      {
-        "ru": "Сделал первый экран с оффером «Выкупим дорого и за 30 минут» и тремя гарантиями",
-        "en": "Built a hero with the “top price in 30 minutes” offer and three guarantees"
-      },
-      {
-        "ru": "Собрал блок «Почему нам доверяют» из 6 причин",
-        "en": "Made a “Why trust us” block with 6 reasons"
-      },
-      {
-        "ru": "Показал 7 категорий авто, которые выкупают, — человек находит свою ситуацию",
-        "en": "Showed 7 car categories they buy, so visitors find their case"
-      },
-      {
-        "ru": "Сделал блок оценки за 5 минут с макетом заявки в телефоне и 4 каналами связи",
-        "en": "Made a 5-minute appraisal block with a phone mockup and 4 contact channels"
-      },
-      {
-        "ru": "Добавил отзывы с городом и моделью авто, FAQ и подвал с контактами",
-        "en": "Added reviews with city and car model, FAQ and a contact footer"
-      }
-    ],
-    "result": {
-      "title": {
-        "ru": "Путь от сомнения до заявки",
-        "en": "From doubt to request"
-      },
-      "text": {
-        "ru": "Посетитель находит свой тип автомобиля, видит гарантии и отзывы соседей по области и оставляет заявку удобным способом — без звонков и лишних шагов.",
-        "en": "Visitors find their car type, see guarantees and reviews from people in their region, and send a request the way they prefer — no calls or extra steps."
-      }
-    },
-    "tools": [
-      "Figma",
-      "Прототип",
-      "Формы заявок"
-    ],
-    "gallery": [
-      {
-        "src": "/img/autobuy-hero.webp",
-        "cap": {
-          "ru": "Первый экран",
-          "en": "Hero"
-        }
-      },
-      {
-        "src": "/img/autobuy-trust.webp",
-        "cap": {
-          "ru": "Доверие и категории авто",
-          "en": "Trust and car categories"
-        }
-      },
-      {
-        "src": "/img/autobuy-cta.webp",
-        "cap": {
-          "ru": "Оценка за 5 минут",
-          "en": "5-minute appraisal"
-        }
-      },
-      {
-        "src": "/img/autobuy-reviews.webp",
-        "cap": {
-          "ru": "Отзывы и FAQ",
-          "en": "Reviews and FAQ"
-        }
-      },
-      {
-        "src": "/img/autobuy-full.webp",
-        "cap": {
-          "ru": "Страница целиком",
-          "en": "Full page"
         }
       }
     ]
