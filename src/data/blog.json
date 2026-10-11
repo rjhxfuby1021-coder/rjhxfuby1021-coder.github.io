@@ -1,5 +1,149 @@
 [
   {
+    "slug": "infografika-dlya-kartochki-marketplejsa",
+    "date": "2026-10-11",
+    "read": 5,
+    "service": "figma",
+    "cover": "case:fold8-ozon",
+    "tag": {
+      "ru": "Дизайн в Figma",
+      "en": "Figma design"
+    },
+    "title": {
+      "ru": "Инфографика для карточки на маркетплейсе: как собрать серию слайдов, которая продаёт",
+      "en": "Marketplace product card infographics: how to build a slide set that sells"
+    },
+    "desc": {
+      "ru": "Разбор на примере карточки складного смартфона для Ozon: порядок слайдов, одна мысль на слайд и ошибки, из-за которых карточку пролистывают.",
+      "en": "A breakdown based on a foldable phone card for Ozon: slide order, one idea per slide and the mistakes that make shoppers scroll past."
+    },
+    "body": [
+      {
+        "p": {
+          "ru": "На маркетплейсе карточка конкурирует с десятками похожих товаров в одной ленте. Покупатель не читает описание, пока не откроет карточку, а открывает он её по картинке. Поэтому инфографика — это не украшение, а короткая презентация товара, которая должна сработать за пару секунд. Разберу, как я собираю такую серию, на примере карточки Samsung Galaxy Z Fold8 для Ozon.",
+          "en": "On a marketplace, a product card competes with dozens of similar items in the same feed. Shoppers don’t read the description until they open the card, and they open it because of the image. So infographics aren’t decoration — they’re a short product pitch that has to work in a couple of seconds. Here is how I build such a set, using a Samsung Galaxy Z Fold8 card for Ozon as the example."
+        }
+      },
+      {
+        "case": "fold8-ozon"
+      },
+      {
+        "h": {
+          "ru": "Начните с вопросов покупателя, а не с дизайна",
+          "en": "Start with buyer questions, not with design"
+        }
+      },
+      {
+        "p": {
+          "ru": "Прежде чем открывать Figma, я выписываю, что человек хочет узнать о товаре, в том порядке, в каком эти вопросы у него возникают. Для складного смартфона это: что за модель и сколько памяти, какой экран, как снимает камера, что умеет ИИ, сколько держит батарея и не тяжёлый ли он. Каждый вопрос становится отдельным слайдом. Так серия превращается в разговор, а не в набор красивых картинок.",
+          "en": "Before opening Figma, I list what a person wants to know about the product, in the order those questions come up. For a foldable phone that’s: which model and how much storage, what’s the display like, how good is the camera, what can the AI do, how long the battery lasts and whether it’s heavy. Each question becomes its own slide. That turns the set into a conversation rather than a pile of pretty pictures."
+        }
+      },
+      {
+        "h": {
+          "ru": "Обложка решает, откроют карточку или нет",
+          "en": "The cover decides whether the card gets opened"
+        }
+      },
+      {
+        "p": {
+          "ru": "Первый слайд виден в ленте каталога в маленьком размере, часто на телефоне. На нём должно быть только главное: товар крупно, название модели, ключевой параметр вроде объёма памяти или цвета и максимум три аргумента. В карточке Fold8 на обложку вынесены экран, камера и вес — то, ради чего вообще покупают складной телефон. Всё остальное подождёт до следующих слайдов.",
+          "en": "The first slide shows up small in the catalog feed, often on a phone. It should carry only the essentials: the product large, the model name, a key parameter such as storage or color, and three arguments at most. On the Fold8 card the cover highlights the display, the camera and the weight — the reasons people buy a foldable phone in the first place. Everything else can wait for the next slides."
+        }
+      },
+      {
+        "h": {
+          "ru": "Одна мысль и одна крупная цифра на слайд",
+          "en": "One idea and one big number per slide"
+        }
+      },
+      {
+        "p": {
+          "ru": "Самая частая ошибка — уместить всё на один слайд. Восемь иконок и мелкий текст на телефоне превращаются в кашу, и покупатель листает дальше. Работает обратное: один слайд — одна мысль, подкреплённая одной крупной цифрой или понятной картинкой. Детали можно дать мелким текстом ниже, но считываться должна именно главная мысль.",
+          "en": "The most common mistake is cramming everything onto one slide. Eight icons and small text turn into mush on a phone, and the shopper scrolls on. The opposite works: one slide, one idea, backed by one big number or a clear image. Details can go below in smaller text, but the main idea is what has to read first."
+        }
+      },
+      {
+        "h": {
+          "ru": "Единый стиль и один акцентный слайд",
+          "en": "One consistent style and one accent slide"
+        }
+      },
+      {
+        "p": {
+          "ru": "Серия должна выглядеть как одно целое: общая сетка, одни и те же шрифты, одинаковое положение заголовка и плашек с цифрами. В Figma я собираю это через общие компоненты и стили, поэтому правка на одном слайде не ломает остальные. При этом полностью ровный ритм утомляет. В карточке Fold8 все слайды светлые, кроме слайда про Galaxy AI — он тёмный и сразу выделяется, когда покупатель листает серию.",
+          "en": "The set should look like a single piece: a shared grid, the same fonts, the headline and number tiles in the same place. In Figma I build this with shared components and styles, so editing one slide doesn’t break the others. That said, a perfectly even rhythm gets tiring. On the Fold8 card all slides are light except the Galaxy AI one — it’s dark and stands out immediately as the shopper swipes through."
+        }
+      },
+      {
+        "h": {
+          "ru": "Последний слайд — таблица характеристик",
+          "en": "The last slide is a spec table"
+        }
+      },
+      {
+        "p": {
+          "ru": "Часть покупателей сравнивает товары по параметрам. Для них в конце серии стоит сводная таблица: только ключевые характеристики, крупно и без сокращений, которые нужно расшифровывать. Данные берите из официальных источников производителя — ошибка в цифре потом всплывёт в отзывах. В карточке Fold8 таблица собрана по данным официального сайта Samsung.",
+          "en": "Some shoppers compare products by specs. For them, the set ends with a summary table: only the key specs, large and without abbreviations that need decoding. Take the data from the manufacturer’s official sources — a wrong number will come back in the reviews. On the Fold8 card the table is compiled from Samsung’s official website."
+        }
+      },
+      {
+        "h": {
+          "ru": "Частые ошибки",
+          "en": "Common mistakes"
+        }
+      },
+      {
+        "ul": [
+          {
+            "ru": "Мелкий текст, который не читается на экране телефона.",
+            "en": "Small text that can’t be read on a phone screen."
+          },
+          {
+            "ru": "Каждый слайд в своём стиле — серия выглядит собранной из разных мест.",
+            "en": "Every slide in its own style — the set looks pieced together from different places."
+          },
+          {
+            "ru": "Общие слова вроде «высокое качество» вместо конкретных параметров.",
+            "en": "Vague words like “high quality” instead of concrete specs."
+          },
+          {
+            "ru": "Неправильный формат: картинку обрезает или вокруг неё появляются поля.",
+            "en": "The wrong format: the image gets cropped or ends up with blank margins."
+          },
+          {
+            "ru": "Нарушение правил площадки: у маркетплейсов есть требования к тому, что можно размещать на фото товара.",
+            "en": "Breaking platform rules: marketplaces have requirements for what can appear on product images."
+          }
+        ]
+      },
+      {
+        "note": {
+          "ru": "Формат задаётся площадкой. Серия для Fold8 сделана под Ozon: вертикальные слайды 3:4, 900 × 1200. Перед стартом сверьте актуальные требования своей площадки к размеру и содержанию изображений.",
+          "en": "The format is set by the platform. The Fold8 set was made for Ozon: vertical 3:4 slides, 900 × 1200. Before you start, check your platform’s current requirements for image size and content."
+        }
+      },
+      {
+        "h": {
+          "ru": "Что нужно, чтобы начать",
+          "en": "What you need to get started"
+        }
+      },
+      {
+        "p": {
+          "ru": "Фото товара хорошего качества, список характеристик и понимание, чем товар лучше соседей по выдаче. Если последнего пока нет, разберёмся вместе: посмотрим вопросы в отзывах на похожие товары и выберем три главных аргумента для обложки. Дальше — порядок слайдов, стиль в Figma и готовые файлы в нужном формате.",
+          "en": "Good-quality product photos, a list of specs and a sense of why your product beats its neighbors in the results. If you don’t have that last part yet, we’ll work it out together: look at the questions in reviews of similar products and pick the three main arguments for the cover. Then come the slide order, the style in Figma and ready files in the right format."
+        }
+      },
+      {
+        "p": {
+          "ru": "Делаю инфографику для карточек Ozon и Wildberries. Напишите, какой у вас товар и сколько слайдов нужно, — подскажу структуру и посчитаю стоимость под задачу.",
+          "en": "I make infographics for Ozon and Wildberries cards. Tell me what your product is and how many slides you need — I’ll suggest a structure and quote a price for the task."
+        }
+      }
+    ]
+  },
+  {
     "slug": "skolko-stoit-chat-bot",
     "date": "2026-09-27",
     "read": 6,
