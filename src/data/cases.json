@@ -3895,8 +3895,8 @@
       "en": "Product card"
     },
     "title": {
-      "ru": "Карточка блюда для кафе «Приятного аппетита»",
-      "en": "Dish card for the “Priyatnogo Appetita” café"
+      "ru": "Карточка блюда для онлайн-меню кафе",
+      "en": "Dish card for a café online menu"
     },
     "lead": {
       "ru": "Переделал фото блюд для онлайн-меню по просьбе заказчика: вместо картофеля в коробке — подача на тарелке, как в ресторане. Все блюда в меню получили единый стиль: одна тарелка, меняется только еда.",
@@ -3956,8 +3956,8 @@
         "en": "A menu where everything looks tasty"
       },
       "text": {
-        "ru": "Блюда в онлайн-меню выглядят как в зале ресторана, а единая тарелка собирает меню в цельную витрину. Этот же стиль используется на сайте кафе — он есть в кейсах Tilda.",
-        "en": "Dishes in the online menu look like they’re served in the restaurant, and the single plate turns the menu into one consistent showcase. The same style is used on the café website — see the Tilda cases."
+        "ru": "Блюда в онлайн-меню выглядят как в зале ресторана, а единая тарелка собирает меню в цельную витрину.",
+        "en": "Dishes in the online menu look like they’re served in the restaurant, and the single plate turns the menu into one consistent showcase."
       }
     },
     "tools": [
@@ -3979,8 +3979,7 @@
           "en": "Before: takeaway box"
         }
       }
-    ],
-    "related": "cafe-shop"
+    ]
   },
   {
     "id": "service-cards",
