@@ -152,55 +152,100 @@ a{color:inherit;text-decoration:none}
 @media(max-width:720px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.c{padding:16px}.c .go{opacity:1;transform:none;width:34px;height:34px}.c .top em{display:none}.c .go{top:12px;bottom:auto;right:12px}}
 @media(max-width:420px){.c .nm span{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.ch-head{padding:clamp(28px,4.5vw,56px) 0 8px;display:grid;gap:18px;max-width:900px}
+.ch-who{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.ch-head h1{font:800 clamp(32px,4.6vw,64px)/1.02 "Manrope";letter-spacing:-.05em}
+.ch-head h1 span{color:#a19d93}
+.ch-lead{font:500 clamp(16px,1.5vw,19px)/1.5 "Manrope";color:#55524b;max-width:58ch}
+.ch-lead b{color:#141414;font-weight:700}
+.ch-acts{display:flex;gap:12px;flex-wrap:wrap}
+.ch-main,.ch-cases{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 28px;border-radius:999px;font:700 16px "Manrope";transition:transform .2s}
+.ch-main{background:#0a0a0d;color:#d5ff45}
+.ch-cases{border:1.5px solid #141414}
+.ch-main:hover,.ch-cases:hover{transform:translateY(-2px)}
+.ch-steps{display:flex;gap:8px 24px;flex-wrap:wrap;list-style:none;counter-reset:s;font:500 14px "Manrope";color:#6b675f}
+.ch-steps li{counter-increment:s}
+.ch-steps li::before{content:counter(s) ". ";font-weight:800;color:#141414}
+.ch-tabs{display:flex;gap:8px;margin:28px 0 16px;flex-wrap:wrap}
+.ch-tabs button{cursor:pointer;padding:11px 20px;border-radius:999px;font:700 14px "Manrope";border:1.5px solid #dcd8ce;background:none;color:#141414}
+.ch-tabs button[aria-selected=true]{background:#141414;color:#fff;border-color:#141414}
+.grid{grid-template-columns:repeat(6,minmax(0,1fr))}
+.grid .c[hidden],[data-panel][hidden],.ch-more[hidden]{display:none}
+.ch-more{display:block;margin:0 auto 34px;cursor:pointer;padding:12px 24px;border-radius:999px;border:1.5px solid #141414;background:none;font:700 14px "Manrope";color:#141414}
+.s0{background:#0a0a0d;color:#f4f4f5;background-image:radial-gradient(120% 80% at 100% 0%,rgba(213,255,69,.22),transparent 60%)}
+.s0 b{font:800 clamp(26px,2.2vw,34px) "Manrope";letter-spacing:-.04em;color:#d5ff45}
+.s0 .chat{display:flex;flex-direction:column;gap:6px;font:500 12px/1.35 "Manrope";position:relative;z-index:2}
+.s0 .chat span{max-width:92%;padding:8px 11px;border-radius:12px;background:#1a1a20;border:1px solid #26262e}
+.s0 .chat span:nth-child(2){align-self:flex-end;background:#d5ff45;color:#0a0a0d;border-color:#d5ff45}
+.s0 .go{background:#d5ff45;color:#0a0a0d}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.ch-main,.ch-cases{width:100%}}
 </style>
-<link rel="stylesheet" href="assets/logo.css?v=20261012230332">
+<link rel="stylesheet" href="assets/logo.css?v=20261012230606">
 </head>
 <body>
 <div class="w">
-  <div class="intro">
-    <div>
-      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap"><span class="pk-logo pk-logo--chooser"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span><div class="hi">техспециалист · беру новые проекты</div></div>
-      <h1>Здравствуйте! <span>В каком стиле показать вам мой сайт?</span></h1>
+  <header class="ch-head">
+    <div class="ch-who"><span class="pk-logo pk-logo--chooser"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин</span></span><div class="hi">техспециалист · беру новые проекты</div></div>
+    <h1>Сайты на Tilda, чат-боты, онлайн-школы <span>и дизайн —&nbsp;под&nbsp;ключ</span></h1>
+    <p class="ch-lead">Это <b>один сайт в 18 оформлениях</b>. Кейсы, цены и отзывы везде одинаковые — выберите подачу, которая вам ближе, или смотрите обычную.</p>
+    <div class="ch-acts">
+      <a class="ch-main" href="/ai/">Показать сайт →</a>
+      <a class="ch-cases" href="/ai/keys">Сразу к кейсам</a>
     </div>
-    <p>Я делаю сайты, чат-ботов и онлайн-школы — и собрал свой сайт в 18 подачах: от строгой до дерзкой и под разные сферы. <b>Кейсы, цены и отзывы везде настоящие</b>, стиль можно сменить в любой момент.</p>
+    <ol class="ch-steps"><li>Выберите стиль</li><li>Смотрите кейсы и цены</li><li>Сменить стиль — в любой момент кнопкой внизу</li></ol>
+  </header>
+  <div class="ch-tabs" role="tablist" aria-label="Стили сайта">
+    <button type="button" role="tab" data-tab="mood" aria-selected="true">По настроению</button>
+    <button type="button" role="tab" data-tab="sphere" aria-selected="false">Под вашу сферу</button>
   </div>
-
-  <a class="c-ai" href="/ai/">
-    <div><div class="top"><span>00</span><span>нынешний сайт texspeckps.ru</span></div>
-      <b>ИИшный <i>стиль</i></b>
-      <p>Тёмный экран, салатовое свечение и ИИ-ассистент, который отвечает на вопросы круглосуточно. Тот самый сайт, с которого всё началось.</p>
-      <span class="go">Открыть →</span></div>
-    <div class="chat" aria-hidden="true"><span>Здравствуйте! Я ИИ-ассистент Павла. Подсказать по ценам или срокам?</span><span>Сколько стоит чат-бот?</span><span>Воронка продаж — от 5 000 ₽, бот для заявок — от 3 000 ₽. Собрать предложение?</span></div>
-  </a>
-  <nav class="grid" aria-label="Выбор стиля сайта">
-    <a class="c s1" href="business/"><div class="top"><i>01</i><em>в духе Pentagram</em></div><div class="nm"><b>Деловой</b><span>Сетка, цифры и факты — для тех, кто ценит время</span></div><span class="bar"></span><span class="go">→</span></a>
-    <a class="c s2" href="creative/"><div class="top"><i>02</i><em>журнальные портфолио</em></div><div class="ph"><img src="https://texspeckps.ru/img/ekskurpiter-cover.webp" alt=""></div><div class="nm"><span class="hand">с характером</span><b>Творческий</b><span>Коллаж и истории проектов — для тех, кто выбирает сердцем</span></div><span class="go">→</span></a>
-    <a class="c s3" href="bold/"><div class="top"><i>03</i><em>в духе Gumroad</em></div><span class="st">БЕЗ<br>ВОДЫ</span><div class="nm"><b>Дерзкий</b><span>Яркие цвета и прямой разговор</span></div><span class="go">→</span></a>
-    <a class="c s4" href="premium/"><div class="wall" aria-hidden="true"><span>Figma Tilda</span><span><i>Salebot</i> GetCourse</span><span>Сайты Боты</span><span><i>Школы</i> ИИ</span></div><div class="top"><i>04</i><em>агентства Locomotive и Obys</em></div><div class="nm"><b>Премиальный</b><span>Тёмная сцена и золото — для статусных проектов</span></div><span class="go">→</span></a>
-    <a class="c s5" href="bento/"><div class="tiles"><i></i><i></i><i></i></div><div class="top"><i>05</i><em>Apple и Linear</em></div><div class="nm"><b>Технологичный</b><span>Бенто-сетка и продуктовая подача</span></div><span class="go">→</span></a>
-    <a class="c s6" href="retro/"><div class="top"><i>06</i><em>Windows 98, Poolsuite</em></div><div class="win"><div>Привет.exe</div><p>Найден специалист: 1</p></div><div class="nm"><b>Ностальгия</b><span>Рабочий стол с окнами, которые можно таскать</span></div><span class="go">→</span></a>
-    <a class="c s7" href="glass/"><span class="glass"></span><div class="top"><i>07</i><em>Apple Liquid Glass</em></div><div class="nm"><b>Современный</b><span>Живой градиент и стекло</span></div><span class="go">→</span></a>
-    <a class="c s8" href="terminal/"><div class="top"><i>08</i><em>Warp, Vercel</em></div><pre><em>$</em> whoami
+  <nav class="grid" data-panel="mood" aria-label="Выбор стиля сайта">
+    <a class="c s0" data-group="mood" href="/ai/"><div class="top"><i>00</i><em>нынешний сайт</em></div><div class="chat" aria-hidden="true"><span>Сколько стоит чат-бот?</span><span>От 3 000 ₽. Собрать предложение?</span></div><div class="nm"><b>ИИшный</b><span>Тёмный экран и ИИ-ассистент, который отвечает 24/7</span></div><span class="go">→</span></a>
+    <a class="c s1" data-group="mood" href="business/"><div class="top"><i>01</i><em>в духе Pentagram</em></div><div class="nm"><b>Деловой</b><span>Сетка, цифры и факты — для тех, кто ценит время</span></div><span class="bar"></span><span class="go">→</span></a>
+    <a class="c s2" data-group="mood" href="creative/"><div class="top"><i>02</i><em>журнальные портфолио</em></div><div class="ph"><img src="https://texspeckps.ru/img/ekskurpiter-cover.webp" alt=""></div><div class="nm"><span class="hand">с характером</span><b>Творческий</b><span>Коллаж и истории проектов — для тех, кто выбирает сердцем</span></div><span class="go">→</span></a>
+    <a class="c s3" data-group="mood" href="bold/"><div class="top"><i>03</i><em>в духе Gumroad</em></div><span class="st">БЕЗ<br>ВОДЫ</span><div class="nm"><b>Дерзкий</b><span>Яркие цвета и прямой разговор</span></div><span class="go">→</span></a>
+    <a class="c s4" data-group="mood" href="premium/"><div class="wall" aria-hidden="true"><span>Figma Tilda</span><span><i>Salebot</i> GetCourse</span><span>Сайты Боты</span><span><i>Школы</i> ИИ</span></div><div class="top"><i>04</i><em>агентства Locomotive и Obys</em></div><div class="nm"><b>Премиальный</b><span>Тёмная сцена и золото — для статусных проектов</span></div><span class="go">→</span></a>
+    <a class="c s5" data-group="mood" href="bento/"><div class="tiles"><i></i><i></i><i></i></div><div class="top"><i>05</i><em>Apple и Linear</em></div><div class="nm"><b>Технологичный</b><span>Бенто-сетка и продуктовая подача</span></div><span class="go">→</span></a>
+    <a class="c s6" data-group="mood" data-extra href="retro/"><div class="top"><i>06</i><em>Windows 98, Poolsuite</em></div><div class="win"><div>Привет.exe</div><p>Найден специалист: 1</p></div><div class="nm"><b>Ностальгия</b><span>Рабочий стол с окнами, которые можно таскать</span></div><span class="go">→</span></a>
+    <a class="c s7" data-group="mood" data-extra href="glass/"><span class="glass"></span><div class="top"><i>07</i><em>Apple Liquid Glass</em></div><div class="nm"><b>Современный</b><span>Живой градиент и стекло</span></div><span class="go">→</span></a>
+    <a class="c s8" data-group="mood" data-extra href="terminal/"><div class="top"><i>08</i><em>Warp, Vercel</em></div><pre><em>$</em> whoami
 Павел Корчагин
 <em>$</em> help
 cases price bot</pre><div class="nm"><b>Технарь</b><span>Терминал, в котором можно вводить команды</span></div><span class="go">→</span></a>
-    <a class="c s9" href="friendly/"><span class="bl b"></span><span class="bl a"></span><span class="bl c"></span><div class="top"><i>09</i><em>Headspace, Duolingo</em></div><div class="nm"><b>Дружелюбный</b><span>Пластилиновые герои и простые слова</span></div><span class="go">→</span></a>
-    <a class="c s10" href="kinetic/"><div class="top"><i>10</i><em>кинетика Awwwards</em></div><div class="kin" aria-hidden="true"><span>САЙТЫ</span><span>БОТЫ</span><span>ШКОЛЫ</span></div><div class="nm"><b>Экспери&shy;ментальный</b><span>Огромные слова, которые двигаются</span></div><span class="go">→</span></a>
+    <a class="c s9" data-group="mood" data-extra href="friendly/"><span class="bl b"></span><span class="bl a"></span><span class="bl c"></span><div class="top"><i>09</i><em>Headspace, Duolingo</em></div><div class="nm"><b>Дружелюбный</b><span>Пластилиновые герои и простые слова</span></div><span class="go">→</span></a>
+    <a class="c s10" data-group="mood" data-extra href="kinetic/"><div class="top"><i>10</i><em>кинетика Awwwards</em></div><div class="kin" aria-hidden="true"><span>САЙТЫ</span><span>БОТЫ</span><span>ШКОЛЫ</span></div><div class="nm"><b>Экспери&shy;ментальный</b><span>Огромные слова, которые двигаются</span></div><span class="go">→</span></a>
   </nav>
+  <button type="button" class="ch-more">Ещё 5 стилей</button>
 
-  <div class="sec2"><h2>Под вашу сферу <span>— кейсы и язык вашей отрасли</span></h2><p>Тот же специалист, но подача, примеры и цены собраны под конкретный бизнес.</p></div>
-  <nav class="grid2" aria-label="Стили под отрасль">
-    <a class="i i1" href="cafe/"><span class="deco"></span><div class="top" style="margin-top:14px"><span>Кафе и рестораны</span><span>меню-подача</span></div><div><b>Для кафе</b><small>Онлайн-меню, доставка и бот — услуги поданы как блюда</small></div></a>
-    <a class="i i2" href="auto/"><span class="deco"></span><div class="top"><span>СТО и мастерские</span><span>заказ-наряд</span></div><div><b>Для автосервисов</b><small>Диагностика вашего сайта и запись на ремонт</small></div></a>
-    <a class="i i3" href="medical/"><span class="deco"></span><div class="top"><span>Клиники и врачи</span></div><div><b>Для медицины</b><small>Живой виджет онлайн-записи к врачу</small></div></a>
-    <a class="i i4" href="expert/"><span class="deco"></span><div class="top"><span>Психологи, коучи, эксперты</span></div><div><b>Для экспертов</b><small>Путь клиента: от бесплатного материала до курса</small></div></a>
-    <a class="i i5" href="lawyer/"><span class="deco"></span><div class="top"><span>Юристы и адвокаты</span><span>§</span></div><div><b>Для юристов</b><small>Условия работы в форме договора с подписью</small></div></a>
-    <a class="i i6" href="accountant/"><span class="deco"></span><div class="top" style="margin-top:20px"><span>Бухгалтеры</span><span>=СУММ()</span></div><div><b>Для бухгалтеров</b><small>Сайт-таблица и калькулятор потерянных заявок</small></div></a>
-    <a class="i i7" href="it/"><span class="deco">POST /projects</span><div class="top"><span>IT-команды и продукты</span></div><div><b>Для айтишников</b><small>Документация в духе Stripe с примерами кода</small></div></a>
+  <div class="sec2" data-panel="sphere"><h2>Под вашу сферу <span>— кейсы и язык вашей отрасли</span></h2><p>Тот же специалист, но подача, примеры и цены собраны под конкретный бизнес.</p></div>
+  <nav class="grid2" data-panel="sphere" aria-label="Стили под отрасль">
+    <a class="i i1" data-group="sphere" href="cafe/"><span class="deco"></span><div class="top" style="margin-top:14px"><span>Кафе и рестораны</span><span>меню-подача</span></div><div><b>Для кафе</b><small>Онлайн-меню, доставка и бот — услуги поданы как блюда</small></div></a>
+    <a class="i i2" data-group="sphere" href="auto/"><span class="deco"></span><div class="top"><span>СТО и мастерские</span><span>заказ-наряд</span></div><div><b>Для автосервисов</b><small>Диагностика вашего сайта и запись на ремонт</small></div></a>
+    <a class="i i3" data-group="sphere" href="medical/"><span class="deco"></span><div class="top"><span>Клиники и врачи</span></div><div><b>Для медицины</b><small>Живой виджет онлайн-записи к врачу</small></div></a>
+    <a class="i i4" data-group="sphere" href="expert/"><span class="deco"></span><div class="top"><span>Психологи, коучи, эксперты</span></div><div><b>Для экспертов</b><small>Путь клиента: от бесплатного материала до курса</small></div></a>
+    <a class="i i5" data-group="sphere" href="lawyer/"><span class="deco"></span><div class="top"><span>Юристы и адвокаты</span><span>§</span></div><div><b>Для юристов</b><small>Условия работы в форме договора с подписью</small></div></a>
+    <a class="i i6" data-group="sphere" href="accountant/"><span class="deco"></span><div class="top" style="margin-top:20px"><span>Бухгалтеры</span><span>=СУММ()</span></div><div><b>Для бухгалтеров</b><small>Сайт-таблица и калькулятор потерянных заявок</small></div></a>
+    <a class="i i7" data-group="sphere" href="it/"><span class="deco">POST /projects</span><div class="top"><span>IT-команды и продукты</span></div><div><b>Для айтишников</b><small>Документация в духе Stripe с примерами кода</small></div></a>
   </nav>
 
   <div class="foot"><span>© 2026 Павел Корчагин · texspeckps.ru</span><span>Нет времени выбирать? <a href="https://t.me/PavelTexSpec" target="_blank" rel="noopener">Напишите в Telegram</a></span></div>
 </div>
-<script src="assets/data.js?v=20261012230332"></script>
+<script>
+(function () {
+  const more = document.querySelector('.ch-more'), cards = [...document.querySelectorAll('.grid .c')];
+  let tab = 'mood', open = false;
+  function show() {
+    document.querySelectorAll('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== tab; });
+    cards.forEach((c) => { c.hidden = !open && c.hasAttribute('data-extra'); });
+    more.hidden = tab !== 'mood' || open;
+    document.querySelectorAll('.ch-tabs button').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.tab === tab)));
+  }
+  document.querySelectorAll('.ch-tabs button').forEach((b) => b.addEventListener('click', () => { tab = b.dataset.tab; show(); }));
+  more.addEventListener('click', () => { open = true; show(); });
+  show();
+})();
+</script>
+<script src="assets/data.js?v=20261012230606"></script>
 </body>
 </html>
