@@ -51,7 +51,7 @@
  padding:14px 40px 14px 16px;border-radius:16px;background:#d5ff45;color:#0a0a0d;font:500 14px/1.4 Manrope,system-ui,sans-serif;box-shadow:0 12px 40px -12px rgba(0,0,0,.5)}
 #pk-nav-tip button{all:unset;cursor:pointer;position:absolute;top:8px;right:10px;font-size:20px;line-height:1;padding:4px}
 @media(max-width:560px){#pk-nav{left:12px;right:12px;transform:none;justify-content:space-between;font-size:13px}
- #pk-nav a,#pk-nav button{padding:10px 9px}#pk-nav .pk-st span{display:none}#pk-nav-menu{width:min(280px,calc(100vw - 24px))}}
+ #pk-nav a,#pk-nav button{padding:10px 8px}#pk-nav .pk-st b{display:none}#pk-nav-menu{width:min(280px,calc(100vw - 24px))}}
 @media print{#pk-nav,#pk-nav-tip{display:none}}`;
 
   const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* приватный режим */ } } };
@@ -92,6 +92,10 @@
       document.body.style.paddingBottom = (nav.offsetHeight + 32 + lift) + 'px';
     };
     place(); addEventListener('resize', place); addEventListener('load', place);
+    const locked = () => [document.documentElement, document.body].some((el) => el.style.overflow === 'hidden' || getComputedStyle(el).overflow === 'hidden' && el.classList.length && /open|lock|modal/i.test(el.className));
+    const sync = () => { const off = locked(); nav.style.display = off ? 'none' : ''; const t = document.getElementById('pk-nav-tip'); if (t) t.style.display = off ? 'none' : ''; };
+    new MutationObserver(sync).observe(document.documentElement, { attributes: true, attributeFilter: ['style', 'class'] });
+    new MutationObserver(sync).observe(document.body, { attributes: true, attributeFilter: ['style', 'class'] });
     // подсказка — один раз на стиль, не на служебных страницах
     const TIP = 'pk-nav-tip-' + slug;
     if (!store.get(TIP) && !/404|spasibo|thanks/.test(location.pathname)) {

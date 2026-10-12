@@ -6,7 +6,6 @@ const pg = document.body.dataset.page || '';
 ENGINE({
   name: 'ностальгия',
   switchLabel: '↺ Сменить стиль',
-  noSwitch: true,
   header: (nav, H) => {
     const [ico, title] = WIN[pg] || ['🖥', 'ПавелOS 98'];
     return `<header class="desk-top"><a class="desk-ic" href="${H.P.home}"><span>🖥</span>Рабочий стол</a>${nav.map((n) => `<a class="desk-ic${n.on ? ' on' : ''}" href="${n.h}"><span>${({ cases: '📁', services: '📝', bot: '🤖', reviews: '✉', blog: '📰', about: '🖥', faq: '❓' })[n.k]}</span>${n.t}</a>`).join('')}<a class="desk-ic" href="${H.P.contact}"><span>✉</span>Написать</a></header>
