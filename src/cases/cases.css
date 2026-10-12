@@ -241,3 +241,10 @@
 .pk-case__cover .pk-img-small,
 .pk-gallery .pk-img-small { width: auto !important; max-width: 100%; max-height: 70vh; margin-inline: auto; }
 .pk-zoom:has(.pk-img-small) { border-radius: 18px; }
+
+/* фильтр по сфере и «пусто» */
+.pk-filter + .pk-filter--s { margin-top: -10px; }
+.pk-filter--s button { font-size: .92em; }
+.pk-empty { padding: 40px 0; text-align: center; }
+.pk-empty[hidden] { display: none; }
+.pk-empty__reset { margin-top: 14px; padding: 10px 18px; border: 1.5px solid currentColor; border-radius: 999px; background: none; color: inherit; font: inherit; font-weight: 600; cursor: pointer; }

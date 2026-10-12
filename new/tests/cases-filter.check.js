@@ -12,5 +12,8 @@ const BASE = process.env.BASE || 'http://localhost:5183';
   ok((await vis()) === 0 && await p.isVisible('.cases-empty'), 'пустая комбинация без сообщения');
   if (await p.isVisible('.cases-reset')) { await p.click('.cases-reset'); await p.waitForTimeout(300); ok((await vis()) === 35, 'сброс не показал все 35: ' + await vis()); }
   if (await p.$('button[data-s=auto]')) { await p.click('button[data-s=auto]'); await p.waitForTimeout(300); ok(/s=auto/.test(p.url()), 'сфера не попала в адрес'); } else ok(false, 'нет кнопок сферы');
+  await p.goto(BASE + '/ai/keys?s=food', { waitUntil: 'domcontentloaded' }); await p.waitForTimeout(1500);
+  const ai = await p.$$eval('[data-sphere]', (a) => a.filter((e) => e.offsetParent !== null && e.matches('article, li, .pk-case, a')).map((e) => e.dataset.sphere));
+  ok(ai.length >= 1 && ai.every((x) => x === 'food'), '/ai/keys?s=food: ' + ai.join(','));
   await b.close(); console.log(bad ? bad + ' ошибок' : 'всё ок'); process.exit(bad ? 1 : 0);
 })();

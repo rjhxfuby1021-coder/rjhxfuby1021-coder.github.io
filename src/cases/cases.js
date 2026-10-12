@@ -4,19 +4,40 @@
   if (!root) return;
   var html = document.documentElement;
 
-  /* ---------- фильтр витрины ---------- */
-  var filterBtns = root.querySelectorAll('[data-filter]');
-  filterBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var f = btn.getAttribute('data-filter');
-      filterBtns.forEach(function (b) { b.setAttribute('aria-pressed', String(b === btn)); });
-      root.querySelectorAll('.pk-ccard').forEach(function (card) {
-        var show = f === '*' || card.getAttribute('data-cat') === f;
-        card.classList.toggle('is-hidden', !show);
-        if (show) card.classList.add('is-in');
-      });
+  /* ---------- фильтр витрины: подкатегория, направление и сфера вместе ---------- */
+  var st = { cat: '*', dir: '*', sphere: '*' };
+  var q = new URLSearchParams(location.search);
+  if (q.get('d')) st.dir = q.get('d');
+  if (q.get('s')) st.sphere = q.get('s');
+  var ATTR = { cat: 'data-filter', dir: 'data-filter-dir', sphere: 'data-filter-sphere' };
+  function applyFilter(push) {
+    Object.keys(ATTR).forEach(function (k) {
+      if (st[k] !== '*' && !root.querySelector('[' + ATTR[k] + '="' + st[k] + '"]')) st[k] = '*';
+      root.querySelectorAll('[' + ATTR[k] + ']').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute(ATTR[k]) === st[k])); });
     });
+    var shown = 0;
+    root.querySelectorAll('.pk-ccard').forEach(function (card) {
+      var show = (st.cat === '*' || card.getAttribute('data-cat') === st.cat) && (st.dir === '*' || card.getAttribute('data-dir') === st.dir) &&
+        (st.sphere === '*' || card.getAttribute('data-sphere') === st.sphere);
+      card.classList.toggle('is-hidden', !show);
+      if (show) { card.classList.add('is-in'); shown++; }
+    });
+    root.querySelectorAll('.pk-empty').forEach(function (e) { e.hidden = shown > 0; });
+    if (push && window.history && history.replaceState) {
+      var u = new URL(location.href);
+      st.dir === '*' ? u.searchParams.delete('d') : u.searchParams.set('d', st.dir);
+      st.sphere === '*' ? u.searchParams.delete('s') : u.searchParams.set('s', st.sphere);
+      history.replaceState(history.state, '', u);
+    }
+  }
+  root.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-filter],[data-filter-dir],[data-filter-sphere],.pk-empty__reset');
+    if (!b) return;
+    if (b.classList.contains('pk-empty__reset')) st = { cat: '*', dir: '*', sphere: '*' };
+    else Object.keys(ATTR).forEach(function (k) { if (b.hasAttribute(ATTR[k])) st[k] = b.getAttribute(ATTR[k]); });
+    applyFilter(true);
   });
+  if (root.querySelector('.pk-ccard')) applyFilter(false);
 
   /* ---------- маленькие картинки не растягиваем (иначе скриншоты расплываются) ---------- */
   function fitImage(img) {

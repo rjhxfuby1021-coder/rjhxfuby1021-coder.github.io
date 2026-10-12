@@ -117,19 +117,43 @@
   var PREV = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
   var NEXT = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
 
+  var SPHERES = [
+    ['food', { ru: 'Еда и кафе', en: 'Food & cafés' }], ['auto', { ru: 'Авто и техника', en: 'Auto & machinery' }],
+    ['edu', { ru: 'Обучение', en: 'Education' }], ['b2b', { ru: 'Финансы и B2B', en: 'Finance & B2B' }],
+    ['beauty', { ru: 'Красота и здоровье', en: 'Beauty & health' }], ['other', { ru: 'Услуги и прочее', en: 'Services & other' }]
+  ];
+  // вторая строка фильтра: сфера бизнеса (только те сферы, что есть в списке)
+  function sphereFilter(d, list) {
+    var have = SPHERES.filter(function (x) { return list.some(function (c) { return (c.sphere || 'other') === x[0]; }); });
+    if (have.length < 2) return '';
+    d.put('cs.sphere', { ru: 'Сфера', en: 'Field' });
+    return '<div class="pk-filter pk-filter--s pk-reveal" role="group" aria-label="Сфера" data-i18n-attr="aria-label:cs.sphere">' +
+      '<button type="button" aria-pressed="true" data-filter-sphere="*">' + d.tag('span', 'cs.sAll', { ru: 'Все сферы', en: 'All fields' }) + '<i>' + list.length + '</i></button>' +
+      have.map(function (x) {
+        var cnt = list.filter(function (c) { return (c.sphere || 'other') === x[0]; }).length;
+        return '<button type="button" aria-pressed="false" data-filter-sphere="' + x[0] + '">' + d.tag('span', 'sph.' + x[0], x[1]) + '<i>' + cnt + '</i></button>';
+      }).join('') + '</div>';
+  }
+  function emptyBlock(d) {
+    d.put('cs.empty', { ru: 'В этой сфере пока нет кейсов этого направления.', en: 'No cases in this field for this area yet.' });
+    d.put('cs.reset', { ru: 'Сбросить фильтры', en: 'Reset filters' });
+    return '<div class="pk-empty" hidden><p data-i18n="cs.empty">В этой сфере пока нет кейсов этого направления.</p><button type="button" class="pk-empty__reset" data-i18n="cs.reset">Сбросить фильтры</button></div>';
+  }
+
   function statusBadge(d, c) {
     var key = 'cs.st.' + (c.status === 'client' ? 'client' : 'own');
     return d.label('span', key, 'class="pk-badge pk-badge--' + (c.status === 'client' ? 'client' : 'own') + '"');
   }
 
-  function renderCard(d, c, i) {
+  function renderCard(d, c, i, outside) {
     var k = 'c.' + c.id + '.';
     var facts = (c.facts || []).slice(0, 2).map(function (f, j) {
       return '<li><b>' + esc(f.v) + '</b>' + d.tag('span', k + 'f' + j, f.l) + '</li>';
     }).join('');
     return '' +
-      '<li class="pk-ccard pk-reveal" style="--d:' + (i % 3) + '" data-cat="' + esc(c.cat || '') + '">' +
-        '<a class="pk-ccard__link" href="#' + esc(c.id) + '" data-case-open="' + esc(c.id) + '">' +
+      '<li class="pk-ccard pk-reveal" style="--d:' + (i % 3) + '" data-cat="' + esc(c.cat || '') + '" data-dir="' + esc(c.dir) + '" data-sphere="' + esc(c.sphere || 'other') + '">' +
+        (outside ? '<a class="pk-ccard__link" href="' + SITE + c.dir + '#' + esc(c.id) + '">'
+          : '<a class="pk-ccard__link" href="#' + esc(c.id) + '" data-case-open="' + esc(c.id) + '">') +
           '<span class="pk-ccard__media">' +
             (c.cover ? '<img src="' + esc(c.cover) + '" alt="" loading="lazy" decoding="async">' : '') +
             '<span class="pk-ccard__badges">' + d.tag('span', k + 'type', c.type, 'class="pk-badge"') + statusBadge(d, c) + '</span>' +
@@ -316,8 +340,8 @@
         '</div>' +
       '</section>' +
       '<section class="pk-section" style="padding-top:0" aria-labelledby="pk-h1">' +
-        '<div class="pk-wrap">' + filter +
-          '<ul class="pk-cgrid' + (n === 1 ? ' pk-cgrid--one' : '') + '">' + cards + '</ul>' +
+        '<div class="pk-wrap">' + filter + sphereFilter(d, list) +
+          '<ul class="pk-cgrid' + (n === 1 ? ' pk-cgrid--one' : '') + '">' + cards + '</ul>' + emptyBlock(d) +
         '</div>' +
       '</section>' +
       '<section class="pk-section" style="padding-top:0" aria-labelledby="pk-other-h">' +
@@ -384,6 +408,14 @@
     d.put('k.tg', { ru: 'Свежие работы — в Telegram-канале', en: 'Latest work — on the Telegram channel' });
 
     var tiles = DIRS.map(function (x, i) { return dirTile(d, x, data, i, false); }).join('');
+    d.put('k.all', { ru: 'Все кейсы', en: 'All cases' });
+    var dirFilter = '<div class="pk-filter pk-reveal" role="group" aria-label="Направление" data-i18n-attr="aria-label:cs.filter">' +
+      '<button type="button" aria-pressed="true" data-filter-dir="*">' + d.label('span', 'cs.all') + '<i>' + total + '</i></button>' +
+      DIRS.map(function (x) {
+        var cnt = data.filter(function (c) { return c.dir === x.id; }).length;
+        return '<button type="button" aria-pressed="false" data-filter-dir="' + x.id + '">' + esc(x.name) + '<i>' + cnt + '</i></button>';
+      }).join('') + '</div>';
+    var allCards = data.map(function (c, i) { return renderCard(d, c, i, true); }).join('');
     var featured = feat.map(function (c, i) {
       var k = 'c.' + c.id + '.';
       return '<li class="pk-reveal" style="--d:' + i + '"><a class="pk-feat" href="' + SITE + c.dir + '#' + esc(c.id) + '">' +
@@ -404,6 +436,10 @@
           '</ul>' +
         '</div>' +
       '</section>' +
+      '<section class="pk-section" style="padding-top:0" aria-labelledby="pk-all-h"><div class="pk-wrap">' +
+        '<div class="pk-head"><h2 class="pk-h2 pk-reveal" id="pk-all-h" data-i18n="k.all">Все кейсы</h2></div>' +
+        dirFilter + sphereFilter(d, data) + '<ul class="pk-cgrid">' + allCards + '</ul>' + emptyBlock(d) +
+      '</div></section>' +
       '<section class="pk-section" style="padding-top:0" aria-label="Направления">' +
         '<div class="pk-wrap"><ul class="pk-dtiles">' + tiles + '</ul></div>' +
       '</section>' +
