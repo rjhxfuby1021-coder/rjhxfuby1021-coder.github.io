@@ -20,7 +20,7 @@ ENGINE({
     titleSfx: 'Павел К.', home: 'Главная', sep: '✳',
     nav: { bot: 'Бот', cases: 'Кейсы', services: 'Цены', reviews: 'Отзывы', blog: 'Блог', about: 'Кто', faq: 'Вопросы' },
     cta: { btn: 'Заявка ↗', btn2: 'Telegram ↗' },
-    cases: { title: 'Кейсы', kicker: 'Проекты · наведите', h1: 'Проекты<br><span class="o">25 штук</span>', lead: 'Сайты. Боты. Школы. Дизайн. Наведите на строку — увидите работу.', note: '',
+    cases: { title: 'Кейсы', kicker: 'Проекты · наведите', h1: 'Проекты<br><span class="o">35 штук</span>', lead: 'Сайты. Боты. Школы. Дизайн. Наведите на строку — увидите работу.', note: '',
       all: 'Всё', cats: { Tilda: 'Сайты', Salebot: 'Боты', GetCourse: 'Школы', Figma: 'Дизайн' }, client: 'клиент', own: 'своё', more: '↗',
       endH: 'Давайте <span class="o">начнём</span>', endP: 'Пара строк о задаче. Ответ в течение рабочего дня.', endBtn: 'Начать ↗' },
     case: { titleSfx: 'кейс · Павел К.', client: 'клиент', own: 'свой проект', live: 'Сайт ↗', similar: 'Хочу так ↗', similarTask: 'Как',

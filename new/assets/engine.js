@@ -56,7 +56,7 @@ window.ENGINE = function (T) {
     hd: (o) => `<section class="pg-hd${o.cls ? ' ' + o.cls : ''}"><div class="w">${o.crumbs || ''}${o.kicker ? `<p class="kicker">${o.kicker}</p>` : ''}<h1 class="pg-title">${o.h1}</h1>${o.lead ? `<p class="pg-lead">${o.lead}</p>` : ''}${o.note ? `<p class="pg-note">${o.note}</p>` : ''}${o.acts ? `<div class="acts">${o.acts}</div>` : ''}${o.extra || ''}</div></section>`,
     sec: (o) => `<section class="sec${o.cls ? ' ' + o.cls : ''}"${o.id ? ` id="${o.id}"` : ''}><div class="w">${o.title || o.kicker ? `<div class="sec-hd">${o.kicker ? `<p class="kicker">${o.kicker}</p>` : ''}${o.title ? `<h2 class="sec-title">${o.title}</h2>` : ''}${o.lead ? `<p class="sec-lead">${o.lead}</p>` : ''}</div>` : ''}${o.body}</div></section>`,
     cta: (o) => `<section class="cta"><div class="w"><h2 class="cta-title">${o.h}</h2>${o.p ? `<p class="cta-text">${o.p}</p>` : ''}<div class="acts">${U.btn(o.btn || v('cta.btn', 'Оставить заявку'), P.contact, 1)}${U.btn(v('cta.btn2', 'Telegram'), 'https://t.me/PavelTexSpec', 2, true)}</div></div></section>`,
-    card: (c, i) => `<article class="card" data-cat="${c.cat}"><a class="card-img" href="${caseUrl(c.id)}"><img src="${c.img}" alt="${esc(c.t)}" loading="lazy"></a><div class="card-body"><p class="card-type">${esc(c.type)} · ${c.client ? v('cases.client', 'клиент') : v('cases.own', 'свой проект')}</p><h3 class="card-title"><a href="${caseUrl(c.id)}">${esc(c.t)}</a></h3><p class="card-text">${esc(c.p)}</p>${c.f ? `<p class="card-fact"><b>${esc(c.f[0])}</b> <span>${esc(c.f[1])}</span></p>` : ''}<a class="card-more" href="${caseUrl(c.id)}">${v('cases.more', 'Подробнее →')}</a></div></article>`,
+    card: (c, i) => `<article class="card" data-cat="${c.cat}" data-sphere="${c.sphere || 'other'}"><a class="card-img" href="${caseUrl(c.id)}"><img src="${c.img}" alt="${esc(c.t)}" loading="lazy"></a><div class="card-body"><p class="card-type">${esc(c.type)} · ${c.client ? v('cases.client', 'клиент') : v('cases.own', 'свой проект')}</p><h3 class="card-title"><a href="${caseUrl(c.id)}">${esc(c.t)}</a></h3><p class="card-text">${esc(c.p)}</p>${c.f ? `<p class="card-fact"><b>${esc(c.f[0])}</b> <span>${esc(c.f[1])}</span></p>` : ''}<a class="card-more" href="${caseUrl(c.id)}">${v('cases.more', 'Подробнее →')}</a></div></article>`,
     cards: (list) => `<div class="cards">${list.map((c, i) => U.card(c, i)).join('')}</div>`,
     prow: ([n, d, p, t]) => `<div class="prow"><div class="prow-main"><b class="prow-name">${esc(n)}</b><p class="prow-desc">${esc(d)}${t ? ` <span class="prow-time">${v('services.time', '·')} ${esc(t)}</span>` : ''}</p></div><span class="prow-price">${esc(p)}</span></div>`,
     pack: ([n, d, o, p]) => `<div class="pack"><b>${esc(n)}</b><p>${esc(d)}</p><p class="pack-price"><s>${esc(o)}</s> <strong>${esc(p)}</strong></p></div>`,
@@ -116,8 +116,12 @@ window.ENGINE = function (T) {
     cases() {
       const T5 = [['all', v('cases.all', 'Все')], ['Tilda', v('cases.cats.Tilda', 'Сайты')], ['Salebot', v('cases.cats.Salebot', 'Боты')], ['GetCourse', v('cases.cats.GetCourse', 'Школы')], ['Figma', v('cases.cats.Figma', 'Дизайн')]];
       const n = (k) => k === 'all' ? ALL.length : ALL.filter((c) => c.cat === k).length;
+      const SP = [['all', v('cases.sAll', 'Все сферы')], ['food', 'Еда и кафе'], ['auto', 'Авто и техника'], ['edu', 'Обучение'], ['b2b', 'Финансы и B2B'], ['beauty', 'Красота и здоровье'], ['other', 'Услуги и прочее']];
+      const ns = (k) => k === 'all' ? ALL.length : ALL.filter((c) => (c.sphere || 'other') === k).length;
       return U.hd({ crumbs: U.crumbs([[v('nav.cases', 'Кейсы')]]), kicker: v('cases.kicker'), h1: v('cases.h1', 'Кейсы'), lead: v('cases.lead'), note: v('cases.note') })
-        + U.sec({ cls: 'sec-cases', body: `<div class="filters" role="tablist">${T5.map(([k, l]) => `<button role="tab" data-f="${k}">${l}<sup>${n(k)}</sup></button>`).join('')}</div>${U.cards(ALL)}` })
+        + U.sec({ cls: 'sec-cases', body: `<div class="filters" role="tablist">${T5.map(([k, l]) => `<button role="tab" data-f="${k}">${l}<sup>${n(k)}</sup></button>`).join('')}</div>`
+          + `<div class="filters filters-s" role="group" aria-label="${v('cases.sphere', 'Сфера')}">${SP.map(([k, l]) => `<button type="button" data-s="${k}">${l}<sup>${ns(k)}</sup></button>`).join('')}</div>`
+          + U.cards(ALL) + `<div class="cases-empty" hidden><p>${v('cases.empty', 'В этой сфере пока нет кейсов этого направления.')}</p><button type="button" class="cases-reset">${v('cases.reset', 'Сбросить фильтры')}</button></div>` })
         + U.cta({ h: v('cases.endH', 'Обсудим ваш проект?'), p: v('cases.endP'), btn: v('cases.endBtn') });
     },
     case() {
@@ -268,16 +272,32 @@ window.ENGINE = function (T) {
 
   /* ---------- поведение ---------- */
   // фильтр кейсов
-  const fl = document.querySelector('.filters');
-  if (fl) {
-    const apply = (f) => {
-      if (![...fl.querySelectorAll('button')].some((b) => b.dataset.f === f)) f = 'all';
-      fl.querySelectorAll('button').forEach((b) => { const on = b.dataset.f === f; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
-      document.querySelectorAll('.sec-cases .card').forEach((c) => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
-      history.replaceState(null, '', f === 'all' ? P.cases : P.cases + '?f=' + f);
+  // два фильтра вместе: направление (?f=) и сфера бизнеса (?s=)
+  const box = document.querySelector('.sec-cases');
+  if (box && box.querySelector('.filters')) {
+    let f = param('f') || 'all', s = param('s') || 'all';
+    const apply = (push) => {
+      if (!box.querySelector(`[data-f="${f}"]`)) f = 'all';
+      if (!box.querySelector(`[data-s="${s}"]`)) s = 'all';
+      box.querySelectorAll('[data-f]').forEach((b) => { const on = b.dataset.f === f; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+      box.querySelectorAll('[data-s]').forEach((b) => { const on = b.dataset.s === s; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+      let shown = 0;
+      box.querySelectorAll('.card').forEach((c) => {
+        const on = (f === 'all' || c.dataset.cat === f) && (s === 'all' || c.dataset.sphere === s);
+        c.classList.toggle('hide', !on); if (on) shown++;
+      });
+      const empty = box.querySelector('.cases-empty'); if (empty) empty.hidden = shown > 0;
+      if (push) {
+        const q = [f !== 'all' && 'f=' + f, s !== 'all' && 's=' + s].filter(Boolean).join('&');
+        history.replaceState(null, '', P.cases + (q ? '?' + q : ''));
+      }
     };
-    fl.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) apply(b.dataset.f); });
-    apply(param('f') || 'all');
+    box.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-f],[data-s],.cases-reset'); if (!b) return;
+      if (b.classList.contains('cases-reset')) { f = 'all'; s = 'all'; } else if (b.dataset.f) f = b.dataset.f; else s = b.dataset.s;
+      apply(true);
+    });
+    apply(false);
   }
   // увеличение картинок
   const lb = document.getElementById('lb');
