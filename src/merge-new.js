@@ -31,7 +31,7 @@ module.exports = function mergeNew(root) {
     // абсолютные адреса (canonical, og:url, разметка для поиска)
     .replace(new RegExp(DOMAIN.replace(/\./g, '\\.') + '\\/(' + ROUTES + ')(?=["\'?#/<\\s])', 'g'), DOMAIN + '/ai/$1')
     .replace(new RegExp('(["\'>])' + DOMAIN.replace(/\./g, '\\.') + '\\/(?=["\'<])', 'g'), '$1' + DOMAIN + '/ai/');
-  const SWITCH = '<a href="/" style="position:fixed;left:16px;bottom:16px;z-index:2147483000;background:#d5ff45;color:#0a0a0d;font:700 13px/1 Manrope,system-ui,sans-serif;padding:11px 16px;border-radius:999px;text-decoration:none;box-shadow:0 10px 30px -10px rgba(0,0,0,.6)">↺ Сменить стиль</a>';
+  const SWITCH = '<script src="/assets/nav-bar.js" defer></script>';
 
   for (const rel of oldPages) {
     const src = path.join(SITE, rel), dst = path.join(AI, rel);

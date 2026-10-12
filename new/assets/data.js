@@ -128,12 +128,14 @@ window.LOGO = function (st, sub) {
   return '<span class="pk-logo pk-logo--' + st + '"><span class="pk-mark" aria-hidden="true">ПК</span><span class="pk-word">Павел Корчагин' + (sub ? '<small>' + sub + '</small>' : '') + '</span></span>';
 };
 
-/* Плавающая кнопка «сменить стиль» */
-window.styleSwitch = function (label) {
-  const a = document.createElement('a');
-  a.href = (window.ROOT || '') + 'index.html'; a.className = 'style-switch'; a.textContent = label || '↺ Сменить стиль';
-  document.body.appendChild(a);
+/* Общая панель навигации (assets/nav-bar.js) вместо старой кнопки «сменить стиль» */
+window.styleSwitch = function () {
   if (window.linkPages) window.linkPages();
+  if (window.PKNav) return window.PKNav.mount();
+  const own = document.querySelector('script[src*="data.js"]');
+  const s = document.createElement('script');
+  s.src = (own ? own.getAttribute('src').replace(/data\.js/, 'nav-bar.js') : '../assets/nav-bar.js');
+  document.head.appendChild(s);
 };
 
 /* Все 35 кейсов с texspeckps.ru (первые — самые сильные) */
