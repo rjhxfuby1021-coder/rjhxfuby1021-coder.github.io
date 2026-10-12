@@ -39,3 +39,19 @@ test('urlFor', () => {
   assert.strictEqual(N.urlFor('bold', 'home'), '/bold/');
   assert.strictEqual(N.urlFor('bold', 'other'), '/bold/');
 });
+
+const fs = require('fs'), pth = require('path');
+test('в шапках стилей нет пункта «Демо-бот»', () => {
+  const dir = pth.join(__dirname, '..');
+  const bad = fs.readdirSync(dir).filter((d) => fs.existsSync(pth.join(dir, d, 'index.html'))).filter((d) => {
+    const html = fs.readFileSync(pth.join(dir, d, 'index.html'), 'utf8');
+    const head = (html.match(/<header[\s\S]*?<\/header>/) || [''])[0];
+    return /data-page="bot"/.test(head);
+  });
+  assert.deepStrictEqual(bad, []);
+});
+test('NAV движка: кейсы, услуги, отзывы, блог', () => {
+  const src = fs.readFileSync(pth.join(__dirname, '../assets/engine.js'), 'utf8');
+  const m = src.match(/const NAV = \[(.*?)\];/);
+  assert.deepStrictEqual([...m[1].matchAll(/\['(\w+)'/g)].map((x) => x[1]), ['cases', 'services', 'reviews', 'blog']);
+});

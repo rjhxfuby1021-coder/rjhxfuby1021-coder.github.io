@@ -99,7 +99,7 @@ window.ENGINE = function (T) {
   if (!T.header) T.header = stdHeader;
   if (!T.footer) T.footer = stdFooter;
   const here = location.pathname.split('/').pop() || 'index.html';
-  const NAV = [['cases', P.cases], ['services', P.services], ['bot', P.bot], ['reviews', P.reviews], ['blog', P.blog], ['about', P.about], ['faq', P.faq]];
+  const NAV = [['cases', P.cases], ['services', P.services], ['reviews', P.reviews], ['blog', P.blog]];
   const navItems = NAV.map(([k, h]) => ({ k, h, t: v('nav.' + k, k), on: here === h || (k === 'cases' && here === P.case) || (k === 'blog' && here === P.post) || (k === 'services' && here === P.service) }));
   const hd = document.getElementById('hd'), ft = document.getElementById('ft');
   // шапку и подвал подставляем только на внутренних страницах (у главных стилей они свои)
