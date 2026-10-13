@@ -31,7 +31,9 @@ module.exports = function mergeNew(root) {
     // абсолютные адреса (canonical, og:url, разметка для поиска)
     .replace(new RegExp(DOMAIN.replace(/\./g, '\\.') + '\\/(' + ROUTES + ')(?=["\'?#/<\\s])', 'g'), DOMAIN + '/ai/$1')
     .replace(new RegExp('(["\'>])' + DOMAIN.replace(/\./g, '\\.') + '\\/(?=["\'<])', 'g'), '$1' + DOMAIN + '/ai/');
-  const SWITCH = '<script src="/assets/nav-bar.js" defer></script>';
+  // версия по содержимому файла — чтобы браузеры не держали старую панель в кэше
+  const NAVV = require('crypto').createHash('md5').update(fs.readFileSync(path.join(NEW, 'assets/nav-bar.js'))).digest('hex').slice(0, 8);
+  const SWITCH = '<script src="/assets/nav-bar.js?v=' + NAVV + '" defer></script>';
 
   for (const rel of oldPages) {
     const src = path.join(SITE, rel), dst = path.join(AI, rel);

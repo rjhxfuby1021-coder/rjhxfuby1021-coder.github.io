@@ -28,6 +28,29 @@
   // у творческого стиля своя страница заявки — «бриф»
   const urlFor = (slug, key) => slug === 'ai' ? (AI_URL[key] || '/ai/') : '/' + slug + '/' + (slug === 'creative' && key === 'contact' ? 'brief.html' : (ST_URL[key] || ''));
 
+  // Кнопки связи («Написать», «Обсудить проект»), которые ведут на t.me/PavelTexSpec, отправляем на страницу связи сайта:
+  // сайт t.me блокирует Яндекс Браузер, а заявка с сайта всё равно приходит Павлу в Telegram.
+  // Ссылки, где прямо сказано «Telegram» (или значок без текста), остаются ссылками в Telegram.
+  const toContact = (href, label) => {
+    let u; try { u = new URL(href); } catch (e) { return false; }
+    if (!/^(www\.)?(t|telegram)\.me$/.test(u.hostname) || !/^\/paveltexspec\/?$/i.test(u.pathname)) return false;
+    const t = String(label || '').trim();
+    return !!t && !/telegram|телеграм|@|\btg\b/i.test(t);
+  };
+  function guardTelegram() {
+    if (typeof document === 'undefined' || document.documentElement.dataset.pkTg) return;
+    document.documentElement.dataset.pkTg = '1';
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a[href]'); if (!a) return;
+      const label = [a.innerText, a.getAttribute('aria-label'), a.title].filter(Boolean).join(' ');
+      if (!toContact(a.href, label)) return;
+      e.preventDefault();
+      const to = urlFor(currentStyle(location.pathname) || 'ai', 'contact');
+      if (location.pathname === to) { const f = document.querySelector('form'); if (f) f.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+      location.href = to;
+    }, true);
+  }
+
   const CSS = `
 #pk-nav{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2147483000;display:flex;align-items:center;gap:4px;
  padding:6px;border-radius:999px;background:rgba(14,14,18,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
@@ -111,10 +134,11 @@
     }
   }
   if (typeof document !== 'undefined') {
+    guardTelegram();
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', mount); else mount();
   }
 
-  const api = { STYLES, currentStyle, pageKey, urlFor, mount };
+  const api = { STYLES, currentStyle, pageKey, urlFor, toContact, mount };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.PKNav = api;
 })(typeof window !== 'undefined' ? window : globalThis);

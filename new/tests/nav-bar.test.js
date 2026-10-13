@@ -60,3 +60,15 @@ test('«Написать» ведёт на форму заявки сайта, �
   assert.strictEqual(N.urlFor('business', 'contact'), '/business/contact.html');
   assert.strictEqual(N.urlFor('creative', 'contact'), '/creative/brief.html');
 });
+test('кнопки связи с t.me ведут на страницу связи, ссылки «Telegram» — в Telegram', () => {
+  assert.strictEqual(N.toContact('https://t.me/PavelTexSpec', 'Написать'), true);
+  assert.strictEqual(N.toContact('https://t.me/PavelTexSpec', 'Обсудить проект'), true);
+  assert.strictEqual(N.toContact('https://t.me/PavelTexSpec?text=x', 'Хочу так же'), true);
+  assert.strictEqual(N.toContact('https://t.me/PavelTexSpec', 'Написать в Telegram'), false);
+  assert.strictEqual(N.toContact('https://t.me/PavelTexSpec', 'Telegram · @PavelTexSpec'), false);
+  assert.strictEqual(N.toContact('https://t.me/PavelTexSpec', 'Телеграм'), false);
+  assert.strictEqual(N.toContact('https://t.me/PavelTexSpec', '$ open telegram'), false);
+  assert.strictEqual(N.toContact('https://t.me/PavelTexSpec', ''), false);
+  assert.strictEqual(N.toContact('https://t.me/Bot_PortfolioRabot?start=quiz', 'Открыть бота'), false);
+  assert.strictEqual(N.toContact('https://example.com/', 'Написать'), false);
+});

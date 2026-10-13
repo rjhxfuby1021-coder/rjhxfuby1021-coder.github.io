@@ -52,5 +52,22 @@ const PAGES = ['/business/', '/business/cases.html', '/creative/', '/retro/', '/
   const covered = await mp.evaluate(() => { const n = document.getElementById('pk-nav'); const cs = n && getComputedStyle(n); return !!n && cs.display !== 'none' && cs.visibility !== 'hidden'; });
   if (covered) { bad++; console.log('FAIL панель видна поверх открытого кейса'); }
   await narrow.close();
+  // ссылки Telegram: «Telegram …» остаются в Telegram, кнопки связи без слова Telegram ведут на страницу связи
+  const tc = await b.newContext({ viewport: { width: 1280, height: 800 } }); let stats = { tg: 0, contact: 0 };
+  for (const pg of ['/', '/ai/', '/ai/form', '/business/', '/business/contact.html', '/bold/', '/creative/', '/terminal/', '/cafe/']) {
+    const tp = await tc.newPage();
+    await tp.goto(BASE + pg, { waitUntil: 'domcontentloaded', timeout: 60000 }); await tp.waitForTimeout(1200);
+    const res = await tp.evaluate(() => [...document.querySelectorAll('a[href]')].filter((a) => /t\.me\/paveltexspec/i.test(a.href)).map((a) => {
+      const label = [a.innerText, a.getAttribute('aria-label'), a.title].filter(Boolean).join(' ').trim();
+      let prevented = false; const stop = (e) => { prevented = e.defaultPrevented; e.preventDefault(); };
+      document.addEventListener('click', stop, { once: true });
+      a.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true, button: 0 }));
+      return { label: label.slice(0, 40), want: !!label && !/telegram|телеграм|@|\btg\b/i.test(label), prevented };
+    }));
+    for (const r of res) { if (r.want) stats.contact++; else stats.tg++; if (r.want !== r.prevented) { bad++; console.log('FAIL ' + pg + ' «' + r.label + '»: ' + (r.want ? 'должна вести на страницу связи' : 'должна вести в Telegram')); } }
+    await tp.close();
+  }
+  console.log('ссылки Telegram: остаются в Telegram ' + stats.tg + ', ведут на страницу связи ' + stats.contact);
+  await tc.close();
   await b.close(); console.log(bad ? bad + ' ошибок' : 'всё ок'); process.exit(bad ? 1 : 0);
 })();
