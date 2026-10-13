@@ -55,3 +55,8 @@ test('NAV движка: кейсы, услуги, отзывы, блог', () =>
   const m = src.match(/const NAV = \[(.*?)\];/);
   assert.deepStrictEqual([...m[1].matchAll(/\['(\w+)'/g)].map((x) => x[1]), ['cases', 'services', 'reviews', 'blog']);
 });
+test('«Написать» ведёт на форму заявки сайта, а не на t.me', () => {
+  assert.strictEqual(N.urlFor('ai', 'contact'), '/ai/form');
+  assert.strictEqual(N.urlFor('business', 'contact'), '/business/contact.html');
+  assert.strictEqual(N.urlFor('creative', 'contact'), '/creative/brief.html');
+});

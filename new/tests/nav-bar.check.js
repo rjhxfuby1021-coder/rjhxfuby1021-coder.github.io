@@ -19,7 +19,8 @@ const PAGES = ['/business/', '/business/cases.html', '/creative/', '/retro/', '/
           old: !!document.querySelector('.style-switch') };
       });
       const st = p.split("/")[1], first = !seen.has(st); seen.add(st);
-      const fail = !r.ok || r.old || errs.length || (first ? !r.tip : r.tip);
+      const tme = (r.links || []).some((h) => /t.me/.test(h));
+      const fail = tme || !r.ok || r.old || errs.length || (first ? !r.tip : r.tip);
       if (fail) bad++;
       console.log((fail ? 'FAIL ' : 'ok   ') + w + ' ' + p, fail ? JSON.stringify({ ...r, errs }) : '');
       await page.close();

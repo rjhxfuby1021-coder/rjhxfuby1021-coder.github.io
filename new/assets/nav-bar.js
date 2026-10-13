@@ -23,11 +23,11 @@
     for (const k of Object.keys(table)) if (table[k].test(leaf)) return k;
     return 'other';
   };
-  const AI_URL = { home: '/ai/', cases: '/ai/keys', services: '/ai/price', reviews: '/ai/otzivi', blog: '/ai/blog', faq: '/ai/faq' };
-  const ST_URL = { cases: 'cases.html', services: 'services.html', reviews: 'reviews.html', blog: 'blog.html', faq: 'faq.html' };
-  const urlFor = (slug, key) => slug === 'ai' ? (AI_URL[key] || '/ai/') : '/' + slug + '/' + (ST_URL[key] || '');
+  const AI_URL = { contact: '/ai/form', home: '/ai/', cases: '/ai/keys', services: '/ai/price', reviews: '/ai/otzivi', blog: '/ai/blog', faq: '/ai/faq' };
+  const ST_URL = { contact: 'contact.html', cases: 'cases.html', services: 'services.html', reviews: 'reviews.html', blog: 'blog.html', faq: 'faq.html' };
+  // у творческого стиля своя страница заявки — «бриф»
+  const urlFor = (slug, key) => slug === 'ai' ? (AI_URL[key] || '/ai/') : '/' + slug + '/' + (slug === 'creative' && key === 'contact' ? 'brief.html' : (ST_URL[key] || ''));
 
-  const TG = 'https://t.me/PavelTexSpec';
   const CSS = `
 #pk-nav{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:2147483000;display:flex;align-items:center;gap:4px;
  padding:6px;border-radius:999px;background:rgba(14,14,18,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
@@ -68,7 +68,7 @@
     const nav = document.createElement('nav');
     nav.id = 'pk-nav'; nav.setAttribute('aria-label', 'Навигация по сайту');
     nav.innerHTML = '<a href="' + urlFor(slug, 'cases') + '">Кейсы</a><a href="' + urlFor(slug, 'services') + '">Цены</a>'
-      + '<a class="pk-go" href="' + TG + '" target="_blank" rel="noopener">Написать</a>'
+      + '<a class="pk-go" href="' + urlFor(slug, 'contact') + '">Написать</a>'
       + '<button type="button" class="pk-st" aria-haspopup="true" aria-expanded="false" aria-controls="pk-nav-menu"><span>Стиль:</span> <b>' + esc(me.name) + '</b> ⇄</button>'
       + '<div id="pk-nav-menu" hidden>' + group('mood', 'По настроению') + group('sphere', 'Под вашу сферу') + '<a class="pk-all" href="/">На экран выбора стиля</a></div>';
     document.body.appendChild(nav);
